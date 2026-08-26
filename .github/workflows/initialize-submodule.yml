@@ -1,27 +1,12 @@
-name: initialize submodule
+name: verify submodule
 
 on:
-  push:
-    branches: [main]
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
-  initialize:
-    if: github.actor != 'github-actions[bot]'
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install the initial source tree and record the submodule
-        run: |
-          if [ -f alg1-source.tar.gz ]; then
-            tar -xzf alg1-source.tar.gz
-            git rm alg1-source.tar.gz
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git update-index --add --cacheinfo 160000,25e962b6835b5775344fb47ed2b52de01d666353,beamerteaching
-          git commit -m "Crea la estructura inicial y añade el tema"
-          git push
+      - name: Verify the recorded submodule commit
+        run: git submodule status
