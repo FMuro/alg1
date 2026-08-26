@@ -1,0 +1,3 @@
+[submodule "beamerteaching"]
+	path = beamerteaching
+	url = https://github.com/FMuro/beamerteaching.git

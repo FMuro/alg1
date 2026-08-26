@@ -1,0 +1,55 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% Compatibilidad con compilaciones mediante pdfLaTeX.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[provide=*,spanish]{babel}
+
+% Matemáticas y diagramas.
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+% Tema docente, incorporado como submódulo en beamerteaching/.
+\makeatletter
+\def\input@path{{beamerteaching/}}
+\makeatother
+\usetheme{Teaching}
+\titlegraphic{%
+  \includegraphics[width=0.20\paperwidth]{beamerteaching/assets/logo-us.png}%
+}
+
+\title{Álgebra Lineal y Geometría I}
+\subtitle{Grado en Matemáticas}
+\author{Fernando Muro}
+\institute{Universidad de Sevilla}
+\date{Curso 2026--2027}
+
+% Comandos generales de la asignatura.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\rg}{\operatorname{rg}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\id}{\operatorname{id}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\input{temas/01-sistemas-matrices-determinantes/tema}
+\input{temas/02-espacios-vectoriales/tema}
+\input{temas/03-subespacios/tema}
+\input{temas/04-homomorfismos/tema}
+\input{temas/05-forma-canonica/tema}
+\input{temas/06-espacio-vectorial-euclideo/tema}
+\input{temas/07-teoremas-espectrales/tema}
+\input{temas/08-espacios-afines/tema}
+\input{temas/09-aplicaciones-afines/tema}
+\input{temas/10-espacios-afines-euclideos/tema}
+\input{temas/11-movimientos/tema}
+
+\end{document}
