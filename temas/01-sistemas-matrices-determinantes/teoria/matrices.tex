@@ -3,20 +3,6 @@
 Sea \(k\) un cuerpo. Una \alert{matriz de tamaño \(m\times n\)}
 con coeficientes en \(k\) es una disposición rectangular de números:
 
-\[
-A=(a_{ij})=
-\left(
-\begin{array}{ccccc}
-a_{11} & a_{12} & \cdots & a_{1j} & \cdots \\[-1mm]
-\vdots & \vdots &        & \vdots &        \\
-a_{i1} & a_{i2} & \cdots & a_{ij} & \cdots \\
-\vdots & \vdots &        & \vdots &        \\
-a_{m1} & a_{m2} & \cdots & a_{mj} & \cdots
-\end{array}
-\right)
-\in M_{m\times n}(k).
-\]
-
 \begin{center}
 \begin{tikzpicture}[
     every node/.style={font=\small},
@@ -26,16 +12,17 @@ a_{m1} & a_{m2} & \cdots & a_{mj} & \cdots
 % Matriz esquemática
 \matrix (A) [
     matrix of math nodes,
+    ampersand replacement=\&,
     left delimiter={(},
     right delimiter={)},
-    row sep=3mm,
-    column sep=5mm
+    row sep=2mm,
+    column sep=2mm
 ] {
- a_{11} & \cdots & a_{1j} & \cdots & a_{1n} \\
- \vdots &        & \vdots &        & \vdots \\
- a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \\
- \vdots &        & \vdots &        & \vdots \\
- a_{m1} & \cdots & a_{mj} & \cdots & a_{mn} \\
+ a_{11} \& \cdots \& a_{1j} \& \cdots \& a_{1n} \\
+ \vdots \&        \& \vdots \&        \& \vdots \\
+ a_{i1} \& \cdots \& a_{ij} \& \cdots \& a_{in} \\
+ \vdots \&        \& \vdots \&        \& \vdots \\
+ a_{m1} \& \cdots \& a_{mj} \& \cdots \& a_{mn} \\
 };
 
 % Resaltar fila i
@@ -43,7 +30,6 @@ a_{m1} & a_{m2} & \cdots & a_{mj} & \cdots
   ([xshift=-2mm,yshift=2mm]A-3-1.north west)
   rectangle
   ([xshift=2mm,yshift=-2mm]A-3-5.south east);
-
 \node[left=8mm of A-3-1] (fila) {\alert{fila \(i\)}};
 \draw[->] (fila) -- (A-3-1.west);
 
@@ -52,18 +38,21 @@ a_{m1} & a_{m2} & \cdots & a_{mj} & \cdots
   ([xshift=-2mm,yshift=2mm]A-1-3.north west)
   rectangle
   ([xshift=2mm,yshift=-2mm]A-5-3.south east);
-
-\node[above=7mm of A-1-3] (columna) {\alert{columna \(j\)}};
+\node[above=5mm of A-1-3] (columna) {\alert{columna \(j\)}};
 \draw[->] (columna) -- (A-1-3.north);
 
 % Entrada (i,j)
-\node[right=13mm of A-3-5] (entrada)
-  {\(\displaystyle a_{ij}\): entrada \((i,j)\)};
-\draw[->] (entrada.west) -- (A-3-3.east);
+\node[below right=10mm and 35mm of A-3-3] (entrada)
+  {\alert{\(\displaystyle a_{ij}\): entrada \((i,j)\)}};
+
+\draw[->]
+  (entrada.west)
+  to[bend left=20]
+  (A-3-3.south east);
 
 % Tamaño
-\node[below=7mm of A] {
-  \(m\) filas \(\qquad\) \(n\) columnas
+\node[below=7mm of A] (hola) {
+  \alert{\(m\) filas \qquad \(n\) columnas}
 };
 
 \end{tikzpicture}
