@@ -51,11 +51,284 @@ con coeficientes en \(k\) es una disposición rectangular de números:
   (A-3-3.south east);
 
 % Tamaño
-\node[below=7mm of A] (hola) {
-  \alert{\(m\) filas \qquad \(n\) columnas}
+\node[below=7mm of A] {
+  \alert{\(n\) columnas}
+};
+
+% Tamaño
+\node[right=7mm of A] {
+  \alert{\(m\) filas}
 };
 
 \end{tikzpicture}
 \end{center}
+
+\end{frame}
+
+\begin{frame}{Notación para matrices}
+
+Las matrices se denotarán habitualmente por letras mayúsculas
+\[
+A,\ B,\ C,\ldots
+\]
+
+Si \(A\) es una matriz de \(m\) filas y \(n\) columnas, escribiremos
+\[
+A=(a_{ij}),
+\qquad
+1\leq i\leq m,\quad 1\leq j\leq n,
+\]
+donde \(a_{ij}\) es la entrada situada en la
+\alert{fila \(i\)} y la \alert{columna \(j\)}.
+
+\pause
+
+El conjunto de todas las matrices de tamaño \(m\times n\)
+con entradas en el cuerpo \(k\) se denota por
+\[
+\alert{M_{m\times n}(k)}.
+\]
+
+Para las matrices cuadradas escribiremos
+\[
+\alert{M_n(k)=M_{n\times n}(k)}.
+\]
+
+\end{frame}
+
+\begin{frame}{Operaciones con matrices}
+
+Sean
+\[
+A=(a_{ij}),\ B=(b_{ij})\in M_{m\times n}(k),
+\qquad
+\lambda\in k.
+\]
+
+\begin{block}{Suma}
+La suma de \(A\) y \(B\) se realiza entrada a entrada:
+\[
+A+B=(a_{ij}+b_{ij}).
+\]
+\end{block}
+
+\begin{block}{Producto por un escalar}
+El producto de \(A\) por \(\lambda\) se obtiene multiplicando
+cada entrada por \(\lambda\):
+\[
+\lambda A=(\lambda a_{ij}).
+\]
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Operaciones con matrices}
+
+Por ejemplo,
+\[
+\begin{pmatrix}
+1&2&-1\\
+0&3&2
+\end{pmatrix}
++
+\begin{pmatrix}
+2&-1&4\\
+1&0&-2
+\end{pmatrix}
+=
+\begin{pmatrix}
+3&1&3\\
+1&3&0
+\end{pmatrix}.
+\]
+
+\medskip
+
+\alert{Para sumar dos matrices deben tener el mismo tamaño.}
+
+\bigskip
+
+Un ejemplo de producto por un escalar es:
+\[
+-2
+\begin{pmatrix}
+1&2&-1\\
+0&3&2
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2&-4&2\\
+0&-6&-4
+\end{pmatrix}.
+\]
+
+\end{frame}
+
+
+% Requiere:
+% \usetikzlibrary{matrix,positioning}
+
+\newcommand{\myunit}{1 cm}
+
+\tikzset{
+    node style sp/.style={draw,circle,minimum size=\myunit},
+    node style ge/.style={circle,minimum size=\myunit},
+    arrow style mul/.style={draw,sloped,midway,fill=white},
+    arrow style plus/.style={midway,sloped,fill=white},
+}
+
+\begin{frame}{Producto de matrices}
+
+Sean
+\[
+A=(a_{ij})\in M_{n\times p}(k),
+\qquad
+B=(b_{ij})\in M_{p\times q}(k).
+\]
+
+\begin{center}
+\resizebox{0.82\textwidth}{!}{%
+\begin{tikzpicture}[>=latex]
+
+% Matriz A
+\matrix (A) [
+    matrix of math nodes,
+    ampersand replacement=\&,
+    nodes={node style ge},
+    left delimiter={(},
+    right delimiter={)}
+] at (0,0)
+{
+  a_{11} \& a_{12} \& \ldots \& a_{1p} \\
+  |[node style sp]| a_{21}
+      \& |[node style sp]| a_{22}
+      \& \ldots
+      \& |[node style sp]| a_{2p} \\
+  \vdots \& \vdots \& \ddots \& \vdots \\
+  a_{n1} \& a_{n2} \& \ldots \& a_{np} \\
+};
+
+\node[draw,below=10pt] at (A.south) {
+    \(A\): \alert{\(n\) filas}, \(p\) columnas
+};
+
+% Matriz B
+\matrix (B) [
+    matrix of math nodes,
+    ampersand replacement=\&,
+    nodes={node style ge},
+    left delimiter={(},
+    right delimiter={)}
+] at (6*\myunit,6*\myunit)
+{
+  b_{11} \& |[node style sp]| b_{12}
+      \& \ldots \& b_{1q} \\
+  b_{21} \& |[node style sp]| b_{22}
+      \& \ldots \& b_{2q} \\
+  \vdots \& \vdots \& \ddots \& \vdots \\
+  b_{p1} \& |[node style sp]| b_{p2}
+      \& \ldots \& b_{pq} \\
+};
+
+\node[draw,above=10pt] at (B.north) {
+    \(B\): \(p\) filas, \alert{\(q\) columnas}
+};
+
+% Matriz producto
+\matrix (C) [
+    matrix of math nodes,
+    ampersand replacement=\&,
+    nodes={node style ge},
+    left delimiter={(},
+    right delimiter={)}
+] at (6*\myunit,0)
+{
+  c_{11} \& c_{12} \& \ldots \& c_{1q} \\
+  c_{21} \& |[node style sp]| c_{22}
+      \& \ldots \& c_{2q} \\
+  \vdots \& \vdots \& \ddots \& \vdots \\
+  c_{n1} \& c_{n2} \& \ldots \& c_{nq} \\
+};
+
+% Conexión fila-columna con c_22
+\draw (A-2-1.north) -- (C-2-2.north);
+\draw (A-2-1.south) -- (C-2-2.south);
+\draw (B-1-2.west)  -- (C-2-2.west);
+\draw (B-1-2.east)  -- (C-2-2.east);
+
+% Productos correspondientes
+\draw[<->]
+(A-2-1)
+to[in=180,out=90]
+node[arrow style mul] (x) {\(\alert{a_{21}b_{12}}\)}
+(B-1-2);
+
+\draw[<->]
+(A-2-2)
+to[in=180,out=90]
+node[arrow style mul] (y) {\(\alert{a_{22}b_{22}}\)}
+(B-2-2);
+
+\draw[<->]
+(A-2-4)
+to[in=180,out=90]
+node[arrow style mul] (z) {\(\alert{a_{2p}b_{p2}}\)}
+(B-4-2);
+
+% Suma de los productos
+\draw[->]
+(x)
+to node[arrow style plus] {\(\alert{+}\)} (y)
+to node[arrow style plus] {\(\alert{+\cdots+}\)} (z)
+to (C-2-2.north west);
+
+\node[draw,below=10pt] at (C.south) {
+    \(C=AB\): \alert{\(n\) filas}, \alert{\(q\) columnas}
+};
+
+\end{tikzpicture}%
+}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Propiedades de las operaciones con matrices}
+
+Para matrices de tamaños adecuados y escalares
+\(\lambda,\mu\in k\):
+
+\begin{align*}
+A+(B+C) &= (A+B)+C,\\
+A+B &= B+A,\\
+A+0 &= A,\\
+A+(-A) &= 0,
+\end{align*}
+
+\pause
+
+\begin{align*}
+A(B+C) &= AB+AC,\\
+(A+B)C &= AC+BC,\\
+A(BC) &= (AB)C,\\
+\lambda(AB) &= (\lambda A)B=A(\lambda B).
+\end{align*}
+
+\pause
+
+Si \(I_n\) denota la matriz identidad de tamaño \(n\), entonces
+\[
+I_mA=A=AI_n,
+\qquad A\in M_{m\times n}(k).
+\]
+
+\medskip
+
+\begin{alertblock}{Atención}
+El producto de matrices no es, en general, conmutativo:
+\[
+AB\neq BA.
+\]
+Incluso puede ocurrir que \(AB\) esté definido y \(BA\) no.
+\end{alertblock}
 
 \end{frame}
