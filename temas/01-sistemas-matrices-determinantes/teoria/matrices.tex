@@ -268,6 +268,79 @@ Un ejemplo de producto por un escalar es:
 
 \end{frame}
 
+\begin{frame}{Producto de matrices}
+
+Sean
+\[
+A=(a_{ij})\in M_{m\times s}(k),
+\qquad
+B=(b_{ij})\in M_{s\times n}(k).
+\]
+
+Su producto es la matriz
+\[
+AB=(c_{ij})\in M_{m\times n}(k),
+\qquad
+\alert{c_{ij}=\sum_{r=1}^{s}a_{ir}b_{rj}}.
+\]
+Es decir,
+
+\vspace{-10pt}
+
+\begin{center}
+\begin{tikzpicture}[
+    every node/.style={font=\small},
+    >=stealth
+]
+
+\node (fila) {
+$\displaystyle
+{\setlength{\arraycolsep}{2pt}\begin{pmatrix}
+a_{i1}&a_{i2}&\cdots&a_{is}
+\end{pmatrix}}
+$};
+
+\node[right=0mm of fila] (por) {\(\cdot\)};
+
+\node[left=0mm of fila] (igual) {\(=\)};
+
+\node[left=0mm of igual] (igual) {\alert{\(c_{ij}\)}};
+
+\node[right=0mm of por] (columna) {
+$\displaystyle
+\begin{pmatrix}
+b_{1j}\\
+b_{2j}\\
+\vdots\\
+b_{sj}
+\end{pmatrix}
+$};
+
+\node[right=0mm of columna] (igual) {\(=\)};
+
+\node[right=0mm of igual] (entrada) {
+$\displaystyle
+\alert{
+a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{is}b_{sj}.
+}
+$};
+
+\node[below=0mm of fila] {\alert{fila \(i\) de \(A\)}};
+\node[below=0mm of columna] {\alert{columna \(j\) de \(B\)}};
+
+\end{tikzpicture}
+\end{center}
+
+
+Por tanto,
+\[
+\boxed{
+(m\times s)(s\times n)\longrightarrow(m\times n)
+}
+\]
+
+\end{frame}
+
 \begin{frame}{Propiedades de las operaciones con matrices}
 
 Para matrices de tamaños adecuados y escalares
