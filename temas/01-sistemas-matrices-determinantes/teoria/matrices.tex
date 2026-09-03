@@ -74,7 +74,7 @@ A,\ B,\ C,\ldots
 
 Si \(A\) es una matriz de \(m\) filas y \(n\) columnas, escribiremos
 \[
-A=(a_{ij}),
+A= A_{m\times n} =(a_{ij}),
 \qquad
 1\leq i\leq m,\quad 1\leq j\leq n,
 \]
@@ -93,6 +93,7 @@ Para las matrices cuadradas escribiremos
 \[
 \alert{M_n(k)=M_{n\times n}(k)}.
 \]
+Una matriz cuadrada de tamaño $n\times n$ se dice que tiene \alert{orden $n$}.
 
 \end{frame}
 
@@ -341,43 +342,144 @@ Por tanto,
 
 \end{frame}
 
+\begin{frame}{Matriz nula y matriz identidad}
+
+\begin{definition}
+La \alert{matriz nula} de tamaño \(m\times n\) es la matriz
+\[
+0=
+\begin{pmatrix}
+0 & \cdots & 0\\
+\vdots & \ddots & \vdots\\
+0 & \cdots & 0
+\end{pmatrix}
+\in M_{m\times n}(k).
+\]
+\end{definition}
+
+\pause
+
+\begin{definition}
+La \alert{matriz identidad} de orden \(n\) es la matriz
+\[
+I_n=
+\begin{pmatrix}
+1 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1
+\end{pmatrix}
+\in M_n(k).
+\]
+Es decir, sus entradas son
+\[
+(I_n)_{ij}=
+\begin{cases}
+1,& i=j,\\
+0,& i\neq j.
+\end{cases}
+\]
+\end{definition}
+
+\end{frame}
+
 \begin{frame}{Propiedades de las operaciones con matrices}
 
-Para matrices de tamaños adecuados y escalares
-\(\lambda,\mu\in k\):
-
-\begin{align*}
-A+(B+C) &= (A+B)+C,\\
-A+B &= B+A,\\
-A+0 &= A,\\
-A+(-A) &= 0,
-\end{align*}
-
-\pause
-
-\begin{align*}
-A(B+C) &= AB+AC,\\
-(A+B)C &= AC+BC,\\
-A(BC) &= (AB)C,\\
-\lambda(AB) &= (\lambda A)B=A(\lambda B).
-\end{align*}
-
-\pause
-
-Si \(I_n\) denota la matriz identidad de tamaño \(n\), entonces
-\[
-I_mA=A=AI_n,
-\qquad A\in M_{m\times n}(k).
-\]
+\begin{proposition}
+Sean \(A,B,C\) matrices de tamaños adecuados y \(\lambda,\mu\in k\). Se verifican las siguientes propiedades:
 
 \medskip
 
-\begin{alertblock}{Atención}
-El producto de matrices no es, en general, conmutativo:
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{enumerate}
+    \item \(A+(B+C)=(A+B)+C\).
+    \item \(A+B=B+A\).
+    \item \(A+0=A\).
+    \item \(A+(-A)=0\).
+    \item \(\lambda(A+B)=\lambda A+\lambda B\).
+    \item \((\lambda+\mu)A=\lambda A+\mu A\).
+\end{enumerate}
+\end{column}
+
+\begin{column}{0.48\textwidth}
+\begin{enumerate}
+    \setcounter{enumi}{6}
+    \item \((\lambda\mu)A=\lambda(\mu A)\).
+    \item \(1A=A\).
+    \item \(A(B+C)=AB+AC\),\\
+          \((A+B)C=AC+BC\).
+    \item \(A(BC)=(AB)C\).
+	 \item \(\lambda(AB)=(\lambda A)B=A(\lambda B)\).
+    \item \(I_mA=A=AI_n\).
+\end{enumerate}
+\end{column}
+\end{columns}
+\end{proposition}
+
+\end{frame}
+
+\begin{frame}{Demostración de una propiedad}
+
+\begin{proof}[Prueba de 10]
+Dadas \(A_{m\times n},B_{n\times p},C_{p\times q}\), $A(BC)$ y $(AB)C$ tienen tamaño $m\times q$ y sus entradas son:
+
+\vspace{-10pt}
+
+\begin{align*}
+\bigl(A(BC)\bigr)_{ij}
+ &=\sum_{r=1}^{n}a_{ir}(BC)_{rj}\\
+ &=\sum_{r=1}^{n}a_{ir}
+   \left(\sum_{s=1}^{p}b_{rs}c_{sj}\right)\\
+ &=\sum_{s=1}^{p}
+   \left(\sum_{r=1}^{n}a_{ir}b_{rs}\right)c_{sj}\\
+ &=\sum_{s=1}^{p}(AB)_{is}c_{sj}\\
+ &=\bigl((AB)C\bigr)_{ij}.
+\end{align*}
+
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{El producto de matrices no es conmutativo}
+
+En general, el producto de matrices \alert{no es conmutativo}:
 \[
 AB\neq BA.
 \]
-Incluso puede ocurrir que \(AB\) esté definido y \(BA\) no.
-\end{alertblock}
 
+De hecho, puede ocurrir que \(AB\) esté definido y \(BA\) no lo esté, o que ambos estén definidos pero sean de diferentes tamaños.
+
+\medskip
+
+Incluso cuando ambos productos están definidos y son de igual tamaño, pueden ser distintos.
+Por ejemplo, sean
+\[
+A=
+\begin{pmatrix}
+1&1\\
+0&1
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+1&0\\
+1&1
+\end{pmatrix}.
+\]
+
+Entonces
+\[
+AB=
+\begin{pmatrix}
+2&1\\
+1&1
+\end{pmatrix},
+\qquad
+BA=
+\begin{pmatrix}
+1&1\\
+1&2
+\end{pmatrix}.
+\]
 \end{frame}
