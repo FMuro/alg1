@@ -151,22 +151,33 @@ Toda matriz $A_{m\times n}$ es equivalente por filas a una matriz escalonada.
 Si \(A=0\), ya es escalonada. Supongamos \(A\neq0\), y sea \(j\)
 la primera columna de \(A\) que contiene alguna entrada no nula.
 
-\medskip
+\[
+\left(
+\begin{array}{ccccccc}
+0&\cdots&0&a_{1j}& * & \cdots & *\\
+0&\cdots&0&a_{2j}& * & \cdots & *\\
+\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+0&\cdots&0&a_{mj}& * & \cdots & *
+\end{array}
+\right).
+\]
 
-Mediante una operación elemental de tipo \(1\), si es necesario,
+Mediante una operación elemental de tipo \(1\) (intercambio de filas), si es necesario,
 podemos situar una entrada no nula \(a_{1j}\) en la primera fila.
 
 \medskip
 
-Mediante operaciones elementales de tipo \(3\),
-\[
-F_i-\frac{a_{ij}}{a_{1j}}F_1,
-\qquad i=2,\ldots,m,
-\]
+Mediante operaciones elementales de tipo \(3\)
 anulamos todas las entradas situadas debajo de \(a_{1j}\).
-
-Obtenemos así una matriz por bloques de la forma
 \[
+\left(
+\begin{array}{ccccccc}
+0&\cdots&0&a_{1j}& * & \cdots & *\\
+0&\cdots&0&a_{2j}& * & \cdots & *\\
+\vdots&&\vdots&\vdots&\vdots&&\vdots\\
+0&\cdots&0&a_{mj}& * & \cdots & *
+\end{array}
+\right)\xrightarrow[i=2,\ldots,m]{F_i-\frac{a_{ij}}{a_{1j}}F_1}
 \left(
 \begin{array}{cccc|ccc}
 0&\cdots&0&a_{1j}& * & \cdots & *\\
@@ -231,65 +242,63 @@ Una matriz escalonada por filas se dice \alert{reducida} si, además:
 \begin{frame}[allowframebreaks]{Forma escalonada reducida}
 
 \begin{theorem}
-Toda matriz es equivalente por filas a una \alert{única} matriz
+Toda matriz $A$ es equivalente por filas a una matriz
 escalonada y reducida.
 \end{theorem}
 
 \begin{proof}
-Sea \(A\in M_{m\times n}(k)\). Sabemos que \(A\) es equivalente
-por filas a una matriz escalonada \(E\).
-
-Multiplicando cada fila no nula de \(E\) por el inverso de su pivote,
+Como toda matriz es equivalente
+por filas a una escalonada, podemos suponer que $A$ ya lo es.
+Multiplicando cada fila no nula de \(A\) por el inverso de su pivote,
 mediante operaciones elementales de tipo \(2\), podemos suponer que
-todos los pivotes son iguales a \(1\).
+todos los pivotes son \(1\).
+
+\[
+\begin{pmatrix}
+0    &\alert{a_{1j_1}} & \ast & \ast &\cdots & \ast & \ast &  \cdots \\
+0    & 0    & 0    & \alert{a_{2j_2}} & \cdots &\ast & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots \\
+0    & 0    & 0    & 0 & \cdots & \alert{a_{ij_i}} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
+\end{pmatrix}
+\xrightarrow{\frac{1}{a_{ij_i}}F_i}
+\begin{pmatrix}
+0    &\alert{1} & \ast & \ast & \cdots & \ast & \ast &  \cdots \\
+0    & 0    & 0    & \alert{1} & \cdots & \ast & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
+0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
+\end{pmatrix}.
+\]
 
 A continuación, empezando por el último pivote y procediendo hacia
 arriba, mediante operaciones elementales de tipo \(3\) anulamos
 todas las entradas situadas por encima de cada pivote.
 
-La matriz obtenida es escalonada y reducida y es equivalente por filas
-a \(A\). Esto demuestra la existencia.
-
-\framebreak
-
-Veamos la unicidad. Sean \(R\) y \(S\) dos matrices escalonadas y
-reducidas equivalentes por filas.
-
-Denotemos por \(R_i\) y \(S_i\) sus filas. Como las operaciones
-elementales por filas no alteran las relaciones lineales entre las
-columnas, para cada \(j\) la columna \(j\) es combinación lineal de las
-columnas anteriores en \(R\) si y solo si lo es en \(S\).
-
-Por tanto, \(R\) y \(S\) tienen sus pivotes en las mismas columnas.
-
-\framebreak
-
-Sean
-\[
-j_1<j_2<\cdots<j_r
-\]
-las columnas de los pivotes.
-
-Como \(R\) y \(S\) son reducidas, las submatrices formadas por estas
-columnas son, en ambos casos,
 \[
 \begin{pmatrix}
-I_r\\
-0
+0    &\alert{1} & \ast & \ast & \cdots & a_{1j_i} & \ast &  \cdots \\
+0    & 0    & 0    & \alert{1} & \cdots & a_{2j_i} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
+0    & 0    & 0    & 0 & \cdots   & a_{kj_i} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
+0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
+\end{pmatrix}
+\xrightarrow[k<i]{F_k-a_{kj_i}F_i}
+\begin{pmatrix}
+0    &\alert{1} & \ast & \ast & \cdots & \alert{0}& \ast &  \cdots \\
+0    & 0    & 0    & \alert{1} & \cdots & \alert{0} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
+0    & 0    & 0    & 0 & \cdots   & \alert{0} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
+0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
+\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
 \end{pmatrix}.
 \]
 
-Para cualquier otra columna \(j\), sus entradas en las primeras \(r\)
-filas son precisamente los coeficientes de su expresión como
-combinación lineal de las columnas pivote.
-
-Como estas relaciones lineales son las mismas en \(R\) y en \(S\),
-la columna \(j\) coincide en ambas matrices.
-
-Por tanto, todas las columnas de \(R\) y \(S\) coinciden, y
-\[
-R=S.
-\]
+La matriz obtenida es escalonada y reducida, y equivalente por filas
+a \(A\).
 \end{proof}
 
 \end{frame}
