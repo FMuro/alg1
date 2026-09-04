@@ -1,0 +1,295 @@
+\begin{frame}{Operaciones elementales por filas: intercambio}
+
+La \alert{operación elemental tipo 1}
+\[
+\alert{F_i\leftrightarrow F_j}
+\]
+intercambia las filas \(i\) y \(j\):
+
+\medskip
+
+\[
+\begin{pmatrix}
+\vdots&&\vdots\\
+a_{i1} & \cdots & a_{in}\\
+\vdots &&\vdots\\
+a_{j1} & \cdots & a_{jn}\\
+\vdots &&\vdots
+\end{pmatrix}
+\quad
+\xrightarrow{\;F_i\leftrightarrow F_j\;}
+\quad
+\begin{pmatrix}
+\vdots &&\vdots\\
+a_{j1} & \cdots & a_{jn}\\
+\vdots &&\vdots\\
+a_{i1} & \cdots & a_{in}\\
+\vdots &&\vdots
+\end{pmatrix}.
+\]
+
+\end{frame}
+
+
+\begin{frame}{Operaciones elementales por filas: producto por un escalar}
+
+La \alert{operación elemental tipo 2}
+\[
+\alert{\lambda F_i},
+\qquad \lambda\neq0,
+\]
+multiplica la fila \(i\) por el escalar no nulo \(\lambda\in k\):
+
+\medskip
+
+\[
+\begin{pmatrix}
+\vdots &&\vdots\\
+a_{i1} & \cdots & a_{in}\\
+\vdots &&\vdots
+\end{pmatrix}
+\quad
+\xrightarrow{\;\lambda F_i\;}
+\quad
+\begin{pmatrix}
+\vdots &&\vdots\\
+\lambda a_{i1} & \cdots & \lambda a_{in}\\
+\vdots &&\vdots
+\end{pmatrix}.
+\]
+
+\end{frame}
+
+\begin{frame}{Operaciones elementales por filas: suma de un múltiplo}
+
+La \alert{operación elemental tipo 3}
+\[
+\alert{F_i+\lambda F_j},
+\qquad i\neq j,
+\]
+sustituye la fila \(i\) por \(F_i+\lambda F_j\), donde $\lambda\in k$ es un escalar:
+
+\medskip
+
+\[
+\begin{pmatrix}
+\vdots &&\vdots\\
+a_{i1} & \cdots & a_{in}\\
+\vdots &&\vdots\\
+a_{j1} & \cdots & a_{jn}\\
+\vdots &&\vdots
+\end{pmatrix}
+\quad
+\xrightarrow{\;F_i+\lambda F_j\;}
+\quad
+\begin{pmatrix}
+\vdots &&\vdots\\
+a_{i1}+\lambda a_{j1}
+&
+\cdots
+&
+a_{in}+\lambda a_{jn}\\
+\vdots &&\vdots\\
+a_{j1} & \cdots & a_{jn}\\
+\vdots &&\vdots
+\end{pmatrix}.
+\]
+
+\end{frame}
+
+\begin{frame}{Equivalencia por filas}
+
+\begin{definition}
+Sean \(A,B\in M_{m\times n}(k)\). Diremos que \(A\) y \(B\) son
+\alert{equivalentes por filas}, y escribiremos
+\[
+A\sim B,
+\]
+si \(B\) se obtiene a partir de \(A\) mediante una sucesión finita de
+operaciones elementales por filas.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Matrices escalonadas}
+
+\begin{definition}
+Sea \(A\in M_{m\times n}(k)\). El \alert{pivote} de una fila no nula
+es su primera entrada no nula.
+
+La matriz \(A\) se dice \alert{escalonada por filas} si:
+
+\begin{enumerate}
+    \item todas las filas nulas, si las hay, están situadas después
+    de las filas no nulas;
+
+    \item el pivote de cada fila no nula está situado estrictamente
+    a la derecha del pivote de la fila anterior.
+\end{enumerate}
+
+\[
+\begin{pmatrix}
+0    &\alert{\ast} & \ast & \ast & \ast & \ast & \ast & \cdots & \ast \\
+0    & 0    & 0    & \alert{\ast} & \ast & \ast & \ast & \cdots & \ast \\
+0    & 0    & 0    & 0    & \alert{\ast} & \ast & \ast & \cdots & \ast \\
+\vdots &&&&&&&&\vdots \\
+0    & 0    & 0    & 0    & 0    & 0    & 0    & \cdots & 0
+\end{pmatrix}.
+\]
+
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Eliminación gaussiana}
+
+\begin{theorem}
+Toda matriz $A_{m\times n}$ es equivalente por filas a una matriz escalonada.
+\end{theorem}
+
+\begin{proof}
+Si \(A=0\), ya es escalonada. Supongamos \(A\neq0\), y sea \(j\)
+la primera columna de \(A\) que contiene alguna entrada no nula.
+
+\medskip
+
+Mediante una operación elemental de tipo \(1\), si es necesario,
+podemos situar una entrada no nula \(a_{1j}\) en la primera fila.
+
+\medskip
+
+Mediante operaciones elementales de tipo \(3\),
+\[
+F_i-\frac{a_{ij}}{a_{1j}}F_1,
+\qquad i=2,\ldots,m,
+\]
+anulamos todas las entradas situadas debajo de \(a_{1j}\).
+
+Obtenemos así una matriz por bloques de la forma
+\[
+\left(
+\begin{array}{cccc|ccc}
+0&\cdots&0&a_{1j}& * & \cdots & *\\
+\hline
+0&\cdots&0&0&\\
+\vdots&&\vdots&\vdots&&B&\\
+0&\cdots&0&0&
+\end{array}
+\right).
+\]
+
+Aplicamos el mismo procedimiento a la submatriz \(B\).
+
+\medskip
+
+Repitiendo sucesivamente:
+\begin{enumerate}
+    \item localizamos la primera columna no nula de la submatriz restante;
+    \item mediante una operación de tipo \(1\), situamos una entrada
+    no nula en su primera fila;
+    \item mediante operaciones de tipo \(3\), anulamos todas las
+    entradas situadas debajo de ella;
+\end{enumerate}
+y obtenemos, después de un número finito de pasos, una matriz escalonada.
+
+\medskip
+
+Cada paso consiste únicamente en operaciones elementales por filas;
+por tanto, la matriz obtenida es equivalente por filas a \(A\).
+\end{proof}
+
+Este procedimiento se denomina \alert{método de eliminación gaussiana} o \alert{método de Gauss}.
+\end{frame}
+
+\begin{frame}{Matrices escalonadas y reducidas}
+
+\begin{definition}
+
+Una matriz escalonada por filas se dice \alert{reducida} si, además:
+
+\begin{enumerate}
+
+    \item todos sus pivotes son iguales a \(1\);
+
+    \item cada pivote es la única entrada no nula de su columna.
+\end{enumerate}
+
+\[
+\begin{pmatrix}
+0    & \alert{1}    & \ast & \alert{0}    & \alert{0}    & \ast & \ast & \cdots & \ast \\
+0    & 0    & 0    & \alert{1}    & \alert{0}    & \ast & \ast & \cdots & \ast \\
+0    & 0    & 0    & 0    & \alert{1}    & \ast & \ast & \cdots & \ast \\
+\vdots &&&&&&&&\vdots \\
+0    & 0    & 0    & 0    & 0    & 0    & 0    & \cdots & 0
+\end{pmatrix}.
+\]
+
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Forma escalonada reducida}
+
+\begin{theorem}
+Toda matriz es equivalente por filas a una \alert{única} matriz
+escalonada y reducida.
+\end{theorem}
+
+\begin{proof}
+Sea \(A\in M_{m\times n}(k)\). Sabemos que \(A\) es equivalente
+por filas a una matriz escalonada \(E\).
+
+Multiplicando cada fila no nula de \(E\) por el inverso de su pivote,
+mediante operaciones elementales de tipo \(2\), podemos suponer que
+todos los pivotes son iguales a \(1\).
+
+A continuación, empezando por el último pivote y procediendo hacia
+arriba, mediante operaciones elementales de tipo \(3\) anulamos
+todas las entradas situadas por encima de cada pivote.
+
+La matriz obtenida es escalonada y reducida y es equivalente por filas
+a \(A\). Esto demuestra la existencia.
+
+\framebreak
+
+Veamos la unicidad. Sean \(R\) y \(S\) dos matrices escalonadas y
+reducidas equivalentes por filas.
+
+Denotemos por \(R_i\) y \(S_i\) sus filas. Como las operaciones
+elementales por filas no alteran las relaciones lineales entre las
+columnas, para cada \(j\) la columna \(j\) es combinación lineal de las
+columnas anteriores en \(R\) si y solo si lo es en \(S\).
+
+Por tanto, \(R\) y \(S\) tienen sus pivotes en las mismas columnas.
+
+\framebreak
+
+Sean
+\[
+j_1<j_2<\cdots<j_r
+\]
+las columnas de los pivotes.
+
+Como \(R\) y \(S\) son reducidas, las submatrices formadas por estas
+columnas son, en ambos casos,
+\[
+\begin{pmatrix}
+I_r\\
+0
+\end{pmatrix}.
+\]
+
+Para cualquier otra columna \(j\), sus entradas en las primeras \(r\)
+filas son precisamente los coeficientes de su expresión como
+combinación lineal de las columnas pivote.
+
+Como estas relaciones lineales son las mismas en \(R\) y en \(S\),
+la columna \(j\) coincide en ambas matrices.
+
+Por tanto, todas las columnas de \(R\) y \(S\) coinciden, y
+\[
+R=S.
+\]
+\end{proof}
+
+\end{frame}
