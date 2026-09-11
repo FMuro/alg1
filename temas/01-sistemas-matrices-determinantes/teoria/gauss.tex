@@ -212,6 +212,62 @@ por tanto, la matriz obtenida es equivalente por filas a \(A\).
 Este procedimiento se denomina \alert{método de eliminación gaussiana} o \alert{método de Gauss}.
 \end{frame}
 
+\begin{frame}[allowframebreaks]{Cálculo de una forma escalonada}
+
+\[
+\begin{pmatrix}
+0&0&2&1&-1\\
+2&4&2&0&8\\
+0&0&0&2&-5\\
+4&8&8&4&9
+\end{pmatrix}
+\xrightarrow{F_1\leftrightarrow F_2}
+\begin{pmatrix}
+2&4&2&0&8\\
+0&0&2&1&-1\\
+0&0&0&2&-5\\
+4&8&8&4&9
+\end{pmatrix}
+\]
+
+\[
+\xrightarrow{\substack{\frac12F_1\\ \frac12F_2}}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&2&-5\\
+4&8&8&4&9
+\end{pmatrix}
+\xrightarrow{F_4-4F_1}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&2&-5\\
+0&0&4&4&-7
+\end{pmatrix}
+\]
+
+\[
+\xrightarrow{F_4-4F_2}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&2&-5\\
+0&0&0&2&-5
+\end{pmatrix}
+\xrightarrow{F_4-F_3}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&2&-5\\
+0&0&0&0&0
+\end{pmatrix}.
+\]
+
+La última matriz está escalonada por filas.
+
+\end{frame}
+
 \begin{frame}{Matrices escalonadas y reducidas}
 
 \begin{definition}
@@ -300,5 +356,462 @@ todas las entradas situadas por encima de cada pivote.
 La matriz obtenida es escalonada y reducida, y equivalente por filas
 a \(A\).
 \end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{De la forma escalonada a la forma reducida}
+Partiendo de la forma escalonada calculada anteriormente:
+\[
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&2&-5\\
+0&0&0&0&0
+\end{pmatrix}
+\xrightarrow{\frac12F_3}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&\frac12&-\frac12\\
+0&0&0&1&-\frac52\\
+0&0&0&0&0
+\end{pmatrix}
+\]
+
+\[
+\xrightarrow{F_2-\frac12F_3}
+\begin{pmatrix}
+1&2&1&0&4\\
+0&0&1&0&\frac34\\
+0&0&0&1&-\frac52\\
+0&0&0&0&0
+\end{pmatrix}
+\xrightarrow{F_1-F_2}
+\begin{pmatrix}
+1&2&0&0&\frac{13}{4}\\
+0&0&1&0&\frac34\\
+0&0&0&1&-\frac52\\
+0&0&0&0&0
+\end{pmatrix}.
+\]
+
+La última matriz está escalonada y reducida.
+
+\end{frame}
+
+\begin{frame}{Matrices elementales}
+
+\begin{definition}
+Una \alert{matriz elemental} es una matriz que se obtiene de la
+matriz identidad \(I_m\) mediante una única operación elemental
+por filas.
+\end{definition}
+
+\medskip
+
+Hay, por tanto, tres tipos de matrices elementales:
+
+\begin{enumerate}
+    \item \(E_{ij}\): se obtiene intercambiando las filas \(i\) y \(j\)
+    de \(I_m\).
+
+    \item \(E_i(\lambda)\), \(\lambda\neq0\): se obtiene multiplicando
+    la fila \(i\) de \(I_m\) por \(\lambda\).
+
+    \item \(E_{ij}(\lambda)\), \(i\neq j\): se obtiene sumando a la
+    fila \(i\) de \(I_m\) la fila \(j\) multiplicada por \(\lambda\).
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Matrices elementales y operaciones por filas}
+
+\begin{proposition}
+Sean \(A\in M_{m\times n}(k)\) y \(E\in M_m(k)\) una matriz
+elemental. Entonces \(EA\) es la matriz que se obtiene de \(A\)
+efectuando la misma operación elemental por filas que transforma
+\(I_m\) en \(E\).
+\end{proposition}
+
+\begin{proof}
+Escribamos las filas de \(A\) por bloques:
+\[
+A=
+\begin{pmatrix}
+A_1\\
+A_2\\
+\vdots\\
+A_m
+\end{pmatrix},
+\qquad
+A_i=
+\begin{pmatrix}
+a_{i1}&\cdots&a_{in}
+\end{pmatrix}.
+\]
+
+Consideramos los tres tipos de operaciones elementales.
+
+\medskip
+
+\textbf{Tipo 1.}
+Si \(E\) se obtiene de \(I_m\) intercambiando las filas \(i\) y \(j\),
+entonces
+\[
+EA=
+\begin{pmatrix}
+A_1\\
+\vdots\\
+A_j\\
+\vdots\\
+A_i\\
+\vdots\\
+A_m
+\end{pmatrix}.
+\]
+Por tanto, \(EA\) se obtiene de \(A\) mediante
+\(F_i\leftrightarrow F_j\).
+
+\medskip
+
+\textbf{Tipo 2.}
+Si \(E\) se obtiene de \(I_m\) mediante \(\lambda F_i\),
+con \(\lambda\neq0\), entonces
+\[
+EA=
+\begin{pmatrix}
+A_1\\
+\vdots\\
+\lambda A_i\\
+\vdots\\
+A_m
+\end{pmatrix}.
+\]
+Por tanto, \(EA\) se obtiene de \(A\) mediante \(\lambda F_i\).
+
+\medskip
+
+\textbf{Tipo 3.}
+Si \(E\) se obtiene de \(I_m\) mediante \(F_i+\lambda F_j\),
+con \(i\neq j\), entonces
+\[
+EA=
+\begin{pmatrix}
+A_1\\
+\vdots\\
+A_i+\lambda A_j\\
+\vdots\\
+A_j\\
+\vdots\\
+A_m
+\end{pmatrix}.
+\]
+Por tanto, \(EA\) se obtiene de \(A\) mediante
+\(F_i+\lambda F_j\).
+
+En los tres casos, la multiplicación por \(E\) a la izquierda realiza
+sobre \(A\) la correspondiente operación elemental por filas.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Matrices invertibles}
+
+\begin{definition}
+Sea \(A\in M_{m\times n}(k)\). Diremos que \(A\) es
+\alert{invertible} si existe una matriz \(B\in M_{n\times m}(k)\)
+tal que
+\[
+AB=I_m
+\qquad\text{y}\qquad
+BA=I_n.
+\]
+
+En tal caso, \(B\) se denomina una \alert{inversa} de \(A\).
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Unicidad de la inversa}
+
+\begin{proposition}
+Sea \(A\in M_{m\times n}(k)\) una matriz invertible. Entonces su
+inversa es única.
+\end{proposition}
+
+\begin{proof}
+Sean \(B,C\in M_{n\times m}(k)\) dos inversas de \(A\). Entonces
+\[
+B
+=BI_m
+=B(AC)
+=(BA)C
+=I_nC
+=C.
+\]
+\end{proof}
+
+Por tanto, podemos denotar la única \alert{inversa de \(A\)} por
+\alert{\(A^{-1}.\)}
+
+\end{frame}
+
+\begin{frame}{Forma escalonada y matrices elementales}
+
+\begin{corollary}
+Sea \(A\in M_{m\times n}(k)\) y sea \(E\) una forma escalonada por filas
+de \(A\). Entonces existe una matriz invertible \(P\in M_m(k)\),
+producto de matrices elementales, tal que
+\[
+E=PA.
+\]
+\end{corollary}
+
+\begin{proof}
+Como \(E\) se obtiene de \(A\) mediante una sucesión finita de
+operaciones elementales por filas, existen matrices elementales
+\[
+E_1,\ldots,E_r\in M_m(k)
+\]
+tales que
+\[
+E=E_r\cdots E_1A.
+\]
+
+Tomando
+\[
+P=E_r\cdots E_1,
+\]
+obtenemos
+\[
+E=PA.
+\]
+
+Como cada \(E_i\) es invertible y el producto de matrices invertibles
+es invertible, \(P\) es invertible.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Vectores}
+
+\begin{definition}
+Un \alert{vector} de \(k^n\) es una matriz columna de \(n\) entradas:
+\[
+\vec{v}=
+\begin{pmatrix}
+v_1\\
+v_2\\
+\vdots\\
+v_n
+\end{pmatrix},
+\qquad v_1,\ldots,v_n\in k.
+\]
+
+Denotamos por
+\[
+k^n=M_{n\times 1}(k)
+\]
+el conjunto de todos los vectores de \(n\) entradas con coeficientes
+en \(k\).
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Sistemas de ecuaciones lineales}
+
+\begin{definition}
+Un \alert{sistema de \(m\) ecuaciones lineales con \(n\) incógnitas}
+\(x_1,\ldots,x_n\) es una expresión de la forma
+\[
+\left\{
+\begin{aligned}
+a_{11}x_1+\cdots+a_{1n}x_n&=b_1,\\
+a_{21}x_1+\cdots+a_{2n}x_n&=b_2,\\
+&\ \vdots\\
+a_{m1}x_1+\cdots+a_{mn}x_n&=b_m,
+\end{aligned}
+\right.
+\]
+donde \(a_{ij},b_i\in k\).
+
+Una \alert{solución} del sistema es un vector
+\[
+x=
+\begin{pmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{pmatrix}\in k^n
+\]
+cuyas entradas satisfacen simultáneamente todas las ecuaciones.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Forma matricial de un sistema}
+
+Consideremos el sistema
+\[
+\left\{
+\begin{aligned}
+a_{11}x_1+\cdots+a_{1n}x_n&=b_1,\\
+&\ \vdots\\
+a_{m1}x_1+\cdots+a_{mn}x_n&=b_m.
+\end{aligned}
+\right.
+\]
+
+Definimos
+\[
+A=
+\begin{pmatrix}
+a_{11}&\cdots&a_{1n}\\
+\vdots&&\vdots\\
+a_{m1}&\cdots&a_{mn}
+\end{pmatrix},
+\qquad
+x=
+\begin{pmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{pmatrix},
+\qquad
+b=
+\begin{pmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{pmatrix}.
+\]
+
+Entonces el sistema puede escribirse en la forma
+\[
+\boxed{Ax=b}.
+\]
+
+En efecto, la \(i\)-ésima entrada de \(Ax\) es
+\[
+(Ax)_i=\sum_{j=1}^n a_{ij}x_j,
+\]
+que es precisamente el miembro izquierdo de la \(i\)-ésima ecuación.
+
+\end{frame}
+
+\begin{frame}{Matriz ampliada}
+
+\begin{definition}
+La \alert{matriz de coeficientes} del sistema
+\[
+Ax=b
+\]
+es la matriz \(A\).
+
+Su \alert{matriz ampliada} es
+\[
+(A\mid b)=
+\left(
+\begin{array}{ccc|c}
+a_{11}&\cdots&a_{1n}&b_1\\
+\vdots&&\vdots&\vdots\\
+a_{m1}&\cdots&a_{mn}&b_m
+\end{array}
+\right).
+\]
+\end{definition}
+
+\medskip
+
+Cada fila de \((A\mid b)\) representa una de las ecuaciones del sistema.
+
+\end{frame}
+
+\begin{frame}{Incógnitas pivote e incógnitas libres}
+
+Supongamos que la matriz ampliada de un sistema está escalonada
+y reducida.
+
+\begin{definition}
+Si un pivote está en la columna correspondiente a la incógnita
+\(x_j\), diremos que \(x_j\) es una \alert{incógnita pivote}.
+
+Las restantes incógnitas se denominan \alert{incógnitas libres}.
+\end{definition}
+
+\medskip
+
+Por ejemplo, la matriz ampliada
+\[
+\left(
+\begin{array}{ccccc|c}
+1&2&0&-1&0&3\\
+0&0&1& 4&0&2\\
+0&0&0& 0&1&-1\\
+0&0&0& 0&0&0
+\end{array}
+\right)
+\]
+tiene como incógnitas pivote
+\[
+x_1,\quad x_3,\quad x_5,
+\]
+y como incógnitas libres
+\[
+x_2,\quad x_4.
+\]
+
+\end{frame}
+
+\begin{frame}{Soluciones de un sistema escalonado y reducido}
+
+La matriz ampliada
+\[
+\left(
+\begin{array}{ccccc|c}
+1&2&0&-1&0&3\\
+0&0&1& 4&0&2\\
+0&0&0& 0&1&-1\\
+0&0&0& 0&0&0
+\end{array}
+\right)
+\]
+representa el sistema
+\[
+\left\{
+\begin{aligned}
+x_1+2x_2-x_4&=3,\\
+x_3+4x_4&=2,\\
+x_5&=-1.
+\end{aligned}
+\right.
+\]
+
+Las incógnitas libres \(x_2,x_4\) pueden tomar valores arbitrarios.
+Escribiendo
+\[
+x_2=\lambda,\qquad x_4=\mu,
+\qquad \lambda,\mu\in k,
+\]
+las incógnitas pivote quedan determinadas:
+\[
+x_1=3-2\lambda+\mu,\qquad
+x_3=2-4\mu,\qquad
+x_5=-1.
+\]
+
+Por tanto, las soluciones son
+\[
+\boxed{
+x=
+\begin{pmatrix}
+3-2\lambda+\mu\\
+\lambda\\
+2-4\mu\\
+\mu\\
+-1
+\end{pmatrix},
+\qquad \lambda,\mu\in k.
+}
+\]
 
 \end{frame}
