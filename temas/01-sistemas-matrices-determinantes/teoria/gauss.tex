@@ -728,36 +728,33 @@ Por tanto, \(AB\) es invertible y
 \begin{frame}{Forma escalonada y matrices elementales}
 
 \begin{corollary}
-Sea \(A\in M_{m\times n}(k)\) y sea \(E\) una forma escalonada por filas
+Sea \(A\in M_{m\times n}(k)\) y sea \(B\) una forma escalonada por filas
 de \(A\). Entonces existe una matriz invertible \(P\in M_m(k)\),
 producto de matrices elementales, tal que
 \[
-E=PA.
+B=PA.
 \]
 \end{corollary}
 
+\vspace{-20pt}
+
 \begin{proof}
-Como \(E\) se obtiene de \(A\) mediante una sucesión finita de
+Como \(B\) se obtiene de \(A\) mediante una sucesión finita de
 operaciones elementales por filas, existen matrices elementales
 \[
 E_1,\ldots,E_r\in M_m(k)
 \]
 tales que
 \[
-E=E_r\cdots E_1A.
-\]
-
-Tomando
-\[
-P=E_r\cdots E_1,
-\]
-obtenemos
-\[
-E=PA.
+B=E_r\cdots E_1A.
 \]
 
 Como cada \(E_i\) es invertible y el producto de matrices invertibles
-es invertible, \(P\) es invertible.
+es invertible, obtenemos la ecuación deseada tomando
+\[
+P=E_r\cdots E_1,\qquad
+B=PA.\qedhere
+\]
 \end{proof}
 
 \end{frame}
