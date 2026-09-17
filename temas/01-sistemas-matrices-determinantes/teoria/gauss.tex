@@ -185,33 +185,22 @@ Toda matriz $A_{m\times n}$ es equivalente por filas a una matriz escalonada.
 Si \(A=0\), ya es escalonada. Supongamos \(A\neq0\), y sea \(j\)
 la primera columna de \(A\) que contiene alguna entrada no nula.
 
-\[
-\left(
-\begin{array}{ccccccc}
-0&\cdots&0&a_{1j}& * & \cdots & *\\
-0&\cdots&0&a_{2j}& * & \cdots & *\\
-\vdots&&\vdots&\vdots&\vdots&&\vdots\\
-0&\cdots&0&a_{mj}& * & \cdots & *
-\end{array}
-\right).
-\]
+\medskip
 
-Mediante una operación elemental de tipo \(1\) (intercambio de filas), si es necesario,
+Mediante una operación elemental de tipo \(1\), si es necesario,
 podemos situar una entrada no nula \(a_{1j}\) en la primera fila.
 
 \medskip
 
-Mediante operaciones elementales de tipo \(3\)
-anulamos todas las entradas situadas debajo de \(a_{1j}\).
+Mediante operaciones elementales de tipo \(3\),
 \[
-\left(
-\begin{array}{ccccccc}
-0&\cdots&0&a_{1j}& * & \cdots & *\\
-0&\cdots&0&a_{2j}& * & \cdots & *\\
-\vdots&&\vdots&\vdots&\vdots&&\vdots\\
-0&\cdots&0&a_{mj}& * & \cdots & *
-\end{array}
-\right)\xrightarrow[i=2,\ldots,m]{F_i-\frac{a_{ij}}{a_{1j}}F_1}
+F_i-\frac{a_{ij}}{a_{1j}}F_1,
+\qquad i=2,\ldots,m,
+\]
+anulamos todas las entradas situadas debajo de \(a_{1j}\).
+
+Obtenemos así una matriz por bloques de la forma
+\[
 \left(
 \begin{array}{cccc|ccc}
 0&\cdots&0&a_{1j}& * & \cdots & *\\
@@ -325,63 +314,24 @@ Una matriz escalonada por filas se dice \alert{reducida} si, además:
 \begin{frame}[allowframebreaks]{Forma escalonada reducida}
 
 \begin{theorem}
-Toda matriz $A$ es equivalente por filas a una matriz
+Toda matriz es equivalente por filas a una matriz
 escalonada y reducida.
 \end{theorem}
 
 \begin{proof}
-Como toda matriz es equivalente
-por filas a una escalonada, podemos suponer que $A$ ya lo es.
-Multiplicando cada fila no nula de \(A\) por el inverso de su pivote,
-mediante operaciones elementales de tipo \(2\), podemos suponer que
-todos los pivotes son \(1\).
+Sea \(A\in M_{m\times n}(k)\). Sabemos que \(A\) es equivalente
+por filas a una matriz escalonada \(E\).
 
-\[
-\begin{pmatrix}
-0    &\alert{a_{1j_1}} & \ast & \ast &\cdots & \ast & \ast &  \cdots \\
-0    & 0    & 0    & \alert{a_{2j_2}} & \cdots &\ast & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots \\
-0    & 0    & 0    & 0 & \cdots & \alert{a_{ij_i}} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
-\end{pmatrix}
-\xrightarrow{\frac{1}{a_{ij_i}}F_i}
-\begin{pmatrix}
-0    &\alert{1} & \ast & \ast & \cdots & \ast & \ast &  \cdots \\
-0    & 0    & 0    & \alert{1} & \cdots & \ast & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
-0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
-\end{pmatrix}.
-\]
+Multiplicando cada fila no nula de \(E\) por el inverso de su pivote,
+mediante operaciones elementales de tipo \(2\), podemos suponer que
+todos los pivotes son iguales a \(1\).
 
 A continuación, empezando por el último pivote y procediendo hacia
 arriba, mediante operaciones elementales de tipo \(3\) anulamos
 todas las entradas situadas por encima de cada pivote.
 
-\[
-\begin{pmatrix}
-0    &\alert{1} & \ast & \ast & \cdots & a_{1j_i} & \ast &  \cdots \\
-0    & 0    & 0    & \alert{1} & \cdots & a_{2j_i} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
-0    & 0    & 0    & 0 & \cdots   & a_{kj_i} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
-0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
-\end{pmatrix}
-\xrightarrow[k<i]{F_k-a_{kj_i}F_i}
-\begin{pmatrix}
-0    &\alert{1} & \ast & \ast & \cdots & \alert{0}& \ast &  \cdots \\
-0    & 0    & 0    & \alert{1} & \cdots & \alert{0} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
-0    & 0    & 0    & 0 & \cdots   & \alert{0} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots\\
-0    & 0    & 0    & 0 & \cdots   & \alert{1} & \ast & \cdots \\
-\vdots &\vdots &\vdots &\vdots &&\vdots&\vdots
-\end{pmatrix}.
-\]
-
-La matriz obtenida es escalonada y reducida, y equivalente por filas
-a \(A\).
+La matriz obtenida es escalonada y reducida y es equivalente por filas
+a \(A\). Esto demuestra la existencia.
 \end{proof}
 
 \end{frame}
@@ -759,12 +709,172 @@ B=PA.\qedhere
 
 \end{frame}
 
+
+\begin{frame}{La eliminación gaussiana mediante matrices elementales}
+
+En el ejemplo anterior hemos obtenido
+\[
+A= \begin{pmatrix}
+0&0&2&1&-1\\
+2&4&2&0&8\\
+0&0&0&2&-5\\
+4&8&8&4&9
+\end{pmatrix}
+\xrightarrow{F_1\leftrightarrow F_2}
+\xrightarrow{F_4-2F_1}
+\xrightarrow{F_4-2F_2}
+\xrightarrow{F_4-F_3}
+\begin{pmatrix}
+2&4&2&0&8\\
+0&0&2&1&-1\\
+0&0&0&2&-5\\
+0&0&0&0&0
+\end{pmatrix}=B.
+\]
+
+Las matrices elementales correspondientes a las operaciones elementales anteriores son, respectivamente
+\[
+E_{12},\qquad
+E_{41}(-2),\qquad
+E_{42}(-2),\qquad
+E_{43}(-1).
+\]
+
+Por tanto, si
+\[
+P=
+E_{43}(-1)E_{42}(-2)E_{41}(-2)E_{12},
+\]
+entonces
+\[
+B=PA.
+\]
+
+\end{frame}
+
+\begin{frame}{Cálculo de la matriz \(P\)}
+
+Para calcular
+\[
+P=E_{43}(-1)E_{42}(-2)E_{41}(-2)E_{12},
+\]
+realizamos sobre \(I_4\) las mismas operaciones elementales:
+
+\[
+I_4=
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}
+\xrightarrow{F_1\leftrightarrow F_2}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}
+\xrightarrow{F_4-2F_1}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+0&-2&0&1
+\end{pmatrix}\]
+
+\[\xrightarrow{F_4-2F_2}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+-2&-2&0&1
+\end{pmatrix}
+\xrightarrow{F_4-F_3}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+-2&-2&-1&1
+\end{pmatrix}=P.
+\]
+
+
+\end{frame}
+
+\begin{frame}{Cálculo de la inversa de \(P\)}
+
+La matriz
+\[
+P=
+E_{43}(-1)E_{42}(-2)E_{41}(-2)E_{12}
+\]
+es invertible pues es producto de elementales, que son invertibles. Su inversa es
+\begin{align*}
+P^{-1}&=
+(E_{43}(-1)E_{42}(-2)E_{41}(-2)E_{12})^{-1}\\
+&= E_{12}^{-1} E_{41}(-2)^{-1} E_{42}(-2)^{-1} E_{43}(-1)^{-1}\\
+&= E_{12} E_{41}(2) E_{42}(2) E_{43}(1)
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Cálculo de la matriz \(P^{-1}\)}
+
+Para calcular \(P^{-1}\), realizamos sobre \(I_4\) las operaciones
+elementales inversas en orden contrario:
+
+\[
+I_4=
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}
+\xrightarrow{F_4+F_3}
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&1&1
+\end{pmatrix}
+\]
+
+\[
+\xrightarrow{F_4+2F_2}
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&2&1&1
+\end{pmatrix}
+\xrightarrow{F_4+2F_1}
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+2&2&1&1
+\end{pmatrix}
+\xrightarrow{F_1\leftrightarrow F_2}
+\begin{pmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+2&2&1&1
+\end{pmatrix}
+={P^{-1}}.
+\]
+
+
+\end{frame}
+
 \begin{frame}{Vectores}
 
 \begin{definition}
 Un \alert{vector} de \(k^n\) es una matriz columna de \(n\) entradas:
 \[
-\vec{v}=
+v=
 \begin{pmatrix}
 v_1\\
 v_2\\
@@ -773,13 +883,10 @@ v_n
 \end{pmatrix},
 \qquad v_1,\ldots,v_n\in k.
 \]
-
-Denotamos por
+Por tanto identificamos
 \[
-k^n=M_{n\times 1}(k)
+k^n=M_{n\times 1}(k).
 \]
-el conjunto de todos los vectores de \(n\) entradas con coeficientes
-en \(k\).
 \end{definition}
 
 \end{frame}
@@ -801,80 +908,63 @@ a_{m1}x_1+\cdots+a_{mn}x_n&=b_m,
 \]
 donde \(a_{ij},b_i\in k\).
 
-Una \alert{solución} del sistema es un vector
-\[
-x=
-\begin{pmatrix}
-x_1\\
-\vdots\\
-x_n
-\end{pmatrix}\in k^n
-\]
-cuyas entradas satisfacen simultáneamente todas las ecuaciones.
+\medskip
+
+Una \alert{solución} del sistema es una sucesión de escalares $v_1,\dots,v_n\in k$ tales que, sustituyendo $x_i=v_i$, se satisfacen simultáneamente todas las ecuaciones.
 \end{definition}
 
 \end{frame}
 
 \begin{frame}{Forma matricial de un sistema}
 
-Consideremos el sistema
-\[
-\left\{
-\begin{aligned}
-a_{11}x_1+\cdots+a_{1n}x_n&=b_1,\\
-&\ \vdots\\
-a_{m1}x_1+\cdots+a_{mn}x_n&=b_m.
-\end{aligned}
-\right.
-\]
-
 Definimos
 \[
+\begin{array}{ccc}
 A=
 \begin{pmatrix}
 a_{11}&\cdots&a_{1n}\\
 \vdots&&\vdots\\
 a_{m1}&\cdots&a_{mn}
 \end{pmatrix},
-\qquad
+&
 x=
 \begin{pmatrix}
 x_1\\
 \vdots\\
 x_n
 \end{pmatrix},
-\qquad
+&
 b=
 \begin{pmatrix}
 b_1\\
 \vdots\\
 b_m
-\end{pmatrix}.
+\end{pmatrix}.\\[8mm]
+\text{\alert{matriz de coeficientes}}&
+\text{\alert{vector de incógnitas}}&
+\text{\alert{vector de términos independientes}}
+\end{array}
 \]
 
 Entonces el sistema puede escribirse en la forma
 \[
-\boxed{Ax=b}.
+\alert{Ax=b},
 \]
-
-En efecto, la \(i\)-ésima entrada de \(Ax\) es
-\[
-(Ax)_i=\sum_{j=1}^n a_{ij}x_j,
+y una \alert{solución} es un vector
+\[v=
+\begin{pmatrix}
+v_1\\
+\vdots\\
+v_n
+\end{pmatrix},\qquad 
+Av=b.
 \]
-que es precisamente el miembro izquierdo de la \(i\)-ésima ecuación.
 
 \end{frame}
 
 \begin{frame}{Matriz ampliada}
 
-\begin{definition}
-La \alert{matriz de coeficientes} del sistema
-\[
-Ax=b
-\]
-es la matriz \(A\).
-
-Su \alert{matriz ampliada} es
+La \alert{matriz ampliada} del sistema es
 \[
 (A\mid b)=
 \left(
@@ -885,100 +975,796 @@ a_{m1}&\cdots&a_{mn}&b_m
 \end{array}
 \right).
 \]
-\end{definition}
 
-\medskip
 
 Cada fila de \((A\mid b)\) representa una de las ecuaciones del sistema.
 
 \end{frame}
 
-\begin{frame}{Incógnitas pivote e incógnitas libres}
-
-Supongamos que la matriz ampliada de un sistema está escalonada
-y reducida.
+\begin{frame}{Carácter de un sistema}
 
 \begin{definition}
-Si un pivote está en la columna correspondiente a la incógnita
-\(x_j\), diremos que \(x_j\) es una \alert{incógnita pivote}.
+Un sistema de ecuaciones lineales se denomina:
+\begin{itemize}
+    \item \alert{compatible} si tiene alguna solución;
+    \item \alert{incompatible} si no tiene ninguna solución.
+\end{itemize}
 
-Las restantes incógnitas se denominan \alert{incógnitas libres}.
+Un sistema compatible se denomina:
+\begin{itemize}
+    \item \alert{compatible determinado} si tiene una única solución;
+    \item \alert{compatible indeterminado} si tiene más de una solución.
+\end{itemize}
 \end{definition}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Sistemas equivalentes}
+
+\begin{definition}
+Dos sistemas de ecuaciones lineales con las mismas incógnitas se dicen
+\alert{equivalentes} si tienen las mismas soluciones.
+\end{definition}
+
+\begin{proposition}
+Dos sistemas cuyas matrices ampliadas son equivalentes por filas
+son equivalentes.
+\end{proposition}
+
+\begin{proof}
+Sean
+\[
+Ax=b,
+\qquad
+A'x=b'
+\]
+los dos sistemas. Como sus matrices ampliadas son equivalentes por
+filas, existe una matriz invertible \(P\), producto de matrices
+elementales, tal que
+\[
+(A'\mid b')=P(A\mid b)=(PA\mid Pb).
+\]
+
+\framebreak
+
+Por tanto,
+\[
+A'=PA,
+\qquad
+b'=Pb.
+\]
+
+Sea \(v\in k^n\). Entonces
+\[
+\begin{aligned}
+v\text{ es solución de }Ax=b
+&\iff Av=b\\
+&\iff PAv=Pb\\
+&\iff A'v=b'\\
+&\iff v\text{ es solución de }A'x=b'.
+\end{aligned}
+\]
+La segunda equivalencia se debe a que \(P\) es invertible.
 
 \medskip
 
-Por ejemplo, la matriz ampliada
+Así, un vector es solución del primer sistema si y solo si es
+solución del segundo. Por definición, los dos sistemas son
+equivalentes.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Sistemas en forma escalonada y reducida}
+
+Supongamos que la matriz ampliada \((A\mid b)\) de un sistema
+está escalonada y reducida.
+
+\begin{itemize}
+\item Si la última columna contiene un pivote, una de las filas es
 \[
 \left(
-\begin{array}{ccccc|c}
-1&2&0&-1&0&3\\
-0&0&1& 4&0&2\\
-0&0&0& 0&1&-1\\
-0&0&0& 0&0&0
+\begin{array}{cccc|c}
+0&\cdots&0&0&1
 \end{array}
-\right)
+\right),
 \]
-tiene como incógnitas pivote
+que representa la ecuación
 \[
-x_1,\quad x_3,\quad x_5,
+0=1.
 \]
-y como incógnitas libres
+Por tanto, el sistema no tiene soluciones, es \alert{incompatible}.
+
+\item Supongamos que la última columna no contiene ningún pivote.
+Sean
 \[
-x_2,\quad x_4.
+j_1<j_2<\cdots<j_r
+\]
+las columnas que contienen los pivotes. Las incógnitas
+\[
+x_{j_1},\ldots,x_{j_r}
+\]
+se denominan \alert{incógnitas pivote} y las restantes
+\alert{incógnitas libres}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Obtención de las soluciones}
+
+Supongamos que la última columna no contiene ningún pivote. Sean
+\[
+j_1<\cdots<j_r
+\]
+las columnas pivote y
+\[
+l_1<\cdots<l_{n-r}
+\]
+las restantes columnas.
+
+Como la matriz está reducida, las ecuaciones correspondientes a sus
+filas no nulas tienen la forma
+\[
+x_{j_i}
++a_{i l_1}x_{l_1}+\cdots+a_{i l_{n-r}}x_{l_{n-r}}
+=b_i,
+\qquad 1\leq i\leq r.
+\]
+
+Las incógnitas libres pueden tomar valores arbitrarios
+\[
+x_{l_1}=\lambda_1,\ldots,x_{l_{n-r}}=\lambda_{n-r},
+\qquad
+\lambda_1,\ldots,\lambda_{n-r}\in k.
 \]
 
 \end{frame}
 
-\begin{frame}{Soluciones de un sistema escalonado y reducido}
+\begin{frame}[t]{Obtención de las soluciones}
 
-La matriz ampliada
+Para cada elección de estos valores, las incógnitas pivote quedan
+determinadas de manera única:
+\[
+x_{j_i}
+=
+b_i-\sum_{s=1}^{n-r}a_{i l_s}\lambda_s,
+\qquad 1\leq i\leq r.
+\]
+
+De este modo se obtienen todas las soluciones del sistema, que es \alert{compatible}. El sistema es \alert{determinado} cuando no hay incógnitas libres, es decir, cuando todas las columnas contienen un pivote, excepto la última.
+
+\medskip
+
+Por tanto, para resolver un sistema de ecuaciones lineales, podemos escalonar y reducir su matriz ampliada mediante el procedimiento de eliminación gaussiana y resolver el sistema equivalente cuya matriz ampliada es esta forma escalonada y reducida.
+
+\end{frame}
+
+
+\begin{frame}{Teorema de Rouché--Frobenius}
+
+\begin{theorem}[Rouché--Frobenius]
+Consideremos un sistema de \(m\) ecuaciones lineales con \(n\)
+incógnitas
+\[
+Ax=b.
+\]
+Sea $R$ una forma escalonada y reducida de su matriz ampliada\((A\mid b).
+\)
+
+\medskip
+
+El carácter del sistema viene determinado por las posiciones de los
+pivotes de \(R\):
+\begin{enumerate}
+\item Si la última columna de \(R\) contiene un pivote, el sistema es
+\alert{incompatible}.
+
+\item Si la última columna no contiene ningún pivote pero todas las demás sí, el sistema es
+\alert{compatible determinado}.
+
+\item Si la última columna no contiene ningún pivote y alguna de las
+otras tampoco, el sistema es
+\alert{compatible indeterminado}.
+\end{enumerate}
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Ejemplo: sistema compatible indeterminado}
+
+Consideremos el sistema cuya matriz ampliada es
 \[
 \left(
 \begin{array}{ccccc|c}
 1&2&0&-1&0&3\\
-0&0&1& 4&0&2\\
-0&0&0& 0&1&-1\\
-0&0&0& 0&0&0
+0&0&1&4&0&2\\
+0&0&0&0&1&-1
 \end{array}
-\right)
-\]
-representa el sistema
-\[
-\left\{
-\begin{aligned}
-x_1+2x_2-x_4&=3,\\
-x_3+4x_4&=2,\\
-x_5&=-1.
-\end{aligned}
-\right.
+\right).
 \]
 
-Las incógnitas libres \(x_2,x_4\) pueden tomar valores arbitrarios.
-Escribiendo
+La matriz de coeficientes está escalonada y reducida. No hay pivotes en la última columna, así que el sistema es compatible. Es más, dos de las columnas anteriores tampoco contienen pivotes, con lo cual es indeterminado.
+
+\medskip
+
+Las incógnitas
+pivote son
+\[
+x_1,\quad x_3,\quad x_5,
+\]
+y las incógnitas libres son \(x_2,x_4\).
+
+Asignamos a estas últimas valores arbitrarios
 \[
 x_2=\lambda,\qquad x_4=\mu,
-\qquad \lambda,\mu\in k,
+\qquad \lambda,\mu\in k.
 \]
-las incógnitas pivote quedan determinadas:
+
+Las ecuaciones permiten obtener las incógnitas pivote:
 \[
 x_1=3-2\lambda+\mu,\qquad
 x_3=2-4\mu,\qquad
 x_5=-1.
 \]
 
-Por tanto, las soluciones son
+Por tanto, todas las soluciones son
 \[
-\boxed{
-x=
+v=
 \begin{pmatrix}
 3-2\lambda+\mu\\
 \lambda\\
 2-4\mu\\
 \mu\\
 -1
+\end{pmatrix}
+,
+\qquad \lambda,\mu\in k.
+\]
+
+\end{frame}
+
+
+\begin{frame}{Resolución de un sistema escalonado}
+
+Supongamos que la matriz ampliada de un sistema está
+\alert{escalonada por filas}.
+
+\begin{itemize}
+\item Si aparece una fila de la forma
+\[
+\left(
+\begin{array}{cccc|c}
+0&\cdots&0&0&c
+\end{array}
+\right),
+\qquad c\neq0,
+\]
+el sistema es incompatible.
+
+\item En caso contrario, las incógnitas correspondientes a columnas
+sin pivote son \alert{incógnitas libres} y pueden tomar valores
+arbitrarios.
+
+\item Asignamos a las incógnitas libres valores
+\[
+\lambda_1,\ldots,\lambda_s\in k.
+\]
+
+\item Comenzando por la última fila no nula y procediendo hacia arriba,
+cada ecuación determina la incógnita correspondiente a su pivote
+en función de las incógnitas ya conocidas.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sistemas homogéneos}
+
+\begin{definition}
+Un sistema de ecuaciones lineales
+\[
+Ax=b
+\]
+se denomina \alert{homogéneo} si \(b=0\), es decir, si es de la forma
+\[
+Ax=0.
+\]
+\end{definition}
+
+Todo sistema homogéneo tiene al menos una solución:
+\[
+v=0.
+\]
+
+\end{frame}
+
+\begin{frame}{Sistemas homogéneos}
+
+Además, sus soluciones son cerradas para la suma y el producto por
+escalares. En efecto, si \(v,w\in k^n\) son soluciones y
+\(\lambda\in k\), entonces
+\[
+A(v+w)=Av+Aw=0+0=0,
+\]
+por lo que \(v+w\) es también una solución, y
+\[
+A(\lambda v)=\lambda Av=\lambda0=0,
+\]
+por lo que \(\lambda v\) es también una solución.
+
+\end{frame}
+
+\begin{frame}{Soluciones de un sistema homogéneo}
+
+Consideremos un sistema homogéneo \(Ax=0\) cuyas incógnitas libres,
+tras reducirlo, son
+\[
+x_{l_1},\ldots,x_{l_s}.
+\]
+Toda solución se obtiene para unos \alert{únicos} valores
+\[
+x_{l_1}=\lambda_1,\ldots,x_{l_s}=\lambda_s,
+\qquad
+\lambda_1,\ldots,\lambda_s\in k,
+\]
+pues estos son precisamente los valores de las incógnitas libres.
+
+Para cada \(i=1,\ldots,s\), sea \(v_i\) la solución obtenida tomando
+\[
+\lambda_i=1,
+\qquad
+\lambda_j=0\quad\text{si }j\neq i.
+\]
+
+\begin{proposition}
+Para cada solución \(v\) existen unos únicos
+\(\lambda_1,\ldots,\lambda_s\in k\) tales que
+\[
+v=\lambda_1v_1+\cdots+\lambda_sv_s.
+\]
+\end{proposition}
+
+\end{frame}
+
+\begin{frame}{Soluciones de un sistema homogéneo}
+
+\begin{proof}
+Sean \(\lambda_1,\ldots,\lambda_s\) los valores de las incógnitas
+libres de \(v\). La combinación lineal
+\[
+w=\lambda_1v_1+\cdots+\lambda_sv_s
+\]
+es una solución y sus incógnitas libres toman esos mismos valores.
+Como los valores de las incógnitas libres determinan de manera única
+las incógnitas pivote, \(v=w\).
+
+Además, si
+\[
+v=\mu_1v_1+\cdots+\mu_sv_s,
+\]
+el valor de la incógnita libre \(x_{l_i}\) del segundo miembro es
+\(\mu_i\). Por tanto, necesariamente
+\[
+\mu_i=\lambda_i,\qquad i=1,\ldots,s.
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Ejemplo: soluciones de un sistema homogéneo}
+
+Consideremos el sistema homogéneo cuya matriz de coeficientes
+escalonada y reducida es
+\[
+\begin{pmatrix}
+1&2&0&-1&0\\
+0&0&1&4&0\\
+0&0&0&0&1
+\end{pmatrix}.
+\]
+Las incógnitas libres son \(x_2,x_4\). Tomando
+\[
+x_2=\lambda,\qquad x_4=\mu,
+\]
+obtenemos
+\[
+x_1=-2\lambda+\mu,\qquad
+x_3=-4\mu,\qquad
+x_5=0.
+\]
+Por tanto, la solución correspondiente a \(\lambda,\mu\in k\) es
+\[
+v=
+\begin{pmatrix}
+-2\lambda+\mu\\
+\lambda\\
+-4\mu\\
+\mu\\
+0
+\end{pmatrix}.
+\]
+
+Tomando respectivamente \((\lambda,\mu)=(1,0)\) y \((0,1)\),
+obtenemos
+\[
+v_1=
+\begin{pmatrix}-2\\1\\0\\0\\0\end{pmatrix},
+\qquad
+v_2=
+\begin{pmatrix}1\\0\\-4\\1\\0\end{pmatrix}.
+\]
+
+Así,
+\[
+v=\lambda v_1+\mu v_2,
+\qquad \lambda,\mu\in k,
+\]
+y cada solución se expresa de esta forma para unos
+\alert{únicos} valores de \(\lambda\) y \(\mu\).
+
+\end{frame}
+
+\begin{frame}{Sistema homogéneo asociado}
+
+\begin{definition}
+Dado un sistema de ecuaciones lineales
+\[
+Ax=b,
+\]
+su \alert{sistema homogéneo asociado} u \alert{homogeneizado} es
+\[
+Ax=0.
+\]
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Soluciones de un sistema en función de las del homogeneizado}
+
+\begin{proposition}
+Supongamos que \(v_0\) es una solución particular de \(Ax=b\).
+Entonces \(v\in k^n\) es solución de \(Ax=b\) si y solo si
+\[
+v=v_0+w,
+\]
+para alguna solución \(w\) del sistema homogéneo asociado \(Ax=0\).
+\end{proposition}
+
+\begin{proof}
+Si \(v\) es una solución de \(Ax=b\), entonces
+\[
+A(v-v_0)=Av-Av_0=b-b=0.
+\]
+Por tanto, \(w=v-v_0\) es solución del sistema homogéneo asociado y
+\(v=v_0+w\).
+
+Recíprocamente, si \(Aw=0\), entonces
+\[
+A(v_0+w)=Av_0+Aw=b+0=b,
+\]
+por lo que \(v_0+w\) es solución de \(Ax=b\).
+\end{proof}
+
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]{Ejemplo: sistema compatible indeterminado}
+
+Anteriormente, habíamos obtenido las siguientes soluciones de un sistema no homogéneo
+\[
+v=
+\begin{pmatrix}
+3-2\lambda+\mu\\
+\lambda\\
+2-4\mu\\
+\mu\\
+-1
+\end{pmatrix}
+,
+\qquad \lambda,\mu\in k.
+\]
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Ejemplo: sistema compatible indeterminado}
+
+Anteriormente, habíamos obtenido las siguientes soluciones de un sistema no homogéneo
+\[
+v=
+\begin{pmatrix}
+3-2\lambda+\mu\\
+\lambda\\
+2-4\mu\\
+\mu\\
+-1
+\end{pmatrix}
+,
+\qquad \lambda,\mu\in k.
+\]
+
+Tomando \(\lambda=\mu=0\), obtenemos la solución particular
+\[
+v_0=
+\begin{pmatrix}
+3\\
+0\\
+2\\
+0\\
+-1
+\end{pmatrix}.
+\]
+
+Las soluciones del sistema homogéneo asociado se obtienen eliminando
+los términos independientes:
+\[
+w=
+\begin{pmatrix}
+-2\lambda+\mu\\
+\lambda\\
+-4\mu\\
+\mu\\
+0
+\end{pmatrix}.
+\]
+
+Tomando respectivamente
+\[
+(\lambda,\mu)=(1,0)
+\qquad\text{y}\qquad
+(\lambda,\mu)=(0,1),
+\]
+obtenemos las soluciones
+\[
+w_1=
+\begin{pmatrix}
+-2\\
+1\\
+0\\
+0\\
+0
+\end{pmatrix},
+\qquad
+w_2=
+\begin{pmatrix}
+1\\
+0\\
+-4\\
+1\\
+0
+\end{pmatrix}
+\]
+del sistema homogéneo asociado.
+
+\medskip
+
+Por tanto, la solución general del sistema original puede escribirse
+como
+\[
+v=v_0+\lambda w_1+\mu w_2,
+\qquad \lambda,\mu\in k,
+\]
+es decir,
+\[
+v=
+\begin{pmatrix}
+3\\
+0\\
+2\\
+0\\
+-1
+\end{pmatrix}
++
+\lambda
+\begin{pmatrix}
+-2\\
+1\\
+0\\
+0\\
+0
+\end{pmatrix}
++
+\mu
+\begin{pmatrix}
+1\\
+0\\
+-4\\
+1\\
+0
 \end{pmatrix},
 \qquad \lambda,\mu\in k.
-}
 \]
+
+Además, cada solución se obtiene de esta forma para unos
+\alert{únicos} valores de \(\lambda\) y \(\mu\).
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+{Sistemas homogéneos escalonados y reducidos}
+
+\begin{proposition}
+Sean \(Ax=0\) y \(Bx=0\) dos sistemas homogéneos cuyas matrices de
+coeficientes \(A\) y \(B\) están escalonadas y reducidas.
+Si ambos sistemas tienen las mismas soluciones, entonces
+\[
+A=B.
+\]
+\end{proposition}
+
+\begin{proof}
+Observemos primero que, para una matriz escalonada y reducida, la
+columna \(j\) contiene un pivote si y solo si toda solución que
+satisface
+\[
+x_{j+1}=\cdots=x_n=0
+\]
+satisface también \(x_j=0\).
+
+En efecto, si la columna \(j\) contiene un pivote, la ecuación
+correspondiente tiene la forma
+\[
+x_j+a_{j+1}x_{j+1}+\cdots+a_nx_n=0,
+\]
+por lo que \(x_{j+1}=\cdots=x_n=0\) implica \(x_j=0\).
+
+Recíprocamente, si la columna \(j\) no contiene un pivote, \(x_j\)
+es una incógnita libre. Podemos tomar
+\[
+x_j=1
+\]
+y hacer iguales a \(0\) todas las demás incógnitas libres.
+Las incógnitas pivote quedan entonces determinadas y obtenemos una
+solución que satisface
+\[
+x_j=1,
+\qquad
+x_{j+1}=\cdots=x_n=0.
+\]
+
+Por tanto, las columnas que contienen pivotes están completamente
+determinadas por el conjunto de soluciones.
+
+Como \(Ax=0\) y \(Bx=0\) tienen las mismas soluciones, \(A\) y \(B\)
+tienen las mismas columnas pivote y, por tanto, las mismas incógnitas
+pivote y las mismas incógnitas libres.
+
+Sean
+\[
+j_1<\cdots<j_r
+\]
+las columnas pivote y
+\[
+l_1<\cdots<l_{n-r}
+\]
+las columnas libres. La ecuación correspondiente al pivote \(j_i\)
+en el primer sistema es
+\[
+x_{j_i}
++\sum_{s=1}^{n-r}a_{i l_s}x_{l_s}=0.
+\]
+
+Fijemos \(l_s\). Tomando
+\[
+x_{l_s}=1
+\]
+y haciendo iguales a \(0\) las demás incógnitas libres, obtenemos
+una única solución, para la cual
+\[
+x_{j_i}=-a_{i l_s}.
+\]
+
+Haciendo la misma elección de las incógnitas libres en el segundo
+sistema obtenemos
+\[
+x_{j_i}=-b_{i l_s}.
+\]
+Como los dos sistemas tienen las mismas soluciones y las incógnitas
+pivote quedan determinadas de manera única por las libres,
+\[
+a_{i l_s}=b_{i l_s}.
+\]
+
+Así, \(A\) y \(B\) tienen los mismos pivotes y los mismos coeficientes
+en las columnas libres. Al estar ambas escalonadas y reducidas,
+todas sus entradas coinciden. Por tanto,
+\[
+A=B.
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Forma escalonada y reducida}
+
+\begin{theorem}
+Toda matriz \(A\in M_{m\times n}(k)\) es equivalente por filas a una
+única matriz escalonada y reducida, su \alert{forma escalonada y reducida}.
+\end{theorem}
+
+\begin{proof}
+Ya sabemos que, mediante eliminación de Gauss y operaciones
+elementales por filas, toda matriz es equivalente por filas a una
+matriz escalonada y reducida. Por tanto, basta probar la unicidad.
+
+\medskip
+
+Supongamos que \(R,S\in M_{m\times n}(k)\) son matrices escalonadas
+y reducidas tales que
+\[
+A\sim R
+\qquad\text{y}\qquad
+A\sim S.
+\]
+
+Consideremos los sistemas homogéneos
+\[
+Ax=0,\qquad Rx=0,\qquad Sx=0.
+\]
+
+Como \(A\sim R\), los sistemas
+\[
+Ax=0
+\qquad\text{y}\qquad
+Rx=0
+\]
+tienen las mismas soluciones. Del mismo modo, como \(A\sim S\),
+los sistemas
+\[
+Ax=0
+\qquad\text{y}\qquad
+Sx=0
+\]
+tienen las mismas soluciones.
+
+\medskip
+
+Por tanto, los sistemas homogéneos
+\[
+Rx=0
+\qquad\text{y}\qquad
+Sx=0
+\]
+tienen las mismas soluciones.
+
+\medskip
+
+Como \(R\) y \(S\) están escalonadas y reducidas, el resultado
+anterior implica que
+\[
+R=S.
+\]
+
+Por tanto, \(A\) es equivalente por filas a una única matriz
+escalonada y reducida.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Teorema de Rouché--Frobenius}
+
+\begin{theorem}[Rouché--Frobenius]
+Consideremos un sistema de \(m\) ecuaciones lineales con \(n\)
+incógnitas
+\[
+Ax=b
+\]
+y la forma escalonada y reducida de su matriz ampliada
+\[
+R\sim(A\mid b).
+\]
+
+El carácter del sistema viene determinado por las posiciones de los
+pivotes de \(R\):
+\begin{enumerate}
+\item Si la última columna de \(R\) contiene un pivote, el sistema es
+\alert{incompatible}.
+
+\item Si la última columna no contiene ningún pivote pero todas las demás sí, el sistema es
+\alert{compatible determinado}.
+
+\item Si la última columna no contiene ningún pivote y alguna de las
+otras tampoco, el sistema es
+\alert{compatible indeterminado}.
+\end{enumerate}
+\end{theorem}
 
 \end{frame}
