@@ -1739,3 +1739,254 @@ escalonada y reducida.
 
 \end{frame}
 
+\begin{frame}{Rango de una matriz}
+
+\begin{definition}
+Sea \(A\in M_{m\times n}(k)\). El \alert{rango} de \(A\), que
+denotaremos por
+\[
+\operatorname{rg}(A),
+\]
+es el número de pivotes de la forma escalonada y reducida de \(A\).
+\end{definition}
+
+\medskip
+
+Equivalentemente, \(\operatorname{rg}(A)\) es el número de filas
+no nulas de la forma escalonada y reducida de \(A\), o simplemente de una forma escalonada de $A$.
+
+\medskip
+
+En particular,
+\[
+0\leq \operatorname{rg}(A)\leq \min\{m,n\}.
+\]
+
+\end{frame}
+
+\begin{frame}{Teorema de Rouché--Frobenius}
+
+\begin{theorem}[Rouché--Frobenius]
+Consideremos un sistema de \(m\) ecuaciones lineales con \(n\)
+incógnitas
+\(
+Ax=b.
+\)
+Entonces:
+\begin{enumerate}
+\item El sistema es \alert{compatible} si y solo si
+\[
+\operatorname{rg}(A)=\operatorname{rg}(A\mid b).
+\]
+
+\item Si el sistema es compatible, es
+\alert{compatible determinado} si y solo si
+\[
+\operatorname{rg}(A)=\operatorname{rg}(A\mid b)=n.
+\]
+
+\item Si el sistema es compatible, es
+\alert{compatible indeterminado} si y solo si
+\[
+\operatorname{rg}(A)=\operatorname{rg}(A\mid b)<n.
+\]
+\end{enumerate}
+\end{theorem}
+
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]{Demostración del teorema de Rouché--Frobenius}
+
+\begin{proof}
+Mediante eliminación gaussiana llevamos la matriz ampliada a su
+forma escalonada y reducida:
+\[
+(A\mid b)\sim(A'\mid b').
+\]
+
+Las mismas operaciones elementales transforman \(A\) en \(A'\).
+Además, como \((A'\mid b')\) está escalonada y reducida, también
+lo está \(A'\), así que
+\(A'\) es la forma escalonada y reducida de \(A\).
+
+Por tanto,
+\[
+\operatorname{rg}(A)
+=
+\text{número de pivotes de }A',
+\]
+mientras que
+\[
+\operatorname{rg}(A\mid b)
+=
+\text{número de pivotes de }(A'\mid b').
+\]
+
+Como \((A'\mid b')\) solo tiene una columna más que \(A'\), estos
+rangos son distintos precisamente cuando la última columna contiene
+un pivote, lo que equivale a la incompatibilidad del sistema.
+
+Por tanto, el sistema es compatible si y solo si
+\[
+\operatorname{rg}(A)=\operatorname{rg}(A\mid b).
+\]
+
+Supongamos ahora que el sistema es compatible. Entonces la última
+columna no contiene ningún pivote y
+\[
+\operatorname{rg}(A)
+\]
+es el número de columnas pivote entre las \(n\) columnas
+correspondientes a las incógnitas.
+
+Por tanto, todas las incógnitas son pivote si y solo si
+\[
+\operatorname{rg}(A)=n.
+\]
+En este caso no hay incógnitas libres y el sistema es compatible
+determinado.
+
+Por el contrario, existe alguna incógnita libre si y solo si
+\[
+\operatorname{rg}(A)<n.
+\]
+En este caso el sistema es compatible indeterminado.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Rango y sistemas homogéneos}
+
+\begin{corollary}
+Sea \(A\in M_{m\times n}(k)\). Entonces
+\[
+\operatorname{rg}(A)=n
+\]
+si y solo si el sistema homogéneo
+\[
+Ax=0
+\]
+tiene como única solución \(v=0\).
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Rango de una matriz invertible}
+
+\begin{proposition}
+Si \(A\in M_{m\times n}(k)\) es invertible, entonces \(m=n\) y
+\[
+\operatorname{rg}(A)=n.
+\]
+\end{proposition}
+
+\vspace{-5mm}
+
+\begin{proof}
+Si \(v\) es una solución de
+\(
+Ax=0,
+\)
+entonces
+\[
+v=I_nv=A^{-1}Av=A^{-1}0=0.
+\]
+Por tanto, el sistema \(Ax=0\) tiene una única solución y, por el
+resultado anterior,
+\[
+\operatorname{rg}(A)=n.
+\]
+Como \(\operatorname{rg}(A)\leq m\), se tiene \(n\leq m\).
+
+La inversa de una matriz invertible también es invertible. Como $A^{-1}\in M_{n\times m}(k)$, si aplicamos lo anterior a $A^{-1}$, deducimos que $\operatorname{rg}(A^{-1})=m$ y \(m\leq n\).
+Por tanto, por doble desigualdad,
+\[
+m=n,
+\]
+y \(A\) es cuadrada de rango \(n\).
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Matrices cuadradas de rango máximo}
+
+\begin{proposition}
+Sea \(A\in M_n(k)\). Si
+\[
+\operatorname{rg}(A)=n,
+\]
+entonces \(A\) es invertible.
+\end{proposition}
+
+\begin{proof}
+Sea \(R\) la forma escalonada y reducida de \(A\).
+
+Como
+\[
+\operatorname{rg}(A)=n,
+\]
+la matriz \(R\) tiene \(n\) pivotes. Por tanto, todas sus columnas
+contienen un pivote y, al ser \(R\) escalonada y reducida,
+\[
+R=I_n.
+\]
+
+Así,
+\[
+A\sim I_n.
+\]
+Por lo visto anteriormente, existe una matriz invertible \(P\),
+producto de matrices elementales, tal que
+\[
+I_n=PA.
+\]
+
+Multiplicando por \(P^{-1}\),
+\[
+A=P^{-1}.
+\]
+Por tanto, \(A\) es invertible.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}n[allowframebreaks, t]{Caracterización de las matrices invertibles}
+
+\begin{theorem}
+Sea \(A\in M_{m\times n}(k)\). Entonces \(A\) es invertible si y solo
+si es cuadrada y su rango es igual a su orden.
+
+Es decir,
+\[
+A\text{ es invertible}
+\quad\Longleftrightarrow\quad
+m=n=\operatorname{rg}(A).
+\]
+\end{theorem}
+
+\begin{proof}
+Si \(A\) es invertible, hemos probado que \(m=n\) y
+\[
+\operatorname{rg}(A)=n.
+\]
+
+Recíprocamente, si \(m=n\) y
+\[
+\operatorname{rg}(A)=n,
+\]
+el resultado anterior muestra que \(A\) es invertible.
+\end{proof}
+
+\medskip
+
+En particular, para \(A\in M_n(k)\),
+\[
+A\text{ es invertible}
+\quad\Longleftrightarrow\quad
+\operatorname{rg}(A)=n
+\quad\Longleftrightarrow\quad
+\text{su forma escalonada y reducida es }I_n.
+\]
+
+\end{frame}
