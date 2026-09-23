@@ -616,6 +616,35 @@ Por tanto, podemos denotar la única \alert{inversa de \(A\)} por
 
 \end{frame}
 
+\begin{frame}{Inversa de la inversa}
+
+\begin{proposition}
+Sea \(A\in M_{m\times n}(k)\) una matriz invertible. Entonces
+\(A^{-1}\) es también invertible y
+\[
+\left(A^{-1}\right)^{-1}=A.
+\]
+\end{proposition}
+
+\begin{proof}
+Por definición de matriz inversa,
+\[
+AA^{-1}=I_m
+\qquad\text{y}\qquad
+A^{-1}A=I_n.
+\]
+
+Estas mismas igualdades muestran que \(A\) es una inversa de
+\(A^{-1}\). Por tanto, \(A^{-1}\) es invertible.
+
+Como la inversa es única,
+\[
+\left(A^{-1}\right)^{-1}=A.
+\]
+\end{proof}
+
+\end{frame}
+
 
 \begin{frame}{Inversa de una matriz elemental}
 
@@ -1172,7 +1201,7 @@ otras tampoco, el sistema es
 
 \begin{frame}[allowframebreaks, t]{Ejemplo: sistema compatible indeterminado}
 
-Consideremos el sistema cuya matriz ampliada es
+Consideremos el sistema sobre el cuerpo $k=\Q$ cuya matriz ampliada es
 \[
 \left(
 \begin{array}{ccccc|c}
@@ -1197,7 +1226,7 @@ y las incógnitas libres son \(x_2,x_4\).
 Asignamos a estas últimas valores arbitrarios
 \[
 x_2=\lambda,\qquad x_4=\mu,
-\qquad \lambda,\mu\in k.
+\qquad \lambda,\mu\in \Q.
 \]
 
 Las ecuaciones permiten obtener las incógnitas pivote:
@@ -1218,7 +1247,7 @@ v=
 -1
 \end{pmatrix}
 ,
-\qquad \lambda,\mu\in k.
+\qquad \lambda,\mu\in \Q.
 \]
 
 \end{frame}
@@ -1352,7 +1381,7 @@ el valor de la incógnita libre \(x_{l_i}\) del segundo miembro es
 
 \begin{frame}[allowframebreaks, t]{Ejemplo: soluciones de un sistema homogéneo}
 
-Consideremos el sistema homogéneo cuya matriz de coeficientes
+Consideremos el sistema homogéneo sobre el cuerpo $k=\Q$ cuya matriz de coeficientes
 escalonada y reducida es
 \[
 \begin{pmatrix}
@@ -1371,7 +1400,7 @@ x_1=-2\lambda+\mu,\qquad
 x_3=-4\mu,\qquad
 x_5=0.
 \]
-Por tanto, la solución correspondiente a \(\lambda,\mu\in k\) es
+Por tanto, la solución correspondiente a \(\lambda,\mu\in \Q\) es
 \[
 v=
 \begin{pmatrix}
@@ -1396,7 +1425,7 @@ v_2=
 Así,
 \[
 v=\lambda v_1+\mu v_2,
-\qquad \lambda,\mu\in k,
+\qquad \lambda,\mu\in \Q,
 \]
 y cada solución se expresa de esta forma para unos
 \alert{únicos} valores de \(\lambda\) y \(\mu\).
@@ -1467,7 +1496,7 @@ v=
 
 \begin{frame}[allowframebreaks, t]{Ejemplo: sistema compatible indeterminado}
 
-Anteriormente, habíamos obtenido las siguientes soluciones de un sistema no homogéneo
+Anteriormente, habíamos obtenido las siguientes soluciones de un sistema no homogéneo sobre el cuerpo \(k=\Q\):
 \[
 v=
 \begin{pmatrix}
@@ -1478,7 +1507,7 @@ v=
 -1
 \end{pmatrix}
 ,
-\qquad \lambda,\mu\in k.
+\qquad \lambda,\mu\in \Q.
 \]
 
 Tomando \(\lambda=\mu=0\), obtenemos la solución particular
@@ -1507,12 +1536,14 @@ w=
 \]
 
 Tomando respectivamente
-\[
+\(
 (\lambda,\mu)=(1,0)
-\qquad\text{y}\qquad
+\)
+y
+\(
 (\lambda,\mu)=(0,1),
-\]
-obtenemos las soluciones
+\)
+obtenemos las siguientes soluciones del sistema homogéneo asociado:
 \[
 w_1=
 \begin{pmatrix}
@@ -1532,15 +1563,12 @@ w_2=
 0
 \end{pmatrix}
 \]
-del sistema homogéneo asociado.
-
-\medskip
 
 Por tanto, la solución general del sistema original puede escribirse
 como
 \[
 v=v_0+\lambda w_1+\mu w_2,
-\qquad \lambda,\mu\in k,
+\qquad \lambda,\mu\in \Q,
 \]
 es decir,
 \[
@@ -1570,7 +1598,7 @@ v=
 1\\
 0
 \end{pmatrix},
-\qquad \lambda,\mu\in k.
+\qquad \lambda,\mu\in \Q.
 \]
 
 Además, cada solución se obtiene de esta forma para unos
@@ -1946,12 +1974,12 @@ Multiplicando por \(P^{-1}\),
 \[
 A=P^{-1}.
 \]
-Por tanto, \(A\) es invertible.
+Por tanto, \(A\) es invertible con inversa \(A^{-1}=P\).
 \end{proof}
 
 \end{frame}
 
-\begin{frame}n[allowframebreaks, t]{Caracterización de las matrices invertibles}
+\begin{frame}{Caracterización de las matrices invertibles}
 
 \begin{theorem}
 Sea \(A\in M_{m\times n}(k)\). Entonces \(A\) es invertible si y solo
@@ -1965,28 +1993,124 @@ m=n=\operatorname{rg}(A).
 \]
 \end{theorem}
 
-\begin{proof}
-Si \(A\) es invertible, hemos probado que \(m=n\) y
-\[
-\operatorname{rg}(A)=n.
-\]
+Esta caracterización de las matrices invertibles es consecuencia de las dos proposiciones anteriores.
 
-Recíprocamente, si \(m=n\) y
-\[
-\operatorname{rg}(A)=n,
-\]
-el resultado anterior muestra que \(A\) es invertible.
-\end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Cálculo de la inversa por eliminación gaussiana}
+
+\begin{proposition}
+    Dada una matriz invertible \(A\in M_n(k)\), la forma escalonada y reducida de la matriz por bloques
+    \[
+    (A\mid I_n)
+    \]
+    es
+    \[
+    (I_n\mid A^{-1}).
+    \]
+\end{proposition}
+
+\begin{proof}
+Como \(A\) es invertible, su rango es \(n\). Por tanto, la forma escalonada y reducida de \(A\) es
+\(
+I_n.
+\)
 
 \medskip
 
-En particular, para \(A\in M_n(k)\),
+Aplicamos a la matriz por bloques
 \[
-A\text{ es invertible}
-\quad\Longleftrightarrow\quad
-\operatorname{rg}(A)=n
-\quad\Longleftrightarrow\quad
-\text{su forma escalonada y reducida es }I_n.
+(A\mid I_n)
+\]
+las operaciones elementales por filas que transforman \(A\) en
+\(I_n\).
+
+\medskip
+
+Si \(P\) es el producto de las matrices elementales correspondientes
+a estas operaciones, obtenemos
+\[
+P(A\mid I_n)
+=
+(PA\mid P)
+=
+(I_n\mid P).
+\]
+Esta última matriz está escalonada y reducida.
+
+\medskip
+
+Como
+\[
+PA=I_n,
+\]
+se tiene que
+\[
+A^{-1}=P.
+\]
+\end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Ejemplo: cálculo de una inversa}
+
+Consideremos
+\[
+A=
+\begin{pmatrix}
+1&1&0\\
+0&1&1\\
+1&1&1
+\end{pmatrix}.
+\]
+
+Realizamos el siguiente cálculo de forma escalonada y reducida por eliminación gaussiana:
+\[
+(A\mid I_3)=
+\left(
+\begin{array}{ccc|ccc}
+1&1&0&1&0&0\\
+0&1&1&0&1&0\\
+1&1&1&0&0&1
+\end{array}
+\right)
+\xrightarrow{F_3-F_1}
+\left(
+\begin{array}{ccc|ccc}
+1&1&0&1&0&0\\
+0&1&1&0&1&0\\
+0&0&1&-1&0&1
+\end{array}
+\right)
+\]
+
+\[
+\xrightarrow{F_2-F_3}
+\left(
+\begin{array}{ccc|ccc}
+1&1&0&1&0&0\\
+0&1&0&1&1&-1\\
+0&0&1&-1&0&1
+\end{array}
+\right)
+\xrightarrow{F_1-F_2}
+\left(
+\begin{array}{ccc|ccc}
+1&0&0&0&-1&1\\
+0&1&0&1&1&-1\\
+0&0&1&-1&0&1
+\end{array}
+\right).
+\]
+
+Por tanto,
+\[
+A^{-1}
+=
+\begin{pmatrix}
+0&-1&1\\
+1&1&-1\\
+-1&0&1
+\end{pmatrix}.
 \]
 
 \end{frame}
