@@ -1,0 +1,1399 @@
+\begin{frame}{Definición inductiva del determinante}
+
+Sea \(A=(a_{ij})\in M_n(k)\). Denotaremos por \(A_{ij}\) la matriz
+de orden \(n-1\) que se obtiene de \(A\) suprimiendo la fila \(i\)
+y la columna \(j\).
+
+\medskip
+
+\begin{center}
+\begin{tikzpicture}[baseline=(M.center)]
+\matrix (M) [
+    matrix of math nodes,
+    ampersand replacement=\&,
+    left delimiter=(,
+    right delimiter=),
+    row sep=2mm,
+    column sep=3mm
+] {
+a_{11} \& \cdots \& a_{1j} \& \cdots \& a_{1n}\\
+\vdots \&        \& \vdots \&        \& \vdots\\
+a_{i1} \& \cdots \& a_{ij} \& \cdots \& a_{in}\\
+\vdots \&        \& \vdots \&        \& \vdots\\
+a_{n1} \& \cdots \& a_{nj} \& \cdots \& a_{nn}\\
+};
+
+\draw[ultra thick]
+    ([xshift=-2mm]M-3-1.west)
+    --
+    ([xshift=2mm]M-3-5.east);
+
+\draw[ultra thick]
+    ([yshift=2mm]M-1-3.north)
+    --
+    ([yshift=-2mm]M-5-3.south);
+
+\node[right=7mm of M] {\(= A_{ij}\)};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Definición inductiva del determinante}
+
+\begin{definition}
+Definimos inductivamente el \alert{determinante} de una matriz
+cuadrada.
+
+Si \(A=(a)\in M_1(k)\), definimos
+\[
+\det(A)=a.
+\]
+
+Si \(n>1\), suponiendo definido el determinante para matrices de
+orden \(n-1\), para \(A=(a_{ij})\in M_n(k)\) definimos
+\[
+\det(A)
+=
+\sum_{j=1}^n(-1)^{1+j}a_{1j}\det(A_{1j}).
+\]
+Esta fórmula se conoce como el \alert{desarrollo del determinante por la primera fila}.
+
+El determinante de una matriz $A$ también se denotará por 
+\[|A|=\det(A).\]
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Determinantes de orden \(2\)}
+
+Sea
+\[
+A=
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}.
+\]
+
+Por la definición inductiva,
+\[
+\begin{aligned}
+\det(A)
+&=
+a\det(d)-b\det(c)\\
+&=ad-bc.
+\end{aligned}
+\]
+
+Por tanto,
+\[
+\det
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+=
+ad-bc.
+\]
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Determinantes de orden \(3\)}
+
+Sea
+\[
+A=
+\begin{pmatrix}
+a_{11}&a_{12}&a_{13}\\
+a_{21}&a_{22}&a_{23}\\
+a_{31}&a_{32}&a_{33}
+\end{pmatrix}.
+\]
+
+Desarrollando por la primera fila,
+\[
+\begin{aligned}
+\det(A)
+={}&
+a_{11}
+\begin{vmatrix}
+a_{22}&a_{23}\\
+a_{32}&a_{33}
+\end{vmatrix}
+-
+a_{12}
+\begin{vmatrix}
+a_{21}&a_{23}\\
+a_{31}&a_{33}
+\end{vmatrix}\\
+&+
+a_{13}
+\begin{vmatrix}
+a_{21}&a_{22}\\
+a_{31}&a_{32}
+\end{vmatrix}.
+\end{aligned}
+\]
+
+Usando la fórmula para determinantes de orden \(2\),
+\[
+\begin{aligned}
+\det(A)
+={}&
+a_{11}a_{22}a_{33}
+-a_{11}a_{23}a_{32}\\
+&-a_{12}a_{21}a_{33}
++a_{12}a_{23}a_{31}\\
+&+a_{13}a_{21}a_{32}
+-a_{13}a_{22}a_{31}.
+\end{aligned}
+\]
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Determinantes de orden \(3\)}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Reordenando los términos obtenemos la \alert{regla de Sarrus}:
+\[
+\begin{aligned}
+\det(A)
+={}&
+a_{11}a_{22}a_{33}
++a_{12}a_{23}a_{31}
++a_{13}a_{21}a_{32}\\
+&-
+a_{13}a_{22}a_{31}
+-a_{11}a_{23}a_{32}
+-a_{12}a_{21}a_{33}.
+\end{aligned}
+\]
+Esta regla solo es válida para matrices de orden \(3\).
+\end{column}
+
+\begin{column}{0.5\textwidth}
+% Source - https://tex.stackexchange.com/a/603570
+% Posted by SebGlav
+% Retrieved 2026-09-24, License - CC BY-SA 4.0
+\begin{center}
+\begin{tikzpicture}[baseline=(A.center)]
+  \tikzset{BarreStyle/.style =   {opacity=.4,line width=4 mm,line cap=round,color=#1}}
+    \tikzset{SignePlus/.style =   {above left,inner sep=1.5pt,opacity=.4,circle,fill=#1}}
+    \tikzset{SigneMoins/.style =   {below left,inner sep=1.5pt,opacity=.4,circle,fill=#1}}
+% the matrices
+\matrix (A) [matrix of math nodes, nodes = {node style ge},column sep=0 mm, ampersand replacement=\&,] 
+{ a_{11} \& a_{12} \& a_{13}  \\
+  a_{21} \& a_{22} \& a_{23}  \\
+  a_{31} \& a_{32} \& a_{33}  \\
+  a_{11} \& a_{12} \& a_{13} \\
+  a_{21} \& a_{22} \& a_{13}\\
+};
+
+ \draw [BarreStyle=blue] (A-1-1.north west) node[SignePlus=blue] {$+$} to (A-3-3.south east) ;
+ \draw [BarreStyle=blue] (A-2-1.north west) node[SignePlus=blue] {$+$} to (A-4-3.south east) ;
+ \draw [BarreStyle=blue] (A-3-1.north west) node[SignePlus=blue] {$+$} to (A-5-3.south east) ;
+ \draw [BarreStyle=red]  (A-3-1.south west) node[SigneMoins=red] {$-$} to (A-1-3.north east);
+ \draw [BarreStyle=red]  (A-4-1.south west) node[SigneMoins=red] {$-$} to (A-2-3.north east);
+ \draw [BarreStyle=red]  (A-5-1.south west) node[SigneMoins=red] {$-$} to (A-3-3.north east);
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Linealidad respecto de las filas}
+
+\begin{proposition}
+El determinante es lineal respecto de cada fila. Más concretamente,
+si \(u,v\in M_{1\times n}(k)\) y \(\lambda\in k\), entonces
+\[
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u+v\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+v\\
+\hline
+\vdots
+\end{array}
+\right),
+\]
+y
+\[
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+\lambda u\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+\lambda
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+\hline
+\vdots
+\end{array}
+\right),
+\]
+donde las restantes filas son las mismas en todas las matrices.
+\end{proposition}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Linealidad respecto de la primera fila}
+
+Sean
+\[
+u=(u_1,\ldots,u_n),\qquad
+v=(v_1,\ldots,v_n).
+\]
+Mantengamos fijas las demás filas de la matriz.
+
+\medskip
+
+Por la definición inductiva del determinante,
+\[
+\begin{aligned}
+\det
+\left(
+\begin{array}{c}
+u+v\\
+\hline
+\vdots
+\end{array}
+\right)
+&=
+\sum_{j=1}^n
+(-1)^{1+j}(u_j+v_j)\det(A_{1j})\\
+&=
+\sum_{j=1}^n
+(-1)^{1+j}u_j\det(A_{1j})
++
+\sum_{j=1}^n
+(-1)^{1+j}v_j\det(A_{1j})\\
+&=
+\det
+\left(
+\begin{array}{c}
+u\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+v\\
+\hline
+\vdots
+\end{array}
+\right).
+\end{aligned}
+\]
+
+Del mismo modo, para \(\lambda\in k\),
+\[
+\begin{aligned}
+\det
+\left(
+\begin{array}{c}
+\lambda u\\
+\hline
+\vdots
+\end{array}
+\right)
+&=
+\sum_{j=1}^n
+(-1)^{1+j}(\lambda u_j)\det(A_{1j})\\
+&=
+\lambda\sum_{j=1}^n
+(-1)^{1+j}u_j\det(A_{1j})\\
+&=
+\lambda\det
+\left(
+\begin{array}{c}
+u\\
+\hline
+\vdots
+\end{array}
+\right)
+\end{aligned}
+\]
+
+Por tanto, el determinante es lineal respecto de la primera fila.
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Linealidad respecto otra fila}
+
+El resultado es obvio para matrices de orden \(1\). Supongamos que \(n>1\) y que el resultado es cierto para matrices de orden \(n-1\).
+
+\medskip
+
+Supongamos también que la suma de vectores o el producto por un escalar se realiza en otra fila, la fila \(i>1\). 
+
+\medskip
+
+Dado un vector $w=(w_1,\ldots,w_n)$, denotamos 
+\[w^j=(w_1,\ldots,w_{j-1},w_{j+1},\ldots,w_n)\]
+el vector obtenido suprimiendo su componente \(j\). 
+
+\framebreak
+
+La definición inductiva del determinante y la hipótesis de inducción nos dan:
+\begin{multline*}
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u+v\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+u^j+v^j\\
+\hline
+\vdots
+\end{array}
+\right)\\
+=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\left(\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+u^j\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+v^j\\
+\hline
+\vdots
+\end{array}
+\right)\right)
+\\
+=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+u^j\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+v^j\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+v\\
+\hline
+\vdots
+\end{array}
+\right).
+\end{multline*}
+
+\framebreak
+
+Del mismo modo, para \(\lambda\in k\),
+\[
+\begin{aligned}
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+\lambda u\\
+\hline
+\vdots
+\end{array}
+\right)
+&=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+\lambda u^j\\
+\hline
+\vdots
+\end{array}
+\right)=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\lambda\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+u^j\\
+\hline
+\vdots
+\end{array}
+\right)\\
+&=
+\lambda\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline\\[-12pt]
+u^j\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+\lambda\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+\hline
+\vdots
+\end{array}
+\right).
+\end{aligned}
+\]
+
+Por tanto, el determinante es lineal respecto de cualquier fila.
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Dos filas consecutivas iguales}
+
+\begin{proposition}
+Si una matriz cuadrada tiene dos filas consecutivas iguales, entonces
+su determinante es \(0\).
+\end{proposition}
+
+\begin{proof}
+Procedemos por inducción sobre el orden \(n\).
+
+Para \(n=2\),
+\[
+\det
+\begin{pmatrix}
+a&b\\
+a&b
+\end{pmatrix}
+=ab-ba=0.
+\]
+
+Supongamos ahora \(n>2\) y que el resultado es cierto para matrices
+de orden \(n-1\).
+
+Supongamos primero que las filas iguales son las filas \(i\) e
+\(i+1\), con \(i>1\). Al desarrollar por la primera fila,
+\[
+\det(A)
+=
+\sum_{j=1}^n
+(-1)^{1+j}a_{1j}\det(A_{1j}).
+\]
+En cada \(A_{1j}\), las filas \(i-1\) e \(i\) son iguales y
+consecutivas. Por la hipótesis de inducción,
+\[
+\det(A_{1j})=0
+\]
+para todo \(j\). Por tanto,
+\[
+\det(A)=0.
+\]
+
+Queda el caso en que las dos primeras filas son iguales. Escribamos
+\[
+A=
+\begin{pmatrix}
+a_1&a_2&\cdots&a_n\\
+a_1&a_2&\cdots&a_n\\
+\multicolumn{4}{c}{\raisebox{1ex}{\(\vdots\)}}
+\end{pmatrix}.
+\]
+
+Para \(j<k\), denotemos por \(B_{jk}\) la matriz obtenida suprimiendo
+las dos primeras filas y las columnas \(j\) y \(k\).
+
+Desarrollamos primero por la primera fila y, en cada una de las
+matrices obtenidas, nuevamente por la primera fila.
+
+Para cada par \(j<k\) aparecen exactamente dos términos que contienen
+el producto
+\[
+a_ja_k\det(B_{jk}).
+\]
+
+El que se obtiene suprimiendo primero la columna \(j\) y después la
+columna \(k\) lleva el signo
+\[
+(-1)^{1+j}(-1)^k
+=
+(-1)^{j+k+1},
+\]
+mientras que el que se obtiene suprimiendo primero la columna \(k\)
+y después la columna \(j\) lleva el signo
+\[
+(-1)^{1+k}(-1)^{1+j}
+=
+(-1)^{j+k+2}.
+\]
+
+Estos signos son opuestos. Por tanto, los términos se cancelan dos a
+dos y
+\[
+\det(A)=0.
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Intercambio de dos filas consecutivas}
+
+\begin{proposition}
+Si \(A'\) se obtiene de \(A\) intercambiando dos filas consecutivas,
+entonces
+\[
+\det(A')=-\det(A).
+\]
+\end{proposition}
+
+\begin{proof}
+Sean \(u,v\in M_{1\times n}(k)\) las dos filas consecutivas. Como
+la matriz
+\[
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u+v\\
+u+v\\
+\hline
+\vdots
+\end{array}
+\right)
+\]
+tiene dos filas consecutivas iguales, su determinante es \(0\).
+
+\framebreak
+
+Por la linealidad respecto de cada una de esas filas,
+\[
+\begin{aligned}
+0
+={}&
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+u\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+v\\
+\hline
+\vdots
+\end{array}
+\right)+
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+v\\
+u\\
+\hline
+\vdots
+\end{array}
+\right)
++
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+v\\
+v\\
+\hline
+\vdots
+\end{array}
+\right).
+\end{aligned}
+\]
+
+El primer y el último determinante son \(0\). Por tanto,
+\[
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+v\\
+u\\
+\hline
+\vdots
+\end{array}
+\right)
+=
+-
+\det
+\left(
+\begin{array}{c}
+\vdots\\
+\hline
+u\\
+v\\
+\hline
+\vdots
+\end{array}
+\right).
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Intercambio de dos filas}
+
+\begin{corollary}
+Si \(A'\) se obtiene de \(A\) intercambiando dos filas distintas,
+entonces
+\[
+\det(A')=-\det(A).
+\]
+\end{corollary}
+
+\vspace{-15pt}
+
+\begin{proof}
+Supongamos que se intercambian las filas \(i\) y \(j\), con \(i<j\).
+
+Podemos llevar la fila \(i\) hasta la posición \(j\) mediante
+\(j-i\) intercambios de filas consecutivas, y llevar después la fila
+que inicialmente ocupaba la posición \(j\) hasta la posición \(i\)
+mediante \(j-i-1\) intercambios más.
+
+En total realizamos
+\[
+(j-i)+(j-i-1)=2(j-i)-1
+\]
+intercambios de filas consecutivas.
+
+Cada uno cambia el signo del determinante y \(2(j-i)-1\) es impar.
+Por tanto,
+\[
+\det(A')=-\det(A).\qedhere
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Dos filas iguales}
+
+\begin{corollary}
+Si una matriz cuadrada $A$ tiene dos filas iguales, entonces
+\[
+\det(A)=0.
+\]
+\end{corollary}
+
+\vspace{-15pt}
+
+\begin{proof}
+Supongamos que las filas \(i\) y \(j\), con \(i<j\), son iguales. 
+Si son consecutivas, el resultado ya está demostrado. Si no, sea
+\(A'\) es la matriz que se obtiene de \(A\) intercambiando las filas \(i\) y \(j-1\). Entonces
+\[\det(A)=-\det(A'),\]
+además \(A'\) tiene dos filas consecutivas iguales, de modo que
+\[\det(A')=0.
+\]
+En consecuencia,
+\[\det(A)=0.\qedhere
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Desarrollo por una fila cualquiera}
+
+\begin{proposition}
+Sea \(A=(a_{ij})\in M_n(k)\). Para cualquier fila \(i\),
+\[
+\det(A)
+=
+\sum_{j=1}^n
+(-1)^{i+j}a_{ij}\det(A_{ij}),
+\]
+donde \(A_{ij}\) es la matriz que se obtiene de \(A\) suprimiendo
+la fila \(i\) y la columna \(j\).
+\end{proposition}
+
+\begin{proof}
+Llevamos la fila \(i\) de \(A\) a la primera posición mediante
+\(i-1\) intercambios de filas consecutivas, y denotamos por \(B\)
+la matriz obtenida. Entonces
+\[
+\det(B)=(-1)^{i-1}\det(A).
+\]
+
+La primera fila de \(B\) es
+\[
+(a_{i1},\ldots,a_{in}).
+\]
+Además, al suprimir de \(B\) su primera fila y la columna \(j\)
+obtenemos precisamente \(A_{ij}\).
+
+Por la definición del determinante,
+\[
+\det(B)
+=
+\sum_{j=1}^n
+(-1)^{1+j}a_{ij}\det(A_{ij}).
+\]
+
+Por tanto,
+\[
+\begin{aligned}
+\det(A)
+&=
+(-1)^{i-1}\det(B)\\
+&=
+\sum_{j=1}^n
+(-1)^{i+j}a_{ij}\det(A_{ij}).
+\end{aligned}
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Determinantes y operaciones elementales}
+
+\begin{theorem}
+Sea \(A\in M_n(k)\).
+
+\begin{enumerate}
+\item Si
+\(
+A\xrightarrow{F_i\leftrightarrow F_j}B,
+\)
+entonces
+\[
+\det(B)=-\det(A).
+\]
+
+\item Si
+\(
+A\xrightarrow{\lambda F_i}B\),
+\(
+\lambda\neq0,
+\)
+entonces
+\[
+\det(B)=\lambda\det(A).
+\]
+
+\item Si
+\(
+A\xrightarrow{F_i+\lambda F_j}B\),
+\(
+i\neq j,
+\)
+entonces
+\[
+\det(B)=\det(A).
+\]
+\end{enumerate}
+\end{theorem}
+
+\framebreak 
+
+\begin{proof}
+La primera afirmación ya está demostrada.
+
+La segunda se sigue de la linealidad del determinante respecto de
+cada fila.
+
+Para la tercera, por linealidad respecto de la fila \(i\),
+\[
+\det(B)
+=
+\det(A)+\lambda\det(C),
+\]
+donde \(C\) se obtiene de \(A\) sustituyendo la fila \(i\) por la
+fila \(j\). Como \(C\) tiene dos filas iguales,
+\[
+\det(C)=0.
+\]
+Por tanto,
+\[
+\det(B)=\det(A).
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Diagonal principal}
+
+\begin{definition}
+Sea \(A=(a_{ij})\in M_n(k)\). La \alert{diagonal principal} de \(A\)
+es la formada por las entradas
+\[
+a_{11},a_{22},\ldots,a_{nn}.
+\]
+\end{definition}
+
+\[
+A=
+\begin{pmatrix}
+\alert{a_{11}} & a_{12} & \cdots & a_{1n}\\
+a_{21} & \alert{a_{22}} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & \alert{a_{nn}}
+\end{pmatrix}
+\]
+
+\end{frame}
+
+\begin{frame}{Matrices triangulares superiores}
+
+\begin{definition}
+Una matriz \(A=(a_{ij})\in M_n(k)\) se denomina
+\alert{triangular superior} si
+\[
+a_{ij}=0
+\qquad\text{si }i>j.
+\]
+
+Es decir, tiene la forma
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+0      & a_{22} & \cdots & a_{2n}\\
+\vdots & \ddots & \ddots & \vdots\\
+0      & \cdots & 0      & a_{nn}
+\end{pmatrix}.
+\]
+Dicho de otro modo, todos los elementos por debajo de la diagonal principal son \(0\).
+\end{definition}
+
+\end{frame}
+\begin{frame}[allowframebreaks]{Determinante de una matriz triangular superior}
+
+\begin{proposition}
+Sea
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+0      & a_{22} & \cdots & a_{2n}\\
+\vdots & \ddots & \ddots & \vdots\\
+0      & \cdots & 0      & a_{nn}
+\end{pmatrix}
+\]
+una matriz triangular superior. Entonces
+\[
+\det(A)=a_{11}a_{22}\cdots a_{nn}.
+\]
+\end{proposition}
+
+\begin{proof}
+Procedemos por inducción sobre \(n\).
+
+Para \(n=1\), el resultado es inmediato.
+
+Supongamos que el resultado es cierto para matrices triangulares
+superiores de orden \(n-1\).
+
+Desarrollamos el determinante de \(A\) por la última fila. Como todos
+sus elementos salvo el último son \(0\),
+\[
+\det(A)
+=
+(-1)^{n+n}a_{nn}\det(A_{nn})
+=
+a_{nn}\det(A_{nn}).
+\]
+
+La matriz \(A_{nn}\) es triangular superior de orden \(n-1\), con
+diagonal principal
+\[
+a_{11},a_{22},\ldots,a_{n-1,n-1}.
+\]
+Por la hipótesis de inducción,
+\[
+\det(A_{nn})
+=
+a_{11}a_{22}\cdots a_{n-1,n-1}.
+\]
+
+Por tanto,
+\[
+\det(A)
+=
+a_{11}a_{22}\cdots a_{nn}.
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Cálculo del determinante mediante eliminación gaussiana}
+
+Sea \(A\in M_n(k)\). Mediante operaciones elementales de tipos \(1\)
+y \(3\), obtenemos una forma escalonada \(E\) de \(A\).
+
+Como \(A\) es cuadrada, \(E\) es triangular superior y, por tanto,
+\[
+\det(E)=e_{11}\cdots e_{nn}.
+\]
+
+Las operaciones de tipo \(3\) no modifican el determinante y cada
+intercambio de filas cambia su signo. Por tanto, si se han realizado
+\(s\) intercambios,
+\[
+\det(A)=(-1)^s e_{11}\cdots e_{nn}.
+\]
+
+\end{frame}
+
+\begin{frame}{Ejemplo: cálculo del determinante por Gauss}
+
+Sea
+\[
+A=
+\begin{pmatrix}
+0&2&1&3\\
+1&2&-1&0\\
+0&4&1&8\\
+0&0&-1&5
+\end{pmatrix}.
+\]
+
+Mediante eliminación gaussiana,
+\[
+A
+\xrightarrow{F_1\leftrightarrow F_2}
+\begin{pmatrix}
+1&2&-1&0\\
+0&2&1&3\\
+0&4&1&8\\
+0&0&-1&5
+\end{pmatrix}
+\xrightarrow{F_3-2F_2}
+\begin{pmatrix}
+1&2&-1&0\\
+0&2&1&3\\
+0&0&-1&2\\
+0&0&-1&5
+\end{pmatrix}
+\xrightarrow{F_4-F_3}
+\begin{pmatrix}
+1&2&-1&0\\
+0&2&1&3\\
+0&0&-1&2\\
+0&0&0&3
+\end{pmatrix}.
+\]
+
+Se ha realizado un único intercambio de filas. Por tanto,
+\[
+\det(A)
+=
+-\,\bigl(1\cdot2\cdot(-1)\cdot3\bigr)
+=
+6.
+\]
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]{Determinante e invertibilidad}
+
+\begin{theorem}
+Sea \(A\in M_n(k)\). Entonces
+\[
+A\text{ es invertible}
+\quad\Longleftrightarrow\quad
+\det(A)\neq0.
+\]
+\end{theorem}
+
+\begin{proof}
+Sea $E$ una forma escalonada de \(A\). Según hemos visto $\det(A)=\pm\det(E)$, con lo cual uno de los dos es nulo si y solo si el otro lo es.
+
+\medskip
+
+Si la fila \(i\)  de $E$ es no
+nula, su pivote está en una columna \(j_i\geq i\), pues las posiciones
+de los pivotes aumentan estrictamente al bajar de fila.
+Por tanto, todas las entradas anteriores al pivote de la fila \(i\)
+son nulas y, en particular, $E$ es triangular superior.
+
+\medskip
+
+Si \(A\) no es invertible, entonces \(\operatorname{rg}(A)<n\) y, por tanto $E$ tiene la última fila nula. En consecuencia $e_{nn}=0$ y al ser \(E\) triangular superior, \(\det(E)=e_{11}\cdots e_{nn}=0\).
+
+\medskip
+
+Si \(A\) es invertible, entonces \(\operatorname{rg}(A)=n\) y, por tanto, \(E\) no tiene filas nulas. Como cada pivote de $E$ está más a la derecha que el pivote de la fila anterior, los pivotes de $E$ han  de ser las entradas de la diagonal principal. Luego $e_{ii}\neq0$ para todo \(i=1,\ldots,n\) y $\det(E)\neq 0$.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Determinante de un producto}
+
+\begin{theorem}
+Si \(A,B\in M_n(k)\), entonces
+\[
+\det(AB)=\det(A)\det(B).
+\]
+\end{theorem}
+
+\begin{proof}
+Supongamos primero que \(A\) no es invertible. Mediante eliminación
+gaussiana obtenemos una forma escalonada \(E\) de \(A\) con alguna
+fila nula.
+
+Aplicando a \(AB\) las mismas operaciones elementales obtenemos
+\(EB\), que también tiene una fila nula. Por tanto,
+\[
+\det(AB)=0.
+\]
+Como \(A\) no es invertible, también \(\det(A)=0\), y la fórmula se
+cumple.
+
+Supongamos ahora que \(A\) es invertible. Mediante operaciones
+elementales por filas llevamos \(A\) hasta \(I_n\). Sea
+\(\mu\neq0\) el factor por el que estas operaciones multiplican el
+determinante. Entonces
+\[
+1=\mu\det(A).
+\]
+
+Aplicando las mismas operaciones a \(AB\), obtenemos \(B\), y por
+tanto
+\[
+\det(B)=\mu\det(AB).
+\]
+
+Como \(\mu=\det(A)^{-1}\), se sigue que
+\[
+\det(AB)=\det(A)\det(B).
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Matriz traspuesta}
+
+\begin{definition}
+Sea
+\[
+A=(a_{ij})=\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}\in M_{m\times n}(k).
+\]
+La \alert{matriz traspuesta} de \(A\) es la matriz
+\[
+A^t=(a_{ij}^t)=(a_{ji})=\begin{pmatrix}
+a_{11}&a_{21}&\cdots&a_{m1}\\
+a_{12}&a_{22}&\cdots&a_{m2}\\
+\vdots&\vdots&&\vdots\\
+a_{1n}&a_{2n}&\cdots&a_{mn}
+\end{pmatrix}\in M_{n\times m}(k).
+\]
+Es decir,
+\[a^t_{ij}=a_{ji}.\]
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Traspuesta de un producto}
+
+\begin{proposition}
+Sean
+\(
+A\in M_{m\times n}(k),
+\) y \(
+B\in M_{n\times p}(k).
+\). 
+Entonces
+\[
+(AB)^t=B^tA^t.
+\]
+\end{proposition}
+
+\begin{proof}
+Para \(1\leq i\leq p\) y \(1\leq j\leq m\),
+\[
+\begin{aligned}
+\bigl((AB)^t\bigr)_{ij}
+&=(AB)_{ji}=\sum_{r=1}^n a_{jr}b_{ri}\\
+&=\sum_{r=1}^n b_{ri}a_{jr}=\sum_{r=1}^n b^t_{ir}a^t_{rj}=(B^tA^t)_{ij}.
+\end{aligned}
+\]
+
+Por tanto, como ambos lados son matrices de orden \(p\times m\) y tienen las mismas entradas, coinciden.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Traspuesta de una matriz invertible}
+
+\begin{corollary}
+Sea \(A\in M_n(k)\) una matriz invertible. Entonces \(A^t\) es
+invertible y
+\[
+(A^t)^{-1}=(A^{-1})^t.
+\]
+\end{corollary}
+
+\begin{proof}
+Como \(A\) es invertible,
+\[
+AA^{-1}=I_n
+\qquad\text{y}\qquad
+A^{-1}A=I_n.
+\]
+
+Trasponiendo y usando la fórmula para la traspuesta de un producto,
+obtenemos
+\[
+(AA^{-1})^t=(A^{-1})^tA^t=I_n
+\qquad\text{y}\qquad
+(A^{-1}A)^t=A^t(A^{-1})^t=I_n.
+\]
+
+Por tanto, \((A^{-1})^t\) es una inversa de \(A^t\). Así, \(A^t\)
+es invertible y
+\[
+(A^t)^{-1}=(A^{-1})^t.\qedhere
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Traspuestas de matrices elementales}
+
+\begin{proposition}
+Si \(E\in M_n(k)\) es una matriz elemental, entonces
+\[
+\det(E^t)=\det(E).
+\]
+\end{proposition}
+
+\begin{proof}
+Para los tres tipos de matrices elementales,
+\[
+E_{ij}^t=E_{ij},
+\qquad
+E_i(\lambda)^t=E_i(\lambda),
+\qquad
+E_{ij}(\lambda)^t=E_{ji}(\lambda).
+\]
+
+Las matrices \(E_{ij}(\lambda)\) y \(E_{ji}(\lambda)\) tienen
+determinante \(1\), pues se obtienen de \(I_n\) mediante una
+operación elemental de tipo \(3\).
+
+Por tanto, en todos los casos,
+\[
+\det(E^t)=\det(E).
+\]
+\end{proof}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Determinante de la matriz traspuesta}
+
+\begin{theorem}
+Para toda \(A\in M_n(k)\),
+\[
+\det(A^t)=\det(A).
+\]
+\end{theorem}
+
+\begin{proof}
+Supongamos primero que \(A\) es invertible. Como su forma escalonada
+y reducida es \(I_n\), \(A\) es producto de matrices elementales:
+\[
+A=E_1\cdots E_r.
+\]
+
+Entonces
+\[
+A^t=E_r^t\cdots E_1^t.
+\]
+Por la fórmula del determinante de un producto y el resultado
+anterior,
+\[
+\begin{aligned}
+\det(A^t)
+&=\det(E_r^t)\cdots\det(E_1^t)\\
+&=\det(E_r)\cdots\det(E_1)\\
+&=\det(E_1)\cdots\det(E_r)\\
+&=\det(A).
+\end{aligned}
+\]
+
+Supongamos ahora que \(A\) no es invertible. Entonces \(A^t\)
+tampoco es invertible pues si \(A^t\) fuese invertible,
+también lo sería
+\[
+(A^t)^t=A.
+\]
+En este caso \(\det(A)=0=\det(A^t)\).
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Adjuntos de una matriz}
+
+\begin{definition}
+Sea \(A=(a_{ij})\in M_n(k)\). El \alert{adjunto} de la entrada
+\(a_{ij}\) es el escalar
+\[
+(-1)^{i+j}\det(A_{ij}),
+\]
+donde \(A_{ij}\) se obtiene suprimiendo la fila \(i\) y la columna
+\(j\) de \(A\).
+
+La \alert{matriz adjunta} de \(A\) es
+\[
+\operatorname{adj}(A)=((-1)^{i+j}\det(A_{ij})),
+\]
+es decir, aquella cuya entrada \((i,j)\) es el adjunto de \(a_{ij}\).
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{La matriz adjunta}
+
+\begin{proposition}
+Para toda \(A\in M_n(k)\),
+\[
+A\operatorname{adj}(A)^t=\det(A)I_n.
+\]
+\end{proposition}
+
+\vspace{-15pt}
+
+\begin{proof}
+La entrada \((i,j)\) de \(A\operatorname{adj}(A)^t\) es
+\[
+\sum_{r=1}^n a_{ir}(-1)^{j+r}\det(A_{jr}).
+\]
+
+Si \(i=j\), esta suma es precisamente el desarrollo de
+\(\det(A)\) por la fila \(i\). 
+
+Si \(i\neq j\), la fórmula es el desarrollo por la fila \(j\) del determinante de la matriz \(B\) la matriz obtenida de
+\(A\) sustituyendo la fila \(j\) por la fila \(i\). Como \(B\) tiene dos filas iguales (la fila \(i\) y la fila \(j\)),
+\[
+\det(B)=0.
+\]
+Así, las entradas diagonales de \(A\operatorname{adj}(A)^t\) son
+\(\det(A)\) y las restantes son \(0\). 
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{Fórmula de la inversa por adjuntos}
+
+\begin{corollary}
+Si \(A\in M_n(k)\) es invertible, entonces
+\[
+A^{-1}
+=
+\frac{1}{\det(A)}\operatorname{adj}(A)^t.
+\]
+\end{corollary}
+
+
+\end{frame}
