@@ -1939,42 +1939,44 @@ y \(A\) es cuadrada de rango \(n\).
 
 \begin{frame}[allowframebreaks, t]{Matrices cuadradas de rango máximo}
 
-\begin{proposition}
-Sea \(A\in M_n(k)\). Si
-\[
-\operatorname{rg}(A)=n,
-\]
-entonces \(A\) es invertible.
-\end{proposition}
+\begin{lemma}
+	Una matriz cuadrada \(A\in M_n(k)\) tiene
+	\(
+	\operatorname{rg}(A)=n
+	\)
+	si y solo si su forma escalonada y reducida es la matriz identidad $I_n$.
+\end{lemma}
 
 \begin{proof}
-Sea \(R\) la forma escalonada y reducida de \(A\).
-
+Sea $R$ la forma escalonada y reducida de $A$.
 Como
-\[
+\(
 \operatorname{rg}(A)=n,
-\]
+\)
 la matriz \(R\) tiene \(n\) pivotes. Por tanto, todas sus columnas
 contienen un pivote y, al ser \(R\) escalonada y reducida,
-\[
+\(
 R=I_n.
-\]
+\)
+\end{proof}
 
-Así,
-\[
-A\sim I_n.
-\]
-Por lo visto anteriormente, existe una matriz invertible \(P\),
-producto de matrices elementales, tal que
-\[
-I_n=PA.
-\]
 
-Multiplicando por \(P^{-1}\),
-\[
-A=P^{-1}.
-\]
-Por tanto, \(A\) es invertible con inversa \(A^{-1}=P\).
+\begin{corollary}
+Sea \(A\in M_n(k)\). Si
+\(
+\operatorname{rg}(A)=n,
+\)
+entonces \(A\) es producto de matrices elementales, en particular es  invertible.
+\end{corollary}
+
+\begin{proof}
+La forma escalonada y reducida de $A$ es $I_n$, así que existe una matriz invertible $$P=E_1\cdots E_r,$$ producto de elementales $E_i$, $1\leq i\leq r$, tal que $$PA=I_n.$$ Por tanto 
+\begin{align*}
+A&=P^{-1}\\
+&=(E_1\cdots E_r)^{-1}\\
+&=E_r^{-1}\cdots E_1^{-1}
+\end{align*}
+es producto de matrices elementales, puesto que la inversa de una matriz elemental es elemental.
 \end{proof}
 
 \end{frame}
@@ -1982,18 +1984,33 @@ Por tanto, \(A\) es invertible con inversa \(A^{-1}=P\).
 \begin{frame}{Caracterización de las matrices invertibles}
 
 \begin{theorem}
-Sea \(A\in M_{m\times n}(k)\). Entonces \(A\) es invertible si y solo
-si es cuadrada y su rango es igual a su orden.
-
-Es decir,
-\[
+Sea \(A\in M_{m\times n}(k)\). Entonces,
+\begin{align*}
 A\text{ es invertible}
-\quad\Longleftrightarrow\quad
-m=n=\operatorname{rg}(A).
-\]
+&\Longleftrightarrow
+m=n=\operatorname{rg}(A)\\
+&\Longleftrightarrow
+A\text{ es producto de matrices elementales}.
+\end{align*}
 \end{theorem}
 
-Esta caracterización de las matrices invertibles es consecuencia de las dos proposiciones anteriores.
+Estas caracterizaciones de las matrices invertibles son consecuencia de los resultados anteriores.
+
+\end{frame}
+
+\begin{frame}{Caracterización de la equivalencia por filas}
+
+\begin{corollary}
+	Dos matrices $A,B \in M_{m\times n}(k)$ son equivalentes por filas si y solo si existe una matriz invertible $P\in M_{n\times n}(k)$ tal que $PA=B$.
+\end{corollary}
+
+\begin{proof}
+	Si $A$ y $B$ son equivalentes por filas, podemos pasar de $A$ a $B$ realizando operaciones elementales por filas. Entonces, si $P$ es el producto de matrices elementales correspondiente a dichas operaciones, $PA=B$. La matriz $P$ es invertible por ser producto de elementales, que son invertibles.
+	
+	\medskip
+	
+	Si $PA=B$ con $P$ invertible, entonces $P$ es producto de elementales, por tanto podemos pasar de $A$ a $B$ realizando las correspondientes operaciones elementales, así que $A$ y $B$ son equivalentes por filas.
+\end{proof}
 
 \end{frame}
 
