@@ -103,7 +103,7 @@ a_{j1} & \cdots & a_{jn}\\
 Sean \(A,B\in M_{m\times n}(k)\). Diremos que \(A\) y \(B\) son
 \alert{equivalentes por filas}, y escribiremos
 \[
-A\sim B,
+A\sim_f B,
 \]
 si \(B\) se obtiene a partir de \(A\) mediante una sucesión finita de
 operaciones elementales por filas.
@@ -1718,9 +1718,9 @@ matriz escalonada y reducida. Por tanto, basta probar la unicidad.
 Supongamos que \(R,S\in M_{m\times n}(k)\) son matrices escalonadas
 y reducidas tales que
 \[
-A\sim R
+A\sim_f R
 \qquad\text{y}\qquad
-A\sim S.
+A\sim_f S.
 \]
 
 Consideremos los sistemas homogéneos
@@ -1728,13 +1728,13 @@ Consideremos los sistemas homogéneos
 Ax=0,\qquad Rx=0,\qquad Sx=0.
 \]
 
-Como \(A\sim R\), los sistemas
+Como \(A\sim_f R\), los sistemas
 \[
 Ax=0
 \qquad\text{y}\qquad
 Rx=0
 \]
-tienen las mismas soluciones. Del mismo modo, como \(A\sim S\),
+tienen las mismas soluciones. Del mismo modo, como \(A\sim_f S\),
 los sistemas
 \[
 Ax=0
@@ -1830,7 +1830,7 @@ Entonces:
 Mediante eliminación gaussiana llevamos la matriz ampliada a su
 forma escalonada y reducida:
 \[
-(A\mid b)\sim(A'\mid b').
+(A\mid b)\sim_f(A'\mid b').
 \]
 
 Las mismas operaciones elementales transforman \(A\) en \(A'\).
