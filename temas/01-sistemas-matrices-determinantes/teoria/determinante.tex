@@ -1940,7 +1940,7 @@ por columnas:
   & \cdots
 \end{array}
 \right)
-\xrightarrow{\substack{C_j-c_1C_1\\ C_j-c_2C_2\\\vdots\\ C_j-c_rC_r}}
+\xrightarrow{\substack{C_j-c_{1j}C_1\\ C_j-c_{2j}C_2\\\vdots\\ C_j-c_{rj}C_r}}
 \left(
 \begin{array}{cccc|ccc}
 1 & 0 & \cdots & 0
@@ -2278,7 +2278,7 @@ Ax=b,
 \]
 donde \(A\in M_n(k)\) es invertible. La única solución de este sistema es
 \[x_i=\frac{
-\left(
+\det\left(
 \begin{array}{ccccccc}
 a_{11} & \cdots & a_{1,i-1} & \alert{b_1} & a_{1,i+1} & \cdots & a_{1n}\\
 a_{21} & \cdots & a_{2,i-1} & \alert{b_2} & a_{2,i+1} & \cdots & a_{2n}\\
@@ -2325,9 +2325,9 @@ Fijemos \(i\), con \(1\leq i\leq n\). Entonces, el determinante de la matriz que
 \det (C_1\mid \cdots\mid C_{i-1}\mid v_1C_1+\cdots+v_nC_n\mid C_{i+1}\mid \cdots\ C_n)\\
 =
 \sum_{j=1}^n
-v_j\det(C_1,\ldots,C_{i-1},C_j,C_{i+1},\ldots,C_n)\\
+v_j\det(C_1\mid \ldots\mid C_{i-1}\mid C_j\mid C_{i+1}\mid \ldots\mid C_n)\\
 =
-v_i\det(C_1,\ldots,C_{i-1},C_i,C_{i+1},\ldots,C_n)men=v_i\det(A).
+v_i\det(C_1\mid \ldots\mid C_{i-1}\mid C_i\mid C_{i+1}\mid \ldots\mid C_n)=v_i\det(A).
 \end{multline*}
 Aquí hemos aplicado la linealidad del determinante por columnas y que el determinante de una matriz con dos filas iguales es \(0\). 
 Despejando $\det(A)\neq 0$ obtenemos la fórmula del enunciado.
