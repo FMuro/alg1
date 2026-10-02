@@ -30,24 +30,22 @@
 
     Dados
     \[
-        u=(x_1,\ldots,x_n),
+        u=(u_1,\ldots,u_n),
         \qquad
-        v=(y_1,\ldots,y_n)\in k^n,
+        v=(v_1,\ldots,v_n)\in k^n,
     \]
     y \(\lambda\in k\), definimos
     \[
         u+v
         =
-        (x_1+y_1,\ldots,x_n+y_n)
+        (u_1+v_1,\ldots,u_n+v_n)
     \]
     y
     \[
         \lambda u
         =
-        (\lambda x_1,\ldots,\lambda x_n).
+        (\lambda u_1,\ldots,\lambda u_n).
     \]
-
-    \pause
 
     Estas operaciones satisfacen, entre otras, las propiedades
     \[
@@ -85,8 +83,6 @@
         \]
     \end{itemize}
 
-    \pause
-
     En todos estos casos tenemos una suma y un producto por escalares
     que satisfacen las mismas propiedades formales que en \(k^n\).
 
@@ -103,20 +99,17 @@
     \begin{definition}
         Sea \(k\) un cuerpo. Un \alert{espacio vectorial sobre \(k\)} es un conjunto \(V\)
         dotado de dos operaciones
-        \[
-            +\colon V\times V\longrightarrow V,
-        \]
-        \[
-            \cdot\colon k\times V\longrightarrow V,
-        \]
+        \begin{alignat*}{2}
+            +\colon V\times V &\longrightarrow V, \qquad &(u,v) &\longmapsto u+v,\\
+            \cdot\;\colon k\times V &\longrightarrow V, \qquad &(\lambda,v) &\longmapsto \lambda v,
+        \end{alignat*}
         llamadas, respectivamente, \alert{suma} y \alert{producto por escalares},
         que satisfacen ciertos axiomas.
     \end{definition}
 
     \medskip
 
-    Los elementos de \(V\) se llaman \alert{vectores}, y los elementos de \(k\),
-    \emph{escalares}.
+    Los elementos de \(V\) se llaman \alert{vectores}.
 \end{frame}
 
 
@@ -130,7 +123,7 @@
         u+v &= v+u,
     \end{align*}
 
-    existe un elemento \(0\in V\) llamado \alert{vector cero} tal que
+    existe un elemento \(0\in V\) llamado \alert{vector cero}, \alert{nulo} o \alert{trivial} tal que
     \[
         v+0=v,
     \]
@@ -176,18 +169,18 @@
     \begin{example}
         El conjunto
         \[
-            k^n=\{(x_1,\ldots,x_n):x_i\in k\}
+            k^n=\{(u_1,\ldots,u_n):u_i\in k\}
         \]
         es un espacio vectorial sobre \(k\) con las operaciones
         \[
-            (x_1,\ldots,x_n)+(y_1,\ldots,y_n)
+            (u_1,\ldots,u_n)+(v_1,\ldots,v_n)
             =
-            (x_1+y_1,\ldots,x_n+y_n),
+            (u_1+v_1,\ldots,u_n+v_n),
         \]
         \[
-            \lambda(x_1,\ldots,x_n)
+            \lambda(u_1,\ldots,u_n)
             =
-            (\lambda x_1,\ldots,\lambda x_n).
+            (\lambda u_1,\ldots,\lambda u_n).
         \]
     \end{example}
 
@@ -197,9 +190,9 @@
     \[
         (0,\ldots,0),
     \]
-    y el opuesto de \((x_1,\ldots,x_n)\) es
+    y el opuesto de \((u_1,\ldots,u_n)\) es
     \[
-        (-x_1,\ldots,-x_n).
+        (-u_1,\ldots,-u_n).
     \]
 \end{frame}
 
@@ -344,6 +337,22 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Unicidad del vector cero}
+
+    \begin{proposition}
+        Sea \(V\) un espacio vectorial sobre \(k\). El vector cero de \(V\) es único.
+    \end{proposition}
+
+    \begin{proof}
+        Supongamos que \(0,0'\in V\) son dos vectores cero. Entonces
+        \[
+            0=0+0'=0'.
+        \]
+        Por tanto, el vector cero es único.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
     \frametitle{Unicidad del opuesto}
 
     \begin{proposition}
@@ -373,7 +382,11 @@
             =
             (w+v)+w'
             =
+            (v+w)+w'
+            =
             0+w'
+            =
+            w'+0
             =
             w'.
         \]
@@ -440,7 +453,33 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Producto de un escalar por un vector}
+    \frametitle{Despejar un escalar no nulo}
+
+    Supongamos que
+    \[
+        \lambda u=v,
+    \]
+    con \(\lambda\in k\) no nulo. Como \(k\) es un cuerpo, podemos dividir por \(\lambda\), es decir, existe \(\lambda^{-1}\in k\) tal que
+    \[
+        \lambda^{-1}\lambda=1.
+    \]
+    Multiplicando los dos miembros de la primera ecuación por \(\lambda^{-1}\),
+    \[
+        \lambda^{-1}(\lambda u)=\lambda^{-1}v.
+    \]
+    Por los axiomas del producto por escalares,
+    \[
+        \lambda^{-1}(\lambda u)=(\lambda^{-1}\lambda)u=1u=u,
+    \]
+    y por tanto
+    \[
+        u=\lambda^{-1}v.
+    \]
+    Es decir, podemos despejar escalares no nulos de una ecuación vectorial.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cuando el producto por escalares es cero}
 
     \begin{corollary}
         Sea \(V\) un espacio vectorial sobre \(k\). Si \(\lambda\in k\) y \(v\in V\),
@@ -455,20 +494,8 @@
     \end{corollary}
 
     \begin{proof}
-        Si \(\lambda\neq 0\), entonces \(\lambda^{-1}\in k\) y
-        \[
-            v
-            =
-            1v
-            =
-            (\lambda^{-1}\lambda)v
-            =
-            \lambda^{-1}(\lambda v)
-            =
-            \lambda^{-1}0
-            =
-            0.
-        \]
+        Si \(\lambda\neq 0\), entonces 
+        \[v=\lambda^{-1}0=0.\]
     \end{proof}
 \end{frame}
 
@@ -486,7 +513,7 @@
 
     ¿Es \(V\) un espacio vectorial sobre \(\mathbb{R}\)?
 
-    \pause
+    \medskip
 
     No. Por ejemplo,
     \[
@@ -515,16 +542,10 @@
 
     ¿Es \(V\) un espacio vectorial sobre \(k\)?
 
-    \pause
+    \medskip
 
     No. El polinomio cero no pertenece a \(V\).
 
-    \medskip
-
-    Además, la suma de dos elementos de \(V\) puede dejar de tener grado \(n\). Por ejemplo,
-    \[
-        x^n+(-x^n)=0.
-    \]
 \end{frame}
 
 
@@ -540,7 +561,7 @@
 
     ¿Definen estas operaciones una estructura de espacio vectorial sobre \(\mathbb{R}\)?
 
-    \pause
+    \medskip
 
     No. Por ejemplo,
     \[
