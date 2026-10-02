@@ -1,0 +1,587 @@
+
+
+\begin{frame}
+    \frametitle{Espacios vectoriales}
+
+    \[
+        k^n,
+        \qquad
+        M_{m\times n}(k),
+        \qquad
+        k[x],
+        \qquad
+        k^X
+    \]
+
+    \begin{center}
+        \alert{¿Qué tienen en común estos conjuntos?}
+    \end{center}
+
+    \medskip
+
+    \begin{alertblock}{}
+        En los primeros ejemplos puede pensarse en \(k=\mathbb{R}\).
+    \end{alertblock}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El ejemplo prototípico: \(k^n\)}
+
+    Dados
+    \[
+        u=(x_1,\ldots,x_n),
+        \qquad
+        v=(y_1,\ldots,y_n)\in k^n,
+    \]
+    y \(\lambda\in k\), definimos
+    \[
+        u+v
+        =
+        (x_1+y_1,\ldots,x_n+y_n)
+    \]
+    y
+    \[
+        \lambda u
+        =
+        (\lambda x_1,\ldots,\lambda x_n).
+    \]
+
+    \pause
+
+    Estas operaciones satisfacen, entre otras, las propiedades
+    \[
+        u+v=v+u,
+        \qquad
+        (u+v)+w=u+(v+w),
+    \]
+    \[
+        \lambda(u+v)=\lambda u+\lambda v,
+        \qquad
+        (\lambda+\mu)u=\lambda u+\mu u.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Otros ejemplos}
+
+    Las mismas operaciones pueden definirse en conjuntos de naturaleza muy distinta:
+
+    \begin{itemize}
+        \item las matrices
+        \[
+            M_{m\times n}(k),
+        \]
+
+        \item los polinomios
+        \[
+            k[x],
+        \]
+
+        \item las funciones de un conjunto \(X\) en \(k\)
+        \[
+            k^X=\{f\colon X\longrightarrow k\}.
+        \]
+    \end{itemize}
+
+    \pause
+
+    En todos estos casos tenemos una suma y un producto por escalares
+    que satisfacen las mismas propiedades formales que en \(k^n\).
+
+    \medskip
+
+    \begin{center}
+        \alert{La naturaleza de los elementos cambia, pero la estructura es la misma.}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Espacios vectoriales}
+
+    \begin{definition}
+        Sea \(k\) un cuerpo. Un \alert{espacio vectorial sobre \(k\)} es un conjunto \(V\)
+        dotado de dos operaciones
+        \[
+            +\colon V\times V\longrightarrow V,
+        \]
+        \[
+            \cdot\colon k\times V\longrightarrow V,
+        \]
+        llamadas, respectivamente, \alert{suma} y \alert{producto por escalares},
+        que satisfacen ciertos axiomas.
+    \end{definition}
+
+    \medskip
+
+    Los elementos de \(V\) se llaman \alert{vectores}, y los elementos de \(k\),
+    \emph{escalares}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Axiomas de un espacio vectorial}
+
+    Para cualesquiera \(u,v,w\in V\),
+
+    \begin{align*}
+        (u+v)+w &= u+(v+w),\\
+        u+v &= v+u,
+    \end{align*}
+
+    existe un elemento \(0\in V\) llamado \alert{vector cero} tal que
+    \[
+        v+0=v,
+    \]
+
+    y para cada \(v\in V\) existe un elemento \(-v\in V\) tal que
+    \[
+        v+(-v)=0.
+    \]
+
+    \medskip
+
+    Es decir, \((V,+)\) es un \alert{grupo abeliano}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Axiomas de un espacio vectorial}
+
+    Para cualesquiera \(\lambda,\mu\in k\) y \(u,v\in V\),
+
+    \begin{align*}
+        \lambda(u+v) &= \lambda u+\lambda v,\\
+        (\lambda+\mu)v &= \lambda v+\mu v,\\
+        (\lambda\mu)v &= \lambda(\mu v),\\
+        1v &= v.
+    \end{align*}
+
+    \medskip
+
+    Obsérvese que utilizamos el mismo símbolo \(0\) para denotar
+    el elemento neutro de \(k\) y el vector cero de \(V\):
+    \[
+        0\in k,
+        \qquad
+        0\in V.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio vectorial \(k^n\)}
+
+    \begin{example}
+        El conjunto
+        \[
+            k^n=\{(x_1,\ldots,x_n):x_i\in k\}
+        \]
+        es un espacio vectorial sobre \(k\) con las operaciones
+        \[
+            (x_1,\ldots,x_n)+(y_1,\ldots,y_n)
+            =
+            (x_1+y_1,\ldots,x_n+y_n),
+        \]
+        \[
+            \lambda(x_1,\ldots,x_n)
+            =
+            (\lambda x_1,\ldots,\lambda x_n).
+        \]
+    \end{example}
+
+    \medskip
+
+    Su vector cero es
+    \[
+        (0,\ldots,0),
+    \]
+    y el opuesto de \((x_1,\ldots,x_n)\) es
+    \[
+        (-x_1,\ldots,-x_n).
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio vectorial de las matrices}
+
+    \begin{example}
+        El conjunto
+        \[
+            M_{m\times n}(k)
+        \]
+        de matrices \(m\times n\) con coeficientes en \(k\) es un espacio vectorial
+        sobre \(k\), con la suma de matrices y el producto por escalares habituales.
+    \end{example}
+
+    \medskip
+
+    El vector cero es la matriz nula
+    \[
+        0=
+        \begin{pmatrix}
+            0 & \cdots & 0\\
+            \vdots & & \vdots\\
+            0 & \cdots & 0
+        \end{pmatrix},
+    \]
+    y el opuesto de una matriz \(A\) es \(-A\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio vectorial de los polinomios}
+
+    \begin{example}
+        El conjunto
+        \[
+            k[x]
+        \]
+        de polinomios con coeficientes en \(k\) es un espacio vectorial sobre \(k\),
+        con la suma y el producto por escalares habituales.
+    \end{example}
+
+    \medskip
+
+    También lo es el conjunto
+    \[
+        k_n[x]
+        =
+        \{p(x)\in k[x]:\deg p\leq n\}\cup\{0\}.
+    \]
+
+    \medskip
+
+    Por ejemplo,
+    \[
+        1,\quad x,\quad x^2,\quad \ldots,\quad x^n
+    \]
+    son vectores de \(k_n[x]\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Espacios vectoriales de funciones}
+
+    \begin{example}
+        Sea \(X\) un conjunto. El conjunto
+        \[
+            k^X=\{f\colon X\longrightarrow k\}
+        \]
+        es un espacio vectorial sobre \(k\), definiendo
+        \[
+            (f+g)(x)=f(x)+g(x),
+        \]
+        \[
+            (\lambda f)(x)=\lambda f(x),
+        \]
+        para todo \(x\in X\).
+    \end{example}
+
+    \medskip
+
+    El vector cero es la función constante
+    \[
+        0\colon X\longrightarrow k,
+        \qquad
+        x\longmapsto 0.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Un ejemplo menos evidente}
+
+    \begin{example}
+        Consideremos
+        \[
+            V=\mathbb{R}_{>0}
+        \]
+        y definamos la \alert{suma} y el \alert{producto por escalares} del siguiente modo inusual:
+        \[
+            x\oplus y=xy,
+            \qquad
+            \lambda\odot x=x^\lambda,
+        \]
+        para \(x,y\in V\) y \(\lambda\in\mathbb{R}\). Entonces \(V\) es un espacio vectorial sobre \(\mathbb{R}\). En este espacio vectorial, el vector cero es
+    \[
+        1,
+    \]
+    pues
+    \[
+        x\oplus 1=x.
+    \]
+
+    Además, el opuesto de \(x\) es
+    \[
+        x^{-1}.
+    \]
+        \end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Resta de vectores}
+
+    Sean \(u,v\in V\). Definimos la \alert{resta} de \(v\) a \(u\) por
+    \[
+        u-v:=u+(-v).
+    \]
+
+    \medskip
+
+    Es decir, restar un vector es, por definición, sumar su opuesto.
+
+    \medskip
+
+    En particular,
+    \[
+        u-v=w
+        \quad\Longleftrightarrow\quad
+        u=w+v,
+    \]
+    es decir, podemos despejar.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Unicidad del opuesto}
+
+    \begin{proposition}
+        Sea \(V\) un espacio vectorial sobre \(k\). Para cada \(v\in V\),
+        existe un único vector \(-v\in V\) tal que
+        \[
+            v+(-v)=0.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        La existencia forma parte de los axiomas de espacio vectorial.
+
+        Supongamos que \(w,w'\in V\) satisfacen
+        \[
+            v+w=0,
+            \qquad
+            v+w'=0.
+        \]
+        Entonces
+        \[
+            w
+            =
+            w+0
+            =
+            w+(v+w')
+            =
+            (w+v)+w'
+            =
+            0+w'
+            =
+            w'.
+        \]
+
+        Por tanto, el opuesto de \(v\) es único.
+    \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Primeras consecuencias de los axiomas}
+
+    \begin{proposition}
+        Sea \(V\) un espacio vectorial sobre \(k\). Para todo \(v\in V\)
+        y todo \(\lambda\in k\),
+        \[
+            0v=0,
+            \qquad
+            \lambda 0=0,
+            \qquad
+            (-1)v=-v.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Como
+        \[
+            0v=(0+0)v=0v+0v,
+        \]
+        despejando obtenemos
+        \[
+            0v=0.
+        \]
+
+        Análogamente,
+        \[
+            \lambda 0
+            =
+            \lambda(0+0)
+            =
+            \lambda 0+\lambda 0,
+        \]
+        y por tanto
+        \[
+            \lambda 0=0.
+        \]
+
+        Por otra parte,
+        \[
+            v+(-1)v
+            =
+            1v+(-1)v
+            =
+            (1-1)v
+            =
+            0v
+            =
+            0.
+        \]
+        Por unicidad del opuesto,
+        \[
+            (-1)v=-v.
+        \]
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Producto de un escalar por un vector}
+
+    \begin{corollary}
+        Sea \(V\) un espacio vectorial sobre \(k\). Si \(\lambda\in k\) y \(v\in V\),
+        entonces
+        \[
+            \lambda v=0
+            \quad\Longrightarrow\quad
+            \lambda=0
+            \quad\text{o}\quad
+            v=0.
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Si \(\lambda\neq 0\), entonces \(\lambda^{-1}\in k\) y
+        \[
+            v
+            =
+            1v
+            =
+            (\lambda^{-1}\lambda)v
+            =
+            \lambda^{-1}(\lambda v)
+            =
+            \lambda^{-1}0
+            =
+            0.
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un conjunto que no es un espacio vectorial}
+
+    Consideremos
+    \[
+        V=\{(x,y)\in\mathbb{R}^2:x\geq 0\}
+    \]
+    con las operaciones habituales de \(\mathbb{R}^2\).
+
+    \medskip
+
+    ¿Es \(V\) un espacio vectorial sobre \(\mathbb{R}\)?
+
+    \pause
+
+    No. Por ejemplo,
+    \[
+        (1,0)\in V,
+    \]
+    pero
+    \[
+        -(1,0)=(-1,0)\notin V.
+    \]
+
+    \medskip
+
+    Por tanto, \(V\) no es cerrado respecto de la toma de opuestos.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Otro conjunto que no es un espacio vectorial}
+
+    Consideremos el conjunto de polinomios de grado exactamente \(n\):
+    \[
+        V=\{p(x)\in k[x]:\deg p=n\}.
+    \]
+
+    \medskip
+
+    ¿Es \(V\) un espacio vectorial sobre \(k\)?
+
+    \pause
+
+    No. El polinomio cero no pertenece a \(V\).
+
+    \medskip
+
+    Además, la suma de dos elementos de \(V\) puede dejar de tener grado \(n\). Por ejemplo,
+    \[
+        x^n+(-x^n)=0.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Operaciones que no definen un espacio vectorial}
+
+    En \(\mathbb{R}^2\), consideremos la suma habitual y definamos
+    \[
+        \lambda\cdot(x,y)=(\lambda x,y).
+    \]
+
+    \medskip
+
+    ¿Definen estas operaciones una estructura de espacio vectorial sobre \(\mathbb{R}\)?
+
+    \pause
+
+    No. Por ejemplo,
+    \[
+        0\cdot(x,y)=(0,y),
+    \]
+    que en general no es el vector cero.
+
+    \medskip
+
+    Por tanto, falla una consecuencia necesaria de los axiomas:
+    \[
+        0v=0.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Determina cuáles de los siguientes conjuntos, con las operaciones habituales,
+    son espacios vectoriales sobre \(k\):
+
+    \begin{enumerate}
+        \item
+        \(
+            \{(x_1,\ldots,x_n)\in k^n:
+            x_1+\cdots+x_n=0\}.
+        \)
+
+        \item
+        \(
+            \{p(x)\in k[x]:\deg p=n\}.
+        \)
+
+        \item
+        \(
+            \{p(x)\in k[x]:p(0)=0\}.
+        \)
+    \end{enumerate}
+
+    \medskip
+
+    En cada caso, justifica la respuesta a partir de los axiomas.
+\end{frame}
