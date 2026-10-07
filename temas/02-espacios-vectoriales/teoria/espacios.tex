@@ -606,3 +606,1193 @@
 
     En cada caso, justifica la respuesta a partir de los axiomas.
 \end{frame}
+
+\subsection{Dependencia lineal}
+
+\begin{frame}
+    \frametitle{Combinaciones lineales}
+
+    \begin{definition}
+        Sean \(v_1,\ldots,v_r\) vectores de un espacio vectorial \(V\) sobre \(k\).
+        Una \alert{combinación lineal} de \(v_1,\ldots,v_r\) es un vector de la forma
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r,
+        \]
+        donde
+        \[
+            \lambda_1,\ldots,\lambda_r\in k.
+        \]
+
+        Los escalares \(\lambda_1,\ldots,\lambda_r\) se llaman
+        \alert{coeficientes} de la combinación lineal.
+    \end{definition}
+
+    En particular, el vector cero siempre es combinación lineal de
+    \(v_1,\ldots,v_r\):
+    \[
+        0=0v_1+\cdots+0v_r.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Combinaciones lineales en \(k^n\)}
+
+    \begin{example}
+        En \(\mathbb{R}^3\), sean
+        \[
+            v_1=(1,0,2),
+            \qquad
+            v_2=(0,1,-1).
+        \]
+        Entonces
+        \[
+            2v_1-3v_2
+            =
+            2(1,0,2)-3(0,1,-1)
+            =
+            (2,-3,7).
+        \]
+
+        Por tanto, \((2,-3,7)\) es combinación lineal de \(v_1\) y \(v_2\).
+    \end{example}
+
+    \medskip
+
+    En general, determinar si \(v\) es combinación lineal de
+    \(v_1,\ldots,v_r\) equivale a estudiar si existen escalares
+    \(\lambda_1,\ldots,\lambda_r\) tales que
+    \[
+        \lambda_1v_1+\cdots+\lambda_rv_r=v.
+    \]
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Combinaciones lineales de polinomios}
+
+    \begin{example}
+        En \(\mathbb{R}_2[x]\), consideremos
+        \[
+            p_1(x)=1+x,
+            \qquad
+            p_2(x)=x+x^2.
+        \]
+        Entonces
+        \[
+            2p_1(x)-p_2(x)
+            =
+            2+x-x^2.
+        \]
+
+        Por tanto,
+        \[
+            2+x-x^2
+        \]
+        es combinación lineal de \(p_1(x)\) y \(p_2(x)\).
+    \end{example}
+
+    \medskip
+
+    Los vectores de un espacio vectorial no tienen por qué ser tuplas:
+    también podemos formar combinaciones lineales de polinomios, matrices,
+    funciones, etc.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{¿Es combinación lineal?}
+
+    \begin{example}
+        Consideremos en \(\mathbb{R}^3\)
+        \[
+            v_1=(1,1,0),
+            \qquad
+            v_2=(0,1,1),
+            \qquad
+            v=(2,3,1).
+        \]
+
+        Para decidir si \(v\) es combinación lineal de \(v_1,v_2\),
+        buscamos \(\lambda_1,\lambda_2\in\mathbb{R}\) tales que
+        \[
+            \lambda_1v_1+\lambda_2v_2=v.
+        \]
+        Esto equivale al sistema
+        \[
+            \begin{cases}
+                \lambda_1=2,\\
+                \lambda_1+\lambda_2=3,\\
+                \lambda_2=1.
+            \end{cases}
+        \]
+        Por tanto,
+        \[
+            v=2v_1+v_2.
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dependencia lineal}
+
+    \begin{definition}
+        Un conjunto de vectore \(\{v_1,\ldots,v_r\}\) de un espacio vectorial \(V\)
+        es \alert{linealmente dependiente} si existen
+        \(\lambda_1,\ldots,\lambda_r\in k\), 
+        \begin{center}  
+			\textbf{NO TODOS NULOS}, 
+        \end{center}
+        tales que
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r=0.
+        \]
+
+        Una igualdad de este tipo con coeficientes no todos nulos se llama
+        \alert{relación de dependencia lineal}.
+    \end{definition}
+
+    \medskip
+
+    La condición ``no todos nulos'' es esencial, pues siempre tenemos
+    \[
+        0v_1+\cdots+0v_r=0.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un ejemplo de dependencia lineal}
+
+    \begin{example}
+        Los vectores
+        \[
+            v_1=(1,0,1),
+            \qquad
+            v_2=(0,1,1),
+            \qquad
+            v_3=(1,1,2)
+        \]
+        de \(\mathbb{R}^3\) son linealmente dependientes, pues
+        \[
+            v_1+v_2-v_3=0.
+        \]
+
+        Hemos encontrado una relación de dependencia lineal con coeficientes
+        \[
+            1,\quad 1,\quad -1.
+        \]
+    \end{example}
+
+    Obsérvese que, equivalentemente,
+    \[
+        v_3=v_1+v_2.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Independencia lineal}
+    
+    La independencia lineal se define como lo contrario de la dependencia lineal y se puede caracterizar del siguiente modo.
+
+    \begin{definition}
+        Un conjunto de vectores \(\{v_1,\ldots,v_r\}\) de un espacio vectorial \(V\)
+        es \alert{linealmente independientes} si
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r=0
+        \]
+        implica
+        \[
+            \lambda_1=\cdots=\lambda_r=0.
+        \]
+    \end{definition}
+
+    \medskip
+
+    Es decir, \(v_1,\ldots,v_r\) son linealmente independientes
+    si la única combinación lineal de ellos que da el vector cero
+    es la que tiene todos sus coeficientes nulos.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un ejemplo de independencia lineal}
+
+    \begin{example}
+        Los vectores
+        \[
+            v_1=(1,1),
+            \qquad
+            v_2=(1,-1)
+        \]
+        de \(\mathbb{R}^2\) son linealmente independientes.
+
+        En efecto, si
+        \[
+            \lambda_1v_1+\lambda_2v_2=0,
+        \]
+        entonces
+        \[
+            (\lambda_1+\lambda_2,\lambda_1-\lambda_2)=(0,0),
+        \]
+        de donde
+        \[
+            \lambda_1+\lambda_2=0,
+            \qquad
+            \lambda_1-\lambda_2=0.
+        \]
+        Por tanto,
+        \[
+            \lambda_1=\lambda_2=0.
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un solo vector}
+
+    \begin{proposition}
+        Un conjunto unitario \(\{v\}\subset V\) es linealmente independiente si y solo si
+        \[
+            v\neq 0.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Si \(v=0\), entonces
+        \[
+            1v=0,
+        \]
+        es una relación de dependencia lineal.
+
+        Supongamos ahora que \(v\neq0\). Si
+        \[
+            \lambda v=0,
+        \]
+        entonces \(\lambda=0\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Familias que contienen el vector cero}
+
+    \begin{proposition}
+        Si uno de los vectores \(v_1,\ldots,v_r\) es el vector cero,
+        entonces \(v_1,\ldots,v_r\) son linealmente dependientes.
+    \end{proposition}
+
+    \begin{proof}
+        Supongamos, por ejemplo, que \(v_i=0\). Entonces
+        \[
+            0v_1+\cdots+0v_{i-1}
+            +1v_i
+            +0v_{i+1}+\cdots+0v_r
+            =0
+        \]
+        es una relación de dependencia lineal.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dos vectores}
+
+    \begin{proposition}
+        Un conjunto formado por dos vectores \(\{u,v\}\in V\) es linealmente dependiente
+        si y solo si uno es múltiplo escalar del otro.
+    \end{proposition}
+
+    \begin{proof}
+        Si \(v=\lambda u\), entonces
+        \[
+            \lambda u-v=0
+        \]
+        es una relación de dependencia lineal.
+
+        Recíprocamente, si \(u,v\) son linealmente dependientes, existen
+        \(\lambda,\mu\in k\), no ambos nulos, tales que
+        \[
+            \lambda u+\mu v=0.
+        \]
+        Si, por ejemplo, \(\mu\neq0\), entonces
+        \[
+            v=-\mu^{-1}\lambda u.
+        \]
+        El caso \(\lambda\neq0\) es análogo.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dependencia lineal de polinomios}
+
+    \begin{example}
+        Consideremos en \(\mathbb{R}_2[x]\)
+        \[
+            p_1(x)=1+x,
+            \qquad
+            p_2(x)=x+x^2,
+            \qquad
+            p_3(x)=1+2x+x^2.
+        \]
+
+        Como
+        \[
+            p_1(x)+p_2(x)-p_3(x)=0,
+        \]
+        los polinomios \(p_1,p_2,p_3\) son linealmente dependientes.
+    \end{example}
+
+    \medskip
+
+    De nuevo, la dependencia lineal no es una propiedad exclusiva de
+    vectores de \(k^n\).
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Dependencia y combinaciones lineales}
+
+    \begin{theorem}
+        Sean \(v_1,\ldots,v_r\) vectores de \(V\), con \(r\geq2\).
+        Son linealmente dependientes si y solo si alguno de ellos
+        es combinación lineal de los que le preceden.
+    \end{theorem}
+
+    \begin{proof}
+        Supongamos primero que, para algún \(i\),
+        \[
+            v_i
+            =
+            \lambda_1v_1+\cdots+\lambda_{i-1}v_{i-1}.
+        \]
+        Entonces
+        \[
+            \lambda_1v_1+\cdots+\lambda_{i-1}v_{i-1}-v_i
+            +0v_{i+1}+\cdots+0v_r=0
+        \]
+        es una relación de dependencia lineal.
+
+        Recíprocamente, supongamos que \(v_1,\ldots,v_r\) son
+        linealmente dependientes. Existe una relación
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r=0
+        \]
+        con coeficientes no todos nulos.
+
+        Sea \(i\) el mayor índice tal que \(\lambda_i\neq0\).
+        Entonces
+        \[
+            \lambda_1v_1+\cdots+\lambda_iv_i=0,
+        \]
+        y, como \(\lambda_i\neq0\),
+        \[
+            v_i
+            =
+            -\lambda_i^{-1}
+            \bigl(
+                \lambda_1v_1+\cdots+\lambda_{i-1}v_{i-1}
+            \bigr).
+        \]
+        Por tanto, \(v_i\) es combinación lineal de
+        \(v_1,\ldots,v_{i-1}\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Subfamilias e independencia lineal}
+
+    \begin{proposition}
+        Toda subfamilia de una familia linealmente independiente
+        es linealmente independiente.
+    \end{proposition}
+
+    \begin{proof}
+        Si una subfamilia fuese linealmente dependiente, existiría una
+        combinación lineal no trivial de sus vectores igual a cero.
+
+        Añadiendo coeficientes nulos para los restantes vectores,
+        obtendríamos una relación de dependencia lineal de la familia
+        original.
+    \end{proof}
+
+    \medskip
+
+    Equivalentemente, toda familia que contiene una subfamilia
+    linealmente dependiente es linealmente dependiente.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Independencia lineal y sistemas homogéneos}
+
+    Sean
+    \[
+        v_1,\ldots,v_r\in k^n.
+    \]
+    Para estudiar su independencia lineal consideramos
+    \[
+        \lambda_1v_1+\cdots+\lambda_rv_r=0.
+    \]
+
+    Si escribimos
+    \[
+        v_j=(v_{1j},\ldots,v_{nj}),
+    \]
+    obtenemos el sistema homogéneo
+    \[
+        \begin{pmatrix}
+            v_{11} & \cdots & v_{1r}\\
+            \vdots & & \vdots\\
+            v_{n1} & \cdots & v_{nr}
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1\\
+            \vdots\\
+            \lambda_r
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0\\
+            \vdots\\
+            0
+        \end{pmatrix}.
+    \]
+
+    Los vectores son linealmente independientes si y solo si este sistema
+    tiene únicamente la solución trivial.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Independencia lineal mediante eliminación gaussiana}
+
+    \begin{example}
+        Estudiemos la independencia lineal de
+        \[
+            v_1=(1,1,0),\qquad
+            v_2=(1,0,1),\qquad
+            v_3=(0,1,1).
+        \]
+
+        La ecuación
+        \[
+            \lambda_1v_1+\lambda_2v_2+\lambda_3v_3=0
+        \]
+        tiene matriz
+        \[
+            \begin{pmatrix}
+                1&1&0\\
+                1&0&1\\
+                0&1&1
+            \end{pmatrix}.
+        \]
+
+        Mediante eliminación gaussiana,
+        \[
+            \begin{pmatrix}
+                1&1&0\\
+                1&0&1\\
+                0&1&1
+            \end{pmatrix}
+            \sim
+            \begin{pmatrix}
+                1&1&0\\
+                0&-1&1\\
+                0&0&2
+            \end{pmatrix}.
+        \]
+
+        Por tanto, sobre \(\mathbb{R}\), la única solución es
+        \[
+            \lambda_1=\lambda_2=\lambda_3=0,
+        \]
+        y los vectores son linealmente independientes.
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El cuerpo importa}
+
+    El ejemplo anterior depende del cuerpo de escalares.
+
+    Consideremos los mismos vectores
+    \[
+        v_1=(1,1,0),\qquad
+        v_2=(1,0,1),\qquad
+        v_3=(0,1,1)
+    \]
+    en \(k^3\).
+
+    La eliminación gaussiana conduce a
+    \[
+        \begin{pmatrix}
+            1&1&0\\
+            0&-1&1\\
+            0&0&2
+        \end{pmatrix}.
+    \]
+
+    Si \(2\neq0\) en \(k\), los vectores son linealmente independientes.
+
+    Si \(k\) tiene característica \(2\), en cambio,
+    \[
+        v_1+v_2+v_3=0,
+    \]
+    y son linealmente dependientes.
+
+    \medskip
+
+    La dependencia lineal siempre se considera \alert{respecto del cuerpo de escalares}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Estudia la dependencia o independencia lineal de los siguientes vectores
+    de \(\mathbb{R}^3\):
+    \[
+        v_1=(1,2,1),\qquad
+        v_2=(2,1,0),\qquad
+        v_3=(3,3,1).
+    \]
+
+    Si son linealmente dependientes, encuentra una relación de dependencia
+    lineal.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Determina para qué valores de \(a\in\mathbb{R}\) son linealmente
+    independientes los vectores
+    \[
+        v_1=(1,0,1),\qquad
+        v_2=(0,1,1),\qquad
+        v_3=(1,1,a).
+    \]
+
+    Para los restantes valores de \(a\), encuentra una relación de
+    dependencia lineal.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Estudia la dependencia o independencia lineal en \(\mathbb{R}_2[x]\)
+    de los polinomios
+    \[
+        p_1(x)=1+x,
+        \qquad
+        p_2(x)=1-x,
+        \qquad
+        p_3(x)=1+x^2.
+    \]
+
+    \medskip
+
+    Para ello, estudia cuándo
+    \[
+        \lambda_1p_1(x)+
+        \lambda_2p_2(x)+
+        \lambda_3p_3(x)=0.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    En \(M_{2\times2}(\mathbb{R})\), consideremos
+    \[
+        A_1=
+        \begin{pmatrix}
+            1&0\\
+            0&1
+        \end{pmatrix},
+        \qquad
+        A_2=
+        \begin{pmatrix}
+            0&1\\
+            1&0
+        \end{pmatrix},
+        \qquad
+        A_3=
+        \begin{pmatrix}
+            1&1\\
+            1&1
+        \end{pmatrix}.
+    \]
+
+    Estudia si \(A_1,A_2,A_3\) son linealmente dependientes.
+
+    Si lo son, encuentra una relación de dependencia lineal.
+\end{frame}
+
+\subsection{Sistemas generadores y bases}
+
+\begin{frame}
+    \frametitle{Sistemas generadores}
+
+    \begin{definition}
+        Sean \(v_1,\ldots,v_r\) vectores de un espacio vectorial \(V\).
+        Decimos que \(v_1,\ldots,v_r\) \alert{generan} \(V\), o que
+        \[
+            \{v_1,\ldots,v_r\}
+        \]
+        es un \alert{sistema de generadores} de \(V\), si todo vector
+        \(v\in V\) es combinación lineal de \(v_1,\ldots,v_r\).
+
+        Es decir, para cada \(v\in V\) existen
+        \(\lambda_1,\ldots,\lambda_r\in k\) tales que
+        \[
+            v=\lambda_1v_1+\cdots+\lambda_rv_r.
+        \]
+    \end{definition}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un sistema de generadores de \(k^n\)}
+
+    Consideremos los vectores
+    \[
+        e_1=(1,0,\ldots,0),\quad
+        e_2=(0,1,\ldots,0),\quad\ldots,\quad
+        e_n=(0,0,\ldots,1).
+    \]
+
+    Si
+    \[
+        v=(v_1,\ldots,v_n)\in k^n,
+    \]
+    entonces
+    \[
+        v=v_1e_1+\cdots+v_ne_n.
+    \]
+
+    Por tanto,
+    \[
+        e_1,\ldots,e_n
+    \]
+    generan \(k^n\).
+
+    \medskip
+
+    Estos vectores se llaman \alert{vectores canónicos} de \(k^n\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un sistema generador puede ser redundante}
+
+    \begin{example}
+        Los vectores
+        \[
+            v_1=(1,0),\qquad
+            v_2=(0,1),\qquad
+            v_3=(1,1)
+        \]
+        generan \(\mathbb{R}^2\).
+
+        En efecto, si
+        \[
+            v=(v_1,v_2)\in\mathbb{R}^2,
+        \]
+        entonces
+        \[
+            v=v_1(1,0)+v_2(0,1).
+        \]
+
+        Sin embargo,
+        \[
+            v_3=v_1+v_2,
+        \]
+        de modo que \(v_3\) no es necesario para generar
+        \(\mathbb{R}^2\).
+    \end{example}
+
+    \medskip
+
+    Un sistema de generadores no tiene por qué ser linealmente independiente.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Generadores de espacios de polinomios}
+
+    \begin{example}
+        Los polinomios
+        \[
+            1,x,x^2,\ldots,x^n
+        \]
+        generan \(k_n[x]\).
+
+        En efecto, cualquier
+        \[
+            p(x)=a_0+a_1x+\cdots+a_nx^n
+        \]
+        puede escribirse como
+        \[
+            p(x)
+            =
+            a_0\cdot1+a_1x+\cdots+a_nx^n.
+        \]
+    \end{example}
+
+    \begin{example}
+        También
+        \[
+            1,\quad 1+x,\quad x,\quad x^2
+        \]
+        generan \(k_2[x]\), pero uno de estos polinomios es redundante.
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Generadores de espacios de matrices}
+
+    \begin{example}
+        Las matrices
+        \[
+            E_{11}=
+            \begin{pmatrix}
+                1&0\\
+                0&0
+            \end{pmatrix},
+            \quad
+            E_{12}=
+            \begin{pmatrix}
+                0&1\\
+                0&0
+            \end{pmatrix},
+        \]
+        \[
+            E_{21}=
+            \begin{pmatrix}
+                0&0\\
+                1&0
+            \end{pmatrix},
+            \quad
+            E_{22}=
+            \begin{pmatrix}
+                0&0\\
+                0&1
+            \end{pmatrix}
+        \]
+        generan \(M_{2\times2}(k)\).
+
+        En efecto,
+        \[
+            \begin{pmatrix}
+                a&b\\
+                c&d
+            \end{pmatrix}
+            =
+            aE_{11}+bE_{12}+cE_{21}+dE_{22}.
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Generadores y sistemas de ecuaciones}
+
+    Sean
+    \[
+        v_1,\ldots,v_r\in k^n
+    \]
+    y sea
+    \[
+        A=
+        \begin{pmatrix}
+            \vert & & \vert\\
+            v_1 & \cdots & v_r\\
+            \vert & & \vert
+        \end{pmatrix}.
+    \]
+
+    Los vectores \(v_1,\ldots,v_r\) generan \(k^n\) si y solo si,
+    para todo \(v\in k^n\), el sistema
+    \[
+        A
+        \begin{pmatrix}
+            \lambda_1\\
+            \vdots\\
+            \lambda_r
+        \end{pmatrix}
+        =v
+    \]
+    es compatible.
+
+    \medskip
+
+    Es decir, el problema de determinar si unos vectores generan \(k^n\)
+    vuelve a ser un problema de sistemas de ecuaciones lineales.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Criterio de rango para sistemas generadores}
+
+    \begin{theorem}
+        Sean \(v_1,\ldots,v_r\in k^n\) y
+        \[
+            A=
+            \begin{pmatrix}
+                \vert & & \vert\\
+                v_1 & \cdots & v_r\\
+                \vert & & \vert
+            \end{pmatrix}.
+        \]
+        Entonces \(v_1,\ldots,v_r\) generan \(k^n\) si y solo si
+        \[
+            \operatorname{rg}(A)=n.
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Los vectores generan \(k^n\) si y solo si el sistema
+        \[
+            A\lambda=v
+        \]
+        es compatible para todo \(v\in k^n\).
+
+        Esto ocurre si y solo si \(A\) tiene un pivote en cada fila,
+        es decir, si y solo si
+        \[
+            \operatorname{rg}(A)=n.
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Una consecuencia inmediata}
+
+    \begin{corollary}
+        Si \(v_1,\ldots,v_r\) generan \(k^n\), entonces
+        \[
+            r\geq n.
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Si generan \(k^n\), la matriz
+        \[
+            A=
+            \begin{pmatrix}
+                \vert & & \vert\\
+                v_1 & \cdots & v_r\\
+                \vert & & \vert
+            \end{pmatrix}
+        \]
+        tiene rango \(n\).
+
+        Como una matriz con \(r\) columnas tiene rango a lo sumo \(r\),
+        \[
+            n=\operatorname{rg}(A)\leq r.
+        \]
+    \end{proof}
+
+    \medskip
+
+    Por tanto, no podemos generar \(k^n\) con menos de \(n\) vectores.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Eliminar un generador redundante}
+
+    \begin{proposition}
+        Supongamos que \(v_1,\ldots,v_r\) generan \(V\) y que uno de ellos,
+        por ejemplo \(v_r\), es combinación lineal de los demás:
+        \[
+            v_r=\lambda_1v_1+\cdots+\lambda_{r-1}v_{r-1}.
+        \]
+        Entonces
+        \[
+            v_1,\ldots,v_{r-1}
+        \]
+        también generan \(V\).
+    \end{proposition}
+
+    \begin{proof}
+        Si \(v\in V\), podemos escribir
+        \[
+            v=\mu_1v_1+\cdots+\mu_{r-1}v_{r-1}+\mu_rv_r.
+        \]
+        Sustituyendo la expresión de \(v_r\), obtenemos una combinación
+        lineal de \(v_1,\ldots,v_{r-1}\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Reducir un sistema de generadores}
+
+    \begin{example}
+        Los vectores
+        \[
+            v_1=(1,0,1),\qquad
+            v_2=(0,1,1),\qquad
+            v_3=(1,1,2),\qquad
+            v_4=(1,-1,0)
+        \]
+        generan \(\mathbb{R}^3\).
+
+        Sin embargo,
+        \[
+            v_3=v_1+v_2,
+        \]
+        por lo que podemos eliminar \(v_3\).
+
+        Además,
+        \[
+            v_4=v_1-v_2.
+        \]
+
+        Por tanto, \(v_1,v_2,v_3,v_4\) generan el mismo conjunto de
+        combinaciones lineales que \(v_1,v_2\).
+    \end{example}
+
+    \medskip
+
+    Este ejemplo muestra que conviene eliminar generadores redundantes.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bases}
+
+    Un sistema generador puede contener vectores redundantes.
+    La independencia lineal expresa precisamente la ausencia de esa
+    redundancia.
+
+    \begin{definition}
+        Una \alert{base} de un espacio vectorial \(V\) es un conjunto
+        de vectores de \(V\) que
+
+        \begin{enumerate}
+            \item genera \(V\);
+            \item es linealmente independiente.
+        \end{enumerate}
+    \end{definition}
+
+    \medskip
+
+    Por tanto, una base es un sistema de generadores en el que
+    ningún vector sobra.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La base canónica de \(k^n\)}
+
+    \begin{example}
+        Los vectores
+        \[
+            e_1=(1,0,\ldots,0),\quad\ldots,\quad
+            e_n=(0,\ldots,0,1)
+        \]
+        forman una base de \(k^n\).
+
+        Ya sabemos que generan \(k^n\).
+
+        Además, si
+        \[
+            \lambda_1e_1+\cdots+\lambda_ne_n=0,
+        \]
+        entonces
+        \[
+            (\lambda_1,\ldots,\lambda_n)=(0,\ldots,0),
+        \]
+        y, por tanto,
+        \[
+            \lambda_1=\cdots=\lambda_n=0.
+        \]
+    \end{example}
+
+    Esta base se llama \alert{base canónica} de \(k^n\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Otras bases}
+
+    \begin{example}
+        Los polinomios
+        \[
+            1,x,\ldots,x^n
+        \]
+        forman una base de \(k_n[x]\).
+    \end{example}
+
+    \begin{example}
+        Las matrices
+        \[
+            E_{ij},
+            \qquad
+            1\leq i\leq m,\quad 1\leq j\leq n,
+        \]
+        forman una base de \(M_{m\times n}(k)\).
+    \end{example}
+
+    \begin{example}
+        En \(\mathbb{R}^2\),
+        \[
+            (1,1),\qquad(1,-1)
+        \]
+        forman una base distinta de la base canónica.
+    \end{example}
+
+    \medskip
+
+    Un espacio vectorial puede tener muchas bases diferentes.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bases de \(k^n\) y rango}
+
+    Sean
+    \[
+        v_1,\ldots,v_r\in k^n
+    \]
+    y sea \(A\) la matriz que tiene estos vectores como columnas.
+
+    Para que formen una base de \(k^n\) necesitamos simultáneamente
+    \[
+        \operatorname{rg}(A)=r
+    \]
+    por independencia lineal, y
+    \[
+        \operatorname{rg}(A)=n
+    \]
+    porque han de generar \(k^n\).
+
+    Por tanto:
+
+    \begin{corollary}
+        Una base de \(k^n\) formada por un número finito de vectores
+        tiene exactamente \(n\) elementos.
+    \end{corollary}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Criterios para ser una base de \(k^n\)}
+
+    Sean
+    \[
+        v_1,\ldots,v_n\in k^n
+    \]
+    y
+    \[
+        A=
+        \begin{pmatrix}
+            \vert & & \vert\\
+            v_1 & \cdots & v_n\\
+            \vert & & \vert
+        \end{pmatrix}.
+    \]
+
+    Son equivalentes:
+
+    \begin{enumerate}
+        \item \(v_1,\ldots,v_n\) forman una base de \(k^n\);
+        \item \(v_1,\ldots,v_n\) son linealmente independientes;
+        \item \(v_1,\ldots,v_n\) generan \(k^n\);
+        \item \(\operatorname{rg}(A)=n\);
+        \item \(A\) es invertible;
+        \item \(\det(A)\neq0\).
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo}
+
+    Consideremos en \(\mathbb{R}^3\)
+    \[
+        v_1=(1,1,0),\qquad
+        v_2=(1,0,1),\qquad
+        v_3=(0,1,1).
+    \]
+
+    La matriz que tiene estos vectores como columnas es
+    \[
+        A=
+        \begin{pmatrix}
+            1&1&0\\
+            1&0&1\\
+            0&1&1
+        \end{pmatrix}.
+    \]
+
+    Como
+    \[
+        \det(A)=-2\neq0,
+    \]
+    los vectores
+    \[
+        v_1,v_2,v_3
+    \]
+    forman una base de \(\mathbb{R}^3\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Determina si los vectores
+    \[
+        v_1=(1,0,1),\qquad
+        v_2=(0,1,1),\qquad
+        v_3=(1,1,1)
+    \]
+    forman una base de \(\mathbb{R}^3\).
+
+    \medskip
+
+    Resuelve el problema de dos formas:
+
+    \begin{enumerate}
+        \item mediante eliminación gaussiana;
+        \item calculando un determinante.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    Determina para qué valores de \(a\in\mathbb{R}\) los vectores
+    \[
+        v_1=(1,0,1),\qquad
+        v_2=(0,1,1),\qquad
+        v_3=(1,1,a)
+    \]
+    forman una base de \(\mathbb{R}^3\).
+
+    \medskip
+
+    Para los restantes valores de \(a\), determina:
+
+    \begin{enumerate}
+        \item una relación de dependencia lineal;
+        \item cuál de los vectores puede eliminarse sin cambiar
+        las combinaciones lineales que se pueden obtener.
+    \end{enumerate}
+\end{frame}
