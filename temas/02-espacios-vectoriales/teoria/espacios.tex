@@ -1628,39 +1628,96 @@
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Otras bases}
 
-    \begin{example}
-        Los polinomios
-        \[
-            1,x,\ldots,x^n
-        \]
-        forman una base de \(k_n[x]\).
-    \end{example}
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Base de \(M_{m\times n}(k)\)}
 
-    \begin{example}
-        Las matrices
+    \begin{proposition}
+        Para \(1\leq i\leq m\) y \(1\leq j\leq n\), sea \(E_{ij}\) la matriz
+        \(m\times n\) cuya entrada \((i,j)\) es \(1\) y las demás son \(0\).
+        Las \(mn\) matrices
         \[
-            E_{ij},
-            \qquad
-            1\leq i\leq m,\quad 1\leq j\leq n,
+            E_{ij},\quad 1\leq i\leq m,\quad 1\leq j\leq n,
         \]
         forman una base de \(M_{m\times n}(k)\).
-    \end{example}
+    \end{proposition}
 
-    \begin{example}
-        En \(\mathbb{R}^2\),
+    \begin{proof}
+        Toda \(A=(a_{ij})\in M_{m\times n}(k)\) satisface
         \[
-            (1,1),\qquad(1,-1)
+            A=\sum_{i,j}a_{ij}E_{ij},
         \]
-        forman una base distinta de la base canónica.
-    \end{example}
+        pues la entrada \((i,j)\) de ambos lados es \(a_{ij}\).
+        Por tanto las \(E_{ij}\) \alert{generan} \(M_{m\times n}(k)\).
 
-    \medskip
-
-    Un espacio vectorial puede tener muchas bases diferentes.
+        Para la \alert{independencia lineal}, si
+        \[
+            \sum_{i,j}\lambda_{ij}E_{ij}=0,
+        \]
+        la entrada \((i,j)\) del lado izquierdo es \(\lambda_{ij}\),
+        luego \(\lambda_{ij}=0\) para todo \(i,j\).
+    \end{proof}
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Base de \(k_n[x]\)}
+
+    \begin{proposition}
+        Los monomios \(1,x,x^2,\ldots,x^n\) forman una base de \(k_n[x]\).
+    \end{proposition}
+
+    \begin{proof}
+        Todo \(p(x)=a_0+a_1x+\cdots+a_nx^n\in k_n[x]\) se escribe
+        \[
+            p(x)=a_0\cdot1+a_1\cdot x+\cdots+a_n\cdot x^n,
+        \]
+        luego \(1,x,\ldots,x^n\) \alert{generan} \(k_n[x]\).
+
+        Para la \alert{independencia lineal}, si
+        \[
+            \lambda_0\cdot1+\lambda_1 x+\cdots+\lambda_n x^n=0,
+        \]
+        el lado izquierdo es el polinomio nulo. El coeficiente de
+        \(x^i\) en el polinomio nulo es \(0\) para todo \(i\),
+        luego \(\lambda_i=0\) para todo \(0\leq i\leq n\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Base de \(k^X\) para \(X\) finito}
+
+    \begin{proposition}
+        Sea \(X=\{x_1,\ldots,x_n\}\) un conjunto finito.
+        Para cada \(1\leq i\leq n\), sea \(\delta_i\colon X\to k\) la función
+        \[
+            \delta_i(x_j)=
+            \begin{cases}
+                1 & \text{si }j=i,\\
+                0 & \text{si }j\neq i.
+            \end{cases}
+        \]
+        Las funciones \(\delta_1,\ldots,\delta_n\) forman una base de \(k^X\).
+    \end{proposition}
+
+    \begin{proof}
+        Dada \(f\colon X\to k\), la combinación lineal
+        \(f(x_1)\delta_1+\cdots+f(x_n)\delta_n\)
+        toma en \(x_j\) el valor
+        \[
+            f(x_j)\underbrace{\delta_j(x_j)}_{=\,1}
+            \;+\!\sum_{i\neq j}f(x_i)\underbrace{\delta_i(x_j)}_{=\,0}
+            \;=f(x_j).
+        \]
+        Por tanto coincide con \(f\), y las \(\delta_i\) \alert{generan} \(k^X\).
+
+        Si \(\lambda_1\delta_1+\cdots+\lambda_n\delta_n=0\),
+        evaluando en \(x_j\) obtenemos \(\lambda_j=0\) para todo \(j\),
+        luego son \alert{linealmente independientes}.
+    \end{proof}
+\end{frame}
+
 
 
 \begin{frame}
@@ -1694,6 +1751,7 @@
 \begin{frame}
     \frametitle{Criterios para ser una base de \(k^n\)}
 
+\begin{proposition}
     Sean
     \[
         v_1,\ldots,v_n\in k^n
@@ -1718,6 +1776,7 @@
         \item \(A\) es invertible;
         \item \(\det(A)\neq0\).
     \end{enumerate}
+\end{proposition}
 \end{frame}
 
 
@@ -1796,3 +1855,240 @@
         las combinaciones lineales que se pueden obtener.
     \end{enumerate}
 \end{frame}
+
+\subsection{Dimensión}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Bases y representación única}
+
+    \begin{theorem}
+        Sea $B=\{v_1,\ldots,v_n\}$ un conjunto de vectores de $V$.
+        Es una base de $V$ si y solo si para todo $v\in V$ existen
+        \alert{únicos} $\lambda_1,\ldots,\lambda_n\in k$ tales que
+        \[
+            v=\lambda_1v_1+\cdots+\lambda_nv_n.
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        ($\Rightarrow$)
+        Que $B$ genera $V$ garantiza la existencia.
+        Para la unicidad, si
+        \[
+            \lambda_1v_1+\cdots+\lambda_nv_n
+            =v
+            =\mu_1v_1+\cdots+\mu_nv_n,
+        \]
+        restando se obtiene
+        $(\lambda_1-\mu_1)v_1+\cdots+(\lambda_n-\mu_n)v_n=0$,
+        y la independencia lineal de $B$ fuerza $\lambda_i=\mu_i$
+        para todo~$i$.
+
+        ($\Leftarrow$)
+        La existencia de representación para todo $v\in V$ es la generación.
+        Para la independencia lineal, si
+        $\lambda_1v_1+\cdots+\lambda_nv_n=0$,
+        la representación trivial $0\cdot v_1+\cdots+0\cdot v_n=0$
+        y la unicidad fuerzan $\lambda_i=0$ para todo~$i$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Coordenadas y aplicación de coordenadas}
+
+    \begin{definition}
+        Sea $B=\{v_1,\ldots,v_n\}$ una base de $V$.
+        Los únicos $\lambda_1,\ldots,\lambda_n\in k$ tales que
+        $v=\lambda_1v_1+\cdots+\lambda_nv_n$
+        se llaman \alert{coordenadas} de $v$ en $B$.
+        El vector columna
+        \[
+            v_B=
+            \begin{pmatrix}
+                \lambda_1\\\vdots\\\lambda_n
+            \end{pmatrix}
+            \in k^n
+        \]
+        es el \alert{vector de coordenadas} de $v$ en $B$,
+        y la aplicación
+        \[
+            c_B\colon V\longrightarrow k^n,\quad v\longmapsto v_B,
+        \]
+        es la \alert{aplicación de coordenadas} respecto de $B$.
+    \end{definition}
+
+    \medskip
+
+    En la base canónica $C=\{e_1,\ldots,e_n\}$ de $k^n$,
+    el vector de coordenadas de $v=(v_1,\ldots,v_n)$
+    son sus propias entradas: $v_C=(v_1,\ldots,v_n)^T$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Propiedades de la aplicación de coordenadas}
+
+    \begin{proposition}
+        Sea $B$ una base de $V$.
+        Para todo $u,v\in V$ y $\lambda\in k$,
+        \[
+            (u+v)_B=u_B+v_B,
+            \qquad
+            (\lambda v)_B=\lambda\,v_B.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Sean $B=\{v_1,\ldots,v_n\}$, $u_B=(\alpha_i)$ y $v_B=(\beta_i)$.
+        Entonces
+        \[
+            u+v=\sum_i(\alpha_i+\beta_i)v_i,
+        \]
+        y por unicidad de las coordenadas,
+        $(u+v)_B=(\alpha_i+\beta_i)=u_B+v_B$.
+        La segunda identidad es análoga.
+    \end{proof}
+
+    \medskip
+
+    La aplicación $c_B$ convierte la suma y el producto por escalares
+    de $V$ en las operaciones de $k^n$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Matriz de cambio de base}
+
+    Sean $B=\{u_1,\ldots,u_n\}$ y $B'=\{u'_1,\ldots,u'_m\}$
+    dos bases de $V$.
+
+    \begin{definition}
+        La \alert{matriz de cambio de base de $B$ a $B'$} es la
+        matriz $m\times n$
+        \[
+            M(B,B')=\bigl[(u_1)_{B'}\mid\cdots\mid(u_n)_{B'}\bigr],
+        \]
+        cuya $j$-ésima columna es el vector de coordenadas de $u_j$ en $B'$.
+    \end{definition}
+
+    \begin{proposition}
+        Para todo $v\in V$,
+        \[
+            v_{B'}=M(B,B')\cdot v_B.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Si $v_B=(\lambda_1,\ldots,\lambda_n)^T$, entonces $v=\sum_j\lambda_j u_j$.
+        Por las propiedades de $c_{B'}$,
+        \[
+            v_{B'}
+            =\sum_j\lambda_j(u_j)_{B'}
+            =M(B,B')\,v_B.\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo de matriz de cambio de base}
+
+    En $\mathbb{R}^2$, sean $C=\{e_1,e_2\}$ y $B=\{(1,1),(1,-1)\}$.
+
+    Las columnas de $M(C,B)$ son las coordenadas de $e_1$ y $e_2$ en $B$.
+    Resolviendo:
+    \[
+        e_1=\tfrac{1}{2}(1,1)+\tfrac{1}{2}(1,-1),
+        \qquad
+        e_2=\tfrac{1}{2}(1,1)-\tfrac{1}{2}(1,-1),
+    \]
+    de modo que
+    \[
+        M(C,B)=
+        \begin{pmatrix}
+            \tfrac{1}{2}&\tfrac{1}{2}\\[4pt]
+            \tfrac{1}{2}&-\tfrac{1}{2}
+        \end{pmatrix}.
+    \]
+    Para $v=(3,1)$, $v_C=(3,1)^T$ y
+    \[
+        v_B=M(C,B)\,v_C=
+        \begin{pmatrix}
+            \tfrac{1}{2}&\tfrac{1}{2}\\[4pt]
+            \tfrac{1}{2}&-\tfrac{1}{2}
+        \end{pmatrix}
+        \begin{pmatrix}3\\1\end{pmatrix}
+        =\begin{pmatrix}2\\1\end{pmatrix}.
+    \]
+    Comprobación: $2(1,1)+1\cdot(1,-1)=(3,1)$. \checkmark
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Propiedades de la matriz de cambio de base}
+
+    \begin{proposition}
+        Sean $B$, $B'$, $B''$ bases de $V$ con $n$, $m$ y $p$
+        vectores respectivamente.
+        \begin{enumerate}
+            \item $M(B,B)=I_n$.
+            \item $M(B,B'')=M(B',B'')\cdot M(B,B')$.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        Para (1): la $j$-ésima columna de $M(B,B)$ es $(u_j)_B=e_j$,
+        pues $u_j=0\cdot u_1+\cdots+1\cdot u_j+\cdots+0\cdot u_n$.
+        Por tanto $M(B,B)=I_n$.
+
+        Para (2): para todo $v\in V$,
+        \[
+            M(B',B'')\cdot M(B,B')\cdot v_B
+            =M(B',B'')\cdot v_{B'}
+            =v_{B''}.
+        \]
+        Como también $v_{B''}=M(B,B'')\cdot v_B$, y $v_B$ recorre
+        todo $k^n$ cuando $v$ recorre $V$, se concluye
+        $M(B,B'')=M(B',B'')\cdot M(B,B')$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Invertibilidad y dimensión}
+
+    \begin{corollary}
+        Sean $B$ y $B'$ bases de $V$ con $n$ y $m$ vectores respectivamente.
+        La matriz $M(B,B')$ es invertible, con $M(B,B')^{-1}=M(B',B)$,
+        y en particular $n=m$.
+    \end{corollary}
+
+    \begin{proof}
+        Por las propiedades (1) y (2),
+        \[
+            M(B',B)\cdot M(B,B')=M(B,B)=I_n,
+        \]
+        \[
+            M(B,B')\cdot M(B',B)=M(B',B')=I_m.
+        \]
+        Para que estos dos productos expresen que $M(B',B)$ es la inversa
+        de $M(B,B')$ —es decir, para que ambos den la misma identidad—
+        es necesario que $I_n=I_m$, y por tanto $n=m$.
+        Siendo $M(B,B')$ una matriz $n\times n$, su inversa es $M(B',B)$.
+    \end{proof}
+
+    \begin{definition}
+        Si $V$ admite una base finita, el número de vectores de cualquier
+        base se llama \alert{dimensión} de $V$ sobre $k$, y se denota
+        $\dim_k V$ o $\dim V$.
+        Si $V$ no admite ninguna base finita, decimos que $V$ tiene
+        \alert{dimensión infinita}.
+    \end{definition}
+
+    A partir de las bases ya conocidas: $\dim k^n=n$,
+    $\dim k_n[x]=n+1$, $\dim M_{m\times n}(k)=mn$, $\dim k^X=|X|$.
+    El espacio $k[x]$ tiene dimensión infinita: toda combinación lineal
+    finita de polinomios tiene grado acotado y no puede generar $k[x]$.
+\end{frame}
+
