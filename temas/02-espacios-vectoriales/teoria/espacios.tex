@@ -313,28 +313,55 @@
         \end{example}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Más ejemplos}
+
+    Observa que los siguientes conjuntos, con las operaciones habituales,
+    son espacios vectoriales sobre \(k\):
+
+    \begin{enumerate}
+        \item
+        \(
+            \{(x_1,\ldots,x_n)\in k^n:
+            x_1+\cdots+x_n=0\}.
+        \)
+
+        \item
+        \(
+            \{p(x)\in k[x]:p(0)=0\}.
+        \)
+    \end{enumerate}
+
+    \medskip
+
+	Es un buen ejercicio verificar que los axiomas se cumplen en cada caso.
+\end{frame}
+
 \begin{frame}
     \frametitle{Resta de vectores}
 
-    Sean \(u,v\in V\). Definimos la \alert{resta} de \(v\) a \(u\) por
+    Sean $u,v\in V$. Definimos la \alert{resta} de $v$ a $u$ por
     \[
         u-v:=u+(-v).
     \]
 
-    \medskip
-
     Es decir, restar un vector es, por definición, sumar su opuesto.
 
-    \medskip
+    \begin{proposition}
+        Para todo $u,v,w\in V$,
+        \[
+            u-v=w \quad\Longleftrightarrow\quad u=w+v.
+        \]
+    \end{proposition}
 
-    En particular,
-    \[
-        u-v=w
-        \quad\Longleftrightarrow\quad
-        u=w+v,
-    \]
-    es decir, podemos despejar.
+    \begin{proof}
+        ($\Rightarrow$) $w+v=(u-v)+v=u+((-v)+v)=u$.
+
+        ($\Leftarrow$) $u-v=u+(-v)=(w+v)+(-v)=w+(v+(-v))=w$.
+    \end{proof}
 \end{frame}
+
 
 \begin{frame}
     \frametitle{Unicidad del vector cero}
@@ -452,102 +479,6 @@
     \end{proof}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Despejar un escalar no nulo}
-
-    Supongamos que
-    \[
-        \lambda u=v,
-    \]
-    con \(\lambda\in k\) no nulo. Como \(k\) es un cuerpo, podemos dividir por \(\lambda\), es decir, existe \(\lambda^{-1}\in k\) tal que
-    \[
-        \lambda^{-1}\lambda=1.
-    \]
-    Multiplicando los dos miembros de la primera ecuación por \(\lambda^{-1}\),
-    \[
-        \lambda^{-1}(\lambda u)=\lambda^{-1}v.
-    \]
-    Por los axiomas del producto por escalares,
-    \[
-        \lambda^{-1}(\lambda u)=(\lambda^{-1}\lambda)u=1u=u,
-    \]
-    y por tanto
-    \[
-        u=\lambda^{-1}v.
-    \]
-    Es decir, podemos despejar escalares no nulos de una ecuación vectorial.
-\end{frame}
-
-\begin{frame}
-    \frametitle{Cuando el producto por escalares es cero}
-
-    \begin{corollary}
-        Sea \(V\) un espacio vectorial sobre \(k\). Si \(\lambda\in k\) y \(v\in V\),
-        entonces
-        \[
-            \lambda v=0
-            \quad\Longrightarrow\quad
-            \lambda=0
-            \quad\text{o}\quad
-            v=0.
-        \]
-    \end{corollary}
-
-    \begin{proof}
-        Si \(\lambda\neq 0\), entonces 
-        \[v=\lambda^{-1}0=0.\]
-    \end{proof}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Un conjunto que no es un espacio vectorial}
-
-    Consideremos
-    \[
-        V=\{(x,y)\in\mathbb{R}^2:x\geq 0\}
-    \]
-    con las operaciones habituales de \(\mathbb{R}^2\).
-
-    \medskip
-
-    ¿Es \(V\) un espacio vectorial sobre \(\mathbb{R}\)?
-
-    \medskip
-
-    No. Por ejemplo,
-    \[
-        (1,0)\in V,
-    \]
-    pero
-    \[
-        -(1,0)=(-1,0)\notin V.
-    \]
-
-    \medskip
-
-    Por tanto, \(V\) no es cerrado respecto de la toma de opuestos.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Otro conjunto que no es un espacio vectorial}
-
-    Consideremos el conjunto de polinomios de grado exactamente \(n\):
-    \[
-        V=\{p(x)\in k[x]:\deg p=n\}.
-    \]
-
-    \medskip
-
-    ¿Es \(V\) un espacio vectorial sobre \(k\)?
-
-    \medskip
-
-    No. El polinomio cero no pertenece a \(V\).
-
-\end{frame}
-
 
 \begin{frame}
     \frametitle{Operaciones que no definen un espacio vectorial}
@@ -577,35 +508,45 @@
     \]
 \end{frame}
 
+\begin{frame}
+    \frametitle{Despejar un escalar no nulo}
+
+    \begin{proposition}
+        Sean $\lambda\in k$ no nulo y $u,v\in V$. Entonces
+        \[
+            \lambda u=v \quad\Longleftrightarrow\quad u=\lambda^{-1}v.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        ($\Rightarrow$) $u=1\cdot u=(\lambda^{-1}\lambda)u=\lambda^{-1}(\lambda u)=\lambda^{-1}v$.
+
+        ($\Leftarrow$) $\lambda u=\lambda(\lambda^{-1}v)=(\lambda\lambda^{-1})v=1\cdot v=v$.
+    \end{proof}
+\end{frame}
+
 
 \begin{frame}
-    \frametitle{Ejercicio}
+    \frametitle{Cuando el producto por escalares es cero}
 
-    Determina cuáles de los siguientes conjuntos, con las operaciones habituales,
-    son espacios vectoriales sobre \(k\):
+    \begin{corollary}
+        Sea \(V\) un espacio vectorial sobre \(k\). Si \(\lambda\in k\) y \(v\in V\),
+        entonces
+        \[
+            \lambda v=0
+            \quad\Longrightarrow\quad
+            \lambda=0
+            \quad\text{o}\quad
+            v=0.
+        \]
+    \end{corollary}
 
-    \begin{enumerate}
-        \item
-        \(
-            \{(x_1,\ldots,x_n)\in k^n:
-            x_1+\cdots+x_n=0\}.
-        \)
-
-        \item
-        \(
-            \{p(x)\in k[x]:\deg p=n\}.
-        \)
-
-        \item
-        \(
-            \{p(x)\in k[x]:p(0)=0\}.
-        \)
-    \end{enumerate}
-
-    \medskip
-
-    En cada caso, justifica la respuesta a partir de los axiomas.
+    \begin{proof}
+        Si \(\lambda\neq 0\), entonces 
+        \[v=\lambda^{-1}0=0.\]
+    \end{proof}
 \end{frame}
+
 
 \subsection{Dependencia lineal}
 
@@ -667,6 +608,61 @@
     \]
 \end{frame}
 
+\begin{frame}
+    \frametitle{¿Es combinación lineal?}
+
+        Consideremos en \(\mathbb{R}^3\)
+        \[
+            v_1=(1,1,0),
+            \qquad
+            v_2=(0,1,1),
+            \qquad
+            w=(2,3,1).
+        \]
+
+        Para decidir si \(w\) es combinación lineal de \(v_1,v_2\),
+        buscamos \(\lambda_1,\lambda_2\in\mathbb{R}\) tales que
+        \[
+            \lambda_1v_1+\lambda_2v_2=(\lambda_1, \lambda_1+ \lambda_2, \lambda_2)=w.
+        \]
+        Esto equivale al sistema
+        \[
+            \begin{cases}
+                \lambda_1=2,\\
+                \lambda_1+\lambda_2=3,\\
+                \lambda_2=1.
+            \end{cases}
+        \]
+        Este sistema es compatible. Su única solución es $(\lambda_1,\lambda_2)=(2,1)$, por tanto,
+        \[
+            v=2v_1+v_2.
+        \]
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Combinaciones lineales y sistemas de ecuaciones}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r,w\in k^n$ y \[A=(v_1\mid\cdots\mid v_r).\]
+        El vector $w$ es combinación lineal de $v_1,\ldots,v_r$ si y solo si
+        el sistema \[Ax=w\] es compatible.
+        En tal caso, toda solución $(\lambda_1,\ldots,\lambda_r)$ 
+        verifica \[w=\lambda_1v_1+\cdots+\lambda_rv_r.\]
+    \end{proposition}
+    
+    \vspace{-10pt}
+
+    \begin{proof}
+        Por definición, $w$ es combinación lineal de $v_1,\ldots,v_r$
+        si y solo si existen $x_1,\ldots,x_r\in k$ tales que
+        $x_1v_1+\cdots+x_rv_r=w$.
+        Esta ecuación es equivalente a $Ax=w$,
+        pues $Ax=x_1v_1+\cdots+x_rv_r$.
+    \end{proof}
+\end{frame}
 
 
 \begin{frame}
@@ -693,45 +689,6 @@
         es combinación lineal de \(p_1(x)\) y \(p_2(x)\).
     \end{example}
 
-    \medskip
-
-    Los vectores de un espacio vectorial no tienen por qué ser tuplas:
-    también podemos formar combinaciones lineales de polinomios, matrices,
-    funciones, etc.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{¿Es combinación lineal?}
-
-    \begin{example}
-        Consideremos en \(\mathbb{R}^3\)
-        \[
-            v_1=(1,1,0),
-            \qquad
-            v_2=(0,1,1),
-            \qquad
-            v=(2,3,1).
-        \]
-
-        Para decidir si \(v\) es combinación lineal de \(v_1,v_2\),
-        buscamos \(\lambda_1,\lambda_2\in\mathbb{R}\) tales que
-        \[
-            \lambda_1v_1+\lambda_2v_2=v.
-        \]
-        Esto equivale al sistema
-        \[
-            \begin{cases}
-                \lambda_1=2,\\
-                \lambda_1+\lambda_2=3,\\
-                \lambda_2=1.
-            \end{cases}
-        \]
-        Por tanto,
-        \[
-            v=2v_1+v_2.
-        \]
-    \end{example}
 \end{frame}
 
 
@@ -739,7 +696,7 @@
     \frametitle{Dependencia lineal}
 
     \begin{definition}
-        Un conjunto de vectore \(\{v_1,\ldots,v_r\}\) de un espacio vectorial \(V\)
+        Un conjunto de vectores \(\{v_1,\ldots,v_r\}\) de un espacio vectorial \(V\)
         es \alert{linealmente dependiente} si existen
         \(\lambda_1,\ldots,\lambda_r\in k\), 
         \begin{center}  
@@ -821,7 +778,6 @@
 \begin{frame}
     \frametitle{Un ejemplo de independencia lineal}
 
-    \begin{example}
         Los vectores
         \[
             v_1=(1,1),
@@ -840,16 +796,111 @@
         \]
         de donde
         \[
-            \lambda_1+\lambda_2=0,
-            \qquad
+        \begin{cases}
+        	\lambda_1+\lambda_2=0,\\
             \lambda_1-\lambda_2=0.
+        \end{cases}
         \]
-        Por tanto,
+		Este sistema homogéneo es compatible determinado, por lo que necesariamente,
         \[
             \lambda_1=\lambda_2=0.
         \]
-    \end{example}
 \end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Un ejemplo de dependencia lineal}
+
+
+        Los vectores
+        \[
+            v_1=(1,2,3),\qquad v_2=(1,1,1),\qquad v_3=(3,4,5)
+        \]
+        de $\mathbb{R}^3$ son linealmente dependientes.
+
+        Buscamos $\lambda_1,\lambda_2,\lambda_3\in\mathbb{R}$, no todos nulos,
+        tales que $\lambda_1v_1+\lambda_2v_2+\lambda_3v_3=0$. Operando,
+        \[
+            \lambda_1(1,2,3)+\lambda_2(1,1,1)+\lambda_3(3,4,5)
+            =
+            (\lambda_1+\lambda_2+3\lambda_3,\;
+             2\lambda_1+\lambda_2+4\lambda_3,\;
+             3\lambda_1+\lambda_2+5\lambda_3),
+        \]
+        de modo que la ecuación equivale al sistema homogéneo
+        \[
+            \begin{cases}
+                \lambda_1+\lambda_2+3\lambda_3=0,\\
+                2\lambda_1+\lambda_2+4\lambda_3=0,\\
+                3\lambda_1+\lambda_2+5\lambda_3=0.
+            \end{cases}
+        \]
+        Escalonamos la matriz de coeficientes:
+        \[
+            \begin{pmatrix}
+                1&1&3\\
+                2&1&4\\
+                3&1&5
+            \end{pmatrix}
+            \xrightarrow{\;F_2-2F_1\;}
+            \begin{pmatrix}
+                1&1&3\\
+                0&-1&-2\\
+                3&1&5
+            \end{pmatrix}
+            \xrightarrow{\;F_3-3F_1\;}
+            \begin{pmatrix}
+                1&1&3\\
+                0&-1&-2\\
+                0&-2&-4
+            \end{pmatrix}
+        \]
+        \[
+            \xrightarrow{\;F_3-2F_2\;}
+            \begin{pmatrix}
+                1&1&3\\
+                0&-1&-2\\
+                0&0&0
+            \end{pmatrix}.
+        \]
+        Como $\rg=2<3$, el sistema tiene soluciones no triviales.
+        La única variable libre es $\lambda_3$. Tomando $\lambda_3=-1$:
+        de la segunda fila de la forma escalonada obtenermos $\lambda_2=2$;
+        in entonces de la primera, $\lambda_1=1$.
+
+        Por tanto,
+        \[
+            v_1+2v_2-v_3=(1,2,3)+2(1,1,1)-(3,4,5)=(0,0,0)
+        \]
+        es una relación de dependencia lineal.
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Independencia lineal y sistemas homogéneos}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r\in k^n$ y $A=(v_1\mid\cdots\mid v_r)$.
+        Los vectores $v_1,\ldots,v_r$ son linealmente independientes
+        si y solo si el sistema homogéneo $Ax=0$ es determinado,
+        lo que equivale a $\rg(A)=r$.
+    \end{proposition}
+
+    \begin{proof}
+        Por definición, $v_1,\ldots,v_r$ son linealmente independientes
+        si y solo si la única solución de $x_1v_1+\cdots+x_rv_r=0$
+        es $x_1=\cdots=x_r=0$.
+        Esta ecuación coincide con $Ax=0$, pues $Ax=x_1v_1+\cdots+x_rv_r$.
+        El sistema $Ax=0$ es determinado si y solo $\rg(A)=r$.
+    \end{proof}
+
+    Si $\rg(A)<r$, los vectores son linealmente dependientes
+    y $Ax=0$ tiene soluciones no triviales.
+    Toda solución no trivial $(\lambda_1,\ldots,\lambda_r)$ da lugar a una 
+    relación de dependencia lineal \[\lambda_1v_1+\cdots+\lambda_rv_r=0.\]
+\end{frame}
+
 
 
 \begin{frame}
