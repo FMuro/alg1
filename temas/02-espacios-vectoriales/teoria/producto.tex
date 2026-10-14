@@ -1,0 +1,597 @@
+\subsection{Producto de espacios vectoriales}
+
+\begin{frame}
+    \frametitle{Un ejemplo antes de la definición}
+
+    Supongamos que queremos manejar a la vez un vector de $\mathbb{R}^2$
+    y un polinomio de $\mathbb{R}_1[x]$, es decir, pares
+    \[
+        \bigl((a,b),\,c+dx\bigr),
+        \qquad
+        (a,b)\in\mathbb{R}^2,
+        \quad
+        c+dx\in\mathbb{R}_1[x].
+    \]
+
+    Es natural sumar y multiplicar por escalares
+    \alert{componente a componente}:
+    \[
+        \bigl((1,2),\,3-x\bigr)+\bigl((0,-1),\,1+4x\bigr)
+        =
+        \bigl((1,1),\,4+3x\bigr),
+    \]
+    \[
+        2\,\bigl((1,2),\,3-x\bigr)
+        =
+        \bigl((2,4),\,6-2x\bigr).
+    \]
+
+    \medskip
+
+    Cada componente se opera en su propio espacio vectorial,
+    con independencia de la otra.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Producto de dos espacios vectoriales}
+
+    \begin{definition}
+        Sean $V$ y $W$ espacios vectoriales sobre el mismo cuerpo $k$.
+        El \alert{producto} de $V$ y $W$ es el conjunto
+        \[
+            V\times W=\{(v,w):v\in V,\ w\in W\}
+        \]
+        con las operaciones
+        \[
+            (v,w)+(v',w')=(v+v',\,w+w'),
+            \qquad
+            \lambda(v,w)=(\lambda v,\,\lambda w),
+        \]
+        para $v,v'\in V$, $w,w'\in W$ y $\lambda\in k$.
+    \end{definition}
+
+    \medskip
+
+    En la primera componente se usan las operaciones de $V$,
+    y en la segunda, las de $W$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{El producto es un espacio vectorial}
+
+    \begin{proposition}
+        Con las operaciones anteriores, $V\times W$ es un espacio vectorial
+        sobre $k$. Su vector cero es $(0,0)$ y el opuesto de $(v,w)$ es
+        $(-v,-w)$.
+    \end{proposition}
+
+    \begin{proof}
+        Hay que comprobar los axiomas. La idea es la misma en todos:
+        cada axioma en $V\times W$ se reduce al mismo axioma en $V$
+        (primera componente) y en $W$ (segunda componente).
+
+        Por ejemplo, la distributividad respecto de la suma de vectores:
+        \begin{align*}
+            \lambda\bigl((v,w)+(v',w')\bigr)
+            &=\lambda(v+v',\,w+w')
+            =\bigl(\lambda(v+v'),\,\lambda(w+w')\bigr)\\
+            &=(\lambda v+\lambda v',\,\lambda w+\lambda w')
+            =(\lambda v,\lambda w)+(\lambda v',\lambda w')\\
+            &=\lambda(v,w)+\lambda(v',w'),
+        \end{align*}
+        donde en la segunda línea se han usado los axiomas en $V$ y en $W$.
+
+        Para el vector cero,
+        \[
+            (v,w)+(0,0)=(v+0,\,w+0)=(v,w),
+        \]
+        y para el opuesto,
+        \[
+            (v,w)+(-v,-w)=\bigl(v+(-v),\,w+(-w)\bigr)=(0,0).
+        \]
+
+        Los axiomas restantes se comprueban del mismo modo, componente
+        a componente.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Combinaciones lineales en el producto}
+
+    Como las operaciones se hacen componente a componente, lo mismo
+    ocurre con las combinaciones lineales.
+
+    \begin{proposition}
+        Para $(v_1,w_1),\ldots,(v_r,w_r)\in V\times W$ y
+        $\lambda_1,\ldots,\lambda_r\in k$,
+        \[
+            \lambda_1(v_1,w_1)+\cdots+\lambda_r(v_r,w_r)
+            =
+            \bigl(\lambda_1v_1+\cdots+\lambda_rv_r,\;
+                  \lambda_1w_1+\cdots+\lambda_rw_r\bigr).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Por la definición del producto por escalares,
+        $\lambda_i(v_i,w_i)=(\lambda_iv_i,\lambda_iw_i)$ para cada $i$.
+        Sumando estos $r$ pares y aplicando repetidamente la definición
+        de la suma en $V\times W$, se obtiene el par cuyas componentes son
+        las sumas de las componentes.
+    \end{proof}
+
+    \medskip
+
+    En particular, una combinación lineal en $V\times W$ es nula
+    si y solo si \alert{ambas} componentes lo son.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: $k^m\times k^n$ y $k^{m+n}$}
+
+    \begin{example}
+        Eliminando los paréntesis interiores, a cada par de
+        $k^m\times k^n$ le corresponde un vector de $k^{m+n}$:
+        \[
+            \bigl((a_1,\ldots,a_m),\,(b_1,\ldots,b_n)\bigr)
+            \;\longleftrightarrow\;
+            (a_1,\ldots,a_m,b_1,\ldots,b_n).
+        \]
+        Esta correspondencia es biyectiva y respeta las operaciones:
+        sumar o multiplicar por escalares antes o después de eliminar
+        los paréntesis da el mismo resultado, porque en ambos casos
+        se opera coordenada a coordenada.
+    \end{example}
+
+    \medskip
+
+    Por eso, en la práctica, identificamos
+    \[
+        k^m\times k^n=k^{m+n},
+        \qquad
+        k\times k=k^2.
+    \]
+    En el Tema~4 daremos un sentido preciso a esta identificación.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Producto de varios espacios vectoriales}
+
+    \begin{definition}
+        Sean $V_1,\ldots,V_r$ espacios vectoriales sobre $k$.
+        Su \alert{producto} es
+        \[
+            V_1\times\cdots\times V_r
+            =
+            \{(u_1,\ldots,u_r):u_i\in V_i\},
+        \]
+        con la suma y el producto por escalares componente a componente:
+        \[
+            (u_1,\ldots,u_r)+(u'_1,\ldots,u'_r)=(u_1+u'_1,\ldots,u_r+u'_r),
+        \]
+        \[
+            \lambda(u_1,\ldots,u_r)=(\lambda u_1,\ldots,\lambda u_r).
+        \]
+    \end{definition}
+
+    Como en el caso de dos factores, es un espacio vectorial.
+    El caso más conocido es $k^n=k\times\cdots\times k$, con $n$ factores.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Una base del producto: un ejemplo}
+
+    En $\mathbb{R}^2\times\mathbb{R}_1[x]$, todo par se descompone como
+    \[
+        \bigl((a,b),\,c+dx\bigr)
+        =
+        \bigl((a,b),\,0\bigr)+\bigl((0,0),\,c+dx\bigr),
+    \]
+    y por tanto
+    \[
+        \bigl((a,b),\,c+dx\bigr)
+        =
+        a\bigl((1,0),0\bigr)+b\bigl((0,1),0\bigr)
+        +c\bigl((0,0),1\bigr)+d\bigl((0,0),x\bigr).
+    \]
+
+    \medskip
+
+    Los cuatro vectores que aparecen se obtienen
+    \begin{itemize}
+        \item de la base canónica de $\mathbb{R}^2$, poniendo $0$
+              en la segunda componente;
+        \item de la base $\{1,x\}$ de $\mathbb{R}_1[x]$, poniendo $(0,0)$
+              en la primera componente.
+    \end{itemize}
+
+    \medskip
+
+    \begin{center}
+        \alert{¿Forman siempre una base del producto los vectores así obtenidos?}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bases del producto}
+
+    \begin{theorem}
+        Sean $\{v_1,\ldots,v_m\}$ una base de $V$ y
+        $\{w_1,\ldots,w_n\}$ una base de $W$. Entonces
+        \[
+            B=\{(v_1,0),\ldots,(v_m,0),\,(0,w_1),\ldots,(0,w_n)\}
+        \]
+        es una base de $V\times W$. En particular,
+        \[
+            \dim(V\times W)=\dim V+\dim W.
+        \]
+    \end{theorem}
+
+    \medskip
+
+    Hay que probar dos cosas:
+    \begin{enumerate}
+        \item $B$ genera $V\times W$;
+        \item $B$ es linealmente independiente.
+    \end{enumerate}
+    En ambas usaremos que las combinaciones lineales en $V\times W$
+    se calculan componente a componente.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Bases del producto: demostración}
+
+    \begin{proof}
+        \alert{$B$ genera $V\times W$.}
+        Sea $(v,w)\in V\times W$. Como $\{v_1,\ldots,v_m\}$ genera $V$ y
+        $\{w_1,\ldots,w_n\}$ genera $W$, existen escalares tales que
+        \[
+            v=\lambda_1v_1+\cdots+\lambda_mv_m,
+            \qquad
+            w=\mu_1w_1+\cdots+\mu_nw_n.
+        \]
+        Calculando componente a componente,
+        \begin{align*}
+            &\lambda_1(v_1,0)+\cdots+\lambda_m(v_m,0)
+            +\mu_1(0,w_1)+\cdots+\mu_n(0,w_n)\\
+            &\qquad=
+            \bigl(\lambda_1v_1+\cdots+\lambda_mv_m,\;
+                  \mu_1w_1+\cdots+\mu_nw_n\bigr)
+            =(v,w),
+        \end{align*}
+        ya que en la primera componente los sumandos $\mu_j\cdot0$ son
+        nulos, y en la segunda lo son los $\lambda_i\cdot0$.
+
+        \framebreak
+
+        \alert{$B$ es linealmente independiente.}
+        Supongamos que
+        \[
+            \lambda_1(v_1,0)+\cdots+\lambda_m(v_m,0)
+            +\mu_1(0,w_1)+\cdots+\mu_n(0,w_n)=(0,0).
+        \]
+        El mismo cálculo de antes muestra que el miembro izquierdo es
+        \[
+            \bigl(\lambda_1v_1+\cdots+\lambda_mv_m,\;
+                  \mu_1w_1+\cdots+\mu_nw_n\bigr).
+        \]
+        Igualando componentes,
+        \[
+            \lambda_1v_1+\cdots+\lambda_mv_m=0
+            \quad\text{en } V,
+            \qquad
+            \mu_1w_1+\cdots+\mu_nw_n=0
+            \quad\text{en } W.
+        \]
+        Como $v_1,\ldots,v_m$ son linealmente independientes,
+        $\lambda_1=\cdots=\lambda_m=0$; y como $w_1,\ldots,w_n$ lo son,
+        $\mu_1=\cdots=\mu_n=0$.
+
+        Por tanto $B$ es una base de $V\times W$. Tiene $m+n$ vectores
+        (son distintos dos a dos, por serlo los $v_i$ y los $w_j$, y por
+        no ser nulos), luego
+        \[
+            \dim(V\times W)=m+n=\dim V+\dim W.\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dimensión de un producto de varios espacios}
+
+    \begin{corollary}
+        Si $V_1,\ldots,V_r$ tienen dimensión finita, entonces
+        \[
+            \dim(V_1\times\cdots\times V_r)
+            =
+            \dim V_1+\cdots+\dim V_r.
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Se elige una base de cada $V_i$ y se coloca cada uno de sus vectores
+        en la componente $i$-ésima, con $0$ en las demás. La misma
+        demostración que para dos factores, ahora con $r$ componentes,
+        prueba que todos estos vectores forman una base del producto.
+        Su número es $\dim V_1+\cdots+\dim V_r$.
+    \end{proof}
+
+    \medskip
+
+    Por ejemplo, $\dim k^n=\dim k+\cdots+\dim k=n$, y la base obtenida
+    es precisamente la base canónica $\{e_1,\ldots,e_n\}$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos de dimensión de productos}
+
+    \begin{example}
+        \begin{itemize}
+            \item $\dim\bigl(\mathbb{R}^2\times\mathbb{R}_1[x]\bigr)=2+2=4$.
+            \item $\dim\bigl(M_{2\times2}(k)\times k_3[x]\bigr)=4+4=8$.
+            \item $\dim\bigl(k^m\times k^n\bigr)=m+n$, de acuerdo con la
+                  identificación $k^m\times k^n=k^{m+n}$.
+            \item $\dim\bigl(M_{m\times n}(k)\times M_{m\times n}(k)\bigr)=2mn$.
+        \end{itemize}
+    \end{example}
+
+    En $\mathbb{R}^2\times\mathbb{R}_1[x]$, con la base
+    \[
+        B=\bigl\{((1,0),0),\ ((0,1),0),\ ((0,0),1),\ ((0,0),x)\bigr\},
+    \]
+    el vector $\bigl((3,-1),\,2-5x\bigr)$ tiene coordenadas
+    \[
+        \bigl((3,-1),\,2-5x\bigr)_B
+        =
+        \begin{pmatrix}3\\-1\\2\\-5\end{pmatrix}.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{No toda base del producto es de esta forma}
+
+    \begin{example}
+        En $\mathbb{R}\times\mathbb{R}=\mathbb{R}^2$, los vectores
+        \[
+            (1,1),
+            \qquad
+            (1,-1)
+        \]
+        forman una base, pues la matriz
+        \[
+            \begin{pmatrix}
+                1&1\\
+                1&-1
+            \end{pmatrix}
+        \]
+        tiene rango $2$.
+
+        Sin embargo, ninguno de ellos es de la forma $(v,0)$ ni $(0,w)$.
+    \end{example}
+
+    \medskip
+
+    El teorema proporciona \alert{una} base de $V\times W$ a partir
+    de bases de $V$ y de $W$, pero $V\times W$ tiene muchas otras bases
+    que no se obtienen así.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    \begin{exercise}
+        Calcula la dimensión de los siguientes espacios vectoriales
+        reales y da una base de cada uno:
+        \begin{enumerate}
+            \item $\mathbb{R}^3\times\mathbb{R}^2$;
+            \item $M_{2\times3}(\mathbb{R})\times\mathbb{R}_3[x]$;
+            \item $\mathbb{R}_1[x]\times\mathbb{R}_1[x]\times\mathbb{R}_1[x]$.
+        \end{enumerate}
+    \end{exercise}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Ejercicio}
+
+    \begin{solution}
+        Aplicamos el teorema sobre bases del producto y su corolario.
+
+        \begin{enumerate}
+            \item $\dim=3+2=5$. Una base es
+                  \[
+                      \{(e_1,0),(e_2,0),(e_3,0),(0,e'_1),(0,e'_2)\},
+                  \]
+                  donde $e_i$ y $e'_j$ son los vectores canónicos de
+                  $\mathbb{R}^3$ y $\mathbb{R}^2$. Con la identificación
+                  $\mathbb{R}^3\times\mathbb{R}^2=\mathbb{R}^5$, es la base
+                  canónica de $\mathbb{R}^5$.
+
+            \item $\dim=6+4=10$. Una base está formada por los seis pares
+                  $(E_{ij},0)$, con $i=1,2$ y $j=1,2,3$, y los cuatro pares
+                  $(0,1),(0,x),(0,x^2),(0,x^3)$.
+
+            \item $\dim=2+2+2=6$. Una base es
+                  \[
+                      (1,0,0),\ (x,0,0),\ (0,1,0),\ (0,x,0),\ (0,0,1),\ (0,0,x).\qedhere
+                  \]
+        \end{enumerate}
+    \end{solution}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    \begin{exercise}
+        En $\mathbb{R}^2\times\mathbb{R}_1[x]$ se consideran los vectores
+        \[
+            u_1=\bigl((1,0),\,1+x\bigr),
+            \qquad
+            u_2=\bigl((0,1),\,x\bigr),
+        \]
+        \[
+            u_3=\bigl((1,1),\,0\bigr),
+            \qquad
+            u_4=\bigl((0,0),\,1\bigr).
+        \]
+        Decide si $\{u_1,u_2,u_3,u_4\}$ es una base de
+        $\mathbb{R}^2\times\mathbb{R}_1[x]$.
+    \end{exercise}
+
+    \medskip
+
+    \alert{Indicación:} trabaja con coordenadas respecto de la base
+    \[
+        B=\bigl\{((1,0),0),\ ((0,1),0),\ ((0,0),1),\ ((0,0),x)\bigr\}.
+    \]
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Ejercicio}
+
+    \begin{solution}
+        Los vectores de coordenadas en $B$ son
+        \[
+            (u_1)_B=\begin{pmatrix}1\\0\\1\\1\end{pmatrix},\quad
+            (u_2)_B=\begin{pmatrix}0\\1\\0\\1\end{pmatrix},\quad
+            (u_3)_B=\begin{pmatrix}1\\1\\0\\0\end{pmatrix},\quad
+            (u_4)_B=\begin{pmatrix}0\\0\\1\\0\end{pmatrix}.
+        \]
+        Sea $A$ la matriz $4\times4$ que tiene estos vectores por columnas.
+
+        Dado $v\in\mathbb{R}^2\times\mathbb{R}_1[x]$, por las propiedades
+        de la aplicación de coordenadas y la unicidad de las coordenadas,
+        \[
+            v=\lambda_1u_1+\cdots+\lambda_4u_4
+            \iff
+            v_B=\lambda_1(u_1)_B+\cdots+\lambda_4(u_4)_B
+            \iff
+            A\begin{pmatrix}\lambda_1\\\vdots\\\lambda_4\end{pmatrix}=v_B.
+        \]
+
+        \framebreak
+
+        Escalonamos $A$:
+        \[
+            \begin{pmatrix}
+                1&0&1&0\\
+                0&1&1&0\\
+                1&0&0&1\\
+                1&1&0&0
+            \end{pmatrix}
+            \xrightarrow[F_4-F_1]{F_3-F_1}
+            \begin{pmatrix}
+                1&0&1&0\\
+                0&1&1&0\\
+                0&0&-1&1\\
+                0&1&-1&0
+            \end{pmatrix}
+            \xrightarrow[F_4-2F_3]{F_4-F_2}
+            \begin{pmatrix}
+                1&0&1&0\\
+                0&1&1&0\\
+                0&0&-1&1\\
+                0&0&0&-2
+            \end{pmatrix}.
+        \]
+        (La segunda flecha indica que primero se hace $F_4-F_2$ y después
+        $F_4-2F_3$.)
+
+        Así, $\rg(A)=4$: hay un pivote en cada fila y en cada columna.
+        Por tanto, para cada $v$, el sistema $A\lambda=v_B$ tiene
+        \alert{solución única}, es decir, $v$ se escribe de forma única
+        como combinación lineal de $u_1,u_2,u_3,u_4$.
+
+        Por el teorema de representación única, $\{u_1,u_2,u_3,u_4\}$
+        es una base de $\mathbb{R}^2\times\mathbb{R}_1[x]$.
+    \end{solution}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejercicio}
+
+    \begin{exercise}
+        Sean $V$ y $W$ espacios vectoriales sobre $k$.
+        \begin{enumerate}
+            \item Demuestra que si $v_1,\ldots,v_r\in V$ son linealmente
+                  independientes, entonces, para cualesquiera
+                  $w_1,\ldots,w_r\in W$, los vectores
+                  \[
+                      (v_1,w_1),\ldots,(v_r,w_r)
+                  \]
+                  son linealmente independientes en $V\times W$.
+            \item Muestra con un ejemplo que el recíproco es falso.
+            \item Si $v_1,\ldots,v_r$ generan $V$ y $w_1,\ldots,w_r$
+                  generan $W$, ¿generan necesariamente
+                  $(v_1,w_1),\ldots,(v_r,w_r)$ el espacio $V\times W$?
+        \end{enumerate}
+    \end{exercise}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Ejercicio}
+
+    \begin{solution}
+        \alert{(1)} Supongamos que
+        $\lambda_1(v_1,w_1)+\cdots+\lambda_r(v_r,w_r)=(0,0)$.
+        Calculando componente a componente,
+        \[
+            \bigl(\lambda_1v_1+\cdots+\lambda_rv_r,\;
+                  \lambda_1w_1+\cdots+\lambda_rw_r\bigr)=(0,0).
+        \]
+        En particular, la primera componente da
+        $\lambda_1v_1+\cdots+\lambda_rv_r=0$ en $V$, y la independencia
+        lineal de $v_1,\ldots,v_r$ implica $\lambda_1=\cdots=\lambda_r=0$.
+        No ha hecho falta usar la segunda componente.
+
+        \alert{(2)} En $\mathbb{R}\times\mathbb{R}=\mathbb{R}^2$,
+        tomemos $v_1=v_2=1$, $w_1=0$ y $w_2=1$. Los vectores
+        \[
+            (v_1,w_1)=(1,0),
+            \qquad
+            (v_2,w_2)=(1,1)
+        \]
+        son linealmente independientes, pues
+        $\rg\begin{pmatrix}1&1\\0&1\end{pmatrix}=2$.
+        Sin embargo, $v_1=v_2$, así que $v_1-v_2=0$ es una relación
+        de dependencia lineal entre $v_1,v_2$ en $\mathbb{R}$.
+
+        \framebreak
+
+        \alert{(3)} No. En $\mathbb{R}\times\mathbb{R}=\mathbb{R}^2$,
+        tomemos $r=1$ y $v_1=w_1=1$. Entonces $v_1$ genera $\mathbb{R}$
+        y $w_1$ genera $\mathbb{R}$, pero el único vector
+        \[
+            (v_1,w_1)=(1,1)
+        \]
+        no puede generar $\mathbb{R}^2$, ya que para generar $k^n$
+        hacen falta al menos $n$ vectores. Explícitamente, las
+        combinaciones lineales de $(1,1)$ son los vectores $(\lambda,\lambda)$,
+        y $(1,0)$ no es de esa forma.
+
+        \medskip
+
+        Lo que sí genera $V\times W$ es la familia
+        \[
+            (v_1,0),\ldots,(v_r,0),\,(0,w_1),\ldots,(0,w_r),
+        \]
+        como muestra la primera parte de la demostración del teorema
+        sobre bases del producto.
+    \end{solution}
+\end{frame}
