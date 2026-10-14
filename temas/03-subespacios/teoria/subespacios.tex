@@ -1,0 +1,31 @@
+\begin{frame}
+    \frametitle{Subespacios vectoriales}
+
+    \begin{definition}
+        Sea $V$ un espacio vectorial sobre $k$. Un subconjunto \textbf{no vacío}
+        $W\subseteq V$ es un \alert{subespacio vectorial} de $V$ si es
+        cerrado para la suma y el producto por escalares:
+        \begin{enumerate}
+            \item para todo $u,v\in W$, se tiene $u+v\in W$,
+            \item para todo $\lambda\in k$ y $v\in W$, se tiene $\lambda v\in W$.
+        \end{enumerate}
+    \end{definition}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Subespacios como espacios vectoriales}
+
+    \begin{proposition}
+        Todo subespacio $W\subseteq V$ es en sí mismo un espacio vectorial
+        con las operaciones heredadas de $V$.
+    \end{proposition}
+
+    \begin{proof}
+        Tomando $\lambda=0$ en (2), se obtiene $0\in W$.
+        Tomando $\lambda=-1$, se obtiene $-v\in W$ para todo $v\in W$.
+        Los axiomas restantes —asociatividad y conmutatividad de la suma,
+        distributividades y compatibilidad del producto por escalares—
+        valen en $W$ por ser válidos en $V$ para cualesquiera vectores.
+    \end{proof}
+\end{frame}
