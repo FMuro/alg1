@@ -904,6 +904,50 @@
 
 
 \begin{frame}
+    \frametitle{Independencia lineal mediante eliminación gaussiana}
+
+    \begin{example}
+        Estudiemos la independencia lineal de
+        \[
+            v_1=(1,1,0),\qquad
+            v_2=(1,0,1),\qquad
+            v_3=(0,1,1).
+        \]
+
+        Por la proposición anterior, basta calcular el rango de la matriz
+        \(A=(v_1\mid v_2\mid v_3)\), que tiene los vectores por columnas.
+        Escalonando,
+        \[
+            A=
+            \begin{pmatrix}
+                1&1&0\\
+                1&0&1\\
+                0&1&1
+            \end{pmatrix}
+            \xrightarrow{\;F_2-F_1\;}
+            \begin{pmatrix}
+                1&1&0\\
+                0&-1&1\\
+                0&1&1
+            \end{pmatrix}
+            \xrightarrow{\;F_3+F_2\;}
+            \begin{pmatrix}
+                1&1&0\\
+                0&-1&1\\
+                0&0&2
+            \end{pmatrix}.
+        \]
+
+        Hay tres pivotes, luego \(\rg(A)=3\), que es el número de vectores.
+        Por tanto, \(v_1,v_2,v_3\) son linealmente independientes.
+    \end{example}
+\end{frame}
+
+
+
+
+
+\begin{frame}
     \frametitle{Un solo vector}
 
     \begin{proposition}
@@ -1079,216 +1123,6 @@
     linealmente dependiente es linealmente dependiente.
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{Independencia lineal y sistemas homogéneos}
-
-    Sean
-    \[
-        v_1,\ldots,v_r\in k^n.
-    \]
-    Para estudiar su independencia lineal consideramos
-    \[
-        \lambda_1v_1+\cdots+\lambda_rv_r=0.
-    \]
-
-    Si escribimos
-    \[
-        v_j=(v_{1j},\ldots,v_{nj}),
-    \]
-    obtenemos el sistema homogéneo
-    \[
-        \begin{pmatrix}
-            v_{11} & \cdots & v_{1r}\\
-            \vdots & & \vdots\\
-            v_{n1} & \cdots & v_{nr}
-        \end{pmatrix}
-        \begin{pmatrix}
-            \lambda_1\\
-            \vdots\\
-            \lambda_r
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            0\\
-            \vdots\\
-            0
-        \end{pmatrix}.
-    \]
-
-    Los vectores son linealmente independientes si y solo si este sistema
-    tiene únicamente la solución trivial.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Independencia lineal mediante eliminación gaussiana}
-
-    \begin{example}
-        Estudiemos la independencia lineal de
-        \[
-            v_1=(1,1,0),\qquad
-            v_2=(1,0,1),\qquad
-            v_3=(0,1,1).
-        \]
-
-        La ecuación
-        \[
-            \lambda_1v_1+\lambda_2v_2+\lambda_3v_3=0
-        \]
-        tiene matriz
-        \[
-            \begin{pmatrix}
-                1&1&0\\
-                1&0&1\\
-                0&1&1
-            \end{pmatrix}.
-        \]
-
-        Mediante eliminación gaussiana,
-        \[
-            \begin{pmatrix}
-                1&1&0\\
-                1&0&1\\
-                0&1&1
-            \end{pmatrix}
-            \sim
-            \begin{pmatrix}
-                1&1&0\\
-                0&-1&1\\
-                0&0&2
-            \end{pmatrix}.
-        \]
-
-        Por tanto, sobre \(\mathbb{R}\), la única solución es
-        \[
-            \lambda_1=\lambda_2=\lambda_3=0,
-        \]
-        y los vectores son linealmente independientes.
-    \end{example}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{El cuerpo importa}
-
-    El ejemplo anterior depende del cuerpo de escalares.
-
-    Consideremos los mismos vectores
-    \[
-        v_1=(1,1,0),\qquad
-        v_2=(1,0,1),\qquad
-        v_3=(0,1,1)
-    \]
-    en \(k^3\).
-
-    La eliminación gaussiana conduce a
-    \[
-        \begin{pmatrix}
-            1&1&0\\
-            0&-1&1\\
-            0&0&2
-        \end{pmatrix}.
-    \]
-
-    Si \(2\neq0\) en \(k\), los vectores son linealmente independientes.
-
-    Si \(k\) tiene característica \(2\), en cambio,
-    \[
-        v_1+v_2+v_3=0,
-    \]
-    y son linealmente dependientes.
-
-    \medskip
-
-    La dependencia lineal siempre se considera \alert{respecto del cuerpo de escalares}.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    Estudia la dependencia o independencia lineal de los siguientes vectores
-    de \(\mathbb{R}^3\):
-    \[
-        v_1=(1,2,1),\qquad
-        v_2=(2,1,0),\qquad
-        v_3=(3,3,1).
-    \]
-
-    Si son linealmente dependientes, encuentra una relación de dependencia
-    lineal.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    Determina para qué valores de \(a\in\mathbb{R}\) son linealmente
-    independientes los vectores
-    \[
-        v_1=(1,0,1),\qquad
-        v_2=(0,1,1),\qquad
-        v_3=(1,1,a).
-    \]
-
-    Para los restantes valores de \(a\), encuentra una relación de
-    dependencia lineal.
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    Estudia la dependencia o independencia lineal en \(\mathbb{R}_2[x]\)
-    de los polinomios
-    \[
-        p_1(x)=1+x,
-        \qquad
-        p_2(x)=1-x,
-        \qquad
-        p_3(x)=1+x^2.
-    \]
-
-    \medskip
-
-    Para ello, estudia cuándo
-    \[
-        \lambda_1p_1(x)+
-        \lambda_2p_2(x)+
-        \lambda_3p_3(x)=0.
-    \]
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    En \(M_{2\times2}(\mathbb{R})\), consideremos
-    \[
-        A_1=
-        \begin{pmatrix}
-            1&0\\
-            0&1
-        \end{pmatrix},
-        \qquad
-        A_2=
-        \begin{pmatrix}
-            0&1\\
-            1&0
-        \end{pmatrix},
-        \qquad
-        A_3=
-        \begin{pmatrix}
-            1&1\\
-            1&1
-        \end{pmatrix}.
-    \]
-
-    Estudia si \(A_1,A_2,A_3\) son linealmente dependientes.
-
-    Si lo son, encuentra una relación de dependencia lineal.
-\end{frame}
 
 \subsection{Sistemas generadores y bases}
 
@@ -1475,7 +1309,7 @@
     \]
 
     Los vectores \(v_1,\ldots,v_r\) generan \(k^n\) si y solo si,
-    para todo \(v\in k^n\), el sistema
+    para todo \(u\in k^n\), el sistema
     \[
         A
         \begin{pmatrix}
@@ -1483,7 +1317,7 @@
             \vdots\\
             \lambda_r
         \end{pmatrix}
-        =v
+        =u
     \]
     es compatible.
 
@@ -1498,7 +1332,7 @@
     \frametitle{Criterio de rango para sistemas generadores}
 
     \begin{theorem}
-        Sean \(v_1,\ldots,v_r\in k^n\) y
+        Sean \(v_1,\ldots,v_r\in k^n\) y consideramos la matriz de tamaño \(n\times r\)
         \[
             A=
             \begin{pmatrix}
@@ -1513,18 +1347,67 @@
         \]
     \end{theorem}
 
-    \begin{proof}
-        Los vectores generan \(k^n\) si y solo si el sistema
-        \[
-            A\lambda=v
-        \]
-        es compatible para todo \(v\in k^n\).
+\end{frame}
 
-        Esto ocurre si y solo si \(A\) tiene un pivote en cada fila,
-        es decir, si y solo si
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Criterio de rango para sistemas generadores: demostración}
+
+    \begin{proof}
+        Sabemos que \(v_1,\ldots,v_r\) generan \(k^n\) si y solo si el sistema
+        \(A\lambda=u\) es compatible para todo \(u\in k^n\).
+
+        Sea \(A'\) una forma escalonada de \(A\). Por el Tema~1, existe una
+        matriz invertible \(P\in M_n(k)\), producto de matrices elementales,
+        tal que
         \[
-            \operatorname{rg}(A)=n.
+            PA=A'.
         \]
+        Para cada \(u\in k^n\), las mismas operaciones elementales
+        transforman la matriz ampliada \((A\mid u)\) en
+        \[
+            P(A\mid u)=(PA\mid Pu)=(A'\mid Pu).
+        \]
+        Como las matrices ampliadas son equivalentes por filas, los sistemas
+        \[
+            A\lambda=u
+            \qquad\text{y}\qquad
+            A'\lambda=Pu
+        \]
+        tienen las mismas soluciones.
+
+        \framebreak
+
+        \alert{Si \(\operatorname{rg}(A)=n\), los vectores generan \(k^n\).}
+        El rango es el número de filas no nulas de \(A'\), y \(A'\) tiene
+        \(n\) filas, así que todas son no nulas: cada fila de \(A'\) tiene
+        su pivote.
+
+        Sea \(u\in k^n\) arbitrario. La matriz \((A'\mid Pu)\) está escalonada,
+        y el primer elemento no nulo de cada fila está en la parte \(A'\).
+        Por tanto, el sistema \(A\lambda=u\) es compatible.
+
+        \framebreak
+
+        \alert{Si \(\operatorname{rg}(A)<n\), los vectores no generan \(k^n\).}
+        Ahora \(A'\) tiene menos de \(n\) filas no nulas. Como en una matriz
+        escalonada las filas nulas están al final, así que si el rango de $A$ es $r<n$, la fila $r+1$ de $A'$ es nula.
+
+        Buscamos \(u\) tal que el sistema escalonado tenga término
+        independiente \(e_{r+1}=(0,\ldots,0,1, 0,\ldots,0)\). Como \(P\) es invertible,
+        basta tomar
+        \[
+            u=P^{-1}e_{r+1},
+            \qquad\text{pues entonces}\qquad
+            Pu=e_{r+1}.
+        \]
+        La matriz\((A'\mid e_{r+1})\) está escalonada y tiene un pivote en la última columna, concretamente en la fila \(r+1\), que es:
+        \[
+            (0\ \cdots\ 0\mid 1).
+        \]
+        Por tanto \(A\lambda=u\)
+        es incompatible. Así, \(u\) no es combinación lineal de \(v_1,\ldots,v_r\), y estos
+        vectores no generan \(k^n\).
     \end{proof}
 \end{frame}
 
@@ -1563,7 +1446,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[allowframebreaks,t]
     \frametitle{Eliminar un generador redundante}
 
     \begin{proposition}
@@ -1580,12 +1463,40 @@
     \end{proposition}
 
     \begin{proof}
-        Si \(v\in V\), podemos escribir
+        Hay que ver que todo vector \(u\in V\) es combinación lineal de
+        \(v_1,\ldots,v_{r-1}\).
+
+        Sea \(u\in V\). Como \(v_1,\ldots,v_r\) generan \(V\), existen
+        escalares \(\mu_1,\ldots,\mu_r\in k\) tales que
         \[
-            v=\mu_1v_1+\cdots+\mu_{r-1}v_{r-1}+\mu_rv_r.
+            u=\mu_1v_1+\cdots+\mu_{r-1}v_{r-1}+\mu_rv_r.
         \]
-        Sustituyendo la expresión de \(v_r\), obtenemos una combinación
-        lineal de \(v_1,\ldots,v_{r-1}\).
+        En esta expresión aparece \(v_r\), que queremos eliminar.
+        Sustituimos \(v_r\) por su expresión como combinación lineal
+        de los demás:
+        \[
+            u=\mu_1v_1+\cdots+\mu_{r-1}v_{r-1}
+            +\mu_r\bigl(\lambda_1v_1+\cdots+\lambda_{r-1}v_{r-1}\bigr).
+        \]
+
+        \framebreak
+
+        Por la propiedad distributiva,
+        \[
+            \mu_r\bigl(\lambda_1v_1+\cdots+\lambda_{r-1}v_{r-1}\bigr)
+            =(\mu_r\lambda_1)v_1+\cdots+(\mu_r\lambda_{r-1})v_{r-1}.
+        \]
+        Reordenando los sumandos (la suma es asociativa y conmutativa)
+        y agrupando los que contienen el mismo \(v_i\), de nuevo por la
+        propiedad distributiva,
+        \[
+            u=(\mu_1+\mu_r\lambda_1)v_1+\cdots
+            +(\mu_{r-1}+\mu_r\lambda_{r-1})v_{r-1}.
+        \]
+        Los coeficientes \(\mu_i+\mu_r\lambda_i\) son escalares de \(k\),
+        así que \(u\) es combinación lineal de \(v_1,\ldots,v_{r-1}\).
+
+        Como \(u\in V\) era arbitrario, \(v_1,\ldots,v_{r-1}\) generan \(V\).
     \end{proof}
 \end{frame}
 
@@ -1594,33 +1505,67 @@
     \frametitle{Reducir un sistema de generadores}
 
     \begin{example}
-        Los vectores
+        Consideremos en \(\mathbb{R}^3\) los vectores
         \[
-            v_1=(1,0,1),\qquad
-            v_2=(0,1,1),\qquad
-            v_3=(1,1,2),\qquad
-            v_4=(1,-1,0)
+            v_1=(1,0,1),\quad
+            v_2=(0,1,1),\quad
+            v_3=(1,1,2),\quad
+            v_4=(1,-1,0),\quad
+            v_5=(0,0,1).
         \]
-        generan \(\mathbb{R}^3\).
+        \alert{Generan \(\mathbb{R}^3\).} Por el criterio de rango, basta
+        escalonar la matriz que los tiene por columnas:
+        \[
+            \begin{pmatrix}
+                1&0&1&1&0\\
+                0&1&1&-1&0\\
+                1&1&2&0&1
+            \end{pmatrix}
+            \xrightarrow{\;F_3-F_1\;}
+            \begin{pmatrix}
+                1&0&1&1&0\\
+                0&1&1&-1&0\\
+                0&1&1&-1&1
+            \end{pmatrix}
+            \xrightarrow{\;F_3-F_2\;}
+            \begin{pmatrix}
+                1&0&1&1&0\\
+                0&1&1&-1&0\\
+                0&0&0&0&1
+            \end{pmatrix}.
+        \]
+        El rango es \(3\), así que \(v_1,\ldots,v_5\) generan \(\mathbb{R}^3\).
+    \end{example}
+\end{frame}
 
-        Sin embargo,
+
+\begin{frame}
+    \frametitle{Reducir un sistema de generadores (continuación)}
+
+    \begin{example}
+        \alert{Eliminamos generadores redundantes} de
+        \(v_1,\ldots,v_5\). Se observa que
         \[
             v_3=v_1+v_2,
-        \]
-        por lo que podemos eliminar \(v_3\).
-
-        Además,
-        \[
+            \qquad
             v_4=v_1-v_2.
         \]
+        \begin{itemize}
+            \item Como \(v_3\) es combinación lineal de los demás, por la
+                  proposición anterior \(v_1,v_2,v_4,v_5\) generan \(\mathbb{R}^3\).
+            \item Como \(v_4\) es combinación lineal de \(v_1,v_2,v_5\),
+                  aplicando de nuevo la proposición, \(v_1,v_2,v_5\)
+                  generan \(\mathbb{R}^3\).
+        \end{itemize}
 
-        Por tanto, \(v_1,v_2,v_3,v_4\) generan el mismo conjunto de
-        combinaciones lineales que \(v_1,v_2\).
+        No podemos eliminar ninguno más: hemos visto que para generar
+        \(\mathbb{R}^3\) hacen falta al menos \(3\) vectores.
     \end{example}
 
     \medskip
 
-    Este ejemplo muestra que conviene eliminar generadores redundantes.
+    Este ejemplo muestra que un sistema de generadores puede reducirse
+    eliminando los vectores que son combinación lineal de los demás.
 \end{frame}
 
 
@@ -1804,9 +1749,9 @@
 
 \begin{proposition}
     Sean
-    \[
+    \(
         v_1,\ldots,v_n\in k^n
-    \]
+    \)
     y
     \[
         A=
@@ -1862,54 +1807,9 @@
     forman una base de \(\mathbb{R}^3\).
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    Determina si los vectores
-    \[
-        v_1=(1,0,1),\qquad
-        v_2=(0,1,1),\qquad
-        v_3=(1,1,1)
-    \]
-    forman una base de \(\mathbb{R}^3\).
-
-    \medskip
-
-    Resuelve el problema de dos formas:
-
-    \begin{enumerate}
-        \item mediante eliminación gaussiana;
-        \item calculando un determinante.
-    \end{enumerate}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejercicio}
-
-    Determina para qué valores de \(a\in\mathbb{R}\) los vectores
-    \[
-        v_1=(1,0,1),\qquad
-        v_2=(0,1,1),\qquad
-        v_3=(1,1,a)
-    \]
-    forman una base de \(\mathbb{R}^3\).
-
-    \medskip
-
-    Para los restantes valores de \(a\), determina:
-
-    \begin{enumerate}
-        \item una relación de dependencia lineal;
-        \item cuál de los vectores puede eliminarse sin cambiar
-        las combinaciones lineales que se pueden obtener.
-    \end{enumerate}
-\end{frame}
-
 \subsection{Dimensión}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}[allowframebreaks, t]
     \frametitle{Bases y representación única}
 
     \begin{theorem}
@@ -1973,7 +1873,7 @@
 
     En la base canónica $C=\{e_1,\ldots,e_n\}$ de $k^n$,
     el vector de coordenadas de $v=(v_1,\ldots,v_n)$
-    son sus propias entradas: $v_C=(v_1,\ldots,v_n)^T$.
+    son sus propias entradas: $v_C=(v_1,\ldots,v_n) $.
 \end{frame}
 
 
@@ -2008,7 +1908,389 @@
 \end{frame}
 
 
-\begin{frame}[allowframebreaks]
+\begin{frame}
+    \frametitle{Trabajar en coordenadas: la idea}
+
+    En \(\mathbb{R}_2[x]\), con la base \(B=\{1,x,x^2\}\), cada polinomio
+    queda determinado por sus coordenadas:
+    \[
+        a+bx+cx^2
+        \;\longmapsto\;
+        \begin{pmatrix}a\\b\\c\end{pmatrix}\in\mathbb{R}^3.
+    \]
+
+    \medskip
+
+    Para estudiar si unos polinomios son linealmente independientes,
+    si generan \(\mathbb{R}_2[x]\) o si forman una base, parece razonable
+    \alert{sustituirlos por sus vectores de coordenadas} y usar en
+    \(\mathbb{R}^3\) la eliminación gaussiana y el rango.
+
+    \medskip
+
+    Para que esto sea legítimo hace falta que \(c_B\colon V\to k^n\)
+    \begin{itemize}
+        \item no pierda información: \alert{es biyectiva};
+        \item traduzca cada combinación lineal en \(V\) en la misma
+              combinación lineal en \(k^n\), y viceversa.
+    \end{itemize}
+    Es lo que probamos a continuación.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{La aplicación de coordenadas es biyectiva}
+
+    \begin{proposition}
+        Sea \(B=\{v_1,\ldots,v_n\}\) una base de \(V\). La aplicación
+        de coordenadas \(c_B\colon V\to k^n\) es biyectiva, y su inversa es
+        \[
+            \begin{pmatrix}\lambda_1\\\vdots\\\lambda_n\end{pmatrix}
+            \longmapsto
+            \lambda_1v_1+\cdots+\lambda_nv_n.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        \alert{Inyectiva.} Sean \(u,w\in V\) con \(u_B=w_B\), y llamemos
+        \(\lambda_1,\ldots,\lambda_n\) a sus entradas. Por definición de
+        coordenadas,
+        \[
+            u=\lambda_1v_1+\cdots+\lambda_nv_n=w.
+        \]
+
+        \alert{Sobreyectiva.} Sea
+        \((\lambda_1,\ldots,\lambda_n) \in k^n\) y sea
+        \[
+            u=\lambda_1v_1+\cdots+\lambda_nv_n\in V.
+        \]
+        Las coordenadas de \(u\) en \(B\) son los \alert{únicos} escalares
+        con los que \(u\) se escribe como combinación lineal de
+        \(v_1,\ldots,v_n\). Como \(\lambda_1,\ldots,\lambda_n\) son unos
+        de esos escalares, \(u_B=(\lambda_1,\ldots,\lambda_n) \).
+
+        \framebreak
+
+        \alert{Inversa.} El argumento anterior muestra que la aplicación
+        \((\lambda_1,\ldots,\lambda_n) \mapsto\lambda_1v_1+\cdots+\lambda_nv_n\)
+        seguida de \(c_B\) es la identidad de \(k^n\). Y si \(u\in V\)
+        tiene \(u_B=(\lambda_1,\ldots,\lambda_n) \), entonces
+        \(\lambda_1v_1+\cdots+\lambda_nv_n=u\), así que
+        \(c_B\) seguida de esa aplicación es la identidad de \(V\).
+    \end{proof}
+
+    \medskip
+
+    En particular, \(0_B=0\): el vector nulo de \(V\) es el único vector
+    cuyas coordenadas son todas nulas, pues \(0=0v_1+\cdots+0v_n\).
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Coordenadas de una combinación lineal}
+
+    \begin{proposition}
+        Sea \(B\) una base de \(V\) y sean \(u_1,\ldots,u_r\in V\) y
+        \(\lambda_1,\ldots,\lambda_r\in k\). Entonces
+        \[
+            (\lambda_1u_1+\cdots+\lambda_ru_r)_B
+            =\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Por inducción sobre \(r\). Para \(r=1\) es la propiedad
+        \((\lambda u)_B=\lambda u_B\) ya demostrada.
+
+        Si \(r\geq2\) y el resultado es cierto para \(r-1\) vectores,
+        escribimos
+        \(\lambda_1u_1+\cdots+\lambda_ru_r
+        =(\lambda_1u_1+\cdots+\lambda_{r-1}u_{r-1})+\lambda_ru_r\).
+        Usando primero \((u+w)_B=u_B+w_B\), después la hipótesis de
+        inducción y \((\lambda u)_B=\lambda u_B\),
+        \begin{align*}
+            (\lambda_1u_1+\cdots+\lambda_ru_r)_B
+            &=(\lambda_1u_1+\cdots+\lambda_{r-1}u_{r-1})_B+(\lambda_ru_r)_B\\
+            &=\lambda_1(u_1)_B+\cdots+\lambda_{r-1}(u_{r-1})_B
+              +\lambda_r(u_r)_B.\qedhere
+        \end{align*}
+    \end{proof}
+
+    \medskip
+
+    Decimos que \(c_B\) \alert{preserva} las combinaciones lineales:
+    las coordenadas de una combinación lineal son la misma combinación
+    lineal, \alert{con los mismos coeficientes}, de las coordenadas.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las coordenadas también reflejan combinaciones lineales}
+
+    \begin{corollary}
+        Sea \(B\) una base de \(V\) y sean \(v,u_1,\ldots,u_r\in V\) y
+        \(\lambda_1,\ldots,\lambda_r\in k\). Entonces
+        \[
+            v=\lambda_1u_1+\cdots+\lambda_ru_r
+            \iff
+            v_B=\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B.
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        (\(\Rightarrow\)) Se toman coordenadas y se aplica la proposición
+        anterior.
+
+        (\(\Leftarrow\)) Por la proposición anterior, la hipótesis dice que
+        \[
+            v_B=(\lambda_1u_1+\cdots+\lambda_ru_r)_B.
+        \]
+        Como \(c_B\) es inyectiva, \(v=\lambda_1u_1+\cdots+\lambda_ru_r\).
+    \end{proof}
+
+    \medskip
+
+    Así, una igualdad entre vectores de \(V\) es cierta si y solo si lo es
+    la igualdad correspondiente entre sus coordenadas. Decimos que \(c_B\)
+    \alert{refleja} las combinaciones lineales.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Traducción a coordenadas}
+
+    \begin{theorem}
+        Sea \(B\) una base de \(V\) con \(n\) vectores y sean
+        \(u_1,\ldots,u_r\in V\). Entonces:
+        \begin{enumerate}
+            \item \(u_1,\ldots,u_r\) son linealmente independientes en \(V\)
+                  si y solo si \((u_1)_B,\ldots,(u_r)_B\) lo son en \(k^n\);
+            \item \(u_1,\ldots,u_r\) generan \(V\) si y solo si
+                  \((u_1)_B,\ldots,(u_r)_B\) generan \(k^n\);
+            \item \(u_1,\ldots,u_r\) son una base de \(V\) si y solo si
+                  \((u_1)_B,\ldots,(u_r)_B\) son una base de \(k^n\).
+        \end{enumerate}
+        Además, las relaciones de dependencia lineal entre
+        \(u_1,\ldots,u_r\) y entre \((u_1)_B,\ldots,(u_r)_B\) son
+        \alert{las mismas}, con los mismos coeficientes.
+    \end{theorem}
+
+    \medskip
+
+    En resumen: todo lo que se exprese mediante combinaciones lineales
+    puede estudiarse indistintamente en \(V\) o en coordenadas.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Traducción a coordenadas: demostración}
+
+    \begin{proof}
+        \alert{Relaciones de dependencia y (1).}
+        Sean \(\lambda_1,\ldots,\lambda_r\in k\). Aplicando el corolario
+        anterior con \(u=0\), y teniendo en cuenta que \(0_B=0\),
+        \[
+            \lambda_1u_1+\cdots+\lambda_ru_r=0
+            \iff
+            \lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B=0.
+        \]
+        Por tanto, los escalares que anulan una combinación lineal de
+        \(u_1,\ldots,u_r\) son exactamente los que anulan la misma
+        combinación de \((u_1)_B,\ldots,(u_r)_B\).
+
+        En particular, la única solución es
+        \(\lambda_1=\cdots=\lambda_r=0\) en un caso si y solo si lo es en
+        el otro, lo que prueba (1).
+
+        \framebreak
+
+        \alert{(2), ``\(\Rightarrow\)''.}
+        Supongamos que \(u_1,\ldots,u_r\) generan \(V\) y sea
+        \(x\in k^n\). Como \(c_B\) es sobreyectiva, \(x=u_B\) para algún
+        \(v\in V\). Escribimos \(v=\lambda_1u_1+\cdots+\lambda_ru_r\), y
+        tomando coordenadas,
+        \[
+            x=u_B=\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B.
+        \]
+
+        \alert{(2), ``\(\Leftarrow\)''.}
+        Supongamos que \((u_1)_B,\ldots,(u_r)_B\) generan \(k^n\) y sea
+        \(v\in V\). Entonces existen escalares tales que
+        \[
+            v_B=\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B,
+        \]
+        y como \(c_B\) refleja combinaciones lineales,
+        \(v=\lambda_1u_1+\cdots+\lambda_ru_r\).
+
+        \alert{(3)} Una base es un sistema generador linealmente
+        independiente, así que (3) se sigue de (1) y (2).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consecuencia práctica: el rango en coordenadas}
+
+    Sea \(B\) una base de \(V\) con \(n\) vectores, sean
+    \(u_1,\ldots,u_r\in V\) y sea
+    \[
+        A=\bigl((u_1)_B\mid\cdots\mid(u_r)_B\bigr)\in M_{n\times r}(k)
+    \]
+    la matriz que tiene por columnas sus coordenadas.
+
+    \medskip
+
+    Combinando la traducción a coordenadas con lo que sabemos en \(k^n\):
+    \begin{itemize}
+        \item \(u_1,\ldots,u_r\) son linealmente independientes
+              \(\iff\) \(\rg(A)=r\);
+        \item \(u_1,\ldots,u_r\) generan \(V\)
+              \(\iff\) \(\rg(A)=n\);
+        \item \(u_1,\ldots,u_r\) son una base de \(V\)
+              \(\iff\) \(\rg(A)=r=n\).
+    \end{itemize}
+
+    \medskip
+
+    Además, cada solución no trivial de \(Ax=0\) da una relación de
+    dependencia lineal entre \(u_1,\ldots,u_r\) \alert{en \(V\)}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: polinomios en coordenadas}
+
+    \begin{example}
+        En \(\mathbb{R}_2[x]\), con \(B=\{1,x,x^2\}\), consideremos
+        \[
+            p_1=1+2x,\qquad
+            p_2=x-x^2,\qquad
+            p_3=1+x+x^2.
+        \]
+        Sus coordenadas son \((1,2,0) \), \((0,1,-1) \) y \((1,1,1) \).
+        Escalonamos la matriz que las tiene por columnas:
+        \[
+            \begin{pmatrix}
+                1&0&1\\
+                2&1&1\\
+                0&-1&1
+            \end{pmatrix}
+            \xrightarrow{\;F_2-2F_1\;}
+            \begin{pmatrix}
+                1&0&1\\
+                0&1&-1\\
+                0&-1&1
+            \end{pmatrix}
+            \xrightarrow{\;F_3+F_2\;}
+            \begin{pmatrix}
+                1&0&1\\
+                0&1&-1\\
+                0&0&0
+            \end{pmatrix}.
+        \]
+        El rango es \(2<3\): los polinomios son linealmente
+        \alert{dependientes} y \alert{no generan} \(\mathbb{R}_2[x]\).
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: polinomios en coordenadas (continuación)}
+
+    \begin{example}
+        Para encontrar una relación de dependencia entre
+        \(p_1=1+2x\), \(p_2=x-x^2\) y \(p_3=1+x+x^2\), resolvemos el
+        sistema homogéneo escalonado del frame anterior. La incógnita libre es \(\lambda_3\);
+        tomando \(\lambda_3=1\), la segunda fila da \(\lambda_2=1\) y la
+        primera, \(\lambda_1=-1\). Así,
+        \[
+            -(p_1)_B+(p_2)_B+(p_3)_B=0
+            \quad\text{en }\mathbb{R}^3.
+        \]
+        Como las coordenadas reflejan combinaciones lineales, la misma
+        relación se cumple en \(\mathbb{R}_2[x]\):
+        \[
+            -p_1+p_2+p_3=-(1+2x)+(x-x^2)+(1+x+x^2)=0.
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: matrices en coordenadas}
+
+    \begin{example}
+        En \(M_{2\times2}(\mathbb{R})\), con la base
+        \(B=\{E_{11},E_{12},E_{21},E_{22}\}\), consideremos
+        \[
+            A_1=\begin{pmatrix}1&1\\0&0\end{pmatrix},\quad
+            A_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+            A_3=\begin{pmatrix}0&0\\1&1\end{pmatrix},\quad
+            A_4=\begin{pmatrix}1&0\\0&0\end{pmatrix}.
+        \]
+        Las coordenadas de \(\begin{pmatrix}a&b\\c&d\end{pmatrix}\) respecto de
+        \(B\) son \((a,b,c,d) \). Por tanto, la matriz que tiene por
+        columnas las coordenadas de \(A_1,\ldots,A_4\) es
+        \[
+            \begin{pmatrix}
+                1&0&0&1\\
+                1&1&0&0\\
+                0&1&1&0\\
+                0&0&1&0
+            \end{pmatrix}.
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: matrices en coordenadas (continuación)}
+
+    \begin{example}
+        Escalonamos:
+        \vspace{-1ex}
+        \[
+            \begin{pmatrix}
+                1&0&0&1\\
+                1&1&0&0\\
+                0&1&1&0\\
+                0&0&1&0
+            \end{pmatrix}
+            \xrightarrow{\;F_2-F_1\;}
+            \begin{pmatrix}
+                1&0&0&1\\
+                0&1&0&-1\\
+                0&1&1&0\\
+                0&0&1&0
+            \end{pmatrix}
+            \xrightarrow{\;F_3-F_2\;}
+            \begin{pmatrix}
+                1&0&0&1\\
+                0&1&0&-1\\
+                0&0&1&1\\
+                0&0&1&0
+            \end{pmatrix}
+        \]
+        \[
+            \xrightarrow{\;F_4-F_3\;}
+            \begin{pmatrix}
+                1&0&0&1\\
+                0&1&0&-1\\
+                0&0&1&1\\
+                0&0&0&-1
+            \end{pmatrix}.
+        \]
+        El rango es \(4\), que coincide con el número de matrices y con el
+        número de vectores de \(B\). Por tanto, \(A_1,A_2,A_3,A_4\) son
+        una \alert{base} de \(M_{2\times2}(\mathbb{R})\).
+        No ha hecho falta plantear ninguna ecuación entre matrices:
+        todo el trabajo se ha hecho en \(\mathbb{R}^4\).
+    \end{example}
+\end{frame}
+
+
+
+\begin{frame}
     \frametitle{Matriz de cambio de base}
 
     Sean $B=\{u_1,\ldots,u_n\}$ y $B'=\{u'_1,\ldots,u'_m\}$
@@ -2018,10 +2300,14 @@
         La \alert{matriz de cambio de base de $B$ a $B'$} es la
         matriz $m\times n$
         \[
-            M(B,B')=\bigl[(u_1)_{B'}\mid\cdots\mid(u_n)_{B'}\bigr],
+            M(B,B')=\bigl((u_1)_{B'}\mid\cdots\mid(u_n)_{B'}\bigr),
         \]
         cuya $j$-ésima columna es el vector de coordenadas de $u_j$ en $B'$.
     \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Propiedades de la matriz de cambio de base}
 
     \begin{proposition}
         Para todo $v\in V$,
@@ -2031,7 +2317,7 @@
     \end{proposition}
 
     \begin{proof}
-        Si $v_B=(\lambda_1,\ldots,\lambda_n)^T$, entonces $v=\sum_j\lambda_j u_j$.
+        Si $v_B=(\lambda_1,\ldots,\lambda_n) $, entonces $v=\sum_j\lambda_j u_j$.
         Por las propiedades de $c_{B'}$,
         \[
             v_{B'}
@@ -2062,7 +2348,7 @@
             \tfrac{1}{2}&-\tfrac{1}{2}
         \end{pmatrix}.
     \]
-    Para $v=(3,1)$, $v_C=(3,1)^T$ y
+    Para $v=(3,1)$, $v_C=(3,1) $ y
     \[
         v_B=M(C,B)\,v_C=
         \begin{pmatrix}
@@ -2076,7 +2362,7 @@
 \end{frame}
 
 
-\begin{frame}[allowframebreaks]
+\begin{frame}[allowframebreaks,t]
     \frametitle{Propiedades de la matriz de cambio de base}
 
     \begin{proposition}
@@ -2093,15 +2379,30 @@
         pues $u_j=0\cdot u_1+\cdots+1\cdot u_j+\cdots+0\cdot u_n$.
         Por tanto $M(B,B)=I_n$.
 
-        Para (2): para todo $v\in V$,
+        Para (2): sea $B=\{u_1,\ldots,u_n\}$. Por definición,
+        $M(B,B')$ tiene por columnas las coordenadas de los $u_j$ en $B'$:
         \[
-            M(B',B'')\cdot M(B,B')\cdot v_B
-            =M(B',B'')\cdot v_{B'}
-            =v_{B''}.
+            M(B,B')=\bigl((u_1)_{B'}\mid\cdots\mid(u_n)_{B'}\bigr).
         \]
-        Como también $v_{B''}=M(B,B'')\cdot v_B$, y $v_B$ recorre
-        todo $k^n$ cuando $v$ recorre $V$, se concluye
-        $M(B,B'')=M(B',B'')\cdot M(B,B')$.
+        Multiplicando por bloques, con $M(B',B'')$ como un único bloque y
+        $M(B,B')$ dividida en columnas,
+        \[
+            M(B',B'')\cdot M(B,B')
+            =\bigl(M(B',B'')\,(u_1)_{B'}\mid\cdots\mid M(B',B'')\,(u_n)_{B'}\bigr).
+        \]
+
+        Por la proposición anterior, aplicada a la matriz de cambio de
+        base de $B'$ a $B''$ y al vector $u_j$,
+        \[
+            M(B',B'')\,(u_j)_{B'}=(u_j)_{B''},
+            \qquad j=1,\ldots,n.
+        \]
+        Sustituyendo en cada columna,
+        \[
+            M(B',B'')\cdot M(B,B')
+            =\bigl((u_1)_{B''}\mid\cdots\mid(u_n)_{B''}\bigr),
+        \]
+        que, por definición, es la matriz $M(B,B'')$.
     \end{proof}
 \end{frame}
 
@@ -2142,4 +2443,3 @@
     El espacio $k[x]$ tiene dimensión infinita: toda combinación lineal
     finita de polinomios tiene grado acotado y no puede generar $k[x]$.
 \end{frame}
-
