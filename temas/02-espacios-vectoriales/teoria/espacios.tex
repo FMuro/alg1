@@ -1540,7 +1540,7 @@
 
 
 \begin{frame}
-    \frametitle{Reducir un sistema de generadores (continuación)}
+    \frametitle{Reducir un sistema de generadores}
 
     \begin{example}
         \alert{Eliminamos generadores redundantes} de
@@ -1807,6 +1807,171 @@
     forman una base de \(\mathbb{R}^3\).
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Añadir un vector a una familia independiente}
+
+    \begin{lemma}
+        Sean \(v_1,\ldots,v_r\in V\) linealmente independientes y sea
+        \(u\in V\) un vector que \alert{no} es combinación lineal de
+        \(v_1,\ldots,v_r\). Entonces \(v_1,\ldots,v_r,u\) son linealmente
+        independientes.
+    \end{lemma}
+
+    \begin{proof}
+        Supongamos que
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r+\lambda u=0.
+        \]
+        Si fuera \(\lambda\neq0\), podríamos despejar
+        \[
+            u=-\lambda^{-1}\bigl(\lambda_1v_1+\cdots+\lambda_rv_r\bigr),
+        \]
+        y \(u\) sería combinación lineal de \(v_1,\ldots,v_r\), en contra
+        de la hipótesis. Luego \(\lambda=0\), y queda
+        \(\lambda_1v_1+\cdots+\lambda_rv_r=0\). Por la independencia de
+        \(v_1,\ldots,v_r\), \(\lambda_1=\cdots=\lambda_r=0\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Existencia de bases}
+
+    \begin{theorem}
+        Sea \(V\neq\{0\}\) y sea
+        \[
+            S=\{v_1,\ldots,v_r,v_{r+1},\ldots,v_{r+s}\}
+        \]
+        un sistema generador de \(V\) tal que \(v_1,\ldots,v_r\) son
+        linealmente independientes (se admite \(r=0\)). Entonces \(S\)
+        contiene una base \(B\) de \(V\) tal que
+        \(\{v_1,\ldots,v_r\}\subseteq B\).
+    \end{theorem}
+
+    \medskip
+
+    Con \(r=0\): todo sistema generador finito \alert{contiene} una base.
+    En particular, todo espacio vectorial con un sistema generador finito
+    tiene una base.
+
+    \framebreak
+
+    \begin{proof}
+        La idea es recorrer \(v_{r+1},\ldots,v_{r+s}\) en orden y añadir
+        a \(v_1,\ldots,v_r\) cada uno que no sea combinación lineal de los
+        ya elegidos.
+
+        \medskip
+
+        Empezamos con \(F_0=\{v_1,\ldots,v_r\}\), que es linealmente
+        independiente. Para \(j=1,\ldots,s\), construimos \(F_j\) a partir
+        de \(F_{j-1}\):
+        \begin{itemize}
+            \item si \(v_{r+j}\) es combinación lineal de los vectores de
+                  \(F_{j-1}\), tomamos \(F_j=F_{j-1}\);
+            \item si no lo es, tomamos \(F_j=F_{j-1}\cup\{v_{r+j}\}\), que es
+                  linealmente independiente por el lema anterior.
+        \end{itemize}
+        (Si \(F_{j-1}\) es vacía, «ser combinación lineal» significa
+        ser \(0\), y un único vector no nulo es independiente.)
+
+        \framebreak
+
+        Así, \(B=F_s\) es linealmente independiente y
+        \(\{v_1,\ldots,v_r\}\subseteq B\subseteq S\). Falta ver que $B$ 
+        \alert{genera} \(V\).
+
+        \medskip
+
+        Cada vector de \(S\) es combinación lineal de los vectores de
+        \(B\): para \(i\leq r\), porque \(v_i\in B\); y para \(v_{r+j}\),
+        bien \(v_{r+j}\in F_j\subseteq B\), o bien es combinación lineal
+        de los de \(F_{j-1}\subseteq B\) (completando con coeficientes
+        nulos). Por eliminación de generadores redundantes, \(B\) genera \(V\).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Existencia de bases en \(k^n\): el método}
+
+    Sean \(v_1,\ldots,v_r,v_{r+1},\ldots,v_{r+s}\in k^n\) vectores que
+    generan \(k^n\), con \(v_1,\ldots,v_r\) linealmente independientes.
+
+    \medskip
+
+    \alert{Método.}
+    \begin{enumerate}
+        \item Formamos la matriz
+              \(A=(v_1\mid\cdots\mid v_r\mid v_{r+1}\mid\cdots\mid v_{r+s})\).
+        \item La escalonamos por filas hasta una forma escalonada \(E\).
+        \item Nos quedamos con los \(v_j\) tales que la columna \(j\) de
+              \(E\) contiene un pivote.
+    \end{enumerate}
+    Estos vectores forman una base de \(k^n\) que contiene a
+    \(v_1,\ldots,v_r\).
+
+    \framebreak
+
+    \alert{Por qué funciona.} Sean \(j_1<\cdots<j_m\) las columnas de
+    \(E\) con pivote.
+    \begin{itemize}
+        \item \alert{Son independientes.} Las mismas operaciones
+              elementales transforman \((v_{j_1}\mid\cdots\mid v_{j_m})\) en
+              las columnas \(j_1,\ldots,j_m\) de \(E\), una matriz
+              escalonada con \(m\) pivotes. Su rango es \(m\).
+        \item \alert{Son una base.} Como \(v_1,\ldots,v_{r+s}\) generan
+              \(k^n\), \(m=\rg(A)=n\). Son \(n\) vectores independientes
+              en \(k^n\).
+        \item \alert{Contienen a \(v_1,\ldots,v_r\).} Las \(j-1\) primeras
+              columnas de \(E\) son una forma escalonada de
+              \((v_1\mid\cdots\mid v_{j-1})\). Por tanto, la columna \(j\)
+              no tiene pivote si y solo si el sistema
+              \((v_1\mid\cdots\mid v_{j-1})\,x=v_j\) es compatible, es decir,
+              si y solo si \(v_j\) es combinación lineal de
+              \(v_1,\ldots,v_{j-1}\). Como \(v_1,\ldots,v_r\) son
+              independientes, ninguno es combinación lineal de los
+              anteriores, y las columnas \(1,\ldots,r\) tienen pivote.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de \(\mathbb{R}^4\) entre unos generadores}
+
+    \begin{example}
+        En \(\mathbb{R}^4\) consideramos
+        \[
+            \begin{aligned}
+                v_1&=(1,0,1,0), & v_2&=(0,1,0,1), & v_3&=(1,1,1,1),\\
+                v_4&=(1,0,0,0), & v_5&=(2,0,1,0), & v_6&=(0,0,0,1).
+            \end{aligned}
+        \]
+        donde \(v_1,v_2\) son independientes por no ser proporcionales.
+        Escalonamos la matriz con columnas \(v_1,\ldots,v_6\):
+        \[
+            \begin{pmatrix}
+                1&0&1&1&2&0\\
+                0&1&1&0&0&0\\
+                1&0&1&0&1&0\\
+                0&1&1&0&0&1
+            \end{pmatrix}
+            \xrightarrow[\;F_4-F_2\;]{\;F_3-F_1\;}
+            \begin{pmatrix}
+                1&0&1&1&2&0\\
+                0&1&1&0&0&0\\
+                0&0&0&-1&-1&0\\
+                0&0&0&0&0&1
+            \end{pmatrix}.
+        \]
+        El rango es \(4\), luego los \(v_j\) generan \(\mathbb{R}^4\).
+        Los pivotes están en las columnas \(1,2,4,6\):
+        \(\{v_1,v_2,v_4,v_6\}\) es una base que contiene a \(\{v_1,v_2\}\).
+    \end{example}
+\end{frame}
+
+
+
 \subsection{Dimensión}
 
 \begin{frame}[allowframebreaks, t]
@@ -1945,7 +2110,7 @@
         Sea \(B=\{v_1,\ldots,v_n\}\) una base de \(V\). La aplicación
         de coordenadas \(c_B\colon V\to k^n\) es biyectiva, y su inversa es
         \[
-            \begin{pmatrix}\lambda_1\\\vdots\\\lambda_n\end{pmatrix}
+            (\lambda_1,\ldots,\lambda_n)
             \longmapsto
             \lambda_1v_1+\cdots+\lambda_nv_n.
         \]
@@ -2106,11 +2271,11 @@
 
         \alert{(2), ``\(\Rightarrow\)''.}
         Supongamos que \(u_1,\ldots,u_r\) generan \(V\) y sea
-        \(x\in k^n\). Como \(c_B\) es sobreyectiva, \(x=u_B\) para algún
+        \(x\in k^n\). Como \(c_B\) es sobreyectiva, \(x=v_B\) para algún
         \(v\in V\). Escribimos \(v=\lambda_1u_1+\cdots+\lambda_ru_r\), y
         tomando coordenadas,
         \[
-            x=u_B=\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B.
+            x=v_B=\lambda_1(u_1)_B+\cdots+\lambda_r(u_r)_B.
         \]
 
         \alert{(2), ``\(\Leftarrow\)''.}
@@ -2128,7 +2293,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[allowframebreaks,t]
     \frametitle{Consecuencia práctica: el rango en coordenadas}
 
     Sea \(B\) una base de \(V\) con \(n\) vectores, sean
@@ -2136,7 +2301,7 @@
     \[
         A=\bigl((u_1)_B\mid\cdots\mid(u_r)_B\bigr)\in M_{n\times r}(k)
     \]
-    la matriz que tiene por columnas sus coordenadas.
+    la matriz $n\times r$ que tiene por columnas sus coordenadas.
 
     \medskip
 
@@ -2154,6 +2319,27 @@
 
     Además, cada solución no trivial de \(Ax=0\) da una relación de
     dependencia lineal entre \(u_1,\ldots,u_r\) \alert{en \(V\)}.
+
+    \framebreak
+
+    Por tanto:
+    \begin{itemize}
+        \item si \(u_1,\ldots,u_r\) son linealmente independientes,
+              entonces \(r=\leq \dim V\);
+        \item si \(u_1,\ldots,u_r\) generan \(V\),
+              entonces \(\dim V\leq r\);
+        \item si \(r=\dim V\), entonces las siguientes condiciones son equivalentes:
+        \begin{itemize}
+            \item \(u_1,\ldots,u_r\) son linealmente independientes;
+            \item \(u_1,\ldots,u_r\) generan \(V\);
+            \item \(u_1,\ldots,u_r\) son una base de \(V\).
+        \end{itemize}
+    \end{itemize}
+
+    \medskip
+
+    Es lo mismo que vimos en \(k^n\) con los criterios para ser una base,
+    ahora en cualquier espacio con una base de \(n\) vectores.
 \end{frame}
 
 
@@ -2195,7 +2381,7 @@
 
 
 \begin{frame}
-    \frametitle{Ejemplo: polinomios en coordenadas (continuación)}
+    \frametitle{Ejemplo: polinomios en coordenadas}
 
     \begin{example}
         Para encontrar una relación de dependencia entre
@@ -2244,7 +2430,7 @@
 
 
 \begin{frame}
-    \frametitle{Ejemplo: matrices en coordenadas (continuación)}
+    \frametitle{Ejemplo: matrices en coordenadas}
 
     \begin{example}
         Escalonamos:
@@ -2287,6 +2473,144 @@
         todo el trabajo se ha hecho en \(\mathbb{R}^4\).
     \end{example}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Existencia de bases en coordenadas: el método}
+
+    Sea \(B\) una base de \(V\) con \(n\) vectores y sean
+    \(v_1,\ldots,v_r,v_{r+1},\ldots,v_{r+s}\in V\) vectores que generan
+    \(V\), con \(v_1,\ldots,v_r\) linealmente independientes.
+
+    \medskip
+
+    \alert{Método.}
+    \begin{enumerate}
+        \item Calculamos las coordenadas \((v_1)_B,\ldots,(v_{r+s})_B\in k^n\).
+        \item Formamos la matriz
+              \(A=\bigl((v_1)_B\mid\cdots\mid(v_{r+s})_B\bigr)\) y la
+              escalonamos por filas.
+        \item Nos quedamos con los \(v_j\) tales que la columna \(j\) de
+              la forma escalonada contiene un pivote.
+    \end{enumerate}
+    Estos vectores forman una base de \(V\) que contiene a
+    \(v_1,\ldots,v_r\).
+
+    \medskip
+
+    \alert{Por qué funciona.} La traducción a coordenadas conserva la
+    generación, la independencia lineal y las bases. Basta, pues, aplicar
+    el método en \(k^n\) a \((v_1)_B,\ldots,(v_{r+s})_B\).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de \(\mathbb{R}_2[x]\) entre unos generadores}
+
+    \begin{example}
+        En \(\mathbb{R}_2[x]\), buscamos una base que contenga a \(1+x\)
+        formada por algunos de los polinomios
+        \[
+            1+x,\quad 2+2x,\quad x^2,\quad 1+x+x^2,\quad x.
+        \]
+        Sus coordenadas en \(\{1,x,x^2\}\) son las columnas de
+        \[
+            \begin{pmatrix}
+                1&2&0&1&0\\
+                1&2&0&1&1\\
+                0&0&1&1&0
+            \end{pmatrix}
+            \xrightarrow{\;F_2-F_1\;}
+            \begin{pmatrix}
+                1&2&0&1&0\\
+                0&0&0&0&1\\
+                0&0&1&1&0
+            \end{pmatrix}
+            \xrightarrow{\;F_2\leftrightarrow F_3\;}
+            \begin{pmatrix}
+                1&2&0&1&0\\
+                0&0&1&1&0\\
+                0&0&0&0&1
+            \end{pmatrix}.
+        \]
+        El rango es \(3\), así que los cinco polinomios generan
+        \(\mathbb{R}_2[x]\). Los pivotes están en las columnas \(1\),
+        \(3\) y \(5\), luego
+        \[
+            \{1+x,\ x^2,\ x\}
+        \]
+        es una base de \(\mathbb{R}_2[x]\) que contiene a \(1+x\).
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de \(M_{2\times2}(\mathbb{R})\) entre unos generadores}
+
+    \begin{example}
+        En \(M_{2\times2}(\mathbb{R})\) consideramos
+        \[
+            v_1=\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
+            v_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+            v_3=\begin{pmatrix}1&1\\1&1\end{pmatrix},
+        \]
+        \[
+            v_4=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
+            v_5=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\quad
+            v_6=\begin{pmatrix}2&1\\3&0\end{pmatrix}.
+        \]
+        Los vectores \(v_1,v_2\) son linealmente independientes, pues
+        ninguno es múltiplo del otro. Buscamos una base de
+        \(M_{2\times2}(\mathbb{R})\) que los contenga, formada por algunos
+        de los \(v_j\).
+
+        Tomamos coordenadas respecto de la base
+        \(B=\{E_{11},E_{12},E_{21},E_{22}\}\):
+        \[
+            \begin{pmatrix}a&b\\c&d\end{pmatrix}_B=(a,b,c,d).
+        \]
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de \(M_{2\times2}(\mathbb{R})\) entre unos generadores (continuación)}
+
+    \begin{example}
+        Escalonamos la matriz que tiene por columnas las coordenadas de
+        \(v_1,\ldots,v_6\):
+        \begin{align*}
+            \begin{pmatrix}
+                1&0&1&1&0&2\\
+                0&1&1&0&1&1\\
+                0&1&1&0&-1&3\\
+                1&0&1&-1&0&0
+            \end{pmatrix}
+            &\xrightarrow[\;F_4-F_1\;]{\;F_3-F_2\;}
+            \begin{pmatrix}
+                1&0&1&1&0&2\\
+                0&1&1&0&1&1\\
+                0&0&0&0&-2&2\\
+                0&0&0&-2&0&-2
+            \end{pmatrix}\\
+            &\xrightarrow{\;F_3\leftrightarrow F_4\;}
+            \begin{pmatrix}
+                1&0&1&1&0&2\\
+                0&1&1&0&1&1\\
+                0&0&0&-2&0&-2\\
+                0&0&0&0&-2&2
+            \end{pmatrix}.
+        \end{align*}
+        El rango es \(4\), luego los \(v_j\) generan. Los pivotes están
+        en las columnas \(1,2,4,5\): \(\{v_1,v_2,v_4,v_5\}\) es una base
+        que contiene a \(v_1,v_2\). Los descartados son redundantes:
+        \(v_3=v_1+v_2\), \(v_6=v_1+2v_2+v_4-v_5\).
+    \end{example}
+\end{frame}
+
+
+
+
+
 
 
 
@@ -2442,4 +2766,173 @@
     $\dim k_n[x]=n+1$, $\dim M_{m\times n}(k)=mn$, $\dim k^X=|X|$.
     El espacio $k[x]$ tiene dimensión infinita: toda combinación lineal
     finita de polinomios tiene grado acotado y no puede generar $k[x]$.
+
+    Según se ha visto anteriormente, cualquier espacio vectorial con un conjunto generador finito tiene dimensión finita.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks,t]
+    \frametitle{Ampliar una familia independiente hasta una base}
+
+    \begin{corollary}
+        Sea \(V\) un espacio vectorial de dimensión \(n\) y sean
+        \(v_1,\ldots,v_r\in V\) linealmente independientes. Entonces
+        \(r\leq n\), y existen \(v_{r+1},\ldots,v_n\in V\) tales que
+        \(v_1,\ldots,v_n\) forman una base de \(V\). Además,
+        \(v_{r+1},\ldots,v_n\) pueden elegirse entre los vectores de
+        cualquier base dada de \(V\).
+    \end{corollary}
+
+    \begin{proof}
+        Sea \(\{w_1,\ldots,w_n\}\) una base de \(V\). El conjunto
+        \[
+            S=\{v_1,\ldots,v_r,w_1,\ldots,w_n\}
+        \]
+        genera \(V\), porque ya lo generan los \(w_j\). Por el teorema de
+        existencia de bases, \(S\) contiene una base \(B\) de \(V\) que
+        contiene a \(v_1,\ldots,v_r\); los demás vectores de \(B\) son
+        algunos de los \(w_j\). Como toda base de \(V\) tiene \(n\)
+        vectores, se han añadido exactamente \(n-r\) de ellos; en
+        particular, \(r\leq n\).
+    \end{proof}
+
+    \medskip
+
+    En la práctica, basta encontrar \(n-r\) vectores que, junto con
+    \(v_1,\ldots,v_r\), sean \alert{linealmente independientes}: al ser
+    \(n\) vectores en un espacio de dimensión \(n\), ya forman una base.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: ampliar a una base de \(\mathbb{R}^4\)}
+
+    \begin{example}
+        Los vectores \(v_1=(1,2,0,1)\) y \(v_2=(0,1,1,1)\) de
+        \(\mathbb{R}^4\) son linealmente independientes, pues ninguno es
+        múltiplo del otro. Para ampliarlos a una base buscamos dos vectores
+        más; probamos con \(e_3\) y \(e_4\). La matriz que tiene por
+        columnas \(v_1,v_2,e_3,e_4\) es
+        \[
+            \begin{pmatrix}
+                1&0&0&0\\
+                2&1&0&0\\
+                0&1&1&0\\
+                1&1&0&1
+            \end{pmatrix},
+        \]
+        triangular con unos en la diagonal. Su determinante es \(1\neq0\),
+        luego \(v_1,v_2,e_3,e_4\) forman una base de \(\mathbb{R}^4\).
+    \end{example}
+
+    \medskip
+
+    Hemos elegido vectores canónicos que hacen \alert{triangular} la
+    matriz, para que el determinante se calcule sin esfuerzo.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: ampliar a una base de \(\mathbb{R}^4\) sistemáticamente}
+
+    \begin{example}
+        Ampliamos de nuevo \(v_1=(1,2,0,1)\), \(v_2=(0,1,1,1)\), ahora sin
+        tantear. Como en la demostración del corolario, añadimos la base
+        canónica: \(v_1,v_2,e_1,e_2,e_3,e_4\) generan \(\mathbb{R}^4\), y
+        aplicamos el método de existencia de bases en \(k^n\):
+        \begin{align*}
+            \begin{pmatrix}
+                1&0&1&0&0&0\\
+                2&1&0&1&0&0\\
+                0&1&0&0&1&0\\
+                1&1&0&0&0&1
+            \end{pmatrix}
+            &\xrightarrow[\;F_4-F_1\;]{\;F_2-2F_1\;}
+            \begin{pmatrix}
+                1&0&1&0&0&0\\
+                0&1&-2&1&0&0\\
+                0&1&0&0&1&0\\
+                0&1&-1&0&0&1
+            \end{pmatrix}
+            \xrightarrow[\;F_4-F_2\;]{\;F_3-F_2\;}
+            \begin{pmatrix}
+                1&0&1&0&0&0\\
+                0&1&-2&1&0&0\\
+                0&0&2&-1&1&0\\
+                0&0&1&-1&0&1
+            \end{pmatrix}\\
+            &\xrightarrow[\;F_4-2F_3\;]{\;F_3\leftrightarrow F_4\;}
+            \begin{pmatrix}
+                1&0&1&0&0&0\\
+                0&1&-2&1&0&0\\
+                0&0&1&-1&0&1\\
+                0&0&0&1&1&-2
+            \end{pmatrix}.
+        \end{align*}
+
+        \vspace{-8pt}
+
+        Los pivotes están en las columnas \(1,2,3,4\): \(\{v_1,v_2,e_1,e_2\}\)
+        es una base de \(\mathbb{R}^4\) que contiene a \(v_1,v_2\).
+    \end{example}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Ejemplo: ampliar a una base de \(\mathbb{R}_2[x]\)}
+
+    \begin{example}
+        Los polinomios \(1+x\) y \(x-x^2\) son linealmente independientes,
+        pues ninguno es múltiplo del otro. Para ampliarlos a una base de
+        \(\mathbb{R}_2[x]\), que tiene dimensión \(3\), basta añadir un
+        polinomio adecuado.
+
+        Trabajamos en coordenadas respecto de \(\{1,x,x^2\}\). Probamos
+        con \(x^2\): la matriz de coordenadas de \(1+x,\ x-x^2,\ x^2\) es
+        \[
+            \begin{pmatrix}
+                1&0&0\\
+                1&1&0\\
+                0&-1&1
+            \end{pmatrix},
+        \]
+        triangular con determinante \(1\neq0\). Por tanto
+        \(\{1+x,\ x-x^2,\ x^2\}\) es una base de \(\mathbb{R}_2[x]\).
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: ampliar a una base de \(\mathbb{R}_2[x]\) sistemáticamente}
+
+    \begin{example}
+        Ampliamos de nuevo \(1+x\), \(x-x^2\), ahora sin tantear. Añadimos
+        la base \(\{1,x,x^2\}\): los polinomios
+        \[
+            1+x,\quad x-x^2,\quad 1,\quad x,\quad x^2
+        \]
+        generan \(\mathbb{R}_2[x]\), y aplicamos el método de existencia de
+        bases en coordenadas respecto de \(\{1,x,x^2\}\):
+        \[
+            \begin{pmatrix}
+                1&0&1&0&0\\
+                1&1&0&1&0\\
+                0&-1&0&0&1
+            \end{pmatrix}
+            \xrightarrow{\;F_2-F_1\;}
+            \begin{pmatrix}
+                1&0&1&0&0\\
+                0&1&-1&1&0\\
+                0&-1&0&0&1
+            \end{pmatrix}
+            \xrightarrow{\;F_3+F_2\;}
+            \begin{pmatrix}
+                1&0&1&0&0\\
+                0&1&-1&1&0\\
+                0&0&-1&1&1
+            \end{pmatrix}.
+        \]
+        Los pivotes están en las columnas \(1,2,3\):
+        \(\{1+x,\ x-x^2,\ 1\}\) es una base de \(\mathbb{R}_2[x]\) que
+        contiene a \(1+x\) y \(x-x^2\).
+    \end{example}
 \end{frame}

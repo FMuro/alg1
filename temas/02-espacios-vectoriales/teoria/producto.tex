@@ -38,7 +38,7 @@
 
     \begin{definition}
         Sean $V$ y $W$ espacios vectoriales sobre el mismo cuerpo $k$.
-        El \alert{producto} de $V$ y $W$ es el conjunto
+        El \alert{producto (cartesiano)} de $V$ y $W$ es el conjunto
         \[
             V\times W=\{(v,w):v\in V,\ w\in W\}
         \]
@@ -244,7 +244,7 @@
 \end{frame}
 
 
-\begin{frame}[allowframebreaks]
+\begin{frame}[allowframebreaks, t]
     \frametitle{Bases del producto: demostración}
 
     \begin{proof}
@@ -304,6 +304,61 @@
 
 
 \begin{frame}
+    \frametitle{Coordenadas en la base del producto}
+
+    \begin{proposition}
+        Sean $B_V=\{v_1,\ldots,v_m\}$ una base de $V$,
+        $B_W=\{w_1,\ldots,w_n\}$ una base de $W$ y
+        \[
+            B=\{(v_1,0),\ldots,(v_m,0),\,(0,w_1),\ldots,(0,w_n)\}.
+        \]
+        Para todo $(u,u')\in V\times W$,
+        \[
+            (u,u')_B=
+            \begin{pmatrix}
+                u_{B_V}\\
+                u'_{B_W}
+            \end{pmatrix}
+            \in k^{m+n}.
+        \]
+    \end{proposition}
+
+
+    Es decir, se \alert{apilan} las coordenadas de cada componente
+    en su propia base.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Coordenadas en la base del producto}
+
+    \begin{proof}
+        Si $u_{B_V}=(\lambda_1,\ldots,\lambda_m)$ y
+        $u'_{B_W}=(\mu_1,\ldots,\mu_n)$, entonces
+        \[
+            u=\lambda_1v_1+\cdots+\lambda_mv_m,
+            \qquad
+            u'=\mu_1w_1+\cdots+\mu_nw_n.
+        \]
+        Calculando componente a componente,
+        \begin{align*}
+            (u,u')
+            &=
+            \bigl(\lambda_1v_1+\cdots+\lambda_mv_m,\;
+                  \mu_1w_1+\cdots+\mu_nw_n\bigr)\\
+            &=\lambda_1(v_1,0)+\cdots+\lambda_m(v_m,0)
+            +\mu_1(0,w_1)+\cdots+\mu_n(0,w_n),
+        \end{align*}
+        luego
+        \[
+            (u,u')_B=(\lambda_1,\ldots,\lambda_m,\mu_1,\ldots,\mu_n).
+            \qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Dimensión de un producto de varios espacios}
 
     \begin{corollary}
@@ -354,6 +409,7 @@
         \begin{pmatrix}3\\-1\\2\\-5\end{pmatrix}.
     \]
 \end{frame}
+
 
 
 \begin{frame}
