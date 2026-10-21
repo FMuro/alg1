@@ -1821,14 +1821,14 @@
     \begin{proof}
         Supongamos que
         \[
-            \lambda_1v_1+\cdots+\lambda_rv_r+\lambda u=0.
+            \lambda_1v_1+\cdots+\lambda_rv_r+\mu u=0.
         \]
-        Si fuera \(\lambda\neq0\), podríamos despejar
+        Si fuera \(\mu\neq0\), podríamos despejar
         \[
-            u=-\lambda^{-1}\bigl(\lambda_1v_1+\cdots+\lambda_rv_r\bigr),
+            u=-\mu^{-1}\bigl(\lambda_1v_1+\cdots+\lambda_rv_r\bigr),
         \]
         y \(u\) sería combinación lineal de \(v_1,\ldots,v_r\), en contra
-        de la hipótesis. Luego \(\lambda=0\), y queda
+        de la hipótesis. Luego \(\mu=0\), y queda
         \(\lambda_1v_1+\cdots+\lambda_rv_r=0\). Por la independencia de
         \(v_1,\ldots,v_r\), \(\lambda_1=\cdots=\lambda_r=0\).
     \end{proof}
@@ -1839,25 +1839,27 @@
     \frametitle{Existencia de bases}
 
     \begin{theorem}
-        Sea \(V\neq\{0\}\) y sea
+        Sea \(V\) un espacio vectorial y sea
         \[
             S=\{v_1,\ldots,v_r,v_{r+1},\ldots,v_{r+s}\}
         \]
         un sistema generador de \(V\) tal que \(v_1,\ldots,v_r\) son
-        linealmente independientes (se admite \(r=0\)). Entonces \(S\)
+        linealmente independientes (se admite \(r=0\) o \(s=0\)). Entonces \(S\)
         contiene una base \(B\) de \(V\) tal que
         \(\{v_1,\ldots,v_r\}\subseteq B\).
     \end{theorem}
 
     \medskip
 
-    Con \(r=0\): todo sistema generador finito \alert{contiene} una base.
-    En particular, todo espacio vectorial con un sistema generador finito
-    tiene una base.
+    El caso \(r=0\) se traduce en lo siguiente.
+
+    \begin{corollary}
+        Todo espacio vectorial con un sistema generador finito tiene una base. Es más, se puede encontrar una base contenida en dicho sistema generador.
+    \end{corollary}
 
     \framebreak
 
-    \begin{proof}
+    \begin{proof}[Demostración del teorema]
         La idea es recorrer \(v_{r+1},\ldots,v_{r+s}\) en orden y añadir
         a \(v_1,\ldots,v_r\) cada uno que no sea combinación lineal de los
         ya elegidos.
@@ -1958,15 +1960,15 @@
             \end{pmatrix}
             \xrightarrow[\;F_4-F_2\;]{\;F_3-F_1\;}
             \begin{pmatrix}
-                1&0&1&1&2&0\\
-                0&1&1&0&0&0\\
-                0&0&0&-1&-1&0\\
-                0&0&0&0&0&1
+                \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{0}}&1&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{4}$}}{1}}&2&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{6}$}}{0}}\\
+                0&\alert{1}&1&0&0&0\\
+                0&0&0&\alert{-1}&-1&0\\
+                0&0&0&0&0&\alert{1}
             \end{pmatrix}.
         \]
         El rango es \(4\), luego los \(v_j\) generan \(\mathbb{R}^4\).
         Los pivotes están en las columnas \(1,2,4,6\):
-        \(\{v_1,v_2,v_4,v_6\}\) es una base que contiene a \(\{v_1,v_2\}\).
+        \(\{v_{\alert{1}},v_{\alert{2}},v_{\alert{4}},v_{\alert{6}}\}\) es una base que contiene a \(\{v_1,v_2\}\).
     \end{example}
 \end{frame}
 
@@ -2296,7 +2298,7 @@
 \begin{frame}[allowframebreaks,t]
     \frametitle{Consecuencia práctica: el rango en coordenadas}
 
-    Sea \(B\) una base de \(V\) con \(n\) vectores, sean
+    Sea \(B\) una base de \(V\) con \(n=\dim V\) vectores, sean
     \(u_1,\ldots,u_r\in V\) y sea
     \[
         A=\bigl((u_1)_B\mid\cdots\mid(u_r)_B\bigr)\in M_{n\times r}(k)
@@ -2310,9 +2312,9 @@
         \item \(u_1,\ldots,u_r\) son linealmente independientes
               \(\iff\) \(\rg(A)=r\);
         \item \(u_1,\ldots,u_r\) generan \(V\)
-              \(\iff\) \(\rg(A)=n\);
+              \(\iff\) \(\rg(A)=\dim V\);
         \item \(u_1,\ldots,u_r\) son una base de \(V\)
-              \(\iff\) \(\rg(A)=r=n\).
+              \(\iff\) \(\rg(A)=r=\dim V\).
     \end{itemize}
 
     \medskip
@@ -2325,7 +2327,7 @@
     Por tanto:
     \begin{itemize}
         \item si \(u_1,\ldots,u_r\) son linealmente independientes,
-              entonces \(r=\leq \dim V\);
+              entonces \(r\leq \dim V\);
         \item si \(u_1,\ldots,u_r\) generan \(V\),
               entonces \(\dim V\leq r\);
         \item si \(r=\dim V\), entonces las siguientes condiciones son equivalentes:
@@ -2477,7 +2479,7 @@
 \begin{frame}
     \frametitle{Existencia de bases en coordenadas: el método}
 
-    Sea \(B\) una base de \(V\) con \(n\) vectores y sean
+    Sea \(B\) una base de \(V\) con \(n=\dim V\) vectores y sean
     \(v_1,\ldots,v_r,v_{r+1},\ldots,v_{r+s}\in V\) vectores que generan
     \(V\), con \(v_1,\ldots,v_r\) linealmente independientes.
 
@@ -2509,10 +2511,20 @@
     \begin{example}
         En \(\mathbb{R}_2[x]\), buscamos una base que contenga a \(1+x\)
         formada por algunos de los polinomios
+
+        \vspace{-10pt}
+
         \[
-            1+x,\quad 2+2x,\quad x^2,\quad 1+x+x^2,\quad x.
+            v_1=1+x,\quad v_2=2+2x,\quad v_3=x^2,\quad v_4=1+x+x^2,\quad v_5=x,
         \]
+
+        \vspace{-0pt}
+
+        y que contenga al primero, que al ser no nulo forma en sí mismo un conjunto linealmente independiente.
         Sus coordenadas en \(\{1,x,x^2\}\) son las columnas de
+
+        \medskip
+
         \[
             \begin{pmatrix}
                 1&2&0&1&0\\
@@ -2527,18 +2539,17 @@
             \end{pmatrix}
             \xrightarrow{\;F_2\leftrightarrow F_3\;}
             \begin{pmatrix}
-                1&2&0&1&0\\
-                0&0&1&1&0\\
-                0&0&0&0&1
+                \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&2&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{3}$}}{0}}&1&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{5}$}}{0}}\\
+                0&0&\alert{1}&1&0\\
+                0&0&0&0&\alert{1}
             \end{pmatrix}.
         \]
         El rango es \(3\), así que los cinco polinomios generan
         \(\mathbb{R}_2[x]\). Los pivotes están en las columnas \(1\),
-        \(3\) y \(5\), luego
+        \(3\) y \(5\), luego el siguiente conjunto es una base que contiene a \(1+x\):
         \[
-            \{1+x,\ x^2,\ x\}
+            \{v_{\alert{1}}, v_{\alert{3}}, v_{\alert{5}}\} = \{1+x, x^2, x\}.
         \]
-        es una base de \(\mathbb{R}_2[x]\) que contiene a \(1+x\).
     \end{example}
 \end{frame}
 
@@ -2548,6 +2559,9 @@
 
     \begin{example}
         En \(M_{2\times2}(\mathbb{R})\) consideramos
+
+        \vspace{-3pt}
+
         \[
             v_1=\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
             v_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
@@ -2566,14 +2580,14 @@
         Tomamos coordenadas respecto de la base
         \(B=\{E_{11},E_{12},E_{21},E_{22}\}\):
         \[
-            \begin{pmatrix}a&b\\c&d\end{pmatrix}_B=(a,b,c,d).
+            \begin{pmatrix}a&b\\c&d\end{pmatrix}_B=\begin{pmatrix}a\\b\\c\\d\end{pmatrix}.
         \]
     \end{example}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Ejemplo: una base de \(M_{2\times2}(\mathbb{R})\) entre unos generadores (continuación)}
+    \frametitle{Ejemplo: una base de \(M_{2\times2}(\mathbb{R})\) entre unos generadores}
 
     \begin{example}
         Escalonamos la matriz que tiene por columnas las coordenadas de
@@ -2591,19 +2605,18 @@
                 0&1&1&0&1&1\\
                 0&0&0&0&-2&2\\
                 0&0&0&-2&0&-2
-            \end{pmatrix}\\
+            \end{pmatrix}\\[4ex]
             &\xrightarrow{\;F_3\leftrightarrow F_4\;}
             \begin{pmatrix}
-                1&0&1&1&0&2\\
-                0&1&1&0&1&1\\
-                0&0&0&-2&0&-2\\
-                0&0&0&0&-2&2
+                \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{0}}&1&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{4}$}}{1}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{5}$}}{0}}&2\\
+                0&\alert{1}&1&0&1&1\\
+                0&0&0&\alert{-2}&0&-2\\
+                0&0&0&0&\alert{-2}&2
             \end{pmatrix}.
         \end{align*}
         El rango es \(4\), luego los \(v_j\) generan. Los pivotes están
-        en las columnas \(1,2,4,5\): \(\{v_1,v_2,v_4,v_5\}\) es una base
-        que contiene a \(v_1,v_2\). Los descartados son redundantes:
-        \(v_3=v_1+v_2\), \(v_6=v_1+2v_2+v_4-v_5\).
+        en las columnas \(1,2,4,5\): \(\{v_{\alert{1}}, v_{\alert{2}}, v_{\alert{4}}, v_{\alert{5}}\}\) es una base
+        que contiene a \(v_1,v_2\).
     \end{example}
 \end{frame}
 
@@ -2835,10 +2848,16 @@
     \frametitle{Ejemplo: ampliar a una base de \(\mathbb{R}^4\) sistemáticamente}
 
     \begin{example}
+
+        \vspace{-5pt}
+
         Ampliamos de nuevo \(v_1=(1,2,0,1)\), \(v_2=(0,1,1,1)\), ahora sin
         tantear. Como en la demostración del corolario, añadimos la base
         canónica: \(v_1,v_2,e_1,e_2,e_3,e_4\) generan \(\mathbb{R}^4\), y
         aplicamos el método de existencia de bases en \(k^n\):
+
+        \vspace{-15pt}
+
         \begin{align*}
             \begin{pmatrix}
                 1&0&1&0&0&0\\
@@ -2859,13 +2878,13 @@
                 0&1&-2&1&0&0\\
                 0&0&2&-1&1&0\\
                 0&0&1&-1&0&1
-            \end{pmatrix}\\
+            \end{pmatrix}\\[2.5ex]
             &\xrightarrow[\;F_4-2F_3\;]{\;F_3\leftrightarrow F_4\;}
             \begin{pmatrix}
-                1&0&1&0&0&0\\
-                0&1&-2&1&0&0\\
-                0&0&1&-1&0&1\\
-                0&0&0&1&1&-2
+                \smash{\overset{\raisebox{1ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1ex}{$\scriptstyle\alert{2}$}}{0}}&\smash{\overset{\raisebox{1ex}{$\scriptstyle\alert{3}$}}{1}}&\smash{\overset{\raisebox{1ex}{$\scriptstyle\alert{4}$}}{0}}&0&0\\
+                0&\alert{1}&-2&1&0&0\\
+                0&0&\alert{1}&-1&0&1\\
+                0&0&0&\alert{1}&1&-2
             \end{pmatrix}.
         \end{align*}
 
@@ -2908,7 +2927,7 @@
         Ampliamos de nuevo \(1+x\), \(x-x^2\), ahora sin tantear. Añadimos
         la base \(\{1,x,x^2\}\): los polinomios
         \[
-            1+x,\quad x-x^2,\quad 1,\quad x,\quad x^2
+            v_1=1+x,\quad v_2=x-x^2,\quad v_3=1,\quad v_4=x,\quad v_5=x^2
         \]
         generan \(\mathbb{R}_2[x]\), y aplicamos el método de existencia de
         bases en coordenadas respecto de \(\{1,x,x^2\}\):
@@ -2926,13 +2945,13 @@
             \end{pmatrix}
             \xrightarrow{\;F_3+F_2\;}
             \begin{pmatrix}
-                1&0&1&0&0\\
-                0&1&-1&1&0\\
-                0&0&-1&1&1
+                \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{0}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{3}$}}{1}}&0&0\\
+                0&\alert{1}&-1&1&0\\
+                0&0&\alert{-1}&1&1
             \end{pmatrix}.
         \]
         Los pivotes están en las columnas \(1,2,3\):
-        \(\{1+x,\ x-x^2,\ 1\}\) es una base de \(\mathbb{R}_2[x]\) que
+        \(\{v_{\alert{1}}, v_{\alert{2}}, v_{\alert{3}}\}=\{1+x,\ x-x^2,\ 1\}\) es una base de \(\mathbb{R}_2[x]\) que
         contiene a \(1+x\) y \(x-x^2\).
     \end{example}
 \end{frame}
