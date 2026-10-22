@@ -1,0 +1,375 @@
+\subsection{Subespacio generado}
+
+\begin{frame}
+    \frametitle{Subespacio generado}
+
+    \begin{definition}
+        Sean $v_1,\ldots,v_r$ vectores de un espacio vectorial $V$ sobre $k$.
+        El \alert{subespacio generado} por $v_1,\ldots,v_r$ es el conjunto
+        de todas sus combinaciones lineales:
+        \[
+            \langle v_1,\ldots,v_r\rangle
+            =\{\lambda_1v_1+\cdots+\lambda_rv_r:\ \lambda_1,\ldots,\lambda_r\in k\}.
+        \]
+    \end{definition}
+
+    \medskip
+
+    El subespacio generado por el conjunto vacío es el trivial
+    $\langle\varnothing\rangle=\{0\}$.
+
+    \medskip
+
+    El plano $W=\{(v_1,v_2,v_3)\in\R^3: v_1-2v_2+v_3=0\}$
+    que acabamos de estudiar es
+    \[
+        W=\langle(2,1,0),(-1,0,1)\rangle.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{El subespacio generado es un subespacio}
+
+    \begin{proposition}
+        $\langle v_1,\ldots,v_r\rangle$ es un subespacio de $V$ que contiene
+        a $v_1,\ldots,v_r$.
+    \end{proposition}
+
+    \begin{proof}
+        Contiene al vector cero, $0=0v_1+\cdots+0v_r$, luego no es vacío.
+        Sean
+        \[
+            u=\lambda_1v_1+\cdots+\lambda_rv_r,
+            \qquad
+            w=\mu_1v_1+\cdots+\mu_rv_r
+        \]
+        dos de sus elementos y $\alpha\in k$. Agrupando términos,
+        \[
+            u+w=(\lambda_1+\mu_1)v_1+\cdots+(\lambda_r+\mu_r)v_r,
+            \qquad
+            \alpha u=(\alpha\lambda_1)v_1+\cdots+(\alpha\lambda_r)v_r,
+        \]
+        que vuelven a ser combinaciones lineales de $v_1,\ldots,v_r$.
+
+        Finalmente, cada $v_i$ es la combinación lineal con coeficiente $1$
+        en $v_i$ y $0$ en los demás.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{El menor subespacio que contiene a unos vectores}
+
+    \begin{proposition}
+        Si $W\subseteq V$ es un subespacio y $v_1,\ldots,v_r\in W$, entonces
+        \[
+            \langle v_1,\ldots,v_r\rangle\subseteq W.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Todo elemento de $\langle v_1,\ldots,v_r\rangle$ es una combinación
+        lineal de $v_1,\ldots,v_r$, y los subespacios son cerrados para
+        combinaciones lineales.
+    \end{proof}
+
+    \medskip
+
+    Así, $\langle v_1,\ldots,v_r\rangle$ es el \alert{menor subespacio}
+    de $V$ que contiene a $v_1,\ldots,v_r$: los contiene, y está contenido
+    en cualquier otro subespacio que los contenga.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generadores de un subespacio}
+
+    Como los subespacios son espacios vectoriales, tiene sentido decir que
+    unos vectores \alert{generan} un subespacio.
+
+    \begin{proposition}
+        \begin{enumerate}
+            \item $\langle v_1,\ldots,v_r\rangle$ está generado por
+            $v_1,\ldots,v_r$.
+            \item Si un subespacio $W\subseteq V$ está generado por
+            $v_1,\ldots,v_r$, entonces $W=\langle v_1,\ldots,v_r\rangle$.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        (1) Los vectores $v_1,\ldots,v_r$ están en
+        $\langle v_1,\ldots,v_r\rangle$, y todo elemento de
+        $\langle v_1,\ldots,v_r\rangle$ es, por definición, combinación
+        lineal de ellos.
+
+        (2) Que $v_1,\ldots,v_r$ generen $W$ significa que están en $W$ y que
+        todo vector de $W$ es combinación lineal de ellos, es decir,
+        $W\subseteq\langle v_1,\ldots,v_r\rangle$. La otra inclusión se debe
+        a que $\langle v_1,\ldots,v_r\rangle$ es el menor subespacio que
+        contiene a $v_1,\ldots,v_r$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rectas y planos generados}
+
+    \begin{example}
+        Sean $u,w\in\R^3$.
+        \begin{itemize}
+            \item Si $u\neq0$, $\langle u\rangle=\{\lambda u:\lambda\in\R\}$
+            es la \alert{recta} que pasa por el origen con dirección $u$.
+            \item Si $u$ y $w$ no son proporcionales, $\langle u,w\rangle$
+            es el \alert{plano} que pasa por el origen y contiene a $u$ y $w$.
+            \item Si $w=\alpha u$, entonces
+            $\lambda u+\mu w=(\lambda+\mu\alpha)u$, luego
+            \[
+                \langle u,w\rangle=\langle u\rangle
+            \]
+            es una recta, aunque haya dos generadores.
+        \end{itemize}
+    \end{example}
+
+    \medskip
+
+    El subespacio generado depende de cómo son los vectores, no solo de
+    cuántos hay.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generadores de un subespacio de polinomios}
+
+    \begin{example}
+        Sea $W=\{p(x)\in k_2[x]:\ p(1)=0\}$. Entonces
+        \[
+            W=\langle x-1,\ x^2-1\rangle.
+        \]
+    \end{example}
+
+    \begin{proof}[Comprobación]
+        \alert{$\supseteq$.} Los polinomios $x-1$ y $x^2-1$ se anulan en $1$,
+        luego están en el subespacio $W$, y por tanto
+        $\langle x-1,x^2-1\rangle\subseteq W$.
+
+        \alert{$\subseteq$.} Sea $p(x)=a_0+a_1x+a_2x^2\in W$. Como
+        $p(1)=a_0+a_1+a_2=0$, se tiene $a_0=-a_1-a_2$, y
+        \[
+            p(x)=-a_1-a_2+a_1x+a_2x^2=a_1(x-1)+a_2(x^2-1).
+        \]
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generadores de un subespacio de matrices}
+
+    \begin{example}
+        El subespacio de las matrices simétricas de $M_2(k)$ es
+        \[
+            \Bigl\langle
+            \begin{pmatrix}1&0\\0&0\end{pmatrix},
+            \begin{pmatrix}0&0\\0&1\end{pmatrix},
+            \begin{pmatrix}0&1\\1&0\end{pmatrix}
+            \Bigr\rangle.
+        \]
+    \end{example}
+
+    \medskip
+
+    Las tres matrices son simétricas. Recíprocamente, una matriz es simétrica
+    si y solo si es de la forma
+    \[
+        \begin{pmatrix}a&b\\b&c\end{pmatrix}
+        =a\begin{pmatrix}1&0\\0&0\end{pmatrix}
+        +c\begin{pmatrix}0&0\\0&1\end{pmatrix}
+        +b\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generadores de las soluciones de un sistema homogéneo}
+
+    \begin{proposition}
+        Sea $A\in M_{m\times n}(k)$ y sean $v_1,\ldots,v_s$ las soluciones
+        de $Av=0$ obtenidas en el Tema~1 dando el valor $1$ a una incógnita
+        libre y $0$ a las demás. Entonces
+        \[
+            \{v\in k^n:\ Av=0\}=\langle v_1,\ldots,v_s\rangle.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        En el Tema~1 vimos que toda solución es combinación lineal de
+        $v_1,\ldots,v_s$; esto da la inclusión $\subseteq$. La inclusión
+        $\supseteq$ se debe a que $v_1,\ldots,v_s$ son soluciones y el
+        conjunto de soluciones es un subespacio.
+    \end{proof}
+
+    \medskip
+
+    Por tanto, resolver un sistema homogéneo es encontrar un
+    \alert{sistema de generadores} de su conjunto de soluciones.
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Pertenece un vector al subespacio generado?}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r,u\in k^n$ y sea
+        $A=(v_1\mid\cdots\mid v_r)\in M_{n\times r}(k)$. Entonces
+        \[
+            u\in\langle v_1,\ldots,v_r\rangle
+            \iff
+            \rg(A)=\rg(A\mid u).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        $u\in\langle v_1,\ldots,v_r\rangle$ significa que existen
+        $\lambda_1,\ldots,\lambda_r\in k$ con
+        $\lambda_1v_1+\cdots+\lambda_rv_r=u$, es decir, que el sistema
+        \[
+            A\begin{pmatrix}\lambda_1\\\vdots\\\lambda_r\end{pmatrix}=u
+        \]
+        es compatible. Por el teorema de Rouché--Frobenius, esto equivale
+        a $\rg(A)=\rg(A\mid u)$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Ejemplo: pertenencia al subespacio generado}
+
+    \begin{example}
+        ¿Para qué valores de $a\in\R$ se tiene
+        $u=(2,3,a,1)\in\langle v_1,v_2\rangle$, con
+        \[
+            v_1=(1,0,1,2),
+            \qquad
+            v_2=(0,1,1,-1)?
+        \]
+    \end{example}
+
+    Escalonamos la matriz ampliada $(v_1\mid v_2\mid u)$ con
+    $F_3-F_1-F_2$ y $F_4-2F_1+F_2$:
+    \[
+        \left(\begin{array}{cc|c}
+            1&0&2\\
+            0&1&3\\
+            1&1&a\\
+            2&-1&1
+        \end{array}\right)
+        \longrightarrow
+        \left(\begin{array}{cc|c}
+            1&0&2\\
+            0&1&3\\
+            0&0&a-5\\
+            0&0&0
+        \end{array}\right).
+    \]
+
+    \framebreak
+
+    La matriz de coeficientes tiene rango $2$. La ampliada tiene rango $2$
+    si $a=5$ y rango $3$ si $a\neq5$. Por tanto,
+    \[
+        u\in\langle v_1,v_2\rangle
+        \iff
+        a=5.
+    \]
+
+    \medskip
+
+    En ese caso, la forma escalonada da directamente los coeficientes:
+    $\lambda_1=2$, $\lambda_2=3$, es decir,
+    \[
+        (2,3,5,1)=2v_1+3v_2.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Comparar subespacios generados}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r,w_1,\ldots,w_s\in V$. Entonces
+        \[
+            \langle v_1,\ldots,v_r\rangle\subseteq\langle w_1,\ldots,w_s\rangle
+            \iff
+            v_1,\ldots,v_r\in\langle w_1,\ldots,w_s\rangle.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        \alert{$\Rightarrow$.} Cada $v_i$ está en
+        $\langle v_1,\ldots,v_r\rangle$, luego en
+        $\langle w_1,\ldots,w_s\rangle$.
+
+        \alert{$\Leftarrow$.} $\langle w_1,\ldots,w_s\rangle$ es un subespacio
+        que contiene a $v_1,\ldots,v_r$, luego contiene al menor subespacio
+        que los contiene, que es $\langle v_1,\ldots,v_r\rangle$.
+    \end{proof}
+
+    \medskip
+
+    Para probar que dos subespacios generados son \alert{iguales}, basta
+    ver que cada generador de uno pertenece al otro.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: dos sistemas de generadores del mismo subespacio}
+
+    \begin{example}
+        En $\R^3$,
+        \[
+            \langle(1,1,0),(0,1,1)\rangle=\langle(1,2,1),(1,0,-1)\rangle.
+        \]
+    \end{example}
+
+    \medskip
+
+    Llamemos $v_1=(1,1,0)$, $v_2=(0,1,1)$, $w_1=(1,2,1)$, $w_2=(1,0,-1)$.
+
+    \medskip
+
+    \alert{$\supseteq$.} $w_1=v_1+v_2$ y $w_2=v_1-v_2$ están en
+    $\langle v_1,v_2\rangle$.
+
+    \medskip
+
+    \alert{$\subseteq$.} Despejando,
+    \[
+        v_1=\tfrac12w_1+\tfrac12w_2,
+        \qquad
+        v_2=\tfrac12w_1-\tfrac12w_2
+    \]
+    están en $\langle w_1,w_2\rangle$.
+
+    \medskip
+
+    Un mismo subespacio tiene, en general, \alert{muchos} sistemas de
+    generadores distintos.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generadores redundantes}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r,u\in V$. Entonces
+        \[
+            \langle v_1,\ldots,v_r,u\rangle=\langle v_1,\ldots,v_r\rangle
+            \iff
+            u\in\langle v_1,\ldots,v_r\rangle.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        \alert{$\Rightarrow$.} $u\in\langle v_1,\ldots,v_r,u\rangle
+        =\langle v_1,\ldots,v_r\rangle$.
+
+        \alert{$\Leftarrow$.} La inclusión $\supseteq$ siempre se cumple,
+        pues $v_1,\ldots,v_r\in\langle v_1,\ldots,v_r,u\rangle$.
+        Para $\subseteq$, los generadores $v_1,\ldots,v_r,u$ pertenecen
+        a $\langle v_1,\ldots,v_r\rangle$ por hipótesis, y basta aplicar
+        la proposición anterior.
+    \end{proof}
+
+    \medskip
+
+    Es la versión para subespacios de la eliminación de generadores
+    redundantes del Tema~2.
+\end{frame}

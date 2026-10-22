@@ -29,3 +29,735 @@
         valen en $W$ por ser válidos en $V$ para cualesquiera vectores.
     \end{proof}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Una condición necesaria}
+    
+    \begin{corollary}
+        Si $W\subseteq V$ es un subespacio, entonces $0\in W$.
+    \end{corollary}
+
+    \medskip
+
+    Esto tiene dos usos prácticos:
+    \begin{itemize}
+        \item para ver que $W$ \alert{no es vacío}, lo habitual es comprobar
+        que $0\in W$;
+        \item si $0\notin W$, podemos concluir directamente que $W$
+        \alert{no} es un subespacio.
+    \end{itemize}
+
+    \medskip
+
+    El recíproco es falso: veremos subconjuntos que contienen al $0$
+    y no son subespacios.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Caracterización mediante combinaciones lineales}
+
+    \begin{proposition}
+        Un subconjunto no vacío $W\subseteq V$ es un subespacio si y solo si
+        para todo $u,w\in W$ y todo $\lambda,\mu\in k$ se tiene
+        \[
+            \lambda u+\mu w\in W.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Si $W$ es un subespacio, entonces $\lambda u\in W$ y $\mu w\in W$
+        por la condición (2), y su suma está en $W$ por la condición (1).
+
+        \medskip
+
+        Recíprocamente, supongamos que $W$ cumple la condición del enunciado.
+        Tomando $\lambda=\mu=1$ obtenemos $u+w\in W$, que es la condición (1).
+        Tomando $\mu=0$ obtenemos $\lambda u=\lambda u+0w\in W$, que es la
+        condición (2).
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cierre para combinaciones lineales}
+
+    \begin{proposition}
+        Si $W\subseteq V$ es un subespacio, $v_1,\ldots,v_r\in W$ y
+        $\lambda_1,\ldots,\lambda_r\in k$, entonces
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r\in W.
+        \]
+    \end{proposition}
+
+    \vspace{-10pt}
+
+    \begin{proof}
+        Por inducción sobre $r$. Para $r=1$, $\lambda_1v_1\in W$ por la
+        condición (2). Si $r>1$, por hipótesis de inducción
+        $u=\lambda_1v_1+\cdots+\lambda_{r-1}v_{r-1}\in W$, y entonces
+        \[
+            \lambda_1v_1+\cdots+\lambda_rv_r=u+\lambda_rv_r\in W
+        \]
+        por las condiciones (2) y (1).
+    \end{proof}
+
+    \medskip
+
+    En otras palabras: un subespacio es un subconjunto no vacío
+    \alert{cerrado para combinaciones lineales}.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Los subespacios triviales}
+
+    \begin{example}
+        Todo espacio vectorial $V$ tiene, al menos, dos subespacios:
+        \begin{itemize}
+            \item el \alert{total}, que es el propio $V$;
+            \item el \alert{subespacio trivial}, \alert{cero} o \alert{nulo} $\{0\}$.
+        \end{itemize}
+    \end{example}
+
+    \medskip
+
+    Para $\{0\}$: no es vacío y, como el único vector es $0$,
+    \[
+        0+0=0\in\{0\},
+        \qquad
+        \lambda 0=0\in\{0\}
+        \quad\text{para todo }\lambda\in k.
+    \]
+
+    \medskip
+
+    Si $V\neq\{0\}$, estos dos subespacios son distintos.
+    Un subespacio $W\neq V$ se llama \alert{propio}, y uno $W\neq\{0\}$
+    se llama \alert{no trivial}.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rectas que pasan por el origen}
+
+    \begin{example}
+        Sea $u\in V$ un vector no nulo. El conjunto
+        \[
+            W=\{\lambda u:\lambda\in k\}
+        \]
+        de los múltiplos de $u$ es un subespacio de $V$.
+    \end{example}
+
+    \medskip
+
+    En efecto, $0=0u\in W$. Si $\lambda u,\mu u\in W$ y $\alpha\in k$, entonces
+    \[
+        \lambda u+\mu u=(\lambda+\mu)u\in W,
+        \qquad
+        \alpha(\lambda u)=(\alpha\lambda)u\in W.
+    \]
+
+    \medskip
+
+    El subespacio $W$ es la \alert{recta} que pasa por el origen
+    con dirección $u$. Esto se ve con más claridad en el caso $V=\R^2$ o $V=\R^3$, pero es cierto en cualquier espacio vectorial.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Un subespacio de $k^n$}
+
+    \begin{example}
+        El conjunto
+        \[
+            W=\{(v_1,\ldots,v_n)\in k^n:\ v_1+\cdots+v_n=0\}
+        \]
+        es un subespacio de $k^n$.
+    \end{example}
+
+    \medskip
+
+    Se tiene $0=(0,\ldots,0)\in W$, pues $0+\cdots+0=0$.
+    Sean $u=(u_1,\ldots,u_n)$ y $w=(w_1,\ldots,w_n)$ en $W$, es decir,
+    \[
+        u_1+\cdots+u_n=0,
+        \qquad
+        w_1+\cdots+w_n=0.
+    \]
+    Entonces $u+w=(u_1+w_1,\ldots,u_n+w_n)$ y
+    \[
+        (u_1+w_1)+\cdots+(u_n+w_n)
+        =(u_1+\cdots+u_n)+(w_1+\cdots+w_n)=0+0=0,
+    \]
+    luego $u+w\in W$. Análogamente, para $\lambda\in k$,
+    \[
+        \lambda u_1+\cdots+\lambda u_n=\lambda(u_1+\cdots+u_n)=\lambda0=0,
+    \]
+    luego $\lambda u\in W$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Subespacios de polinomios}
+
+    \begin{example}
+        Los siguientes conjuntos son subespacios de $k[x]$:
+        \begin{enumerate}
+            \item $k_n[x]$, para cada $n\geq0$;
+            \item $W=\{p(x)\in k[x]:\ p(a)=0\}$, para cada $a\in k$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    (1) El polinomio nulo está en $k_n[x]$, y si $p,q$ tienen grado
+    $\leq n$, entonces $p+q$ y $\lambda p$ también, pues sumar o multiplicar
+    por un escalar no crea monomios de grado mayor que $n$.
+
+    \medskip
+
+    (2) El polinomio nulo se anula en $a$. Si $p(a)=q(a)=0$ y $\lambda\in k$,
+    \[
+        (p+q)(a)=p(a)+q(a)=0,
+        \qquad
+        (\lambda p)(a)=\lambda p(a)=0.
+    \]
+
+    \medskip
+
+    Además, $k_m[x]$ es un subespacio de $k_n[x]$ si $m\leq n$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Subespacios de matrices}
+
+    \begin{example}
+        Los siguientes conjuntos son subespacios de $M_n(k)$:
+        \begin{enumerate}
+            \item las \alert{matrices simétricas}, $\{A\in M_n(k):\ A^t=A\}$;
+            \item las \alert{matrices triangulares superiores},
+            $\{A=(a_{ij})\in M_n(k):\ a_{ij}=0 \text{ si } i>j\}$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    (1) La matriz nula es simétrica. Si $A^t=A$, $B^t=B$ y $\lambda\in k$,
+    \[
+        (A+B)^t=A^t+B^t=A+B,
+        \qquad
+        (\lambda A)^t=\lambda A^t=\lambda A.
+    \]
+
+    \medskip
+
+    (2) La matriz nula es triangular superior. Si $i>j$, las entradas
+    $(i,j)$ de $A+B$ y de $\lambda A$ son
+    \[
+        a_{ij}+b_{ij}=0+0=0,
+        \qquad
+        \lambda a_{ij}=\lambda0=0.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Subespacios de funciones}
+
+    \begin{example}
+        En el espacio $\R^\R$ de todas las funciones $f\colon\R\to\R$,
+        los siguientes conjuntos son subespacios:
+        \begin{enumerate}
+            \item las funciones \alert{continuas};
+            \item las funciones \alert{derivables};
+            \item las funciones \alert{polinómicas}: $\R[x]$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    En los tres casos, la función constante $0$ pertenece al conjunto,
+    y la suma de dos funciones del tipo indicado y el producto de una de
+    ellas por un número real vuelven a ser del mismo tipo.
+
+    \medskip
+
+    Cada uno de ellos es un subespacio del anterior:
+    \[
+        \R[x]=\{\text{polinómicas}\}\subseteq\{\text{derivables}\}
+        \subseteq\{\text{continuas}\}\subseteq\R^\R.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contraejemplo: rectas que no pasan por el origen}
+
+    \begin{example}
+        El conjunto
+        \[
+            W=\{(v_1,v_2)\in\R^2:\ v_2=v_1+1\}
+        \]
+        \alert{no} es un subespacio de $\R^2$.
+    \end{example}
+
+    \begin{columns}[T]
+        \begin{column}{0.58\textwidth}
+            Basta observar que $(0,0)\notin W$, pues $0\neq0+1$.
+
+            \medskip
+
+            De hecho $W$ falla también las dos condiciones de cierre:
+            $(0,1),(1,2)\in W$, pero
+            \[
+                (0,1)+(1,2)=(1,3)\notin W,
+            \]
+            \[
+                2(0,1)=(0,2)\notin W.
+            \]
+
+            Las rectas de $\R^2$ que son subespacios son exactamente las que
+            \alert{pasan por el origen}.
+        \end{column}
+        \begin{column}{0.38\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.75]
+                \draw[->] (-2.2,0) -- (2.4,0) node[below] {\footnotesize $v_1$};
+                \draw[->] (0,-1.2) -- (0,3.6) node[left] {\footnotesize $v_2$};
+                \draw[very thick,alertcolor] (-2.2,-1.2) -- (2.4,3.4)
+                    node[right] {$W$};
+                \fill (0,0) circle (2pt) node[below left] {\footnotesize $0$};
+                \fill[alertcolor] (0,1) circle (2.5pt)
+                    node[left] {\footnotesize $(0,1)$};
+                \fill[alertcolor] (1,2) circle (2.5pt)
+                    node[right] {\footnotesize $(1,2)$};
+                \draw[thick] (1,3) circle (2.5pt)
+                    node[above] {\footnotesize $(1,3)$};
+                \draw[thick] (0,2) circle (2.5pt)
+                    node[left] {\footnotesize $(0,2)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contraejemplo: cerrado para escalares, no para la suma}
+
+    \begin{example}
+        El conjunto $W=\{(v_1,v_2)\in\R^2:\ v_1v_2=0\}$, formado por los dos
+        ejes de coordenadas, \alert{no} es un subespacio de $\R^2$.
+    \end{example}
+
+    \begin{columns}[T]
+        \begin{column}{0.62\textwidth}
+            Contiene a $(0,0)$ y es cerrado para el producto por escalares:
+            si $v_1v_2=0$, entonces $(\lambda v_1)(\lambda v_2)=\lambda^2v_1v_2=0$.
+
+            \medskip
+
+            Sin embargo, no es cerrado para la suma: $(1,0),(0,1)\in W$, pero
+            \[
+                (1,0)+(0,1)=(1,1)\notin W.
+            \]
+
+            Observa que $W$ es la \alert{unión} de dos subespacios, los dos ejes.
+            La unión de subespacios no es, en general, un subespacio.
+        \end{column}
+        \begin{column}{0.34\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.85]
+                \draw[very thick,alertcolor] (-1.6,0) -- (2,0);
+                \draw[very thick,alertcolor] (0,-1.2) -- (0,2);
+                \node[alertcolor,right] at (2,0) {$W$};
+                \draw[dashed] (1,0) -- (1,1) -- (0,1);
+                \fill[alertcolor] (1,0) circle (2.5pt)
+                    node[below] {\footnotesize $(1,0)$};
+                \fill[alertcolor] (0,1) circle (2.5pt)
+                    node[left] {\footnotesize $(0,1)$};
+                \fill[white] (1,1) circle (2.5pt);
+                \draw[thick] (1,1) circle (2.5pt)
+                    node[above right] {\footnotesize $(1,1)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contraejemplo: cerrado para la suma, no para escalares}
+
+    \begin{example}
+        El conjunto
+        \[
+            W=\{(v_1,v_2)\in\R^2:\ v_1\geq0,\ v_2\geq0\}
+        \]
+        (el primer cuadrante) \alert{no} es un subespacio de $\R^2$.
+    \end{example}
+
+    \medskip
+
+    Contiene a $(0,0)$ y es cerrado para la suma, pues la suma de números
+    no negativos es no negativa.
+
+    \medskip
+
+    Sin embargo, no es cerrado para el producto por escalares:
+    \[
+        (1,0)\in W,
+        \qquad\text{pero}\qquad
+        (-1)(1,0)=(-1,0)\notin W.
+    \]
+
+    \medskip
+
+    Lo mismo ocurre con $\Z^2\subseteq\R^2$: es cerrado para la suma,
+    pero $\tfrac12(1,0)\notin\Z^2$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Contraejemplos en polinomios y matrices}
+
+    \begin{example}
+        Ninguno de los siguientes conjuntos es un subespacio:
+        \begin{enumerate}
+            \item los polinomios de grado \alert{exactamente} $n\geq1$, en $k[x]$;
+            \item las matrices invertibles, en $M_n(k)$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    En ambos casos falta el vector cero: el polinomio nulo no tiene grado $n$
+    y la matriz nula no es invertible.
+
+    \medskip
+
+    Tampoco son cerrados para la suma. Por ejemplo,
+    \[
+        x^n+(1-x^n)=1,
+    \]
+    que tiene grado $0$, y
+    \[
+        I+(-I)=0,
+    \]
+    que no es invertible.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Soluciones de un sistema homogéneo}
+
+    \begin{proposition}
+        Sea $A\in M_{m\times n}(k)$. El conjunto de soluciones del sistema
+        homogéneo $Av=0$,
+        \[
+            W=\{v\in k^n:\ Av=0\},
+        \]
+        es un subespacio de $k^n$.
+    \end{proposition}
+
+    \begin{proof}
+        Es lo que vimos en el Tema 1. El vector nulo es solución, pues $A0=0$,
+        luego $W\neq\varnothing$. Si $u,w\in W$ y $\lambda\in k$, entonces
+        \[
+            A(u+w)=Au+Aw=0+0=0,
+            \qquad
+            A(\lambda u)=\lambda Au=\lambda0=0,
+        \]
+        es decir, $u+w\in W$ y $\lambda u\in W$.
+    \end{proof}
+
+    \medskip
+
+    Por ejemplo, el subespacio $\{v\in k^n: v_1+\cdots+v_n=0\}$ es el
+    conjunto de soluciones de un sistema homogéneo con una sola ecuación.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sistemas no homogéneos}
+
+    \begin{example}
+        Si $b\neq0$, el conjunto de soluciones de $Av=b$
+        \alert{no} es un subespacio de $k^n$.
+    \end{example}
+
+    \medskip
+
+    En efecto, $A0=0\neq b$, luego $0$ no es solución.
+
+    \medskip
+
+    \begin{columns}[T]
+        \begin{column}{0.56\textwidth}
+            La recta $\{(v_1,v_2)\in\R^2: v_2=v_1+1\}$ es de este tipo:
+            es el conjunto de soluciones del sistema no homogéneo
+            \[
+                -v_1+v_2=1.
+            \]
+            En cambio, la recta paralela que pasa por el origen,
+            $\{(v_1,v_2)\in\R^2: -v_1+v_2=0\}$, es el conjunto de soluciones
+            del \alert{sistema homogéneo asociado}, y sí es un subespacio.
+        \end{column}
+        \begin{column}{0.40\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw[->] (-2.2,0) -- (2.4,0) node[below] {\footnotesize $v_1$};
+                \draw[->] (0,-1.6) -- (0,3) node[left] {\footnotesize $v_2$};
+                \draw[very thick,alertcolor] (-2.2,-1.2) -- (1.8,2.8)
+                    node[above] {\footnotesize $-v_1+v_2=1$};
+                \draw[very thick] (-1.6,-1.6) -- (2.2,2.2)
+                    node[right] {\footnotesize $-v_1+v_2=0$};
+                \fill (0,0) circle (2pt) node[below right] {\footnotesize $0$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Ejemplo: un plano en $\R^3$}
+
+    \begin{example}
+        Consideremos el subespacio de $\R^3$
+        \[
+            W=\{(v_1,v_2,v_3)\in\R^3:\ v_1-2v_2+v_3=0\}.
+        \]
+        Es el conjunto de soluciones de un sistema homogéneo con una ecuación
+        y tres incógnitas.
+    \end{example}
+
+    La matriz de coeficientes $\begin{pmatrix}1&-2&1\end{pmatrix}$ ya está
+    escalonada, con pivote en la primera columna. Las incógnitas libres son
+    $v_2$ y $v_3$. Tomando $v_2=\lambda$, $v_3=\mu$, se obtiene
+    $v_1=2\lambda-\mu$, luego
+    \[
+        W=\{(2\lambda-\mu,\lambda,\mu):\ \lambda,\mu\in\R\}
+        =\{\lambda(2,1,0)+\mu(-1,0,1):\ \lambda,\mu\in\R\}.
+    \]
+
+    \framebreak
+
+    \begin{columns}[T]
+        \begin{column}{0.52\textwidth}
+            Así, los elementos de $W$ son exactamente las
+            \alert{combinaciones lineales} de
+            \[
+                u_1=(2,1,0),
+                \qquad
+                u_2=(-1,0,1).
+            \]
+            Geométricamente, $W$ es el \alert{plano} de $\R^3$ que pasa
+            por el origen y contiene a $u_1$ y $u_2$.
+        \end{column}
+        \begin{column}{0.44\textwidth}
+            \centering
+            \begin{tikzpicture}[x={(1cm,0cm)},y={(0.4cm,0.3cm)},
+                    z={(0cm,1cm)},scale=0.66]
+                \filldraw[alertcolor,fill opacity=0.15,draw opacity=0.6]
+                    (-1,-1,-1) -- (3,1,-1) -- (1,1,1) -- (-3,-1,1) -- cycle;
+                \draw[->] (0,0,0) -- (3.6,0,0) node[right] {\footnotesize $v_1$};
+                \draw[->] (0,0,0) -- (0,3,0) node[right] {\footnotesize $v_2$};
+                \draw[->] (0,0,0) -- (0,0,2) node[above] {\footnotesize $v_3$};
+                \draw[->,very thick,alertcolor] (0,0,0) -- (2,1,0)
+                    node[above] {\footnotesize $u_1$};
+                \draw[->,very thick,alertcolor] (0,0,0) -- (-1,0,1)
+                    node[above left] {\footnotesize $u_2$};
+                \fill (0,0,0) circle (1.5pt);
+                \node[alertcolor] at (-2.3,-0.8,0.3) {$W$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+
+    \medskip
+
+    Además, por lo visto en el Tema 1, cada vector de $W$ se escribe de
+    manera \alert{única} como combinación lineal de $u_1$ y $u_2$, de modo
+    que $u_1,u_2$ es una base de $W$ y $\dim W=2$.
+
+    \medskip
+
+    Esta descripción de un subespacio como el conjunto de combinaciones
+    lineales de ciertos vectores es la idea del \alert{subespacio generado},
+    que estudiamos a continuación.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Sistemas homogéneos en coordenadas}
+
+    Sea $V$ un espacio vectorial de dimensión $n$ y sea $B$ una base de $V$.
+    Recordemos que $u_B\in k^n$ denota el vector de coordenadas de $u\in V$
+    en $B$.
+
+    \begin{definition}
+        Sea $A\in M_{m\times n}(k)$. El subespacio de $V$
+        \alert{definido por el sistema homogéneo} $Ax=0$ respecto de $B$ es
+        \[
+            W=\{u\in V:\ Au_B=0\},
+        \]
+        es decir, el conjunto de vectores de $V$ cuyas coordenadas en $B$
+        son soluciones de $Ax=0$. Lo denotamos
+        \[
+            W\colon\ Ax=0\quad\text{resp.\ }B.
+        \]
+    \end{definition}
+
+    \medskip
+
+    Las incógnitas $x_1,\ldots,x_n$ representan las \alert{coordenadas}
+    en $B$ de un vector genérico de~$V$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sistemas homogéneos en coordenadas}
+
+    \begin{proposition}
+        Si $W\colon Ax=0$ resp.\ $B$, entonces $W$ es un subespacio de $V$.
+    \end{proposition}
+
+    \begin{proof}
+        Como $0_B=0$ y $A0=0$, se tiene $0\in W$. Sean $u,w\in W$ y
+        $\lambda\in k$. Por las propiedades de las coordenadas del Tema~2,
+        \[
+            A(u+w)_B=A(u_B+w_B)=Au_B+Aw_B=0+0=0,
+        \]
+        \[
+            A(\lambda u)_B=A(\lambda u_B)=\lambda Au_B=\lambda0=0,
+        \]
+        luego $u+w\in W$ y $\lambda u\in W$.
+    \end{proof}
+
+    \medskip
+
+    En $k^n$ con la base canónica $C$, se tiene $u_C=u$, y recuperamos
+    el subespacio de soluciones $\{u\in k^n: Au=0\}$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: un subespacio de polinomios}
+
+    \begin{example}
+        Sea $W=\{p(x)\in k_2[x]:\ p(1)=0\}$ y sea $B=\{1,x,x^2\}$.
+    \end{example}
+
+    \medskip
+
+    Si $p(x)=a_0+a_1x+a_2x^2$, entonces $p_B=(a_0,a_1,a_2)$ y
+    \[
+        p(1)=a_0+a_1+a_2.
+    \]
+    Por tanto, $p\in W$ si y solo si sus coordenadas en $B$ satisfacen
+    $x_1+x_2+x_3=0$, es decir,
+    \[
+        W\colon\
+        \begin{pmatrix}1&1&1\end{pmatrix}
+        \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}=0
+        \quad\text{resp.\ }B.
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: subespacios de matrices}
+
+    \begin{example}
+        En $M_2(k)$ consideramos la base
+        \[
+            B=\left\{
+            \begin{pmatrix}1&0\\0&0\end{pmatrix},
+            \begin{pmatrix}0&1\\0&0\end{pmatrix},
+            \begin{pmatrix}0&0\\1&0\end{pmatrix},
+            \begin{pmatrix}0&0\\0&1\end{pmatrix}
+            \right\}.
+        \]
+    \end{example}
+
+    Las coordenadas de $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ en $B$ son
+    $(a,b,c,d)$. Por tanto:
+    \begin{itemize}
+        \item las matrices \alert{simétricas} son las que cumplen $b=c$:
+        \[
+            \begin{pmatrix}0&1&-1&0\end{pmatrix}x=0\quad\text{resp.\ }B;
+        \]
+        \item las matrices \alert{triangulares superiores} son las que
+        cumplen $c=0$:
+        \[
+            \begin{pmatrix}0&0&1&0\end{pmatrix}x=0\quad\text{resp.\ }B.
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cambio de base en el sistema}
+
+    \begin{proposition}
+        Sean $B$ y $B'$ dos bases de $V$. Si
+        \[
+            W\colon\ Ax=0\quad\text{resp.\ }B,
+        \]
+        entonces
+        \[
+            W\colon\ A\,M(B',B)x=0\quad\text{resp.\ }B'.
+        \]
+    \end{proposition}
+
+    \vspace{-10pt}
+
+    \begin{proof}
+        Por el Tema~2, para todo $u\in V$ se tiene $u_B=M(B',B)\,u_{B'}$.
+        Por tanto,
+        \[
+            u\in W
+            \iff Au_B=0
+            \iff A\,M(B',B)\,u_{B'}=0.\qedhere
+        \]
+    \end{proof}
+
+    Para cambiar de base, basta \alert{multiplicar por la derecha} la matriz
+    de coeficientes por la matriz de cambio de base de $B'$ a $B$.
+    El número de ecuaciones no cambia.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: cambio de base en polinomios}
+
+    \begin{example}
+        Sea $W=\{p(x)\in k_2[x]:\ p(1)=0\}$. Hemos visto que
+        \[
+            W\colon\ \begin{pmatrix}1&1&1\end{pmatrix}x=0
+            \quad\text{resp.\ }B=\{1,x,x^2\}.
+        \]
+        Calculemos sus ecuaciones respecto de $B'=\{1,\ x-1,\ (x-1)^2\}$.
+    \end{example}
+
+    Como $(x-1)^2=1-2x+x^2$, las columnas de $M(B',B)$ son las coordenadas
+    en $B$ de los vectores de $B'$:
+    \[
+        \begin{pmatrix}1&1&1\end{pmatrix}
+        \begin{pmatrix}1&-1&1\\0&1&-2\\0&0&1\end{pmatrix}
+        =\begin{pmatrix}1&0&0\end{pmatrix}.
+    \]
+    Por tanto,
+    \[
+        W\colon\ \begin{pmatrix}1&0&0\end{pmatrix}x=0
+        \quad\text{resp.\ }B'.
+    \]
+    En efecto, si $p(x)=b_0+b_1(x-1)+b_2(x-1)^2$, entonces $p(1)=b_0$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: una base adaptada a un plano}
+
+    \begin{example}
+        Sea $W\subseteq\R^3$ el plano $W\colon\ x_1-2x_2+x_3=0$ resp.\ la
+        base canónica $C$, y sea
+        \[
+            B'=\{(2,1,0),\ (-1,0,1),\ (1,0,0)\},
+        \]
+        cuyos dos primeros vectores generan $W$.
+    \end{example}
+
+    Las columnas de $M(B',C)$ son los propios vectores de $B'$:
+    \[
+        \begin{pmatrix}1&-2&1\end{pmatrix}
+        \begin{pmatrix}2&-1&1\\1&0&0\\0&1&0\end{pmatrix}
+        =\begin{pmatrix}0&0&1\end{pmatrix}.
+    \]
+    ($B'$ es una base, pues esta matriz tiene determinante $1\neq0$.)
+    Por tanto,
+    \[
+        W\colon\ x_3=0\quad\text{resp.\ }B'.
+    \]
+    En una base que contiene generadores de $W$, la ecuación de $W$ se
+    vuelve \alert{mucho más sencilla}.
+\end{frame}
