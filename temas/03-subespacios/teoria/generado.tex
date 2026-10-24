@@ -143,6 +143,8 @@
         \]
     \end{example}
 
+    \vspace{-15pt}
+
     \begin{proof}[Comprobación]
         \alert{$\supseteq$.} Los polinomios $x-1$ y $x^2-1$ se anulan en $1$,
         luego están en el subespacio $W$, y por tanto
@@ -154,6 +156,9 @@
             p(x)=-a_1-a_2+a_1x+a_2x^2=a_1(x-1)+a_2(x^2-1).
         \]
     \end{proof}
+
+    Además, $x-1$ y $x^2-1$ son linealmente independientes ya que no son proporcionales. Por tanto, $\{x-1,x^2-1\}$ es una
+    \alert{base} de $W$.
 \end{frame}
 
 \begin{frame}
@@ -180,6 +185,9 @@
         +c\begin{pmatrix}0&0\\0&1\end{pmatrix}
         +b\begin{pmatrix}0&1\\1&0\end{pmatrix}.
     \]
+    Los coeficientes de esta combinación lineal son las entradas $a$, $b$,
+    $c$ de la matriz, luego son únicos. Por el teorema de representación
+    única, las tres matrices forman una \alert{base} de este subespacio.
 \end{frame}
 
 \begin{frame}
@@ -190,21 +198,102 @@
         de $Av=0$ obtenidas en el Tema~1 dando el valor $1$ a una incógnita
         libre y $0$ a las demás. Entonces
         \[
-            \{v\in k^n:\ Av=0\}=\langle v_1,\ldots,v_s\rangle.
+            \{v\in k^n:\ Av=0\}=\langle v_1,\ldots,v_s\rangle,
         \]
+        y $\{v_1,\ldots,v_s\}$ es una base de este subespacio.
     \end{proposition}
+
+    \vspace{-8pt}
 
     \begin{proof}
         En el Tema~1 vimos que toda solución es combinación lineal de
         $v_1,\ldots,v_s$; esto da la inclusión $\subseteq$. La inclusión
         $\supseteq$ se debe a que $v_1,\ldots,v_s$ son soluciones y el
-        conjunto de soluciones es un subespacio.
+        conjunto de soluciones es un subespacio. También vimos en el Tema~1
+        que los coeficientes de esa combinación lineal son \alert{únicos}
+        (son los valores de las incógnitas libres), así que, por el teorema
+        de representación única, $\{v_1,\ldots,v_s\}$ es una base.
+    \end{proof}
+
+    \vspace{-5pt}
+
+    Por tanto, resolver un sistema homogéneo es encontrar una
+    \alert{base} de su conjunto de soluciones.
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Sistemas homogéneos en coordenadas}
+
+    \begin{proposition}
+        Sea $B$ una base de un espacio vectorial $V$ de dimensión $n$,
+        sea $A\in M_{m\times n}(k)$ y sea
+        \[
+            W=\{v\in V:\ Av_B=0\}.
+        \]
+        Sea $\{v_1,\ldots,v_s\}$ la base de $\{x\in k^n:\ Ax=0\}$ de la
+        proposición anterior, y sean $w_1,\ldots,w_s\in V$ los vectores
+        con $(w_i)_B=v_i$. Entonces $W=\langle w_1,\ldots,w_s\rangle$ y
+        $\{w_1,\ldots,w_s\}$ es una base de $W$.
+    \end{proposition}
+
+    \begin{proof}
+        Los $w_i$ existen porque $c_B$ es biyectiva. Veamos que todo
+        $v\in W$ se escribe de manera única como combinación lineal de
+        $w_1,\ldots,w_s$; por el teorema de representación única, esto
+        prueba ambas afirmaciones.
+
+        \alert{Existencia.} Si $v\in W$, entonces $v_B$ es solución de
+        $Ax=0$, luego existen $\lambda_1,\ldots,\lambda_s\in k$ con
+        \[
+            v_B=\lambda_1v_1+\cdots+\lambda_sv_s
+            =\lambda_1(w_1)_B+\cdots+\lambda_s(w_s)_B.
+        \]
+        Como $c_B$ refleja las combinaciones lineales,
+        $v=\lambda_1w_1+\cdots+\lambda_sw_s$.
+
+        \alert{Pertenencia.} Cada $w_i$ está en $W$, pues
+        $A(w_i)_B=Av_i=0$. Como $W$ es un subespacio (sus vectores son
+        aquellos cuyas coordenadas resuelven un sistema homogéneo, y $c_B$
+        conserva las combinaciones lineales), toda combinación lineal de
+        los $w_i$ está en $W$.
+
+        \alert{Unicidad.} Si
+        $v=\lambda_1w_1+\cdots+\lambda_sw_s=\mu_1w_1+\cdots+\mu_sw_s$,
+        tomando coordenadas,
+        \[
+            \lambda_1v_1+\cdots+\lambda_sv_s=v_B=\mu_1v_1+\cdots+\mu_sv_s,
+        \]
+        y como $\{v_1,\ldots,v_s\}$ es una base, $\lambda_i=\mu_i$ para
+        todo~$i$.
     \end{proof}
 
     \medskip
 
-    Por tanto, resolver un sistema homogéneo es encontrar un
-    \alert{sistema de generadores} de su conjunto de soluciones.
+    Es decir: se resuelve el sistema en $k^n$ y se \alert{traducen} las
+    soluciones básicas a vectores de $V$ mediante la base $B$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: sistemas homogéneos en coordenadas}
+
+    \begin{example}
+        Volvamos a $W=\{p(x)\in k_2[x]:\ p(1)=0\}$, con la base
+        $B=\{1,x,x^2\}$. Si $p(x)=a_0+a_1x+a_2x^2$, entonces
+        \[
+            p(x)\in W\iff a_0+a_1+a_2=0
+            \iff
+            \begin{pmatrix}1&1&1\end{pmatrix}p(x)_B=0.
+        \]
+        Las incógnitas libres son $a_1$ y $a_2$, y las soluciones básicas
+        son $v_1=(-1,1,0)$ y $v_2=(-1,0,1)$.
+        Los polinomios con esas coordenadas son $w_1=x-1$ y $w_2=x^2-1$,
+        así que $\{x-1,x^2-1\}$ es una base de $W$.
+    \end{example}
+
+    \medskip
+
+    Recuperamos el resultado obtenido antes, ahora sin necesidad de
+    \alert{adivinar} los generadores.
 \end{frame}
 
 \begin{frame}
