@@ -321,7 +321,7 @@
     \end{proof}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}[allowframebreaks, t]
     \frametitle{Ejemplo: pertenencia al subespacio generado}
 
     \begin{example}
@@ -437,28 +437,12 @@
 \begin{frame}
     \frametitle{Generadores redundantes}
 
-    \begin{proposition}
+    \begin{corollary}
         Sean $v_1,\ldots,v_r,u\in V$. Entonces
         \[
             \langle v_1,\ldots,v_r,u\rangle=\langle v_1,\ldots,v_r\rangle
             \iff
             u\in\langle v_1,\ldots,v_r\rangle.
         \]
-    \end{proposition}
-
-    \begin{proof}
-        \alert{$\Rightarrow$.} $u\in\langle v_1,\ldots,v_r,u\rangle
-        =\langle v_1,\ldots,v_r\rangle$.
-
-        \alert{$\Leftarrow$.} La inclusión $\supseteq$ siempre se cumple,
-        pues $v_1,\ldots,v_r\in\langle v_1,\ldots,v_r,u\rangle$.
-        Para $\subseteq$, los generadores $v_1,\ldots,v_r,u$ pertenecen
-        a $\langle v_1,\ldots,v_r\rangle$ por hipótesis, y basta aplicar
-        la proposición anterior.
-    \end{proof}
-
-    \medskip
-
-    Es la versión para subespacios de la eliminación de generadores
-    redundantes del Tema~2.
+    \end{corollary}
 \end{frame}
