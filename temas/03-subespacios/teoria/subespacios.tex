@@ -574,6 +574,114 @@
 
 
 \begin{frame}
+    \frametitle{Dimensión del espacio de soluciones}
+
+    \begin{proposition}
+        Sea $A\in M_{m\times n}(k)$ y sea $W=\{v\in k^n:\ Av=0\}$. Entonces
+        \[
+            \dim W=n-\rg(A).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Al escalonar $A$ hay $\rg(A)$ pivotes, luego $s=n-\rg(A)$
+        incógnitas libres. Sean $v_1,\ldots,v_s$ las soluciones obtenidas
+        dando el valor $1$ a una incógnita libre y $0$ a las demás.
+        Por el Tema~1, toda solución se escribe de manera \alert{única} como
+        $\lambda_1v_1+\cdots+\lambda_sv_s$. Así, $v_1,\ldots,v_s$ generan $W$.
+        Además son linealmente independientes: si
+        $\lambda_1v_1+\cdots+\lambda_sv_s=0$, como también
+        $0=0v_1+\cdots+0v_s$, la unicidad da $\lambda_1=\cdots=\lambda_s=0$.
+        Por tanto, $v_1,\ldots,v_s$ es una base de $W$ y $\dim W=s$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ecuaciones independientes}
+
+    \begin{definition}
+        Sea $A\in M_{m\times n}(k)$. Las $m$ ecuaciones del sistema
+        homogéneo $Av=0$ son \alert{independientes} si $\rg(A)=m$.
+    \end{definition}
+
+    \medskip
+
+    Como $\rg(A)=\rg(A^t)$ y las columnas de $A^t$ son las filas de $A$,
+    esto equivale a que las filas de $A$ sean vectores linealmente
+    independientes de $k^n$: ninguna ecuación es combinación lineal
+    de las demás.
+
+    \medskip
+
+    Por la proposición anterior, si $W$ viene dado por $m$ ecuaciones
+    independientes, entonces
+    \[
+        \dim W=n-m,
+        \qquad\text{es decir,}\qquad
+        m=n-\dim W.
+    \]
+    Cualquier otro sistema que defina $W$ tiene al menos $n-\dim W$
+    ecuaciones, pues su número de ecuaciones es $\geq$ que su rango.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cómo obtener ecuaciones independientes}
+
+    \begin{proposition}
+        Todo subespacio $W=\{v\in k^n:\ Av=0\}$ puede describirse mediante
+        $\rg(A)$ ecuaciones independientes.
+    \end{proposition}
+
+    \begin{proof}
+        Sea $E$ una forma escalonada de $A$. Por el Tema~1, las operaciones
+        elementales por filas no cambian las soluciones, luego
+        $W=\{v\in k^n:\ Ev=0\}$. Las filas nulas de $E$ dan la ecuación
+        $0=0$ y pueden suprimirse. Las $\rg(A)$ filas restantes forman una
+        matriz escalonada sin filas nulas, cuyo rango es su número de
+        filas.
+    \end{proof}
+
+    \medskip
+
+    Es decir: para eliminar ecuaciones \alert{redundantes}, basta escalonar
+    la matriz de coeficientes y quedarse con las filas no nulas.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: ecuaciones redundantes}
+
+    \begin{example}
+        Sea $W\subseteq\R^3$ el subespacio definido por
+        \[
+            \left\{
+            \begin{aligned}
+                v_1+v_2-v_3&=0,\\
+                v_1-v_2+v_3&=0,\\
+                2v_1&=0.
+            \end{aligned}
+            \right.
+        \]
+    \end{example}
+
+    La tercera ecuación es la suma de las dos primeras, así que las
+    ecuaciones no son independientes. Escalonando:
+    \[
+        \begin{pmatrix}1&1&-1\\1&-1&1\\2&0&0\end{pmatrix}
+        \xrightarrow[F_3-2F_1]{F_2-F_1}
+        \begin{pmatrix}1&1&-1\\0&-2&2\\0&-2&2\end{pmatrix}
+        \xrightarrow{F_3-F_2}
+        \begin{pmatrix}1&1&-1\\0&-2&2\\0&0&0\end{pmatrix}.
+    \]
+    El rango es $2$, luego $\dim W=3-2=1$, y $W$ viene dado por las dos
+    ecuaciones independientes $v_1+v_2-v_3=0$ y $-2v_2+2v_3=0$.
+    Resolviendo, $W=\langle(0,1,1)\rangle$.
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Sistemas homogéneos en coordenadas}
 
     Sea $V$ un espacio vectorial de dimensión $n$ y sea $B$ una base de $V$.
@@ -622,6 +730,37 @@
 
     En $k^n$ con la base canónica $C$, se tiene $u_C=u$, y recuperamos
     el subespacio de soluciones $\{u\in k^n: Au=0\}$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ecuaciones independientes respecto de una base}
+
+    Como en $k^n$, si $A\in M_{m\times n}(k)$, decimos que las $m$
+    ecuaciones de $W\colon Ax=0$ resp.\ $B$ son \alert{independientes}
+    si $\rg(A)=m$.
+
+    \begin{proposition}
+        Si $W\colon Ax=0$ resp.\ $B$, entonces $\dim W=n-\rg(A)$.
+        En particular, si las ecuaciones son independientes,
+        $\dim W=n-m$.
+    \end{proposition}
+
+    \begin{proof}
+        Sea $W'=\{v\in k^n:\ Av=0\}$, de dimensión $n-\rg(A)$. Por
+        definición, $u\in W$ si y solo si $u_B\in W'$. Todo vector de
+        $k^n$ es el vector de coordenadas de algún vector de $V$, luego
+        existen $u_1,\ldots,u_s\in V$ tales que $(u_1)_B,\ldots,(u_s)_B$ es
+        una base de $W'$. Entonces $u_1,\ldots,u_s\in W$ son linealmente
+        independientes y generan $W$, pues las coordenadas en $B$
+        reflejan las combinaciones lineales (Tema~2). Luego
+        $\dim W=\dim W'$.
+    \end{proof}
+
+    \medskip
+
+    Igual que en $k^n$, escalonando $A$ y suprimiendo las filas nulas
+    se obtienen ecuaciones independientes de $W$ respecto de $B$.
 \end{frame}
 
 \begin{frame}

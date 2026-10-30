@@ -1,0 +1,433 @@
+\subsection{Operaciones con subespacios}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Intersección de subespacios}
+
+    \begin{proposition}
+        Si $W_1$ y $W_2$ son subespacios de $V$, entonces
+        $W_1\cap W_2$ también lo es.
+    \end{proposition}
+
+    \begin{proof}
+        Como $0\in W_1$ y $0\in W_2$, se tiene $0\in W_1\cap W_2$.
+        Sean $u,v\in W_1\cap W_2$ y $\lambda\in k$.
+        Como $W_1$ es un subespacio, $u+v\in W_1$ y $\lambda u\in W_1$;
+        análogamente para $W_2$.
+        Por tanto $u+v\in W_1\cap W_2$ y $\lambda u\in W_1\cap W_2$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ecuaciones de la intersección en $k^n$}
+
+    \begin{proposition}
+        Sean $A_1\in M_{m_1\times n}(k)$ y $A_2\in M_{m_2\times n}(k)$. Si
+        $W_1=\{v\in k^n:\ A_1v=0\}$ y $W_2=\{v\in k^n:\ A_2v=0\}$,
+        entonces
+        \[
+            W_1\cap W_2=\left\{v\in k^n:\
+            \begin{pmatrix}A_1\\A_2\end{pmatrix}v=0\right\}.
+        \]
+        Es decir, la unión de ecuaciones implícitas de $W_1$ y $W_2$
+        es un sistema de ecuaciones implícitas de $W_1\cap W_2$.
+    \end{proposition}
+
+    \begin{proof}
+        Las primeras $m_1$ entradas de
+        $\begin{pmatrix}A_1\\A_2\end{pmatrix}v$ son las de $A_1v$, y las
+        $m_2$ restantes son las de $A_2v$. Por tanto, este vector es nulo
+        si y solo si $A_1v=0$ y $A_2v=0$, es decir, si y solo si
+        $v\in W_1$ y $v\in W_2$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: intersección de dos planos en $\R^3$}
+
+    \begin{example}
+        Sean $W_1,W_2\subseteq\R^3$ los planos
+        \[
+            W_1\colon\ v_1-2v_2+v_3=0,
+            \qquad
+            W_2\colon\ v_1+v_2=0.
+        \]
+        Calculemos $W_1\cap W_2$.
+    \end{example}
+
+    Por la proposición anterior, $W_1\cap W_2$ es el conjunto de
+    soluciones del sistema formado por las dos ecuaciones. Estas son
+    independientes (no son proporcionales), luego
+    $\dim(W_1\cap W_2)=3-2=1$. De la segunda, $v_1=-v_2$; sustituyendo en
+    la primera, $v_3=3v_2$. Por tanto,
+    \[
+        W_1\cap W_2=\{(-v_2,v_2,3v_2):\ v_2\in\R\}=\langle(-1,1,3)\rangle,
+    \]
+    una recta que pasa por el origen. En general, la unión de ecuaciones
+    independientes de $W_1$ y de $W_2$ \alert{no} tiene por qué ser
+    independiente; si no lo es, se escalona para eliminar las redundantes.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ecuaciones de la intersección respecto de una base}
+
+    \begin{proposition}
+        Sea $V$ un espacio vectorial de dimensión $n$ y sea $B$ una base
+        de $V$. Si $W_1\colon A_1x=0$ resp.\ $B$ y
+        $W_2\colon A_2x=0$ resp.\ $B$, entonces
+        \[
+            W_1\cap W_2\colon\
+            \begin{pmatrix}A_1\\A_2\end{pmatrix}x=0\quad\text{resp.\ }B.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Para $u\in V$, aplicamos la proposición anterior a $v=u_B$:
+        \[
+            u\in W_1\cap W_2
+            \iff A_1u_B=0\ \text{y}\ A_2u_B=0
+            \iff \begin{pmatrix}A_1\\A_2\end{pmatrix}u_B=0.\qedhere
+        \]
+    \end{proof}
+
+    Las ecuaciones de $W_1$ y $W_2$ deben estar dadas respecto de la
+    \alert{misma base}; si no, antes hay que cambiar de base una de ellas.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: intersección de subespacios de matrices}
+
+    \begin{example}
+        En $M_2(k)$, sean $W_1$ el subespacio de las matrices simétricas
+        y $W_2$ el de las triangulares superiores. Calculemos
+        $W_1\cap W_2$.
+    \end{example}
+
+    Respecto de la base
+    \[
+        B=\left\{
+        \begin{pmatrix}1&0\\0&0\end{pmatrix},
+        \begin{pmatrix}0&1\\0&0\end{pmatrix},
+        \begin{pmatrix}0&0\\1&0\end{pmatrix},
+        \begin{pmatrix}0&0\\0&1\end{pmatrix}
+        \right\}
+    \]
+    ya vimos que $W_1\colon x_2-x_3=0$ y $W_2\colon x_3=0$. Por tanto,
+    \[
+        W_1\cap W_2\colon\
+        \begin{pmatrix}0&1&-1&0\\0&0&1&0\end{pmatrix}x=0
+        \quad\text{resp.\ }B,
+    \]
+    es decir, $x_2=x_3=0$: la intersección está formada por las matrices
+    \alert{diagonales}
+    $\begin{pmatrix}a&0\\0&d\end{pmatrix}$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La unión de subespacios no es un subespacio}
+
+    \begin{columns}[T]
+        \begin{column}{0.62\textwidth}
+            A diferencia de la intersección, la unión $W_1\cup W_2$
+            no es en general un subespacio.
+
+            \medskip
+
+            Ya vimos que la unión de los dos ejes de $\R^2$ no lo es:
+            $(1,0)$ y $(0,1)$ están en ella, pero
+            \[
+                (1,0)+(0,1)=(1,1)
+            \]
+            no está en ninguno de los dos ejes.
+        \end{column}
+        \begin{column}{0.34\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.85]
+                \draw[very thick,alertcolor] (-1.6,0) -- (2,0);
+                \draw[very thick,alertcolor] (0,-1.2) -- (0,2);
+                \node[alertcolor,right] at (2,0) {$W_1$};
+                \node[alertcolor,above] at (0,2) {$W_2$};
+                \draw[dashed] (1,0) -- (1,1) -- (0,1);
+                \fill[alertcolor] (1,0) circle (2.5pt)
+                    node[below] {\footnotesize $(1,0)$};
+                \fill[alertcolor] (0,1) circle (2.5pt)
+                    node[left] {\footnotesize $(0,1)$};
+                \fill[white] (1,1) circle (2.5pt);
+                \draw[thick] (1,1) circle (2.5pt)
+                    node[above right] {\footnotesize $(1,1)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+
+    \medskip
+
+    El menor subespacio que contiene a $W_1$ y a $W_2$ es la
+    \alert{suma}, que definimos a continuación.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Suma de subespacios}
+
+    \begin{definition}
+        La \alert{suma} de dos subespacios $W_1$ y $W_2$ de $V$ es
+        \[
+            W_1+W_2=\{u+w:\; u\in W_1,\; w\in W_2\}.
+        \]
+    \end{definition}
+
+    \begin{proposition}
+        $W_1+W_2$ es el menor subespacio de $V$ que contiene a $W_1$
+        y a $W_2$.
+    \end{proposition}
+
+    \begin{proof}
+        Es un subespacio: $0=0+0\in W_1+W_2$; si $u_1+w_1,u_2+w_2\in
+        W_1+W_2$ y $\lambda\in k$, entonces
+        \[
+            (u_1+w_1)+(u_2+w_2)=(u_1+u_2)+(w_1+w_2)\in W_1+W_2,
+        \]
+        \[
+            \lambda(u_1+w_1)=\lambda u_1+\lambda w_1\in W_1+W_2.
+        \]
+        Contiene a $W_1$ (tomando $w=0$) y a $W_2$ (tomando $u=0$).
+        Si $W$ es cualquier subespacio que contiene a $W_1$ y $W_2$,
+        entonces $u+w\in W$ para todo $u\in W_1$, $w\in W_2$,
+        luego $W_1+W_2\subseteq W$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Generadores de la suma}
+
+    \begin{proposition}
+        Si $W_1=\langle v_1,\ldots,v_p\rangle$ y
+        $W_2=\langle w_1,\ldots,w_q\rangle$, entonces
+        \[
+            W_1+W_2=\langle v_1,\ldots,v_p,w_1,\ldots,w_q\rangle.
+        \]
+        Es decir, la unión de sistemas de generadores de $W_1$ y $W_2$
+        es un sistema de generadores de $W_1+W_2$.
+    \end{proposition}
+
+    \begin{proof}
+        Probamos las dos inclusiones.
+
+        ($\supseteq$) Los vectores $v_1,\ldots,v_p$ están en $W_1$ y
+        $w_1,\ldots,w_q$ están en $W_2$, luego todos están en $W_1+W_2$.
+        Como $W_1+W_2$ es un subespacio y
+        $\langle v_1,\ldots,v_p,w_1,\ldots,w_q\rangle$ es el menor
+        subespacio que contiene a estos vectores, se tiene
+        $\langle v_1,\ldots,v_p,w_1,\ldots,w_q\rangle\subseteq W_1+W_2$.
+
+        ($\subseteq$) Todo elemento de $W_1+W_2$ es de la forma $u+w$ con
+        $u\in W_1$ y $w\in W_2$. Como $v_1,\ldots,v_p$ generan $W_1$ y
+        $w_1,\ldots,w_q$ generan $W_2$, existen escalares
+        $\lambda_1,\ldots,\lambda_p,\mu_1,\ldots,\mu_q\in k$ tales que
+        \[
+            u=\lambda_1v_1+\cdots+\lambda_pv_p,
+            \qquad
+            w=\mu_1w_1+\cdots+\mu_qw_q.
+        \]
+        Sumando,
+        \[
+            u+w=\lambda_1v_1+\cdots+\lambda_pv_p+\mu_1w_1+\cdots+\mu_qw_q,
+        \]
+        que es una combinación lineal de
+        $v_1,\ldots,v_p,w_1,\ldots,w_q$.
+        Por tanto $W_1+W_2\subseteq\langle v_1,\ldots,v_p,w_1,\ldots,w_q\rangle$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La unión de bases no es una base de la suma}
+
+    \begin{example}
+        En $\R^3$, sean
+        \[
+            W_1=\langle(1,0,0),(0,1,0)\rangle,
+            \qquad
+            W_2=\langle(1,1,0),(0,0,1)\rangle.
+        \]
+        Los dos pares de generadores son linealmente independientes, luego
+        son bases de $W_1$ y $W_2$. Su unión genera $W_1+W_2$, pero
+        \alert{no} es una base de $W_1+W_2$.
+    \end{example}
+
+    Por la proposición anterior,
+    \[
+        W_1+W_2=\langle(1,0,0),(0,1,0),(1,1,0),(0,0,1)\rangle=\R^3,
+    \]
+    pues entre estos vectores están $(1,0,0)$, $(0,1,0)$ y $(0,0,1)$,
+    que generan $\R^3$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La unión de bases no es una base de la suma}
+
+    Sin embargo, los cuatro vectores
+    \[
+        (1,0,0),\quad(0,1,0),\quad(1,1,0),\quad(0,0,1)
+    \]
+    son linealmente dependientes:
+    \[
+        1\cdot(1,0,0)+1\cdot(0,1,0)+(-1)\cdot(1,1,0)+0\cdot(0,0,1)=0,
+    \]
+    con coeficientes no todos nulos.
+
+    \medskip
+
+    El problema es que $(1,1,0)$ está en $W_1\cap W_2$: es a la vez
+    combinación lineal de la base de $W_1$ y elemento de la base de $W_2$.
+    La unión de bases genera la suma, pero en general
+    \alert{no es independiente}. Para obtener una base de $W_1+W_2$ hay que
+    eliminar vectores sobrantes; aquí basta quitar $(1,1,0)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: intersección y suma en $\R^3$}
+
+    \begin{example}
+        En $\R^3$, sean $W_1=\{u_3=0\}=\langle e_1,e_2\rangle$ y
+        $W_2=\{u_1=0\}=\langle e_2,e_3\rangle$. Entonces
+        \[
+            W_1\cap W_2=\{u_1=0,\;u_3=0\}=\langle e_2\rangle,
+            \qquad
+            W_1+W_2=\R^3.
+        \]
+    \end{example}
+
+    Para $W_1+W_2$: todo vector $(u_1,u_2,u_3)\in\R^3$ se descompone como
+    \[
+        (u_1,u_2,u_3)=\underbrace{(u_1,u_2,0)}_{\in W_1}
+        +\underbrace{(0,0,u_3)}_{\in W_2}.
+    \]
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Fórmula de Grassmann}
+
+    \begin{theorem}
+        Si $W_1$ y $W_2$ son subespacios de dimensión finita de $V$, entonces
+        \[
+            \dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2).
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Sea $\{u_1,\ldots,u_d\}$ una base de $W_1\cap W_2$, que
+        extendemos a bases
+        \[
+            \{u_1,\ldots,u_d,v_1,\ldots,v_p\}\quad\text{de }W_1,
+            \qquad
+            \{u_1,\ldots,u_d,w_1,\ldots,w_q\}\quad\text{de }W_2.
+        \]
+        Afirmamos que $B=\{u_1,\ldots,u_d,v_1,\ldots,v_p,w_1,\ldots,w_q\}$
+        es una base de $W_1+W_2$.
+
+        \alert{Generación.}
+        $B$ es la unión de una base de $W_1$ y una base de $W_2$,
+        luego genera $W_1+W_2$ por la proposición sobre generadores
+        de la suma.
+
+        \alert{Independencia lineal.}
+        Supongamos $\sum a_i u_i+\sum b_j v_j+\sum c_k w_k=0$.
+        Entonces
+        \[
+            \sum c_k w_k=-\sum a_i u_i-\sum b_j v_j\in W_1.
+        \]
+        Como $\sum c_k w_k\in W_2$, se tiene $\sum c_k w_k\in W_1\cap W_2$,
+        luego $\sum c_k w_k=\sum\lambda_i u_i$ para ciertos $\lambda_i$.
+        Reordenando, $-\sum\lambda_i u_i+\sum c_k w_k=0$.
+        Como $\{u_1,\ldots,u_d,w_1,\ldots,w_q\}$ es base de $W_2$,
+        concluimos $c_k=0$ para todo $k$.
+        Entonces $\sum a_i u_i+\sum b_j v_j=0$, y como
+        $\{u_1,\ldots,u_d,v_1,\ldots,v_p\}$ es base de $W_1$,
+        también $a_i=b_j=0$.
+
+        Por tanto $\dim(W_1+W_2)=d+p+q=\dim W_1+\dim W_2-d$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consecuencias de la fórmula de Grassmann}
+
+    Para $W_1=\langle e_1,e_2\rangle$ y $W_2=\langle e_2,e_3\rangle$ en $\R^3$:
+    \[
+        \dim(W_1+W_2)=2+2-1=3,
+    \]
+    lo que confirma $W_1+W_2=\R^3$.
+
+    \begin{corollary}
+        Si $\dim V=n$ y $W_1,W_2\subseteq V$, entonces
+        \[
+            \dim(W_1\cap W_2)\geq\dim W_1+\dim W_2-n.
+        \]
+        En particular, si $\dim W_1+\dim W_2>n$, la intersección
+        no puede ser trivial.
+    \end{corollary}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Suma directa}
+
+    \begin{definition}
+        Se dice que $V$ es la \alert{suma directa} de $W_1$ y $W_2$,
+        y se escribe $V=W_1\oplus W_2$, si
+        $V=W_1+W_2$ y $W_1\cap W_2=\{0\}$.
+    \end{definition}
+
+    \begin{proposition}
+        $V=W_1\oplus W_2$ si y solo si todo $v\in V$ se escribe de
+        manera \alert{única} como $v=u+w$ con $u\in W_1$ y $w\in W_2$.
+    \end{proposition}
+
+    \begin{proof}
+        ($\Rightarrow$) $V=W_1+W_2$ garantiza la existencia. Si
+        $u_1+w_1=u_2+w_2$ con $u_i\in W_1$ y $w_i\in W_2$, entonces
+        $u_1-u_2=w_2-w_1\in W_1\cap W_2=\{0\}$, luego $u_1=u_2$ y $w_1=w_2$.
+
+        ($\Leftarrow$) La existencia da $V=W_1+W_2$. Si $v\in W_1\cap W_2$,
+        entonces $v=v+0=0+v$ son dos descomposiciones de $v$; por
+        unicidad, $v=0$.
+    \end{proof}
+
+    \begin{corollary}
+        Si $V=W_1\oplus W_2$, entonces $\dim V=\dim W_1+\dim W_2$.
+    \end{corollary}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos de suma directa}
+
+    \begin{example}
+        En $\R^3$:
+        \begin{enumerate}
+            \item $\R^3=\langle e_1,e_2\rangle\oplus\langle e_3\rangle$:
+            todo $(u_1,u_2,u_3)=(u_1,u_2,0)+(0,0,u_3)$, de forma única.
+            \item $\R^3=\langle e_1\rangle\oplus\langle e_2\rangle\oplus\langle e_3\rangle$.
+            \item $\langle e_1,e_2\rangle$ y $\langle e_2,e_3\rangle$
+            no dan suma directa, pues su intersección es
+            $\langle e_2\rangle\neq\{0\}$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    En general, si $\{v_1,\ldots,v_n\}$ es una base de $V$, entonces
+    \[
+        V=\langle v_1\rangle\oplus\cdots\oplus\langle v_n\rangle.
+    \]
+\end{frame}

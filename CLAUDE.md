@@ -97,6 +97,8 @@ No redefinir estas macros:
 - Cuerpo base: $k$ (no alternar con $\mathbb{K}$, $K$, $\mathbb{F}$…).
 - Vectores: $v, w, u$ y familias $v_1,\ldots,v_r$.
 - Coordenadas: $v_i$ por defecto (no introducir $x_i$ salvo que sea necesario).
+- Vectores de $k^n$ escritos como tuplas $(v_1,\ldots,v_n)$, **sin** símbolo
+  de traspuesta: nunca $(v_1,\ldots,v_n)^T$ ni $(v_1,\ldots,v_n)^t$.
 - Dependencia lineal: existencia de $\lambda_1 v_1+\cdots+\lambda_r v_r=0$
   con los $\lambda_i$ no todos nulos.
 - Independencia lineal: $\lambda_1 v_1+\cdots+\lambda_r v_r=0

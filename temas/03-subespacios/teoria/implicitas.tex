@@ -1,0 +1,59 @@
+\begin{frame}[allowframebreaks, t]
+    \frametitle{De generadores a ecuaciones implícitas}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r\in k^n$ y $A=(v_1\mid\cdots\mid v_r)$.
+        Las ecuaciones implícitas de $W=\langle v_1,\ldots,v_r\rangle$
+        se obtienen escalonando la matriz $(A\mid u)$, donde
+        $u=(u_1,\ldots,u_n)$ es simbólico: cada fila en que la parte
+        de coeficientes se anule da una condición lineal
+        $a_1u_1+\cdots+a_nu_n=0$, y $W$ es exactamente el conjunto de
+        vectores que satisfacen todas esas condiciones.
+    \end{proposition}
+
+    \begin{proof}
+        Un vector $u\in k^n$ pertenece a $W$ si y solo si el sistema
+        $Ax=u$ es compatible. Al escalonar $(A\mid u)$ con $u$ simbólico,
+        las filas en que la parte de coeficientes se anula expresan
+        exactamente las condiciones de compatibilidad sobre $u_1,\ldots,u_n$.
+    \end{proof}
+
+    En particular, si $\dim W=s$, hay $n-s$ ecuaciones implícitas
+    independientes.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: ecuaciones implícitas del plano}
+
+    \begin{example}
+        Hallemos las ecuaciones implícitas de
+        $W=\langle(2,1,0),(-1,0,1)\rangle\subseteq\R^3$.
+    \end{example}
+
+    Escalonamos la matriz ampliada $(A\mid u)$:
+    \[
+        \begin{pmatrix}
+            2&-1&u_1\\1&0&u_2\\0&1&u_3
+        \end{pmatrix}
+        \xrightarrow{\;F_1\leftrightarrow F_2\;}
+        \begin{pmatrix}
+            1&0&u_2\\2&-1&u_1\\0&1&u_3
+        \end{pmatrix}
+        \xrightarrow{\;F_2-2F_1\;}
+        \begin{pmatrix}
+            1&0&u_2\\0&-1&u_1-2u_2\\0&1&u_3
+        \end{pmatrix}
+    \]
+    \[
+        \xrightarrow{\;F_3+F_2\;}
+        \begin{pmatrix}
+            1&0&u_2\\0&-1&u_1-2u_2\\0&0&u_1-2u_2+u_3
+        \end{pmatrix}.
+    \]
+    La tercera fila da la condición $u_1-2u_2+u_3=0$. Por tanto,
+    \[
+        W\colon u_1-2u_2+u_3=0,
+    \]
+    que coincide con la ecuación del plano del ejemplo anterior.
+\end{frame}
