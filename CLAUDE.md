@@ -116,6 +116,14 @@ No redefinir estas macros:
 - Reutilizar Gauss y el rango del Tema 1 para independencia, generación
   y bases en $k^n$: rango $n$ ↔ genera; rango $r$ ↔ independiente;
   ambas ↔ base.
+- Al escalonar, usar **solo operaciones elementales** ($F_i\leftrightarrow F_j$,
+  $\lambda F_i$, $F_i-\lambda F_j$); nunca combinadas como $F_3-F_1-F_2$.
+  Mostrar cada matriz intermedia con sus operaciones sobre la flecha:
+  `\xrightarrow{\;F_2-F_1\;}` o `\xrightarrow[\;F_4-2F_1\;]{\;F_3-F_1\;}`.
+- Matrices ampliadas (en particular, al calcular ecuaciones implícitas a
+  partir de generadores, $(A\mid u)$): siempre con línea vertical antes
+  de la última columna, `\left(\begin{array}{cc|c}…\end{array}\right)`,
+  en todas las matrices intermedias.
 - Escalonar solo hasta donde sea necesario para responder la pregunta;
   normalmente forma escalonada, no reducida.
 - En cálculos largos, hacer visible la estrategia, no registrar cada

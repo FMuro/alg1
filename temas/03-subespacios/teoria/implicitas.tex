@@ -33,23 +33,23 @@
 
     Escalonamos la matriz ampliada $(A\mid u)$:
     \[
-        \begin{pmatrix}
+        \left(\begin{array}{cc|c}
             2&-1&u_1\\1&0&u_2\\0&1&u_3
-        \end{pmatrix}
+        \end{array}\right)
         \xrightarrow{\;F_1\leftrightarrow F_2\;}
-        \begin{pmatrix}
+        \left(\begin{array}{cc|c}
             1&0&u_2\\2&-1&u_1\\0&1&u_3
-        \end{pmatrix}
+        \end{array}\right)
         \xrightarrow{\;F_2-2F_1\;}
-        \begin{pmatrix}
+        \left(\begin{array}{cc|c}
             1&0&u_2\\0&-1&u_1-2u_2\\0&1&u_3
-        \end{pmatrix}
+        \end{array}\right)
     \]
     \[
         \xrightarrow{\;F_3+F_2\;}
-        \begin{pmatrix}
-            1&0&u_2\\0&-1&u_1-2u_2\\0&0&u_1-2u_2+u_3
-        \end{pmatrix}.
+        \left(\begin{array}{cc|c}
+            1&0&u_2\\0&-1&u_1-2u_2\\0&0&\alert{u_1-2u_2+u_3}
+        \end{array}\right).
     \]
     La tercera fila da la condición $u_1-2u_2+u_3=0$. Por tanto,
     \[

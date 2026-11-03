@@ -27,7 +27,7 @@
         entonces
         \[
             W_1\cap W_2=\left\{v\in k^n:\
-            \begin{pmatrix}A_1\\A_2\end{pmatrix}v=0\right\}.
+            \begin{pmatrix}A_1\\ \hline A_2\end{pmatrix}v=0\right\}.
         \]
         Es decir, la unión de ecuaciones implícitas de $W_1$ y $W_2$
         es un sistema de ecuaciones implícitas de $W_1\cap W_2$.
@@ -35,7 +35,7 @@
 
     \begin{proof}
         Las primeras $m_1$ entradas de
-        $\begin{pmatrix}A_1\\A_2\end{pmatrix}v$ son las de $A_1v$, y las
+        $\left(\begin{smallmatrix}A_1\\ \hline A_2\end{smallmatrix}\right)v$ son las de $A_1v$, y las
         $m_2$ restantes son las de $A_2v$. Por tanto, este vector es nulo
         si y solo si $A_1v=0$ y $A_2v=0$, es decir, si y solo si
         $v\in W_1$ y $v\in W_2$.

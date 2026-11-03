@@ -326,7 +326,7 @@
 
     \begin{example}
         ¿Para qué valores de $a\in\R$ se tiene
-        $u=(2,3,a,1)\in\langle v_1,v_2\rangle$, con
+        $u=(2,3,a,1)\in\langle v_1,v_2\rangle\subseteq\R^4$, con
         \[
             v_1=(1,0,1,2),
             \qquad
@@ -334,8 +334,7 @@
         \]
     \end{example}
 
-    Escalonamos la matriz ampliada $(v_1\mid v_2\mid u)$ con
-    $F_3-F_1-F_2$ y $F_4-2F_1+F_2$:
+    Escalonamos la matriz ampliada $(v_1\mid v_2\mid u)$:
     \[
         \left(\begin{array}{cc|c}
             1&0&2\\
@@ -343,7 +342,14 @@
             1&1&a\\
             2&-1&1
         \end{array}\right)
-        \longrightarrow
+        \xrightarrow[\;F_4-2F_1\;]{\;F_3-F_1\;}
+        \left(\begin{array}{cc|c}
+            1&0&2\\
+            0&1&3\\
+            0&1&a-2\\
+            0&-1&-3
+        \end{array}\right)
+        \xrightarrow[\;F_4+F_2\;]{\;F_3-F_2\;}
         \left(\begin{array}{cc|c}
             1&0&2\\
             0&1&3\\
