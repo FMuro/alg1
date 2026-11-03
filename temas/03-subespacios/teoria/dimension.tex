@@ -1,0 +1,500 @@
+\subsection{Dimensión de un subespacio}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{La dimensión de un subespacio}
+
+    \begin{theorem}
+        Sea $V$ un espacio vectorial de dimensión $n$ y sea $W\subseteq V$
+        un subespacio. Entonces $W$ tiene dimensión finita y
+        \[
+            \dim(W)\leq n.
+        \]
+    \end{theorem}
+
+    \medskip
+
+    No es evidente: a priori no sabemos que $W$ tenga un sistema generador
+    finito. Hay que \alert{construir} una base de $W$.
+
+    \framebreak
+
+    \begin{proof}
+        Si $W=\{0\}$, entonces $\dim(W)=0$. Supongamos $W\neq\{0\}$.
+
+        \medskip
+
+        Unos vectores de $W$ son linealmente independientes en $W$ si y solo
+        si lo son en $V$, pues la condición es la misma. Por el Tema~2, una
+        familia independiente de $V$ tiene a lo sumo $n$ vectores.
+
+        \medskip
+
+        Como $W$ contiene algún vector no nulo, que por sí solo es
+        independiente, podemos elegir $w_1,\ldots,w_m\in W$ linealmente
+        independientes con $m\geq1$ \alert{lo mayor posible}; existe porque
+        $m\leq n$.
+
+        \medskip
+
+        Veamos que $w_1,\ldots,w_m$ generan $W$. Si algún $u\in W$ no fuera
+        combinación lineal de ellos, por el lema de añadir un vector a una
+        familia independiente, $w_1,\ldots,w_m,u$ serían $m+1$ vectores
+        independientes de $W$, en contra de la elección de $m$.
+
+        \medskip
+
+        Por tanto, $\{w_1,\ldots,w_m\}$ es una base de $W$ y
+        $\dim(W)=m\leq n$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Subespacios de la misma dimensión}
+
+    \begin{corollary}
+        Sea $V$ un espacio vectorial de dimensión finita y sean
+        $W\subseteq W'$ subespacios de $V$. Entonces:
+        \begin{enumerate}
+            \item $\dim(W)\leq\dim(W')$;
+            \item si $\dim(W)=\dim(W')$, entonces $W=W'$.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        Por el teorema, $W'$ es un espacio vectorial de dimensión finita, y
+        $W$ es un subespacio suyo; aplicando de nuevo el teorema se obtiene
+        (1).
+
+        Para (2), sea $\{w_1,\ldots,w_m\}$ una base de $W$. Son
+        $m=\dim(W')$ vectores linealmente independientes de $W'$, luego
+        forman una base de $W'$ (Tema~2). Por tanto,
+        $W'=\langle w_1,\ldots,w_m\rangle=W$.
+    \end{proof}
+
+    \medskip
+
+    En particular, si $W\subsetneq W'$, entonces $\dim(W)<\dim(W')$; y el
+    único subespacio de $V$ de dimensión $\dim(V)$ es el propio $V$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Igualdad de subespacios mediante la dimensión}
+
+    \begin{example}
+        Volvamos a la igualdad
+        \[
+            \langle(1,1,0),(0,1,1)\rangle=\langle(1,2,1),(1,0,-1)\rangle
+        \]
+        en $\R^3$, con $v_1=(1,1,0)$, $v_2=(0,1,1)$, $w_1=(1,2,1)$,
+        $w_2=(1,0,-1)$.
+    \end{example}
+
+    \medskip
+
+    Antes comprobamos las dos inclusiones. Ahora basta \alert{una}:
+    \begin{itemize}
+        \item $w_1=v_1+v_2$ y $w_2=v_1-v_2$, luego
+        $\langle w_1,w_2\rangle\subseteq\langle v_1,v_2\rangle$;
+        \item ambos subespacios tienen dimensión $2$, pues cada uno está
+        generado por dos vectores no proporcionales, que son por tanto
+        una base.
+    \end{itemize}
+    Por el corolario, los dos subespacios coinciden.
+
+    \medskip
+
+    Para probar $W=W'$ basta ver $W\subseteq W'$ y $\dim(W)=\dim(W')$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Los subespacios de $\R^3$}
+
+    \begin{example}
+        Los subespacios de $\R^3$ son exactamente: $\{0\}$, las rectas que
+        pasan por el origen, los planos que pasan por el origen y $\R^3$.
+    \end{example}
+
+    \medskip
+
+    Sea $W\subseteq\R^3$ un subespacio. Por el teorema,
+    $\dim(W)\in\{0,1,2,3\}$:
+    \begin{itemize}
+        \item si $\dim(W)=0$, entonces $W=\{0\}$;
+        \item si $\dim(W)=1$, entonces $W=\langle u\rangle$ con $u\neq0$, una
+        \alert{recta} que pasa por el origen;
+        \item si $\dim(W)=2$, entonces $W=\langle u,w\rangle$ con $u,w$
+        independientes, es decir, no proporcionales: un \alert{plano} que
+        pasa por el origen;
+        \item si $\dim(W)=3$, entonces $W=\R^3$ por el corolario.
+    \end{itemize}
+
+    \medskip
+
+    Recíprocamente, ya sabemos que todos estos conjuntos son subespacios.
+\end{frame}
+
+\begin{frame}
+    \frametitle{En dimensión infinita}
+
+    \begin{example}
+        En $k[x]$, los subespacios
+        \[
+            k_0[x]\subsetneq k_1[x]\subsetneq k_2[x]\subsetneq\cdots
+        \]
+        forman una cadena estrictamente creciente que no termina.
+    \end{example}
+
+    \medskip
+
+    En un espacio $V$ de dimensión $n$ esto es imposible: si
+    $W_0\subsetneq W_1\subsetneq\cdots\subsetneq W_m$ son subespacios,
+    el corolario da
+    \[
+        0\leq\dim(W_0)<\dim(W_1)<\cdots<\dim(W_m)\leq n,
+    \]
+    luego $m\leq n$.
+
+    \medskip
+
+    Además, $W=\{p(x)\in k[x]:\ p(0)=0\}$ es un subespacio
+    \alert{propio} de $k[x]$, pues $1\notin W$, que tampoco tiene dimensión
+    finita: si tuviera dimensión $d$, los $d+1$ polinomios
+    $x,x^2,\ldots,x^{d+1}\in W$ serían independientes, en contra del Tema~2.
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Una base del subespacio generado}
+
+    \begin{proposition}
+        Sean $v_1,\ldots,v_r\in k^n$, sea
+        $A=(v_1\mid\cdots\mid v_r)\in M_{n\times r}(k)$ y sea $E$ una forma
+        escalonada de $A$. Los $v_j$ tales que la columna $j$ de $E$ tiene
+        pivote forman una base de $\langle v_1,\ldots,v_r\rangle$. En
+        particular,
+        \[
+            \dim\langle v_1,\ldots,v_r\rangle=\rg(A).
+        \]
+    \end{proposition}
+
+    \medskip
+
+    Es el método de existencia de bases en $k^n$ del Tema~2, sin suponer
+    que los $v_j$ generan $k^n$.
+
+    \medskip
+
+    En particular, el rango de una matriz es la \alert{dimensión} del
+    subespacio generado por sus columnas.
+
+    \framebreak
+
+    \begin{proof}
+        Sean $j_1<\cdots<j_m$ las columnas de $E$ con pivote, $m=\rg(A)$.
+        En el Tema~2 vimos que:
+        \begin{itemize}
+            \item $v_{j_1},\ldots,v_{j_m}$ son linealmente independientes,
+            pues las mismas operaciones elementales transforman
+            $(v_{j_1}\mid\cdots\mid v_{j_m})$ en una matriz escalonada con
+            $m$ pivotes;
+            \item si la columna $j$ de $E$ no tiene pivote, entonces $v_j$ es
+            combinación lineal de $v_1,\ldots,v_{j-1}$.
+        \end{itemize}
+
+        Eliminamos uno a uno los $v_j$ cuya columna no tiene pivote,
+        empezando por el de mayor índice. Cuando eliminamos $v_j$, los
+        vectores $v_1,\ldots,v_{j-1}$ siguen presentes, así que, por el
+        corolario de los generadores redundantes, el subespacio generado
+        no cambia. Al final,
+        \[
+            \langle v_{j_1},\ldots,v_{j_m}\rangle
+            =\langle v_1,\ldots,v_r\rangle,
+        \]
+        luego $\{v_{j_1},\ldots,v_{j_m}\}$ es una base y la dimensión es
+        $m=\rg(A)$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Una base del subespacio generado en coordenadas}
+
+    \begin{corollary}
+        Sea $B$ una base de un espacio vectorial $V$ de dimensión $n$, sean
+        $u_1,\ldots,u_r\in V$ y sea
+        $A=\bigl((u_1)_B\mid\cdots\mid(u_r)_B\bigr)$. Los $u_j$ tales que
+        la columna $j$ de una forma escalonada de $A$ tiene pivote forman
+        una base de $\langle u_1,\ldots,u_r\rangle$, y
+        \[
+            \dim\langle u_1,\ldots,u_r\rangle=\rg(A).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Sean $j_1<\cdots<j_m$ las columnas con pivote. Como $c_B$ preserva
+        y refleja las combinaciones lineales, y por la proposición anterior,
+        \[
+            u\in\langle u_1,\ldots,u_r\rangle
+            \iff u_B\in\langle(u_{j_1})_B,\ldots,(u_{j_m})_B\rangle
+            \iff u\in\langle u_{j_1},\ldots,u_{j_m}\rangle.
+        \]
+        Además, $u_{j_1},\ldots,u_{j_m}$ son linealmente independientes
+        porque sus coordenadas lo son (Tema~2).
+    \end{proof}
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: dimensión de un subespacio de $\R^4$}
+
+    \begin{example}
+        Calculemos la dimensión y una base de
+        $W=\langle v_1,v_2,v_3,v_4,v_5\rangle\subseteq\R^4$, donde
+        \[
+            \begin{aligned}
+                v_1&=(1,2,0,1), & v_2&=(2,4,1,3), & v_3&=(0,0,1,1),\\
+                v_4&=(1,2,1,2), & v_5&=(0,1,0,1).
+            \end{aligned}
+        \]
+    \end{example}
+
+    Escalonamos la matriz que tiene por columnas $v_1,\ldots,v_5$:
+    \[
+        \begin{pmatrix}
+            1&2&0&1&0\\
+            2&4&0&2&1\\
+            0&1&1&1&0\\
+            1&3&1&2&1
+        \end{pmatrix}
+        \xrightarrow[\;F_4-F_1\;]{\;F_2-2F_1\;}
+        \begin{pmatrix}
+            1&2&0&1&0\\
+            0&0&0&0&1\\
+            0&1&1&1&0\\
+            0&1&1&1&1
+        \end{pmatrix}
+        \xrightarrow[\;F_4-F_2,\ F_4-F_3\;]{\;F_2\leftrightarrow F_3\;}
+        \begin{pmatrix}
+            \alert{1}&2&0&1&0\\
+            0&\alert{1}&1&1&0\\
+            0&0&0&0&\alert{1}\\
+            0&0&0&0&0
+        \end{pmatrix}.
+    \]
+
+    \framebreak
+
+    Los pivotes están en las columnas $1$, $2$ y $5$. Por tanto,
+    \[
+        \{v_1,v_2,v_5\}\ \text{es una base de }W,
+        \qquad
+        \dim(W)=3.
+    \]
+
+    \medskip
+
+    En particular, $W\neq\R^4$: los cinco vectores \alert{no} generan
+    $\R^4$.
+
+    \medskip
+
+    Los vectores eliminados son combinación lineal de los anteriores, como
+    asegura la proposición:
+    \[
+        v_3=-2v_1+v_2,
+        \qquad
+        v_4=-v_1+v_2.
+    \]
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: dimensión de un subespacio de polinomios}
+
+    \begin{example}
+        Sea $W=\langle 1+x,\ x+x^2,\ 1-x^2,\ 1+2x+x^2\rangle\subseteq\R_2[x]$.
+    \end{example}
+
+    Escalonamos la matriz de coordenadas respecto de $\{1,x,x^2\}$:
+    \[
+        \begin{pmatrix}
+            1&0&1&1\\
+            1&1&0&2\\
+            0&1&-1&1
+        \end{pmatrix}
+        \xrightarrow{\;F_2-F_1\;}
+        \begin{pmatrix}
+            1&0&1&1\\
+            0&1&-1&1\\
+            0&1&-1&1
+        \end{pmatrix}
+        \xrightarrow{\;F_3-F_2\;}
+        \begin{pmatrix}
+            \alert{1}&0&1&1\\
+            0&\alert{1}&-1&1\\
+            0&0&0&0
+        \end{pmatrix}.
+    \]
+    Los pivotes están en las columnas $1$ y $2$: $\{1+x,\ x+x^2\}$ es una
+    base de $W$ y $\dim(W)=2$.
+
+    \framebreak
+
+    Podemos describir $W$ de otra forma. Sea
+    \[
+        W'=\{p(x)\in\R_2[x]:\ p(-1)=0\}.
+    \]
+    \begin{itemize}
+        \item $W\subseteq W'$, porque los cuatro generadores de $W$ se anulan
+        en $-1$.
+        \item Si $p(x)=a_0+a_1x+a_2x^2$, entonces $p(-1)=a_0-a_1+a_2$, luego
+        $W'\colon\begin{pmatrix}1&-1&1\end{pmatrix}x=0$ resp.\
+        $\{1,x,x^2\}$, y $\dim(W')=3-1=2$.
+    \end{itemize}
+
+    \medskip
+
+    Como $W\subseteq W'$ y tienen la misma dimensión, $W=W'$: los
+    polinomios de $W$ son exactamente los de grado $\leq2$ que se anulan
+    en $-1$.
+\end{frame}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: dimensión de un subespacio de matrices}
+
+    \begin{example}
+        ¿Cuál es la dimensión de $W=\langle A_1,A_2,A_3\rangle\subseteq M_2(\R)$,
+        según el valor de $t\in\R$?
+        \[
+            A_1=\begin{pmatrix}1&1\\0&1\end{pmatrix},
+            \qquad
+            A_2=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+            \qquad
+            A_3=\begin{pmatrix}2&1\\-1&t\end{pmatrix}.
+        \]
+    \end{example}
+
+    Usamos la base de $M_2(\R)$ en la que las coordenadas de
+    $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ son $(a,b,c,d)$:
+    \[
+        \begin{pmatrix}
+            1&0&2\\
+            1&1&1\\
+            0&1&-1\\
+            1&0&t
+        \end{pmatrix}
+        \xrightarrow[\;F_4-F_1\;]{\;F_2-F_1\;}
+        \begin{pmatrix}
+            1&0&2\\
+            0&1&-1\\
+            0&1&-1\\
+            0&0&t-2
+        \end{pmatrix}
+        \xrightarrow[\;F_3\leftrightarrow F_4\;]{\;F_3-F_2\;}
+        \begin{pmatrix}
+            \alert{1}&0&2\\
+            0&\alert{1}&-1\\
+            0&0&t-2\\
+            0&0&0
+        \end{pmatrix}.
+    \]
+
+    \framebreak
+
+    \begin{itemize}
+        \item Si $t\neq2$, hay pivote en las tres columnas: $\{A_1,A_2,A_3\}$
+        es una base de $W$ y $\dim(W)=3$.
+        \item Si $t=2$, solo hay pivote en las columnas $1$ y $2$:
+        $\{A_1,A_2\}$ es una base de $W$ y $\dim(W)=2$. En efecto,
+        \[
+            A_3=\begin{pmatrix}2&1\\-1&2\end{pmatrix}=2A_1-A_2.
+        \]
+    \end{itemize}
+
+    \medskip
+
+    En ningún caso $W=M_2(\R)$, que tiene dimensión $4$: tres matrices
+    nunca bastan para generarlo.
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Bases adaptadas a un subespacio}
+
+    \begin{proposition}
+        Sea $V$ un espacio vectorial de dimensión $n$ y sea $W\subseteq V$
+        un subespacio de dimensión $m$. Toda base $\{w_1,\ldots,w_m\}$ de
+        $W$ se amplía a una base $B=\{w_1,\ldots,w_n\}$ de $V$, y entonces
+        \[
+            W\colon\ x_{m+1}=\cdots=x_n=0\quad\text{resp.\ }B.
+        \]
+    \end{proposition}
+
+    \medskip
+
+    Diremos que $B$ es una base de $V$ \alert{adaptada} a $W$.
+
+    \framebreak
+
+    \begin{proof}
+        Los vectores $w_1,\ldots,w_m$ son linealmente independientes en
+        $V$, así que, por el Tema~2, se pueden ampliar a una base
+        $B=\{w_1,\ldots,w_n\}$ de $V$.
+
+        \medskip
+
+        Sea $u\in V$ con $u_B=(\lambda_1,\ldots,\lambda_n)$, es decir,
+        $u=\lambda_1w_1+\cdots+\lambda_nw_n$.
+
+        \medskip
+
+        Si $\lambda_{m+1}=\cdots=\lambda_n=0$, entonces $u$ es combinación
+        lineal de $w_1,\ldots,w_m$, luego $u\in W$.
+
+        \medskip
+
+        Recíprocamente, si $u\in W$, existen $\mu_1,\ldots,\mu_m\in k$ con
+        \[
+            u=\mu_1w_1+\cdots+\mu_mw_m+0w_{m+1}+\cdots+0w_n.
+        \]
+        Por la unicidad de las coordenadas, $\lambda_i=\mu_i$ para
+        $i\leq m$ y $\lambda_{m+1}=\cdots=\lambda_n=0$.
+    \end{proof}
+
+    \medskip
+
+    Es lo que ocurría en el ejemplo del plano
+    $x_1-2x_2+x_3=0$ de $\R^3$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: una base adaptada en polinomios}
+
+    \begin{example}
+        Ampliemos la base $\{1+x,\ x+x^2\}$ de
+        $W=\{p(x)\in\R_2[x]:\ p(-1)=0\}$ a una base de $\R_2[x]$.
+    \end{example}
+
+    Como en el Tema~2, añadimos la base $\{1,x,x^2\}$ y aplicamos el método
+    de existencia de bases en coordenadas:
+    \[
+        \begin{pmatrix}
+            1&0&1&0&0\\
+            1&1&0&1&0\\
+            0&1&0&0&1
+        \end{pmatrix}
+        \xrightarrow{\;F_2-F_1\;}
+        \begin{pmatrix}
+            1&0&1&0&0\\
+            0&1&-1&1&0\\
+            0&1&0&0&1
+        \end{pmatrix}
+        \xrightarrow{\;F_3-F_2\;}
+        \begin{pmatrix}
+            \alert{1}&0&1&0&0\\
+            0&\alert{1}&-1&1&0\\
+            0&0&\alert{1}&-1&1
+        \end{pmatrix}.
+    \]
+    Los pivotes están en las columnas $1$, $2$ y $3$, así que
+    $B=\{1+x,\ x+x^2,\ 1\}$ es una base de $\R_2[x]$ adaptada a $W$, y
+    \[
+        W\colon\ x_3=0\quad\text{resp.\ }B.
+    \]
+    En efecto, si $p(x)=a(1+x)+b(x+x^2)+c$, entonces $p(-1)=c$.
+\end{frame}
