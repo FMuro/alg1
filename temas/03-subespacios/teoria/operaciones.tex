@@ -358,6 +358,57 @@
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Recordatorio: principio de inclusión-exclusión}
+
+    Si $A$ y $B$ son conjuntos finitos, entonces
+    \[
+        |A\cup B|=|A|+|B|-|A\cap B|.
+    \]
+    Al sumar $|A|+|B|$, los elementos de $A\cap B$ se cuentan
+    \alert{dos veces}; restando $|A\cap B|$ se cuentan una sola vez.
+
+    \begin{example}
+        \begin{columns}[c]
+            \begin{column}{0.5\textwidth}
+                \centering
+                \begin{tikzpicture}[scale=0.9]
+                    \fill[alertcolor!15] (0,0) circle (1.4);
+                    \fill[secondarycolor!30] (1.6,0) circle (1.4);
+                    \begin{scope}
+                        \clip (0,0) circle (1.4);
+                        \fill[alertcolor!40] (1.6,0) circle (1.4);
+                    \end{scope}
+                    \draw (0,0) circle (1.4);
+                    \draw (1.6,0) circle (1.4);
+                    \node at (-0.9,1.45) {$A$};
+                    \node at (2.5,1.45) {$B$};
+                    \node at (-0.55,0.45) {$1$};
+                    \node at (-0.85,-0.2) {$2$};
+                    \node at (-0.4,-0.7) {$3$};
+                    \node at (0.8,0.35) {$4$};
+                    \node at (0.8,-0.35) {$5$};
+                    \node at (2.1,0.45) {$6$};
+                    \node at (2.3,-0.4) {$7$};
+                \end{tikzpicture}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                $A=\{1,2,3,4,5\}$,\quad $B=\{4,5,6,7\}$,
+                \[
+                    A\cap B=\{4,5\}.
+                \]
+                \[
+                    |A\cup B|=5+4-2=7.
+                \]
+            \end{column}
+        \end{columns}
+    \end{example}
+
+    La fórmula de Grassmann es el análogo para subespacios:
+    $\cup$ se sustituye por $+$ y el cardinal por la dimensión.
+\end{frame}
+
+
 \begin{frame}[allowframebreaks, t]
     \frametitle{Fórmula de Grassmann}
 
@@ -385,19 +436,24 @@
         de la suma.
 
         \alert{Independencia lineal.}
-        Supongamos $\sum a_i u_i+\sum b_j v_j+\sum c_k w_k=0$.
+        Supongamos $\sum_{i=1}^{d} a_i u_i+\sum_{j=1}^{p} b_j v_j+\sum_{k=1}^{q} c_k w_k=0$.
         Entonces
         \[
-            \sum c_k w_k=-\sum a_i u_i-\sum b_j v_j\in W_1.
+            W_2\ni\sum_{k=1}^{q} c_k w_k=-\sum_{i=1}^{d} a_i u_i-\sum_{j=1}^{p} b_j v_j\in W_1,
         \]
-        Como $\sum c_k w_k\in W_2$, se tiene $\sum c_k w_k\in W_1\cap W_2$,
-        luego $\sum c_k w_k=\sum\lambda_i u_i$ para ciertos $\lambda_i$.
-        Reordenando, $-\sum\lambda_i u_i+\sum c_k w_k=0$.
+        así que se tiene \[\sum_{k=1}^{q} c_k w_k\in W_1\cap W_2,\]
+        luego \[\sum_{k=1}^{q} c_k w_k=\sum_{i=1}^{d}\lambda_i u_i\] para ciertos $\lambda_i$.
+
+        \framebreak
+
+        Reordenando, \[-\sum_{i=1}^{d}\lambda_i u_i+\sum_{k=1}^{q} c_k w_k=0.\]
         Como $\{u_1,\ldots,u_d,w_1,\ldots,w_q\}$ es base de $W_2$,
-        concluimos $c_k=0$ para todo $k$.
-        Entonces $\sum a_i u_i+\sum b_j v_j=0$, y como
+        concluimos que $\lambda_i, c_k=0$ para todo $i,k$.
+        Entonces \[\sum_{i=1}^{d} a_i u_i+\sum_{j=1}^{p} b_j v_j=0,\] y como
         $\{u_1,\ldots,u_d,v_1,\ldots,v_p\}$ es base de $W_1$,
         también $a_i=b_j=0$.
+
+        \medskip
 
         Por tanto $\dim(W_1+W_2)=d+p+q=\dim W_1+\dim W_2-d$.
     \end{proof}

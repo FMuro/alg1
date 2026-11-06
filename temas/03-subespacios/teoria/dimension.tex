@@ -270,9 +270,9 @@
             0&1&1&1&0\\
             0&1&1&1&1
         \end{pmatrix}
-        \xrightarrow[\;F_4-F_2,\ F_4-F_3\;]{\;F_2\leftrightarrow F_3\;}
+        \xrightarrow[\substack{F_4-F_2\\ F_4-F_3}]{\;F_2\leftrightarrow F_3\;}
         \begin{pmatrix}
-            \alert{1}&2&0&1&0\\
+            \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{2}}&0&1&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{5}$}}{0}}\\
             0&\alert{1}&1&1&0\\
             0&0&0&0&\alert{1}\\
             0&0&0&0&0
@@ -312,6 +312,9 @@
     \end{example}
 
     Escalonamos la matriz de coordenadas respecto de $\{1,x,x^2\}$:
+
+    \medskip
+
     \[
         \begin{pmatrix}
             1&0&1&1\\
@@ -326,7 +329,7 @@
         \end{pmatrix}
         \xrightarrow{\;F_3-F_2\;}
         \begin{pmatrix}
-            \alert{1}&0&1&1\\
+            \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{0}}&1&1\\
             0&\alert{1}&-1&1\\
             0&0&0&0
         \end{pmatrix}.
@@ -344,8 +347,8 @@
         \item $W\subseteq W'$, porque los cuatro generadores de $W$ se anulan
         en $-1$.
         \item Si $p(x)=a_0+a_1x+a_2x^2$, entonces $p(-1)=a_0-a_1+a_2$, luego
-        $W'\colon\begin{pmatrix}1&-1&1\end{pmatrix}x=0$ resp.\
-        $\{1,x,x^2\}$, y $\dim(W')=3-1=2$.
+    \[W'\colon\begin{pmatrix}1&-1&1\end{pmatrix}x=0 \quad \text{resp. 
+        }\{1,x,x^2\}\] y $\dim(W')=3-1=2$.
     \end{itemize}
 
     \medskip
@@ -486,7 +489,7 @@
         \end{pmatrix}
         \xrightarrow{\;F_3-F_2\;}
         \begin{pmatrix}
-            \alert{1}&0&1&0&0\\
+            \smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{1}$}}{\alert{1}}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{2}$}}{0}}&\smash{\overset{\raisebox{1.5ex}{$\scriptstyle\alert{3}$}}{1}}&0&0\\
             0&\alert{1}&-1&1&0\\
             0&0&\alert{1}&-1&1
         \end{pmatrix}.
