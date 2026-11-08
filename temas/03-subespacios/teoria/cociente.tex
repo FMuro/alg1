@@ -1,0 +1,418 @@
+% Espacio cociente
+
+\begin{frame}
+    \frametitle{Identificar vectores que difieren en un subespacio}
+
+    \begin{columns}[c]
+        \begin{column}{0.55\textwidth}
+            \begin{example}
+                En $\R^2$, sea $W=\langle(1,1)\rangle$. Decidimos
+                \alert{no distinguir} entre $u$ y $u'$ si $u-u'\in W$.
+            \end{example}
+
+            Los vectores que no distinguimos de $u$ son
+            \[
+                u+W=\{u+\lambda(1,1):\ \lambda\in\R\},
+            \]
+            la recta que pasa por $u$ y es \alert{paralela} a $W$.
+
+            \medskip
+
+            Cada una de estas rectas se convierte en un único objeto. ¿Se
+            pueden sumar y multiplicar por escalares?
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \clip (-2.6,-2.6) rectangle (2.8,2.8);
+                \draw[->] (-2.5,0) -- (2.5,0) node[below left] {\footnotesize $u_1$};
+                \draw[->] (0,-2.5) -- (0,2.5) node[below left] {\footnotesize $u_2$};
+                \foreach \c in {-2,-1,1,2}
+                    \draw[gray!60] (-3,-3+\c) -- (3,3+\c);
+                \draw[very thick,alertcolor] (-3,-3) -- (3,3);
+                \node[alertcolor] at (2.1,1.5) {\footnotesize $W$};
+                \draw[very thick,secondarycolor!80!black] (-3,-1.5) -- (3,4.5);
+                \draw[->,thick] (0,0) -- (0.5,2);
+                \fill (0.5,2) circle (1.5pt);
+                \node[right] at (0.5,2) {\footnotesize $u$};
+                \node[secondarycolor!80!black] at (-1.2,1.7) {\footnotesize $u+W$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Clases módulo un subespacio}
+
+    \begin{definition}
+        Sea $W$ un subespacio de $V$ y sea $u\in V$. La \alert{clase} de $u$
+        módulo $W$ es
+        \[
+            u+W=\{u+w:\ w\in W\}\subseteq V.
+        \]
+        Se dice que $u$ es un \alert{representante} de la clase $u+W$.
+    \end{definition}
+
+    \begin{proposition}
+        Para $u,u'\in V$, son equivalentes:
+        \begin{enumerate}[(1)]
+            \item $u+W=u'+W$;
+            \item $u'\in u+W$;
+            \item $u-u'\in W$.
+        \end{enumerate}
+    \end{proposition}
+
+    Una misma clase puede tener, por tanto, muchos representantes: todos los
+    vectores que difieren de $u$ en un elemento de $W$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Clases módulo un subespacio: demostración}
+
+    \begin{proof}
+        \alert{(1)$\Rightarrow$(2).} $u'=u'+0\in u'+W=u+W$.
+
+        \alert{(2)$\Rightarrow$(3).} Si $u'=u+w$ con $w\in W$, entonces
+        $u-u'=-w\in W$.
+
+        \alert{(3)$\Rightarrow$(1).} Sea $w_0=u-u'\in W$. Todo elemento de
+        $u+W$ es de la forma
+        \[
+            u+w=u'+(w_0+w)\in u'+W,
+        \]
+        pues $w_0+w\in W$. Luego $u+W\subseteq u'+W$. Como también
+        $u'-u=-w_0\in W$, el mismo argumento da $u'+W\subseteq u+W$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las clases son iguales o disjuntas}
+
+    \begin{corollary}
+        Sean $u,u'\in V$.
+        \begin{enumerate}[(1)]
+            \item Las clases $u+W$ y $u'+W$ son \alert{iguales o disjuntas}.
+            \item $u+W=W$ si y solo si $u\in W$.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        \alert{(1)} Supongamos que $u+W$ y $u'+W$ no son disjuntas y sea
+        $u''\in(u+W)\cap(u'+W)$. Aplicando la implicación
+        (2)$\Rightarrow$(1) de la proposición anterior a $u''\in u+W$ y a
+        $u''\in u'+W$, obtenemos
+        \[
+            u+W=u''+W
+            \qquad\text{y}\qquad
+            u'+W=u''+W.
+        \]
+        Por tanto, $u+W=u'+W$.
+
+        \medskip
+
+        \alert{(2)} Se tiene $0+W=\{0+w:\ w\in W\}=W$. Por la equivalencia
+        (1)$\Leftrightarrow$(3) de la proposición anterior,
+        \[
+            u+W=0+W\iff u-0\in W\iff u\in W.\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Operaciones con clases}
+
+    \begin{definition}
+        El \alert{cociente} de $V$ por $W$ es el conjunto de las clases
+        \[
+            V/W=\{u+W:\ u\in V\},
+        \]
+        con las operaciones
+        \[
+            (u_1+W)+(u_2+W)=(u_1+u_2)+W,
+            \qquad
+            \lambda(u_1+W)=\lambda u_1+W.
+        \]
+    \end{definition}
+
+    Las operaciones se definen eligiendo representantes. Hay que comprobar
+    que el resultado \alert{no depende} de la elección.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las operaciones no dependen de los representantes}
+
+    \begin{proposition}
+        Si $u_1+W=u_1'+W$ y $u_2+W=u_2'+W$, entonces
+        \[
+            (u_1+u_2)+W=(u_1'+u_2')+W
+            \quad\text{y}\quad
+            \lambda u_1+W=\lambda u_1'+W.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Por hipótesis, $u_1-u_1',\,u_2-u_2'\in W$. Como $W$ es un subespacio,
+        $(u_1+u_2)-(u_1'+u_2')=(u_1-u_1')+(u_2-u_2')\in W$ y
+        $\lambda u_1-\lambda u_1'=\lambda(u_1-u_1')\in W$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio vectorial cociente}
+
+    \begin{theorem}
+        Con estas operaciones, $V/W$ es un espacio vectorial, llamado
+        \alert{espacio cociente}. Su vector nulo es $0+W=W$ y el opuesto de
+        $u+W$ es $(-u)+W$.
+    \end{theorem}
+
+    \begin{proof}
+        Cada propiedad se hereda de la correspondiente de $V$, operando con
+        representantes. Por ejemplo, la asociatividad:
+        \begin{align*}
+            \bigl((u_1+W)+(u_2+W)\bigr)+(u_3+W)
+            &=\bigl((u_1+u_2)+u_3\bigr)+W\\
+            &=\bigl(u_1+(u_2+u_3)\bigr)+W\\
+            &=(u_1+W)+\bigl((u_2+W)+(u_3+W)\bigr).
+        \end{align*}
+        Del mismo modo, $(u+W)+(0+W)=u+W$ y $(u+W)+((-u)+W)=0+W$. Las
+        demás propiedades se comprueban igual.
+    \end{proof}
+
+    \medskip
+
+    Por el apartado (2) del corolario sobre las clases, en $V/W$ se tiene $u+W=0$ si y solo si
+    $u\in W$: \alert{los vectores de $W$ se vuelven nulos} en el cociente.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos de espacios cociente}
+
+    \begin{example}
+        \begin{enumerate}
+            \item Si $W=\langle(1,1)\rangle\subseteq\R^2$, entonces
+            $(u_1,u_2)+W=(u_1',u_2')+W$
+            si y solo si $(u_1-u_1',u_2-u_2')\in\langle(1,1)\rangle$, es
+            decir, $u_1-u_2=u_1'-u_2'$. La clase de $(u_1,u_2)$ queda
+            determinada por el número $u_1-u_2$.
+            \item Si $W=\{0\}$, entonces $u+W=\{u\}$: el cociente $V/\{0\}$
+            es, en esencia, el propio $V$. Si $W=V$, todas las clases son
+            iguales a $V$ y $V/V=\{0\}$.
+            \item En $k[x]$, sea $W=\{p(x):\ p(0)=0\}$. Entonces
+            $p+W=q+W$ si y solo si $p(0)=q(0)$, y cada clase contiene una
+            única constante: $p+W=p(0)+W$.
+        \end{enumerate}
+    \end{example}
+
+    En el último ejemplo, $k[x]$ tiene dimensión infinita, pero las clases
+    quedan determinadas por un solo número. Veremos que
+    $\dim k[x]/W=1$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Dimensión y base del cociente}
+
+    \begin{theorem}
+        Sea $V$ de dimensión $n$ y sea $W\subseteq V$ un subespacio de
+        dimensión $m$. Si $B=\{w_1,\ldots,w_n\}$ es una base de $V$ adaptada
+        a $W$, es decir, $\{w_1,\ldots,w_m\}$ es una base de $W$, entonces
+        \[
+            \overline{B}=\{w_{m+1}+W,\ldots,w_n+W\}
+        \]
+        es una base de $V/W$. En particular,
+        \[
+            \dim V/W=\dim V-\dim W.
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        \alert{$\overline{B}$ genera $V/W$.} Sea $u\in V$ y escribamos
+        $u=\lambda_1w_1+\cdots+\lambda_nw_n$. Por la definición de las
+        operaciones en $V/W$,
+        \[
+            u+W=\lambda_1(w_1+W)+\cdots+\lambda_n(w_n+W).
+        \]
+        Para $i\leq m$ se tiene $w_i\in W$, luego $w_i+W=0$. Así,
+        \[
+            u+W=\lambda_{m+1}(w_{m+1}+W)+\cdots+\lambda_n(w_n+W).
+        \]
+
+        \framebreak
+
+        \alert{$\overline{B}$ es linealmente independiente.} Si
+        $\lambda_{m+1}(w_{m+1}+W)+\cdots+\lambda_n(w_n+W)=0$, entonces
+        $(\lambda_{m+1}w_{m+1}+\cdots+\lambda_nw_n)+W=0$, es decir,
+        $\lambda_{m+1}w_{m+1}+\cdots+\lambda_nw_n\in W$. Existen entonces
+        $\mu_1,\ldots,\mu_m\in k$ con
+        \[
+            \lambda_{m+1}w_{m+1}+\cdots+\lambda_nw_n=\mu_1w_1+\cdots+\mu_mw_m.
+        \]
+        Pasando todo a un miembro obtenemos una combinación lineal nula de
+        los vectores de $B$, que es una base; luego todos los coeficientes
+        son nulos y, en particular, $\lambda_{m+1}=\cdots=\lambda_n=0$.
+
+        \medskip
+
+        Por tanto, $\overline{B}$ es una base de $V/W$ con $n-m$ elementos.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Coordenadas en el cociente}
+
+    \begin{corollary}
+        En las condiciones del teorema, si
+        $u_B=(\lambda_1,\ldots,\lambda_n)$, entonces
+        \[
+            (u+W)_{\overline{B}}=(\lambda_{m+1},\ldots,\lambda_n).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        En la demostración del teorema hemos visto que
+        $u+W=\lambda_{m+1}(w_{m+1}+W)+\cdots+\lambda_n(w_n+W)$, y las
+        coordenadas respecto de una base son únicas.
+    \end{proof}
+
+    Para calcular las coordenadas de $u+W$: se amplía una base de $W$ a una
+    base $B$ de $V$, se calculan las coordenadas de $u$ en $B$ y se
+    \alert{olvidan} las $m$ primeras.
+
+    \medskip
+
+    Es coherente con $W\colon x_{m+1}=\cdots=x_n=0$ resp.\ $B$: las
+    coordenadas de $u+W$ son nulas si y solo si $u\in W$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de un cociente de $\R^4$}
+
+    \begin{example}
+        Sea $W=\langle w_1,w_2\rangle\subseteq\R^4$ con
+        $w_1=(1,0,1,0)$ y $w_2=(0,1,0,1)$. Calculemos una base de $\R^4/W$.
+    \end{example}
+
+    Como $w_1,w_2$ no son proporcionales, $\dim W=2$ y
+    $\dim\R^4/W=4-2=2$. Ampliamos $\{w_1,w_2\}$ con la base canónica,
+    escalonando la matriz de columnas $w_1,w_2,e_1,e_2,e_3,e_4$:
+    \[
+        \begin{pmatrix}
+            1&0&1&0&0&0\\
+            0&1&0&1&0&0\\
+            1&0&0&0&1&0\\
+            0&1&0&0&0&1
+        \end{pmatrix}
+        \xrightarrow[\;F_4-F_2\;]{\;F_3-F_1\;}
+        \begin{pmatrix}
+            \alert{1}&0&1&0&0&0\\
+            0&\alert{1}&0&1&0&0\\
+            0&0&\alert{-1}&0&1&0\\
+            0&0&0&\alert{-1}&0&1
+        \end{pmatrix}.
+    \]
+    Los pivotes están en las columnas $1$ a $4$, así que
+    $B=\{w_1,w_2,e_1,e_2\}$ es una base de $\R^4$ adaptada a $W$ y
+    \[
+        \overline{B}=\{e_1+W,\ e_2+W\}
+    \]
+    es una base de $\R^4/W$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: coordenadas en un cociente de $\R^4$}
+
+    Calculemos las coordenadas de $u+W$ en $\overline{B}$ para
+    $u=(3,1,2,5)$. Resolvemos $u=\mu_1w_1+\mu_2w_2+\lambda_1e_1+\lambda_2e_2$:
+    \[
+        \left(\begin{array}{cccc|c}
+            1&0&1&0&3\\
+            0&1&0&1&1\\
+            1&0&0&0&2\\
+            0&1&0&0&5
+        \end{array}\right)
+        \xrightarrow[\;F_4-F_2\;]{\;F_3-F_1\;}
+        \left(\begin{array}{cccc|c}
+            1&0&1&0&3\\
+            0&1&0&1&1\\
+            0&0&-1&0&-1\\
+            0&0&0&-1&4
+        \end{array}\right).
+    \]
+    Solo necesitamos las dos últimas incógnitas: $\lambda_1=1$ y
+    $\lambda_2=-4$. Por tanto,
+    \[
+        (u+W)_{\overline{B}}=(1,-4),
+        \qquad\text{es decir,}\qquad
+        u+W=(e_1+W)-4(e_2+W).
+    \]
+    En general, el mismo cálculo da
+    $\bigl((u_1,u_2,u_3,u_4)+W\bigr)_{\overline{B}}=(u_1-u_3,\ u_2-u_4)$,
+    y $W\colon u_1-u_3=u_2-u_4=0$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: un cociente de polinomios}
+
+    \begin{example}
+        Sea $W=\{p(x)\in\R_2[x]:\ p(-1)=0\}$. Describamos $\R_2[x]/W$.
+    \end{example}
+
+    Ya vimos que $B=\{1+x,\ x+x^2,\ 1\}$ es una base de $\R_2[x]$ adaptada
+    a $W$. Por el teorema,
+    \[
+        \dim\R_2[x]/W=3-2=1,
+        \qquad
+        \overline{B}=\{1+W\}.
+    \]
+    Si $p(x)=a(1+x)+b(x+x^2)+c$, entonces $p(-1)=c$, así que
+    \[
+        p+W=p(-1)\,(1+W),
+        \qquad\text{es decir,}\qquad
+        (p+W)_{\overline{B}}=p(-1).
+    \]
+
+    \medskip
+
+    Así, $p+W=q+W$ si y solo si $p(-1)=q(-1)$: en el cociente solo
+    \alert{recordamos el valor en $-1$}, que es lo que $W$ no ve.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El cociente $V/W$ como conjunto cociente}
+
+    \begin{proposition}
+        Sea $W$ un subespacio de $V$. La relación en $V$ dada por
+        \[
+            u\sim u'\iff u-u'\in W
+        \]
+        es de equivalencia, y la clase de equivalencia de $u$ es $[u]=u+W$.
+        Por tanto, $V/W$ es el conjunto cociente $V/{\sim}$.
+    \end{proposition}
+
+    \begin{proof}
+        Cada propiedad se sigue de que $W$ es un subespacio:
+        \begin{itemize}
+            \item reflexiva: $u-u=0\in W$;
+            \item simétrica: si $u-u'\in W$, entonces $u'-u=-(u-u')\in W$;
+            \item transitiva: si $u-u'\in W$ y $u'-u''\in W$, entonces
+            $u-u''=(u-u')+(u'-u'')\in W$.
+        \end{itemize}
+        Por último, $u'\in[u]$ si y solo si $u'-u\in W$, es decir,
+        $u'=u+w$ con $w\in W$, o sea, $u'\in u+W$.
+    \end{proof}
+\end{frame}
