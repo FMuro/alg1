@@ -361,7 +361,7 @@
 \begin{frame}
     \frametitle{Recordatorio: principio de inclusión-exclusión}
 
-    Si $A$ y $B$ son conjuntos finitos, entonces
+    Si $A$ y $B$ son conjuntos finitos, entonces sus cardinales cumplen la \alert{fórmula de inclusión-exclusión}:
     \[
         |A\cup B|=|A|+|B|-|A\cap B|.
     \]
@@ -453,9 +453,13 @@
         $\{u_1,\ldots,u_d,v_1,\ldots,v_p\}$ es base de $W_1$,
         también $a_i=b_j=0$.
 
-        \medskip
-
-        Por tanto $\dim(W_1+W_2)=d+p+q=\dim W_1+\dim W_2-d$.
+        Por tanto,
+        \begin{align*}
+            \dim W_1 + \dim W_2 - \dim(W_1\cap W_2)
+            &= (d+p) + (d+q) - d \\
+            &= d + p + q \\
+            &= \dim(W_1+W_2).\qedhere
+        \end{align*}
     \end{proof}
 \end{frame}
 
@@ -463,72 +467,476 @@
 \begin{frame}
     \frametitle{Consecuencias de la fórmula de Grassmann}
 
-    Para $W_1=\langle e_1,e_2\rangle$ y $W_2=\langle e_2,e_3\rangle$ en $\R^3$:
-    \[
-        \dim(W_1+W_2)=2+2-1=3,
-    \]
-    lo que confirma $W_1+W_2=\R^3$.
-
     \begin{corollary}
-        Si $\dim V=n$ y $W_1,W_2\subseteq V$, entonces
+        Si $W_1,W_2\subseteq V$ son subespacios entonces
         \[
-            \dim(W_1\cap W_2)\geq\dim W_1+\dim W_2-n.
+            \dim(W_1\cap W_2)\geq\dim W_1+\dim W_2-\dim V.
         \]
-        En particular, si $\dim W_1+\dim W_2>n$, la intersección
+        En particular, si $\dim W_1+\dim W_2>\dim V$, la intersección
         no puede ser trivial.
     \end{corollary}
-\end{frame}
-
-
-\begin{frame}[allowframebreaks, t]
-    \frametitle{Suma directa}
-
-    \begin{definition}
-        Se dice que $V$ es la \alert{suma directa} de $W_1$ y $W_2$,
-        y se escribe $V=W_1\oplus W_2$, si
-        $V=W_1+W_2$ y $W_1\cap W_2=\{0\}$.
-    \end{definition}
-
-    \begin{proposition}
-        $V=W_1\oplus W_2$ si y solo si todo $v\in V$ se escribe de
-        manera \alert{única} como $v=u+w$ con $u\in W_1$ y $w\in W_2$.
-    \end{proposition}
 
     \begin{proof}
-        ($\Rightarrow$) $V=W_1+W_2$ garantiza la existencia. Si
-        $u_1+w_1=u_2+w_2$ con $u_i\in W_1$ y $w_i\in W_2$, entonces
-        $u_1-u_2=w_2-w_1\in W_1\cap W_2=\{0\}$, luego $u_1=u_2$ y $w_1=w_2$.
-
-        ($\Leftarrow$) La existencia da $V=W_1+W_2$. Si $v\in W_1\cap W_2$,
-        entonces $v=v+0=0+v$ son dos descomposiciones de $v$; por
-        unicidad, $v=0$.
+        Como $W_1+W_2$ es un subespacio de $V$, se tiene
+        $\dim(W_1+W_2)\leq\dim V$. Despejando en la fórmula de Grassmann,
+        \[
+            \dim(W_1\cap W_2)=\dim W_1+\dim W_2-\dim(W_1+W_2)
+            \geq\dim W_1+\dim W_2-\dim V.
+        \]
+        Si $\dim W_1+\dim W_2>\dim V$, el miembro derecho es positivo, luego
+        $\dim(W_1\cap W_2)\geq1$ y, por tanto, $W_1\cap W_2\neq\{0\}$.
     \end{proof}
-
-    \begin{corollary}
-        Si $V=W_1\oplus W_2$, entonces $\dim V=\dim W_1+\dim W_2$.
-    \end{corollary}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Ejemplos de suma directa}
+    \frametitle{Dos planos distintos de $\R^3$ se cortan en una recta}
 
     \begin{example}
-        En $\R^3$:
-        \begin{enumerate}
-            \item $\R^3=\langle e_1,e_2\rangle\oplus\langle e_3\rangle$:
-            todo $(u_1,u_2,u_3)=(u_1,u_2,0)+(0,0,u_3)$, de forma única.
-            \item $\R^3=\langle e_1\rangle\oplus\langle e_2\rangle\oplus\langle e_3\rangle$.
-            \item $\langle e_1,e_2\rangle$ y $\langle e_2,e_3\rangle$
-            no dan suma directa, pues su intersección es
-            $\langle e_2\rangle\neq\{0\}$.
-        \end{enumerate}
+        Sean $W_1\neq W_2$ dos planos de $\R^3$ que pasan por el origen.
+        Veamos que $W_1\cap W_2$ es una recta.
     \end{example}
+
+    \alert{La intersección no es un plano.} Si $\dim(W_1\cap W_2)=2$, como
+    $W_1\cap W_2\subseteq W_1$ y $W_1\cap W_2\subseteq W_2$ tienen la misma
+    dimensión, sería $W_1=W_1\cap W_2=W_2$, en contra de la hipótesis.
+    Así, $\dim(W_1\cap W_2)<2$.
 
     \medskip
 
-    En general, si $\{v_1,\ldots,v_n\}$ es una base de $V$, entonces
+    \alert{La intersección es una recta.} Por el corolario,
     \[
-        V=\langle v_1\rangle\oplus\cdots\oplus\langle v_n\rangle.
+        \dim(W_1\cap W_2)\geq\dim W_1+\dim W_2-\dim\R^3=2+2-3=1.
     \]
+
+    \medskip
+
+    Por ejemplo, los planos $W_1\colon v_1-2v_2+v_3=0$ y
+    $W_2\colon v_1+v_2=0$ considerados antes son distintos, pues $(0,0,1)\in W_2$ pero
+    $(0,0,1)\notin W_1$. Por tanto, se cortan en una recta.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Caracterización de la suma directa}
+
+    \begin{theorem}
+        Sean $W_1$ y $W_2$ subespacios de dimensión finita de $V$. Son
+        equivalentes:
+        \begin{enumerate}[(1)]
+            \item $W_1\cap W_2=\{0\}$.
+            \item $\dim(W_1+W_2)=\dim W_1+\dim W_2$.
+            \item Existen bases $B_1\subset W_1$ y $B_2\subset W_2$ tales que $B_1\cap B_2=\varnothing$ y $B_1\cup B_2$ es una base de
+            $W_1+W_2$.
+            \item Para cualesquiera bases $B_1\subset W_1$ y $B_2\subset W_2$,
+            se tiene $B_1\cap B_2=\varnothing$ y $B_1\cup B_2$ es una base
+            de $W_1+W_2$.
+            \item Todo vector $u\in W_1+W_2$ se escribe de manera
+            \alert{única} como $u=w_1+w_2$ con $w_1\in W_1$ y $w_2\in W_2$.
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Caracterización de la suma directa: demostración}
+
+    \begin{proof}
+        Probamos (1)$\Rightarrow$(4)$\Rightarrow$(3)$\Rightarrow$(2)$\Rightarrow$(1)
+        y, después, (1)$\Leftrightarrow$(5).
+
+        \alert{(1)$\Rightarrow$(4).} Sean $B_1=\{v_1,\ldots,v_p\}$ y
+        $B_2=\{v_{p+1},\ldots,v_{p+q}\}$ bases de $W_1$ y $W_2$. Un vector común a
+        $B_1$ y $B_2$ estaría en $W_1\cap W_2=\{0\}$, pero $0$ no pertenece
+        a ninguna base; luego $B_1\cap B_2=\varnothing$. Por la proposición
+        sobre generadores de la suma, $B_1\cup B_2$ genera $W_1+W_2$.
+
+        Veamos que $B_1\cup B_2$ es linealmente independiente. Si
+        \[
+            \lambda_1v_1+\cdots+\lambda_{p+q}v_{p+q}=0,
+        \]
+        entonces el vector
+        \[
+            \underbrace{\lambda_1v_1+\cdots+\lambda_pv_p}_{\in W_1}
+            =\underbrace{-(\lambda_{p+1}v_{p+1}+\cdots+\lambda_{p+q}v_{p+q})}_{\in W_2}
+        \]
+        está en $W_1\cap W_2=\{0\}$, luego ambos miembros son nulos. Como
+        $B_1$ y $B_2$ son linealmente independientes,
+        $\lambda_1=\cdots=\lambda_{p+q}=0$.
+
+        \framebreak
+
+        \alert{(4)$\Rightarrow$(3).} $W_1$ y $W_2$ tienen bases, por ser de
+        dimensión finita, y por (4) cualesquiera de ellas sirven.
+
+        \medskip
+
+        \alert{(3)$\Rightarrow$(2).} Como $B_1\cap B_2=\varnothing$, la base
+        $B_1\cup B_2$ de $W_1+W_2$ tiene $\dim W_1+\dim W_2$ elementos.
+
+        \medskip
+
+        \alert{(2)$\Rightarrow$(1).} Por la fórmula de Grassmann,
+        \[
+            \dim(W_1\cap W_2)=\dim W_1+\dim W_2-\dim(W_1+W_2)=0,
+        \]
+        luego $W_1\cap W_2=\{0\}$.
+
+        \framebreak
+
+        \alert{(1)$\Rightarrow$(5).} Todo $u\in W_1+W_2$ es de la forma
+        $u=w_1+w_2$ con $w_1\in W_1$ y $w_2\in W_2$, por definición de la
+        suma. Para la unicidad, si $u=w_1+w_2=w_1'+w_2'$ con
+        $w_1,w_1'\in W_1$ y $w_2,w_2'\in W_2$, entonces
+        \[
+            \underbrace{w_1-w_1'}_{\in W_1}=\underbrace{w_2'-w_2}_{\in W_2}
+            \in W_1\cap W_2=\{0\},
+        \]
+        luego $w_1=w_1'$ y $w_2=w_2'$.
+
+        \medskip
+
+        \alert{(5)$\Rightarrow$(1).} Si $u\in W_1\cap W_2$, entonces
+        \[
+            u=\underbrace{u}_{\in W_1}+\underbrace{0}_{\in W_2}
+            =\underbrace{0}_{\in W_1}+\underbrace{u}_{\in W_2}
+        \]
+        son dos descomposiciones de $u$. Por la unicidad en (5), $u=0$.
+        Así, $W_1\cap W_2=\{0\}$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Suma directa}
+
+    \begin{definition}
+        Si $W_1$ y $W_2$ cumplen las condiciones equivalentes del teorema
+        anterior, decimos que la suma $W_1+W_2$ es \alert{directa} y la
+        denotamos
+        \[
+            W_1\oplus W_2.
+        \]
+    \end{definition}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: matrices simétricas y antisimétricas}
+
+    \begin{example}
+        En $M_n(\R)$, consideramos los subespacios
+        \[
+            W_1=\{A\in M_n(\R):\ A^t=A\},
+            \qquad
+            W_2=\{A\in M_n(\R):\ A^t=-A\},
+        \]
+        de matrices \alert{simétricas} y \alert{antisimétricas}. Veamos que 
+        $M_n(\R)=W_1\oplus W_2$.
+    \end{example}
+
+    \alert{La intersección es nula.} Si $A\in W_1\cap W_2$, entonces
+    $A=A^t=-A$, luego $2A=0$ y $A=0$.
+
+    \alert{La suma es todo $M_n(\R)$.} Toda matriz $A$ se escribe como
+    \[
+        A=\underbrace{\tfrac12(A+A^t)}_{\in W_1}
+        +\underbrace{\tfrac12(A-A^t)}_{\in W_2},
+    \]
+    como se ve trasponiendo, ya que $(A^t)^t=A$. Por ejemplo,
+    \[
+        \begin{pmatrix}1&2\\4&3\end{pmatrix}
+        =\begin{pmatrix}1&3\\3&3\end{pmatrix}
+        +\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: antisimétricas y triangulares superiores}
+
+    \begin{example}
+        En $M_n(\R)$, sean $W_1$ el subespacio de las matrices
+        \alert{antisimétricas} ($A^t=-A$) y $W_2$ el de las
+        \alert{triangulares superiores} ($a_{ij}=0$ si $i>j$). Veamos que
+        $M_n(\R)=W_1\oplus W_2$.
+    \end{example}
+
+    \alert{La intersección es nula.} Si $A\in W_1\cap W_2$, sus entradas
+    bajo la diagonal son nulas, y por $a_{ij}=-a_{ji}$ también lo son las
+    de encima; en la diagonal, $a_{ii}=-a_{ii}$ da $a_{ii}=0$. Luego $A=0$.
+
+    \alert{La suma es todo $M_n(\R)$.} Sea $L$ la matriz formada por las
+    entradas de $A$ bajo la diagonal (y ceros en el resto). Entonces
+    \[
+        A=\underbrace{(L-L^t)}_{\in W_1}+\underbrace{(A-L+L^t)}_{\in W_2},
+    \]
+    pues $A-L$ y $L^t$ son triangulares superiores. Por ejemplo,
+    \[
+        \begin{pmatrix}1&2\\4&3\end{pmatrix}
+        =\begin{pmatrix}0&-4\\4&0\end{pmatrix}
+        +\begin{pmatrix}1&6\\0&3\end{pmatrix}.
+    \]
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Suma de varios subespacios}
+
+    La suma de subespacios es \alert{conmutativa} y \alert{asociativa},
+    porque lo es la suma de vectores:
+    \begin{gather*}
+        W_1+W_2=W_2+W_1,\\
+        (W_1+W_2)+W_3=\{w_1+w_2+w_3:\; w_i\in W_i\}=W_1+(W_2+W_3).
+    \end{gather*}
+    Por tanto, podemos escribir $W_1+\cdots+W_n$ sin paréntesis y sin
+    preocuparnos del orden. Explícitamente,
+    \[
+        W_1+\cdots+W_n=\{w_1+\cdots+w_n:\; w_i\in W_i\text{ para todo }i\}.
+    \]
+    Es el menor subespacio que contiene a $W_1,\ldots,W_n$, y la unión de
+    sistemas de generadores de los $W_i$ lo genera.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Caracterización de la suma directa de varios subespacios}
+
+    \begin{theorem}
+        Sean $W_1,\ldots,W_n$ subespacios de dimensión finita de $V$. Son
+        equivalentes:
+        \begin{enumerate}[(1)]
+            \item $(W_1+\cdots+W_{i-1})\cap W_i=\{0\}$ para todo
+            $1<i\leq n$.
+            \item $\dim(W_1+\cdots+W_n)=\dim W_1+\cdots+\dim W_n$.
+            \item Existen bases $B_i\subset W_i$, $1\leq i\leq n$, disjuntas
+            dos a dos y tales que $B_1\cup\cdots\cup B_n$ es una base de
+            $W_1+\cdots+W_n$.
+            \item Para cualesquiera bases $B_i\subset W_i$, $1\leq i\leq n$,
+            estas son disjuntas dos a dos y $B_1\cup\cdots\cup B_n$ es una
+            base de $W_1+\cdots+W_n$.
+            \item Todo vector $u\in W_1+\cdots+W_n$ se escribe de manera
+            \alert{única} como $u=w_1+\cdots+w_n$ con $w_i\in W_i$.
+        \end{enumerate}
+    \end{theorem}
+
+    Para $n=2$ es el teorema anterior. La idea es aplicarlo a cada par
+    $W_1+\cdots+W_{i-1}$, $W_i$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Suma directa de varios subespacios: demostración}
+
+    \begin{proof}
+        Probamos (1)$\Rightarrow$(4)$\Rightarrow$(3)$\Rightarrow$(2)$\Rightarrow$(1)
+        y, después, (1)$\Leftrightarrow$(5). Para abreviar, escribimos
+        $S_i=W_1+\cdots+W_i$; así, $S_i=S_{i-1}+W_i$ y (1) dice que
+        $S_{i-1}\cap W_i=\{0\}$ para $1<i\leq n$.
+
+        \alert{(1)$\Rightarrow$(4).} Sean $B_i$ bases de $W_i$. Veamos por
+        inducción en $i$ que $B_1,\ldots,B_i$ son disjuntas dos a dos y que
+        $B_1\cup\cdots\cup B_i$ es una base de $S_i$. Para $i=1$ no hay
+        nada que probar. Si es cierto para $i-1$, aplicamos el teorema para
+        dos subespacios a $S_{i-1}$ y $W_i$, que cumplen
+        $S_{i-1}\cap W_i=\{0\}$ por (1), con las bases
+        $B_1\cup\cdots\cup B_{i-1}$ y $B_i$: son disjuntas y su unión es una
+        base de $S_{i-1}+W_i=S_i$. Para $i=n$ obtenemos (4).
+
+        \medskip
+
+        \alert{(4)$\Rightarrow$(3).} Cada $W_i$ tiene bases, por ser de
+        dimensión finita, y por (4) cualesquiera de ellas sirven.
+
+        \medskip
+
+        \alert{(3)$\Rightarrow$(2).} Como las $B_i$ son disjuntas dos a dos,
+        la base $B_1\cup\cdots\cup B_n$ de $W_1+\cdots+W_n$ tiene
+        $\dim W_1+\cdots+\dim W_n$ elementos.
+
+        \framebreak
+
+        \alert{(2)$\Rightarrow$(1).} Por la fórmula de Grassmann,
+        $\dim S_i\leq\dim S_{i-1}+\dim W_i$ para $1<i\leq n$, con igualdad
+        si y solo si $S_{i-1}\cap W_i=\{0\}$. Encadenando estas
+        desigualdades,
+        \[
+            \dim S_n\leq\dim S_{n-1}+\dim W_n\leq\cdots
+            \leq\dim W_1+\cdots+\dim W_n.
+        \]
+        Por (2), los extremos coinciden, así que todas las desigualdades
+        son igualdades y, por tanto, $S_{i-1}\cap W_i=\{0\}$ para todo
+        $1<i\leq n$.
+
+        \medskip
+
+        \alert{(1)$\Rightarrow$(5).} La existencia es la definición de la
+        suma. Para la unicidad, supongamos
+        $u=w_1+\cdots+w_n=w_1'+\cdots+w_n'$ con $w_j,w_j'\in W_j$ y que no
+        todos los $w_j-w_j'$ son nulos. Sea $i$ el mayor índice con
+        $w_i\neq w_i'$. Entonces
+        \[
+            \underbrace{w_i-w_i'}_{\in W_i}
+            =\underbrace{(w_1'-w_1)+\cdots+(w_{i-1}'-w_{i-1})}_{\in S_{i-1}},
+        \]
+        que es $0$ si $i=1$ y está en $S_{i-1}\cap W_i=\{0\}$ si $i>1$. En
+        ambos casos $w_i=w_i'$, lo que es una contradicción.
+
+        \framebreak
+
+        \alert{(5)$\Rightarrow$(1).} Sea $u\in S_{i-1}\cap W_i$ con $1<i\leq n$.
+        Como $u\in S_{i-1}$, se tiene $u=w_1+\cdots+w_{i-1}$ con
+        $w_j\in W_j$. Entonces
+        \[
+            u=w_1+\cdots+w_{i-1}+0+\cdots+0
+            =0+\cdots+0+\underbrace{u}_{\in W_i}+0+\cdots+0
+        \]
+        son dos descomposiciones de $u$. Por la unicidad, sus sumandos
+        $i$-ésimos coinciden: $u=0$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Suma directa de varios subespacios}
+
+    \begin{definition}
+        Si $W_1,\ldots,W_n$ cumplen las condiciones equivalentes del
+        teorema anterior, decimos que la suma $W_1+\cdots+W_n$ es
+        \alert{directa} y la denotamos
+        \[
+            W_1\oplus\cdots\oplus W_n.
+        \]
+    \end{definition}
+
+    La condición (1) parece depender del orden de los subespacios, per el resto no dependen de él: ser suma directa no depende del orden.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la suma directa asociada a una base}
+
+    \begin{example}
+        Si $\{v_1,\ldots,v_n\}$ es una base de $V$, entonces
+        \[
+            V=\langle v_1\rangle\oplus\cdots\oplus\langle v_n\rangle.
+        \]
+    \end{example}
+
+    En efecto, $\{v_i\}$ es una base de $\langle v_i\rangle$, estas bases
+    son disjuntas dos a dos y su unión es una base de $V$. Por la
+    condición (3), la suma es directa y es igual a $V$.
+
+    \medskip
+
+    Por ejemplo:
+    \[
+        k^n=\langle e_1\rangle\oplus\cdots\oplus\langle e_n\rangle,
+        \qquad
+        k_m[x]=\langle 1\rangle\oplus\langle x\rangle\oplus\cdots
+        \oplus\langle x^m\rangle.
+    \]
+    La condición (5) dice aquí que las coordenadas de un vector respecto
+    de una base son únicas.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: escalares, simétricas de traza nula y antisimétricas}
+
+    La \alert{traza} de $A\in M_n(\R)$ es $\operatorname{tr}A=a_{11}+\cdots+a_{nn}$.
+    Se cumple $\operatorname{tr}(A+B)=\operatorname{tr}A+\operatorname{tr}B$,
+    $\operatorname{tr}(\lambda A)=\lambda\operatorname{tr}A$ y
+    $\operatorname{tr}A^t=\operatorname{tr}A$.
+
+    \begin{example}
+        En $M_n(\R)$, sean $W_1=\{\lambda I:\ \lambda\in\R\}$ el subespacio de
+        las matrices \alert{escalares}, $W_2$ el de las matrices
+        \alert{simétricas de traza nula} y $W_3$ el de las
+        \alert{antisimétricas}. Veamos que
+        \[
+            M_n(\R)=W_1\oplus W_2\oplus W_3.
+        \]
+    \end{example}
+
+    Comprobamos la condición (1).
+    \begin{itemize}
+        \item $W_1\cap W_2=\{0\}$: si $\lambda I\in W_2$, entonces
+        $0=\operatorname{tr}(\lambda I)=n\lambda$, luego $\lambda=0$.
+        \item $(W_1+W_2)\cap W_3=\{0\}$: las matrices de $W_1$ y $W_2$ son
+        simétricas, luego también las de $W_1+W_2$; y la única matriz
+        simétrica y antisimétrica es la nula.
+    \end{itemize}
+
+    \framebreak
+
+    Falta ver que la suma es todo $M_n(\R)$. Toda matriz $A$ se escribe como
+    \[
+        A=\underbrace{\tfrac{\operatorname{tr}A}{n}\,I}_{\in W_1}
+        +\underbrace{\Bigl(\tfrac12(A+A^t)-\tfrac{\operatorname{tr}A}{n}\,I\Bigr)}_{\in W_2}
+        +\underbrace{\tfrac12(A-A^t)}_{\in W_3}.
+    \]
+    El sumando central es simétrico y su traza es
+    $\tfrac12(\operatorname{tr}A+\operatorname{tr}A^t)-\operatorname{tr}A=0$.
+
+    \medskip
+
+    Por ejemplo, para $n=2$, como $\operatorname{tr}\begin{pmatrix}1&2\\4&3\end{pmatrix}=4$,
+    \[
+        \begin{pmatrix}1&2\\4&3\end{pmatrix}
+        =\begin{pmatrix}2&0\\0&2\end{pmatrix}
+        +\begin{pmatrix}-1&3\\3&1\end{pmatrix}
+        +\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+    \]
+    Este ejemplo refina el de simétricas y antisimétricas: separa cada
+    matriz simétrica en una parte escalar y otra de traza nula.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una suma directa en $\R^4$}
+
+    \begin{example}
+        En $\R^4$, sean $W_1=\langle(1,0,1,0),(0,1,0,1)\rangle$,
+        $W_2=\langle(1,1,0,0)\rangle$ y $W_3=\langle(0,0,0,1)\rangle$.
+        Veamos que $\R^4=W_1\oplus W_2\oplus W_3$.
+    \end{example}
+
+    Los dos generadores de $W_1$ no son proporcionales, así que
+    $\dim W_1+\dim W_2+\dim W_3=2+1+1=4$. La suma está generada por los
+    cuatro vectores; escalonamos:
+    \[
+        \begin{pmatrix}1&0&1&0\\0&1&0&1\\1&1&0&0\\0&0&0&1\end{pmatrix}
+        \xrightarrow{\;F_3-F_1\;}
+        \begin{pmatrix}1&0&1&0\\0&1&0&1\\0&1&-1&0\\0&0&0&1\end{pmatrix}
+        \xrightarrow{\;F_3-F_2\;}
+        \begin{pmatrix}1&0&1&0\\0&1&0&1\\0&0&-1&-1\\0&0&0&1\end{pmatrix}.
+    \]
+    El rango es $4$, luego $\dim(W_1+W_2+W_3)=4$. Por la
+    condición (2), la suma es directa, y como tiene dimensión $4$, es
+    $\R^4$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{No basta con que las intersecciones dos a dos sean nulas}
+
+    \begin{example}
+        En $\R^2$, sean
+        \[
+            W_1=\langle(1,0)\rangle,\qquad
+            W_2=\langle(0,1)\rangle,\qquad
+            W_3=\langle(1,1)\rangle.
+        \]
+        Son tres rectas distintas, luego $W_i\cap W_j=\{0\}$ si $i\neq j$.
+    \end{example}
+
+    Sin embargo, la suma $W_1+W_2+W_3$ \alert{no} es directa:
+    \[
+        (W_1+W_2)\cap W_3=\R^2\cap W_3=W_3\neq\{0\}.
+    \]
+    También se ve con las dimensiones:
+    $\dim(W_1+W_2+W_3)=\dim\R^2=2<3=\dim W_1+\dim W_2+\dim W_3$.
+    O con la descomposición: $(1,1)=(1,0)+(0,1)+0=0+0+(1,1)$.
 \end{frame}
