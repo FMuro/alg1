@@ -922,15 +922,39 @@
 \begin{frame}
     \frametitle{No basta con que las intersecciones dos a dos sean nulas}
 
-    \begin{example}
-        En $\R^2$, sean
-        \[
-            W_1=\langle(1,0)\rangle,\qquad
-            W_2=\langle(0,1)\rangle,\qquad
-            W_3=\langle(1,1)\rangle.
-        \]
-        Son tres rectas distintas, luego $W_i\cap W_j=\{0\}$ si $i\neq j$.
-    \end{example}
+    \begin{columns}[T]
+        \begin{column}{0.62\textwidth}
+            \begin{example}
+                En $\R^2$, sean
+                \[
+                    W_1=\langle(1,0)\rangle,\quad
+                    W_2=\langle(0,1)\rangle,\quad
+                    W_3=\langle(1,1)\rangle.
+                \]
+                Son tres rectas distintas, luego $W_i\cap W_j=\{0\}$ si
+                $i\neq j$.
+            \end{example}
+        \end{column}
+        \begin{column}{0.34\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=1.1]
+                \draw[thick,gray] (-1,0) -- (2,0) node[right,black] {$W_1$};
+                \draw[thick,gray] (0,-1) -- (0,2) node[above,black] {$W_2$};
+                \draw[thick,alertcolor!60] (-1,-1) -- (2,2)
+                    node[above right,alertcolor] {$W_3$};
+                \draw[dashed] (1,0) -- (1,1) -- (0,1);
+                \draw[->,very thick] (0,0) -- (1,0);
+                \draw[->,very thick] (0,0) -- (0,1);
+                \draw[->,very thick,alertcolor] (0,0) -- (1,1);
+                \fill (0,0) circle (1.5pt);
+                \node[below] at (1,0) {\footnotesize $(1,0)$};
+                \node[left] at (0,1) {\footnotesize $(0,1)$};
+                \node[right] at (1,1) {\footnotesize $(1,1)$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+
+    \medskip
 
     Sin embargo, la suma $W_1+W_2+W_3$ \alert{no} es directa:
     \[

@@ -68,7 +68,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[t]
     \frametitle{Clases módulo un subespacio: demostración}
 
     \begin{proof}
@@ -88,7 +88,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[allowframebreaks, t]
     \frametitle{Las clases son iguales o disjuntas}
 
     \begin{corollary}
@@ -146,14 +146,14 @@
 \begin{frame}
     \frametitle{Las operaciones no dependen de los representantes}
 
-    \begin{proposition}
-        Si $u_1+W=u_1'+W$ y $u_2+W=u_2'+W$, entonces
+    \begin{lemma}
+        Si $u_1+W=u_1'+W$ y $u_2+W=u_2'+W$, entonces, dado cualquier $\lambda\in k$,
         \[
             (u_1+u_2)+W=(u_1'+u_2')+W
             \quad\text{y}\quad
             \lambda u_1+W=\lambda u_1'+W.
         \]
-    \end{proposition}
+    \end{lemma}
 
     \begin{proof}
         Por hipótesis, $u_1-u_1',\,u_2-u_2'\in W$. Como $W$ es un subespacio,
@@ -203,7 +203,8 @@
             decir, $u_1-u_2=u_1'-u_2'$. La clase de $(u_1,u_2)$ queda
             determinada por el número $u_1-u_2$.
             \item Si $W=\{0\}$, entonces $u+W=\{u\}$: el cociente $V/\{0\}$
-            es, en esencia, el propio $V$. Si $W=V$, todas las clases son
+            es, en esencia, el propio $V$. 
+            \item Si $W=V$, todas las clases son
             iguales a $V$ y $V/V=\{0\}$.
             \item En $k[x]$, sea $W=\{p(x):\ p(0)=0\}$. Entonces
             $p+W=q+W$ si y solo si $p(0)=q(0)$, y cada clase contiene una
@@ -222,7 +223,7 @@
 
     \begin{theorem}
         Sea $V$ de dimensión $n$ y sea $W\subseteq V$ un subespacio de
-        dimensión $m$. Si $B=\{w_1,\ldots,w_n\}$ es una base de $V$ adaptada
+        dimensión $m$. Si $B=\{w_1,\ldots,w_m,w_{m+1},\ldots,w_n\}$ es una base de $V$ adaptada
         a $W$, es decir, $\{w_1,\ldots,w_m\}$ es una base de $W$, entonces
         \[
             \overline{B}=\{w_{m+1}+W,\ldots,w_n+W\}
@@ -258,7 +259,11 @@
             \lambda_{m+1}w_{m+1}+\cdots+\lambda_nw_n=\mu_1w_1+\cdots+\mu_mw_m.
         \]
         Pasando todo a un miembro obtenemos una combinación lineal nula de
-        los vectores de $B$, que es una base; luego todos los coeficientes
+        los vectores de $B$, que es una base; 
+        \[
+            -\mu_1w_1-\cdots-\mu_mw_m+\lambda_{m+1}w_{m+1}+\cdots+\lambda_nw_n=0,
+        \]
+        luego todos los coeficientes
         son nulos y, en particular, $\lambda_{m+1}=\cdots=\lambda_n=0$.
 
         \medskip
@@ -273,26 +278,16 @@
 
     \begin{corollary}
         En las condiciones del teorema, si
-        $u_B=(\lambda_1,\ldots,\lambda_n)$, entonces
+        $u_B=(\lambda_1,\ldots,\lambda_m,\lambda_{m+1},\ldots,\lambda_n)$, entonces
         \[
             (u+W)_{\overline{B}}=(\lambda_{m+1},\ldots,\lambda_n).
         \]
     \end{corollary}
 
     \begin{proof}
-        En la demostración del teorema hemos visto que
-        $u+W=\lambda_{m+1}(w_{m+1}+W)+\cdots+\lambda_n(w_n+W)$, y las
-        coordenadas respecto de una base son únicas.
+        Basta observar que en la demostración del teorema hemos visto que
+        \[u+W=\lambda_{m+1}(w_{m+1}+W)+\cdots+\lambda_n(w_n+W).\]
     \end{proof}
-
-    Para calcular las coordenadas de $u+W$: se amplía una base de $W$ a una
-    base $B$ de $V$, se calculan las coordenadas de $u$ en $B$ y se
-    \alert{olvidan} las $m$ primeras.
-
-    \medskip
-
-    Es coherente con $W\colon x_{m+1}=\cdots=x_n=0$ resp.\ $B$: las
-    coordenadas de $u+W$ son nulas si y solo si $u\in W$.
 \end{frame}
 
 
@@ -335,7 +330,7 @@
     \frametitle{Ejemplo: coordenadas en un cociente de $\R^4$}
 
     Calculemos las coordenadas de $u+W$ en $\overline{B}$ para
-    $u=(3,1,2,5)$. Resolvemos $u=\mu_1w_1+\mu_2w_2+\lambda_1e_1+\lambda_2e_2$:
+    $u=(3,1,2,5)$. Para ello, hallamos las coordenadas $(\lambda_1,\lambda_2,\lambda_3,\lambda_4)$ de $u$ en $B$, que son las soluciones del sistema con matriz ampliada:
     \[
         \left(\begin{array}{cccc|c}
             1&0&1&0&3\\
@@ -351,8 +346,8 @@
             0&0&0&-1&4
         \end{array}\right).
     \]
-    Solo necesitamos las dos últimas incógnitas: $\lambda_1=1$ y
-    $\lambda_2=-4$. Por tanto,
+    Solo necesitamos las dos últimas incógnitas: $\lambda_3=1$ y
+    $\lambda_4=-4$. Por tanto,
     \[
         (u+W)_{\overline{B}}=(1,-4),
         \qquad\text{es decir,}\qquad
@@ -378,10 +373,8 @@
         \qquad
         \overline{B}=\{1+W\}.
     \]
-    Si $p(x)=a(1+x)+b(x+x^2)+c$, entonces $p(-1)=c$, así que
+    Supongamos que las coordenadas de un polinomio $p(x)\in \R_2[x]$ en $B$ son $(a,b,c)$. Es decir, $p(x)=a(1+x)+b(x+x^2)+c$. Entonces $(p+W)_{\overline{B}}=c$. Además observamos que $p(-1)=c$, así que
     \[
-        p+W=p(-1)\,(1+W),
-        \qquad\text{es decir,}\qquad
         (p+W)_{\overline{B}}=p(-1).
     \]
 
@@ -397,12 +390,20 @@
 
     \begin{proposition}
         Sea $W$ un subespacio de $V$. La relación en $V$ dada por
+
+        \vspace{-10pt}
+
         \[
             u\sim u'\iff u-u'\in W
         \]
+
+        \vspace{-2pt}
+
         es de equivalencia, y la clase de equivalencia de $u$ es $[u]=u+W$.
         Por tanto, $V/W$ es el conjunto cociente $V/{\sim}$.
     \end{proposition}
+
+    \vspace{-7pt}
 
     \begin{proof}
         Cada propiedad se sigue de que $W$ es un subespacio:
