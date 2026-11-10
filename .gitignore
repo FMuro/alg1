@@ -9,6 +9,7 @@
 *.toc
 *.vrb
 main.pdf
+apuntes.pdf
 
 # General
 .DS_Store

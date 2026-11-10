@@ -22,15 +22,18 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Compile PDF
+      - name: Compile PDFs (transparencias y apuntes)
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: |
+            main.tex
+            apuntes.tex
 
       - name: Prepare GitHub Pages content
         run: |
           mkdir -p public
           cp main.pdf public/alg1.pdf
+          cp apuntes.pdf public/alg1-apuntes.pdf
           cat > public/index.html <<'EOF'
           <!doctype html>
           <html lang="es">
@@ -41,6 +44,7 @@ jobs:
             </head>
             <body>
               <p><a href="alg1.pdf">Abrir el PDF de Álgebra Lineal y Geometría I</a></p>
+              <p><a href="alg1-apuntes.pdf">Apuntes en formato artículo</a></p>
             </body>
           </html>
           EOF

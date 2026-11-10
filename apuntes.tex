@@ -1,0 +1,73 @@
+\documentclass[11pt,a4paper]{article}
+
+% Modo artículo de Beamer: compila los mismos archivos de los temas que
+% main.tex, pero como documento corrido.  Con `notheorems' Beamer no define
+% los entornos matemáticos; se definen más abajo con amsthm, ya que el tema
+% de beamerteaching (donde están para las transparencias) no se carga aquí.
+\usepackage[notheorems]{beamerarticle}
+
+% Paquetes, datos del documento y macros comunes con main.tex.
+\input{preambulo}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+% En modo artículo las columnas se ponen una tras otra, pero sin cortar el
+% párrafo: un dibujo de la segunda columna quedaría pegado al final del texto
+% de la primera.  Cada columna pasa a ser un bloque de párrafos propio (y
+% \centering dentro de ella solo le afecta a ella).
+\renewenvironment{column}[2][]{\par}{\par}
+
+% Colores de la Universidad de Sevilla, con los mismos nombres que en
+% main.tex (se usan en los dibujos TikZ).
+\definecolor{alertcolor}{RGB}{165,1,51}
+\definecolor{secondarycolor}{RGB}{250,186,9}
+
+% --------------------------------------------------------------------------
+% Entornos matemáticos (equivalentes a los de beamerthemeTeaching.sty)
+% --------------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{proposition}[theorem]{Proposición}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Corolario}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definición}
+\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{exercise}[theorem]{Ejercicio}
+
+\newenvironment{solution}[1][Solución]
+  {\begin{proof}[#1]}
+  {\end{proof}}
+
+\newenvironment{proofpart}[1][\proofname]
+  {\begingroup\renewcommand{\qedsymbol}{}\begin{proof}[#1]}
+  {\end{proof}\endgroup}
+
+\newenvironment{solutionpart}[1][Solución]
+  {\begingroup\renewcommand{\qedsymbol}{}\begin{proof}[#1]}
+  {\end{proof}\endgroup}
+
+\newcommand{\proofcontinuationname}{\proofname~(continuación)}
+\newcommand{\solutioncontinuationname}{Solución~(continuación)}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\input{temas/01-sistemas-matrices-determinantes/tema01}
+\input{temas/02-espacios-vectoriales/tema02}
+\input{temas/03-subespacios/tema03}
+\input{temas/04-homomorfismos/tema04}
+\input{temas/05-forma-canonica/tema05}
+\input{temas/06-espacio-vectorial-euclideo/tema06}
+\input{temas/07-teoremas-espectrales/tema07}
+\input{temas/08-espacios-afines/tema08}
+\input{temas/09-aplicaciones-afines/tema09}
+\input{temas/10-espacios-afines-euclideos/tema10}
+\input{temas/11-movimientos/tema11}
+
+\end{document}

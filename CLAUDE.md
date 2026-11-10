@@ -14,8 +14,15 @@ El tema Beamer está en `beamerteaching/` como submódulo
 
 ```sh
 git submodule update --init --recursive
-latexmk -pdf main.tex
+latexmk -pdf main.tex      # transparencias
+latexmk -pdf apuntes.tex   # apuntes (modo artículo de Beamer)
 ```
+
+`main.tex` y `apuntes.tex` comparten `preambulo.tex` (paquetes, macros)
+y compilan los mismos archivos de los temas. `apuntes.tex` usa
+`beamerarticle` con `notheorems` y define sus propios entornos
+matemáticos; si se añade un entorno al tema de `beamerteaching`, hay que
+añadir su equivalente en `apuntes.tex`.
 
 Compatible con **pdfLaTeX**, **TeX Live en macOS** y **Texifier en iPad**.
 No introducir dependencias que rompan ninguno de estos entornos.
