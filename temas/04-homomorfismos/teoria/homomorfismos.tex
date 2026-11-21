@@ -1,0 +1,467 @@
+% Definición de homomorfismo
+
+\begin{frame}
+    \frametitle{Aplicaciones compatibles con las operaciones}
+
+    Varias aplicaciones que ya hemos usado \alert{respetan} la suma y el
+    producto por escalares:
+    \begin{itemize}
+        \item la aplicación de coordenadas $c_B\colon V\to k^n$ cumple
+        $(u+u')_B=u_B+u'_B$ y $(\lambda u)_B=\lambda u_B$ (Tema~2);
+        \item la derivación $p\mapsto p'$ de polinomios cumple
+        $(p+q)'=p'+q'$ y $(\lambda p)'=\lambda p'$;
+        \item la traspuesta de matrices cumple $(A+B)^t=A^t+B^t$ y
+        $(\lambda A)^t=\lambda A^t$;
+        \item la evaluación $p\mapsto p(a)$ cumple $(p+q)(a)=p(a)+q(a)$ y
+        $(\lambda p)(a)=\lambda p(a)$.
+    \end{itemize}
+
+    \medskip
+
+    Estas aplicaciones \alert{transportan} la estructura de espacio
+    vectorial de un espacio a otro. Son el objeto de estudio de este
+    tema.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Homomorfismos de espacios vectoriales}
+
+    \begin{definition}
+        Sean $V$ y $V'$ espacios vectoriales sobre $k$. Un
+        \alert{homomorfismo} (o \alert{aplicación lineal}) de $V$ en $V'$
+        es una aplicación $f\colon V\to V'$ tal que, para todo
+        $u,u'\in V$ y todo $\lambda\in k$,
+        \begin{enumerate}[(1)]
+            \item $f(u+u')=f(u)+f(u')$;
+            \item $f(\lambda u)=\lambda f(u)$.
+        \end{enumerate}
+        Denotamos por $\Hom(V,V')$ el conjunto de los homomorfismos de $V$
+        en $V'$.
+    \end{definition}
+
+    \medskip
+
+    En (1) y (2), la suma y el producto por escalares del primer miembro
+    son los de $V$, y los del segundo miembro son los de $V'$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un primer ejemplo: comprobar la definición}
+
+    \begin{example}
+        La aplicación $f\colon\R^2\to\R^3$ dada por
+        \[
+            f(u_1,u_2)=(u_1+u_2,\ 2u_1-u_2,\ 3u_2)
+        \]
+        es un homomorfismo.
+    \end{example}
+
+    Sean $u=(u_1,u_2)$, $u'=(u'_1,u'_2)\in\R^2$ y $\lambda\in\R$. Entonces
+    \begin{align*}
+        f(u+u')&=\bigl((u_1+u'_1)+(u_2+u'_2),\ 2(u_1+u'_1)-(u_2+u'_2),\ 3(u_2+u'_2)\bigr)\\
+        &=(u_1+u_2,\ 2u_1-u_2,\ 3u_2)+(u'_1+u'_2,\ 2u'_1-u'_2,\ 3u'_2)\\
+        &=f(u)+f(u'),
+    \end{align*}
+    \vspace{-14pt}
+    \begin{align*}
+        f(\lambda u)&=(\lambda u_1+\lambda u_2,\ 2\lambda u_1-\lambda u_2,\ 3\lambda u_2)
+        =\lambda f(u).
+    \end{align*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Aplicaciones definidas por matrices}
+
+    \begin{proposition}
+        Sea $A\in M_{m\times n}(k)$. La aplicación
+        \[
+            f_A\colon k^n\longrightarrow k^m,\qquad f_A(u)=Au,
+        \]
+        es un homomorfismo.
+    \end{proposition}
+
+    \begin{proof}
+        Por las propiedades del producto de matrices (Tema~1), para todo
+        $u,u'\in k^n$ y $\lambda\in k$,
+        \[
+            A(u+u')=Au+Au',
+            \qquad
+            A(\lambda u)=\lambda(Au).\qedhere
+        \]
+    \end{proof}
+
+    \medskip
+
+    El ejemplo anterior es de este tipo:
+    \[
+        f(u_1,u_2)=
+        \begin{pmatrix}1&1\\2&-1\\0&3\end{pmatrix}
+        \begin{pmatrix}u_1\\u_2\end{pmatrix}.
+    \]
+    Veremos que \alert{todos} los homomorfismos entre espacios de
+    dimensión finita son, en esencia, de este tipo.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos básicos}
+
+    \begin{example}
+        Sean $V$ y $V'$ espacios vectoriales sobre $k$.
+        \begin{enumerate}
+            \item La aplicación \alert{nula} $0\colon V\to V'$,
+            $u\mapsto 0$.
+            \item La aplicación \alert{identidad}
+            $\id_V\colon V\to V$, $u\mapsto u$.
+            \item La \alert{homotecia} de razón $\lambda\in k$,
+            $V\to V$, $u\mapsto\lambda u$.
+            \item La \alert{inclusión} $U\hookrightarrow V$ de un
+            subespacio $U$ de $V$.
+            \item La aplicación de coordenadas
+            $c_B\colon V\to k^n$.
+            \item Las \alert{proyecciones} $V\times V'\to V$,
+            $(u,w)\mapsto u$, y $V\times V'\to V'$,
+            $(u,w)\mapsto w$, y las \alert{inclusiones}
+            $V\to V\times V'$, $u\mapsto(u,0)$, y
+            $V'\to V\times V'$, $w\mapsto(0,w)$.
+            \item La \alert{proyección canónica}
+            $\pi\colon V\to V/U$, $\pi(u)=u+U$, sobre el cociente de $V$
+            por un subespacio $U$.
+        \end{enumerate}
+    \end{example}
+
+    La linealidad de $c_B$ es la proposición del Tema~2, y la de $\pi$ es
+    la definición de las operaciones en $V/U$:
+    $\pi(u+u')=(u+u')+U=(u+U)+(u'+U)$ y
+    $\pi(\lambda u)=\lambda u+U=\lambda(u+U)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos en polinomios, matrices y funciones}
+
+    \begin{example}
+        \begin{enumerate}
+            \item La \alert{derivación}
+            $D\colon k[x]\to k[x]$, $D(a_0+a_1x+\cdots+a_nx^n)
+            =a_1+2a_2x+\cdots+na_nx^{n-1}$.
+            \item La \alert{evaluación} en $a\in k$,
+            $\operatorname{ev}_a\colon k[x]\to k$, $p\mapsto p(a)$.
+            \item La \alert{multiplicación por $x$},
+            $k[x]\to k[x]$, $p\mapsto xp$.
+            \item La \alert{traza} $\operatorname{tr}\colon M_n(k)\to k$,
+            $(a_{ij})\mapsto a_{11}+\cdots+a_{nn}$.
+            \item La \alert{traspuesta}
+            $M_{m\times n}(k)\to M_{n\times m}(k)$, $A\mapsto A^t$.
+            \item La multiplicación por una matriz fija $A\in M_n(k)$,
+            $M_n(k)\to M_n(k)$, $X\mapsto AX$, y el \alert{conmutador}
+            $X\mapsto AX-XA$.
+            \item La \alert{evaluación} en un punto $x_0$ de $X$,
+            $k^X\to k$, $f\mapsto f(x_0)$.
+        \end{enumerate}
+    \end{example}
+
+    Todas se comprueban con las propiedades de la suma y del producto por
+    escalares en cada espacio.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Combinaciones lineales y primeras consecuencias}
+
+    \begin{proposition}
+        Una aplicación $f\colon V\to V'$ es un homomorfismo si y solo si
+        para todo $u,u'\in V$ y $\lambda,\mu\in k$,
+        \[
+            f(\lambda u+\mu u')=\lambda f(u)+\mu f(u').
+        \]
+        En tal caso, para todo $u_1,\ldots,u_r\in V$ y
+        $\lambda_1,\ldots,\lambda_r\in k$,
+        \[
+            f(\lambda_1u_1+\cdots+\lambda_ru_r)
+            =\lambda_1f(u_1)+\cdots+\lambda_rf(u_r),
+        \]
+        y además $f(0)=0$ y $f(-u)=-f(u)$.
+    \end{proposition}
+
+    \begin{proof}
+        Si $f$ es un homomorfismo,
+        $f(\lambda u+\mu u')=f(\lambda u)+f(\mu u')=\lambda f(u)+\mu f(u')$.
+        Recíprocamente, tomando $\lambda=\mu=1$ se obtiene (1) y tomando
+        $\mu=0$ se obtiene (2).
+
+        La fórmula para $r$ vectores se obtiene por inducción sobre $r$,
+        igual que para $c_B$ en el Tema~2. Por último,
+        $f(0)=f(0\cdot 0)=0\cdot f(0)=0$ y
+        $f(-u)=f((-1)u)=-f(u)$.
+    \end{proof}
+
+    \medskip
+
+    Un homomorfismo \alert{preserva combinaciones lineales}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Contraejemplo: las traslaciones}
+
+    \begin{example}
+        Sea $a\in V'$ no nulo. La aplicación $f\colon V\to V'$,
+        $f(u)=u+a$ (con $V'=V$) no es un homomorfismo, porque
+        \[
+            f(0)=a\neq0.
+        \]
+    \end{example}
+
+    \medskip
+
+    Así, $f(0)=0$ es una condición \alert{necesaria}, pero no suficiente.
+
+    \medskip
+
+    Por ejemplo, $f\colon\R\to\R$, $f(u)=2u+1$ \alert{no} es un
+    homomorfismo: aunque su gráfica es una recta, no pasa por el origen.
+    Los homomorfismos $\R\to\R$ son exactamente las aplicaciones
+    $u\mapsto\lambda u$ con $\lambda\in\R$ (veremos que se determinan por
+    $f(1)$).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Contraejemplos: se cumple una condición, pero no la otra}
+
+    \begin{example}
+        \begin{enumerate}
+            \item $f\colon\R\to\R$, $f(u)=u^2$ cumple $f(0)=0$, pero
+            $f(1+1)=4\neq 2=f(1)+f(1)$.
+            \item $f\colon\R^2\to\R$,
+            $f(u_1,u_2)=\sqrt[3]{u_1^3+u_2^3}$ cumple
+            $f(\lambda u)=\lambda f(u)$, pero no (1):
+            \[
+                f(1,0)+f(0,1)=2\neq\sqrt[3]{2}=f(1,1).
+            \]
+            \item $f\colon\C\to\C$, $f(z)=\bar z$ cumple
+            $f(z+z')=f(z)+f(z')$, pero no (2) si $k=\C$:
+            $f(iz)=-i\bar z\neq i\bar z=i f(z)$ si $z\neq0$.
+            (Sí es un homomorfismo si consideramos $\C$ como espacio
+            vectorial sobre $\R$.)
+            \item $\det\colon M_2(\R)\to\R$ no es un homomorfismo:
+            $\det(I+I)=4\neq 2=\det I+\det I$.
+        \end{enumerate}
+    \end{example}
+
+    Las dos condiciones de la definición son \alert{independientes}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Composición e inversa}
+
+    \begin{proposition}
+        Sean $f\colon V\to V'$ y $g\colon V'\to V''$ homomorfismos.
+        \begin{enumerate}[(1)]
+            \item $g\circ f\colon V\to V''$ es un homomorfismo.
+            \item Si $f$ es biyectivo, su inversa
+            $f^{-1}\colon V'\to V$ es un homomorfismo.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \alert{(1)} Para todo $u,u'\in V$ y $\lambda\in k$,
+        \[
+            (g\circ f)(u+u')=g\bigl(f(u)+f(u')\bigr)
+            =(g\circ f)(u)+(g\circ f)(u'),
+        \]
+        \[
+            (g\circ f)(\lambda u)=g\bigl(\lambda f(u)\bigr)
+            =\lambda(g\circ f)(u).
+        \]
+        \alert{(2)} Sean $w,w'\in V'$ y $\lambda\in k$. Como
+        $f(f^{-1}(w)+f^{-1}(w'))=w+w'$ y
+        $f(\lambda f^{-1}(w))=\lambda w$, aplicando $f^{-1}$,
+        \[
+            f^{-1}(w+w')=f^{-1}(w)+f^{-1}(w'),
+            \qquad
+            f^{-1}(\lambda w)=\lambda f^{-1}(w).\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Isomorfismos, endomorfismos y automorfismos}
+
+    \begin{definition}
+        Sea $f\colon V\to V'$ un homomorfismo.
+        \begin{itemize}
+            \item $f$ es un \alert{isomorfismo} si es biyectivo. Si existe
+            un isomorfismo $V\to V'$, decimos que $V$ y $V'$ son
+            \alert{isomorfos} y escribimos $V\cong V'$.
+            \item $f$ es un \alert{endomorfismo} si $V'=V$. Escribimos
+            $\End(V)=\Hom(V,V)$.
+            \item $f$ es un \alert{automorfismo} si es un endomorfismo y
+            un isomorfismo.
+        \end{itemize}
+    \end{definition}
+
+    \medskip
+
+    Por la proposición anterior, la identidad es un isomorfismo, la
+    inversa de un isomorfismo es un isomorfismo y la composición de
+    isomorfismos es un isomorfismo. Por tanto, \alert{ser isomorfos} es
+    una relación de equivalencia entre espacios vectoriales.
+
+    \medskip
+
+    Dos espacios isomorfos son «el mismo» espacio vectorial, con los
+    elementos renombrados.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos de isomorfismos}
+
+    \begin{example}
+        \begin{enumerate}
+            \item Si $B$ es una base de $V$ con $n$ vectores, la
+            aplicación de coordenadas $c_B\colon V\to k^n$ es un
+            isomorfismo (Tema~2). Su inversa es
+            $(\lambda_1,\ldots,\lambda_n)\mapsto\lambda_1v_1+\cdots+\lambda_nv_n$.
+            \item $k_n[x]\cong k^{n+1}$, mediante
+            $a_0+a_1x+\cdots+a_nx^n\mapsto(a_0,a_1,\ldots,a_n)$.
+            \item $M_{m\times n}(k)\cong k^{mn}$, escribiendo las
+            entradas de cada matriz en una única fila.
+            \item $M_2(\R)\to M_2(\R)$, $A\mapsto A^t$, es un automorfismo,
+            y es su propia inversa.
+            \item $k^m\times k^n\cong k^{m+n}$, mediante
+            $((u_1,\ldots,u_m),(u'_1,\ldots,u'_n))\mapsto(u_1,\ldots,u_m,u'_1,\ldots,u'_n)$.
+        \end{enumerate}
+    \end{example}
+
+    \medskip
+
+    En cambio, la derivación $D\colon k[x]\to k[x]$ y la multiplicación por
+    $x$ \alert{no} son isomorfismos: la primera no es inyectiva
+    ($D(1)=D(2)=0$) y la segunda no es sobreyectiva ($1\notin x\,k[x]$).
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un homomorfismo se determina por la imagen de una base}
+
+    \begin{theorem}
+        Sea $B=\{v_1,\ldots,v_n\}$ una base de $V$ y sean
+        $w_1,\ldots,w_n\in V'$ \alert{cualesquiera}. Existe un único
+        homomorfismo $f\colon V\to V'$ tal que
+        \[
+            f(v_j)=w_j,\qquad j=1,\ldots,n.
+        \]
+        Si $u_B=(\lambda_1,\ldots,\lambda_n)$, entonces
+        $f(u)=\lambda_1w_1+\cdots+\lambda_nw_n$.
+    \end{theorem}
+
+    \begin{proof}
+        \alert{Unicidad.} Si $f$ cumple $f(v_j)=w_j$ y
+        $u=\lambda_1v_1+\cdots+\lambda_nv_n$, como $f$ preserva
+        combinaciones lineales,
+        $f(u)=\lambda_1w_1+\cdots+\lambda_nw_n$.
+
+        \alert{Existencia.} Definimos $f(u)=\lambda_1w_1+\cdots+\lambda_nw_n$
+        si $u_B=(\lambda_1,\ldots,\lambda_n)$; está bien definida porque
+        las coordenadas son únicas. Como $(v_j)_B=e_j$, $f(v_j)=w_j$.
+        Si $u_B=(\lambda_i)$ y $u'_B=(\mu_i)$, entonces
+        $(u+u')_B=(\lambda_i+\mu_i)$ y $(\lambda u)_B=(\lambda\lambda_i)$,
+        luego
+        \[
+            f(u+u')=\sum_i(\lambda_i+\mu_i)w_i=f(u)+f(u'),
+            \qquad
+            f(\lambda u)=\sum_i\lambda\lambda_iw_i=\lambda f(u).\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consecuencias: unicidad y libertad}
+
+    \begin{corollary}
+        Dos homomorfismos $f,g\colon V\to V'$ que coinciden en una base de
+        $V$ (o en un sistema generador) son iguales.
+    \end{corollary}
+
+    \begin{proof}
+        Si $f(v_j)=g(v_j)$ para unos generadores $v_1,\ldots,v_r$ de $V$ y
+        $u=\sum\lambda_jv_j$, entonces
+        $f(u)=\sum\lambda_jf(v_j)=\sum\lambda_jg(v_j)=g(u)$.
+    \end{proof}
+
+    \medskip
+
+    Al elegir las imágenes $w_1,\ldots,w_n$ de una base \alert{no hay
+    ninguna restricción}: pueden ser nulas, repetirse o ser linealmente
+    dependientes.
+
+    \medskip
+
+    Por ejemplo, para $V=\R$ con base $\{1\}$ y cualquier $w\in V'$ existe
+    un único homomorfismo $f\colon\R\to V'$ con $f(1)=w$, a saber,
+    $f(\lambda)=\lambda w$. Así, los homomorfismos $\R\to V'$ se
+    corresponden con los vectores de $V'$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: homomorfismo dado por la imagen de una base}
+
+    \begin{example}
+        Sea $B=\{(1,1),(1,-1)\}$ la base de $\R^2$ del Tema~2. Hallemos el
+        homomorfismo $f\colon\R^2\to\R^3$ con
+        \[
+            f(1,1)=(1,0,2),\qquad f(1,-1)=(0,1,1).
+        \]
+    \end{example}
+
+    Las coordenadas de $u=(u_1,u_2)$ en $B$ son
+    $\bigl(\tfrac{u_1+u_2}{2},\tfrac{u_1-u_2}{2}\bigr)$, así que
+    \[
+        f(u_1,u_2)=\tfrac{u_1+u_2}{2}(1,0,2)+\tfrac{u_1-u_2}{2}(0,1,1)
+        =\Bigl(\tfrac{u_1+u_2}{2},\ \tfrac{u_1-u_2}{2},\ \tfrac{3u_1+u_2}{2}\Bigr).
+    \]
+
+    \medskip
+
+    En particular, como $(3,1)=2(1,1)+1\cdot(1,-1)$,
+    \[
+        f(3,1)=2(1,0,2)+(0,1,1)=(2,1,5).
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: homomorfismos desde polinomios}
+
+    \begin{example}
+        Existe un único homomorfismo $f\colon\R_2[x]\to\R^2$ con
+        \[
+            f(1)=(1,0),\qquad f(x)=(1,1),\qquad f(x^2)=(0,2).
+        \]
+    \end{example}
+
+    Como las coordenadas de $a+bx+cx^2$ en $\{1,x,x^2\}$ son $(a,b,c)$,
+    \[
+        f(a+bx+cx^2)=a(1,0)+b(1,1)+c(0,2)=(a+b,\ b+2c).
+    \]
+
+    \medskip
+
+    Para $p(x)=2-x+3x^2$ se obtiene $f(p)=(1,5)$.
+
+    \medskip
+
+    En este ejemplo, los tres vectores $(1,0),(1,1),(0,2)$ de $\R^2$ son
+    linealmente dependientes, pero $f$ existe de todos modos: lo que
+    importa es que $1,x,x^2$ sean una \alert{base} de $\R_2[x]$.
+\end{frame}
