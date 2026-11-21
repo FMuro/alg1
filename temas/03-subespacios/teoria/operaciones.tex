@@ -681,6 +681,126 @@
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Suplementario de un subespacio}
+
+    \begin{definition}
+        Sea $W$ un subespacio de $V$. Un subespacio $W'$ de $V$ es un
+        \alert{suplementario} de $W$ si
+        \[
+            V=W\oplus W',
+        \]
+        es decir, si $W\cap W'=\{0\}$ y $W+W'=V$.
+    \end{definition}
+
+    Obsérvese que:
+    \begin{itemize}
+        \item La definición es simétrica: $W'$ es un suplementario de $W$ si
+        y solo si $W$ lo es de $W'$.
+        \item $\{0\}$ y $V$ son suplementarios el uno del otro.
+        \item Si $V$ tiene dimensión finita y $W'$ es un suplementario
+        de $W$, entonces
+        \[
+            \dim W'=\dim V-\dim W,
+        \]
+        pues $\dim V=\dim(W\oplus W')=\dim W+\dim W'$.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos ya vistos de suplementarios}
+
+    El subespacio $W\subset M_n(\R)$ de matrices \alert{antisimétricas} posee al menos dos suplementarios, vistos anteriormente:
+
+    \begin{itemize}
+        \item El subespacio de matrices \alert{simétricas}.
+        \item El subespacio de matrices
+        \alert{triangulares superiores}.
+    \end{itemize}
+
+    Por tanto un suplementario \alert{no es único}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un subespacio tiene muchos suplementarios}
+
+    \begin{example}
+        En $\R^2$, sea $W=\langle(1,0)\rangle$ el eje horizontal. Cualquier
+        recta $W'=\langle(a,b)\rangle$ con $b\neq0$ es un suplementario
+        de $W$.
+    \end{example}
+
+    En efecto, $(1,0)$ y $(a,b)$ son linealmente independientes si $b\neq0$,
+    luego forman una base de $\R^2$ y $\R^2=W\oplus W'$ por la
+    condición (3) del teorema de caracterización. En cambio, si $b=0$ la
+    recta $W'$ es el propio $W$.
+
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.9]
+            \draw[very thick] (-2,0) -- (2.4,0) node[right] {$W$};
+            \draw[thick,alertcolor] (-0.5,-1.2) -- (1,1.8)
+                node[above] {$W'$};
+            \draw[thick,secondarycolor!80!black] (1.2,-1.2) -- (-1.2,1.2)
+                node[above left] {$W''$};
+            \fill (0,0) circle (1.5pt);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Cálculo de un suplementario: extender una base}
+
+    \begin{proposition}
+        Sea $V$ de dimensión finita y $W$ un subespacio con base
+        $\{w_1,\ldots,w_r\}$. Si
+        \[
+            \{w_1,\ldots,w_r,u_1,\ldots,u_s\}
+        \]
+        es una base de $V$, entonces $W'=\langle u_1,\ldots,u_s\rangle$ es un
+        suplementario de $W$. 
+    \end{proposition}
+
+    \begin{proof}
+        Los vectores $u_1,\ldots,u_s$ son independientes, por serlo
+        los de una base de $V$, luego $\{u_1,\ldots,u_s\}$ es una base
+        de $W'$. Las bases $\{w_1,\ldots,w_r\}$ de $W$ y
+        $\{u_1,\ldots,u_s\}$ de $W'$ son disjuntas y su unión es una base de
+        $V$. Por la condición (3) del teorema de caracterización, la suma
+        $W+W'$ es directa, y es todo $V$ porque tiene una base de $V$
+        como sistema de generadores. Es decir, $V=W\oplus W'$.
+    \end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: suplementario en $\R^4$}
+
+    \begin{example}
+        Calculemos un suplementario de
+        $W=\langle(1,2,1,0),(2,4,3,1)\rangle$ en $\R^4$.
+        Los dos generadores son independientes, luego son una base de $W$.
+        Probamos a extenderla con $e_1$ y $e_2$. La matriz que forman
+        \[
+            \begin{pmatrix}
+                1&0&1&2\\0&1&2&4\\0&0&1&3\\0&0&0&1
+            \end{pmatrix},
+        \]
+        es triangular superior con determinante $1\neq 0$. Por tanto, $\{(1,2,1,0),(2,4,3,1),e_1,e_2\}$ es una base
+        de $\R^4$ que extiende la de $W$ y
+        \[
+            W'=\langle e_1,e_2\rangle=\langle(1,0,0,0),(0,1,0,0)\rangle
+        \]
+        es un suplementario de $W$. Como esperábamos, $\dim W'=4-2=2$.
+    \end{example}
+\end{frame}
+
+
 
 \begin{frame}
     \frametitle{Suma de varios subespacios}
@@ -699,6 +819,7 @@
     Es el menor subespacio que contiene a $W_1,\ldots,W_n$, y la unión de
     sistemas de generadores de los $W_i$ lo genera.
 \end{frame}
+
 
 
 \begin{frame}

@@ -51,7 +51,7 @@
         \[
             u+W=\{u+w:\ w\in W\}\subseteq V.
         \]
-        Se dice que $u$ es un \alert{representante} de la clase $u+W$.
+        Se dice que $u$ es un \alert{representante} de la clase $u+W$. Obsérvese que $u = u+0\in u+W$.
     \end{definition}
 
     \begin{proposition}
@@ -72,7 +72,7 @@
     \frametitle{Clases módulo un subespacio: demostración}
 
     \begin{proof}
-        \alert{(1)$\Rightarrow$(2).} $u'=u'+0\in u'+W=u+W$.
+        \alert{(1)$\Rightarrow$(2).} $u'\in u'+W=u+W$.
 
         \alert{(2)$\Rightarrow$(3).} Si $u'=u+w$ con $w\in W$, entonces
         $u-u'=-w\in W$.
@@ -95,7 +95,7 @@
         Sean $u,u'\in V$.
         \begin{enumerate}[(1)]
             \item Las clases $u+W$ y $u'+W$ son \alert{iguales o disjuntas}.
-            \item $u+W=W$ si y solo si $u\in W$.
+            \item $u+W=W=0+W$ si y solo si $u\in W$.
         \end{enumerate}
     \end{corollary}
 
@@ -205,16 +205,12 @@
             \item Si $W=\{0\}$, entonces $u+W=\{u\}$: el cociente $V/\{0\}$
             es, en esencia, el propio $V$. 
             \item Si $W=V$, todas las clases son
-            iguales a $V$ y $V/V=\{0\}$.
+            iguales a $V$ y $V/V=\{0+V\}=\{V\}$.
             \item En $k[x]$, sea $W=\{p(x):\ p(0)=0\}$. Entonces
             $p+W=q+W$ si y solo si $p(0)=q(0)$, y cada clase contiene una
-            única constante: $p+W=p(0)+W$.
+            única constante: $p+W=p(0)+W$. Aunque $k[x]$ tiene dimensión infinita, veremos que $\dim k[x]/W=1$.
         \end{enumerate}
     \end{example}
-
-    En el último ejemplo, $k[x]$ tiene dimensión infinita, pero las clases
-    quedan determinadas por un solo número. Veremos que
-    $\dim k[x]/W=1$.
 \end{frame}
 
 
