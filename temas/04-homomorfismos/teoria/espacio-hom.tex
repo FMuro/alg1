@@ -1,0 +1,224 @@
+% El espacio de homomorfismos
+
+\begin{frame}
+    \frametitle{Sumar homomorfismos}
+
+    \begin{example}
+        Sean $f,g\colon\R^2\to\R^2$ con matrices (en la base canónica)
+        \[
+            A=\begin{pmatrix}1&2\\0&1\end{pmatrix},\qquad
+            A'=\begin{pmatrix}0&1\\3&1\end{pmatrix}.
+        \]
+        La aplicación $u\mapsto f(u)+g(u)$ es
+        \[
+            u\longmapsto Au+A'u=(A+A')u,
+        \]
+        el homomorfismo con matriz
+        $A+A'=\begin{pmatrix}1&3\\3&2\end{pmatrix}$.
+    \end{example}
+
+    \medskip
+
+    Del mismo modo, $u\mapsto\lambda f(u)$ es el homomorfismo con matriz
+    $\lambda A$.
+
+    \medskip
+
+    Los homomorfismos de $V$ en $V'$ forman, pues, un espacio vectorial,
+    que vamos a describir.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio vectorial de los homomorfismos}
+
+    \begin{proposition}
+        Sean $V$ y $V'$ espacios vectoriales sobre $k$. Para
+        $f,g\in\Hom(V,V')$ y $\lambda\in k$, las aplicaciones
+        \[
+            (f+g)(u)=f(u)+g(u),\qquad(\lambda f)(u)=\lambda f(u)
+        \]
+        son homomorfismos. Con estas operaciones, $\Hom(V,V')$ es un
+        espacio vectorial sobre $k$, cuyo vector cero es la aplicación
+        nula.
+    \end{proposition}
+
+    \begin{proof}
+        Las aplicaciones de $V$ en $V'$ forman un espacio vectorial con
+        estas operaciones (como $k^X$ en el Tema~2), así que basta ver
+        que $\Hom(V,V')$ es un subespacio. La aplicación nula es un
+        homomorfismo, y para $u,u'\in V$ y $\mu,\nu\in k$,
+        \begin{align*}
+            (f+g)(\mu u+\nu u')&=\mu f(u)+\nu f(u')+\mu g(u)+\nu g(u')
+            =\mu(f+g)(u)+\nu(f+g)(u'),\\
+            (\lambda f)(\mu u+\nu u')&=\lambda\bigl(\mu f(u)+\nu f(u')\bigr)
+            =\mu(\lambda f)(u)+\nu(\lambda f)(u').\qedhere
+        \end{align*}
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La matriz de una suma}
+
+    \begin{proposition}
+        Sean $f,g\in\Hom(V,V')$, $\lambda\in k$, y sean $B$, $B'$ bases de
+        $V$ y $V'$. Entonces
+        \[
+            M_{B,B'}(f+g)=M_{B,B'}(f)+M_{B,B'}(g),
+            \qquad
+            M_{B,B'}(\lambda f)=\lambda M_{B,B'}(f).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        La columna $j$ de $M_{B,B'}(f+g)$ es
+        \[
+            (f+g)(v_j)_{B'}=\bigl(f(v_j)+g(v_j)\bigr)_{B'}
+            =f(v_j)_{B'}+g(v_j)_{B'},
+        \]
+        que es la suma de las columnas $j$ de $M_{B,B'}(f)$ y $M_{B,B'}(g)$.
+        La otra igualdad es análoga.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El espacio de homomorfismos es un espacio de matrices}
+
+    \begin{theorem}
+        Sean $B$ y $B'$ bases de $V$ y $V'$, con $\dim V=n$ y
+        $\dim V'=m$. La aplicación
+        \[
+            \Phi\colon\Hom(V,V')\longrightarrow M_{m\times n}(k),
+            \qquad f\longmapsto M_{B,B'}(f),
+        \]
+        es un isomorfismo. En particular,
+        \[
+            \dim\Hom(V,V')=mn=\dim V\cdot\dim V'.
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        \alert{Lineal:} es la proposición anterior.
+
+        \alert{Inyectiva:} si $M_{B,B'}(f)=0$, entonces $f(v_j)_{B'}=0$, luego
+        $f(v_j)=0$ para todo $j$. Como $f$ se anula en una base,
+        $f=0$.
+
+        \alert{Sobreyectiva:} dada $A=(a_{ij})$, por el teorema de
+        determinación existe un homomorfismo $f$ con
+        $f(v_j)=a_{1j}v'_1+\cdots+a_{mj}v'_m$. Entonces
+        $M_{B,B'}(f)=A$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Una base de $\Hom(V,V')$}
+
+    Con las bases $\{v_1,\ldots,v_n\}$ de $V$ y $\{v'_1,\ldots,v'_m\}$ de
+    $V'$, sea $f_{ij}\in\Hom(V,V')$ el homomorfismo determinado por
+    \[
+        f_{ij}(v_l)=
+        \begin{cases}
+            v'_i&\text{si }l=j,\\
+            0&\text{si }l\neq j,
+        \end{cases}
+        \qquad 1\leq i\leq m,\ 1\leq j\leq n.
+    \]
+    Su matriz es $E_{ij}$, la matriz con un $1$ en la posición $(i,j)$ y
+    ceros en las demás.
+
+    \begin{corollary}
+        Los $mn$ homomorfismos $f_{ij}$ son una base de $\Hom(V,V')$, y si
+        $M_{B,B'}(f)=(a_{ij})$, entonces
+        \[
+            f=\sum_{i,j}a_{ij}f_{ij}.
+        \]
+    \end{corollary}
+
+    Es la base canónica de $M_{m\times n}(k)$ transportada por el
+    isomorfismo $\Phi$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: una base de $\Hom(\R^2,\R^3)$}
+
+    \begin{example}
+        Con las bases canónicas, $\dim\Hom(\R^2,\R^3)=6$, y una base es
+        $\{f_{ij}\}$ con $f_{ij}(u_1,u_2)=u_je_i$, para $i=1,2,3$ y
+        $j=1,2$.
+    \end{example}
+
+    Por ejemplo, $f_{21}(u_1,u_2)=(0,u_1,0)$. El homomorfismo
+    $f(u_1,u_2)=(u_1+u_2,\,2u_1-u_2,\,3u_2)$ tiene matriz
+    $\begin{pmatrix}1&1\\2&-1\\0&3\end{pmatrix}$, luego
+    \[
+        f=f_{11}+f_{12}+2f_{21}-f_{22}+3f_{32}.
+    \]
+    En efecto,
+    \[
+        (u_1,0,0)+(u_2,0,0)+(0,2u_1,0)-(0,u_2,0)+(0,0,3u_2)
+        =(u_1+u_2,\,2u_1-u_2,\,3u_2).
+    \]
+
+    \medskip
+
+    Más en general: $\Hom(k^n,k^m)=M_{m\times n}(k)$, y
+    $\Hom(k,V')\cong V'$ mediante $f\mapsto f(1)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La composición es bilineal}
+
+    \begin{proposition}
+        Sean $f,f_1,f_2\in\Hom(V,V')$ y $g,g_1,g_2\in\Hom(V',V'')$, y
+        $\lambda\in k$. Entonces
+        \begin{align*}
+            g\circ(f_1+f_2)&=g\circ f_1+g\circ f_2,
+            &(g_1+g_2)\circ f&=g_1\circ f+g_2\circ f,\\
+            (\lambda g)\circ f&=\lambda(g\circ f)=g\circ(\lambda f).
+        \end{align*}
+    \end{proposition}
+
+    \begin{proof}
+        Para $u\in V$: $g(f_1(u)+f_2(u))=g(f_1(u))+g(f_2(u))$ porque $g$ es
+        lineal; $(g_1+g_2)(f(u))=g_1(f(u))+g_2(f(u))$ por definición de
+        la suma; y las igualdades con $\lambda$ se prueban igual.
+    \end{proof}
+
+    \medskip
+
+    Son las propiedades del producto de matrices, que recuperamos al
+    traducir a matrices: $M_{B,B''}(g\circ f)=M_{B',B''}(g)\,M_{B,B'}(f)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Endomorfismos y matrices cuadradas}
+
+    \begin{proposition}
+        Sea $V$ de dimensión $n$ con una base $B$. La aplicación
+        \[
+            \End(V)\longrightarrow M_n(k),\qquad f\longmapsto M_{B,B}(f),
+        \]
+        es un isomorfismo de espacios vectoriales que además cumple
+        \[
+            M_{B,B}(g\circ f)=M_{B,B}(g)\,M_{B,B}(f),\qquad M_{B,B}(\id_V)=I_n.
+        \]
+        En particular, $\dim\End(V)=n^2$, y $f$ es un automorfismo si y solo
+        si $M_{B,B}(f)$ es invertible.
+    \end{proposition}
+
+    \medskip
+
+    La suma y la composición en $\End(V)$ se corresponden con la suma y el
+    producto en $M_n(k)$. Como el producto de matrices no es conmutativo
+    (Tema~1), tampoco lo es la composición de endomorfismos si $n\geq2$:
+    por ejemplo, el endomorfismo de $k^2$ con matriz $E_{12}$ y el de
+    matriz $E_{21}$ no conmutan, porque $E_{12}E_{21}=E_{11}\neq
+    E_{22}=E_{21}E_{12}$.
+\end{frame}

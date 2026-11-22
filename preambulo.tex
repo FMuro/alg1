@@ -13,6 +13,10 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix,positioning,decorations.pathmorphing}
 \usepackage{tikz-cd}
+% Con babel en español el carácter " es activo y rompe las etiquetas de las
+% flechas de tikz-cd (\arrow[r,"f"]); se desactiva.  En las transparencias, los
+% frames que contienen un entorno tikzcd deben llevar la opción [fragile].
+\AtBeginDocument{\shorthandoff{"}}
 
 \title{Álgebra Lineal y Geometría I}
 \author{Fernando Muro}

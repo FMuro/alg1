@@ -1,0 +1,416 @@
+% Matriz de un homomorfismo
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Homomorfismos de $k^n$ en $k^m$}
+
+    \begin{theorem}
+        Sea $f\colon k^n\to k^m$ un homomorfismo. Existe una única matriz
+        $A\in M_{m\times n}(k)$ tal que
+        \[
+            f(u)=Au\qquad\text{para todo }u\in k^n,
+        \]
+        a saber, la matriz cuyas columnas son las imágenes de la base
+        canónica:
+        \[
+            A=\bigl(f(e_1)\mid\cdots\mid f(e_n)\bigr).
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        Si $u=(u_1,\ldots,u_n)=u_1e_1+\cdots+u_ne_n$, como $f$ preserva
+        combinaciones lineales,
+        \[
+            f(u)=u_1f(e_1)+\cdots+u_nf(e_n)=Au,
+        \]
+        pues $Au$ es la combinación lineal de las columnas de $A$ con
+        coeficientes $u_1,\ldots,u_n$. Si $Bu=f(u)=Au$ para todo $u$,
+        tomando $u=e_j$ vemos que las columnas $j$-ésimas de $A$ y $B$
+        coinciden.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Homomorfismos entre espacios de dimensión finita}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo, con
+        $B=\{v_1,\ldots,v_n\}$ una base de $V$ y
+        $B'=\{v'_1,\ldots,v'_m\}$ una base de $V'$. Existe una única matriz
+        $A\in M_{m\times n}(k)$ tal que
+        \[
+            f(u)_{B'}=A\,u_B\qquad\text{para todo }u\in V,
+        \]
+        a saber, la matriz cuyas columnas son las coordenadas en $B'$ de las
+        imágenes de los vectores de $B$:
+        \[
+            A=\bigl(f(v_1)_{B'}\mid\cdots\mid f(v_n)_{B'}\bigr).
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        Sea $u\in V$ con $u_B=(\alpha_1,\ldots,\alpha_n)$, es decir,
+        $u=\alpha_1v_1+\cdots+\alpha_nv_n$. Como $f$ preserva combinaciones
+        lineales y las coordenadas respecto de $B'$ también,
+        \begin{align*}
+            f(u)_{B'}&=\bigl(\alpha_1f(v_1)+\cdots+\alpha_nf(v_n)\bigr)_{B'}\\
+            &=\alpha_1f(v_1)_{B'}+\cdots+\alpha_nf(v_n)_{B'}\\
+            &=Au_B,
+        \end{align*}
+        pues $Au_B$ es la combinación lineal de las columnas de $A$ con
+        coeficientes $\alpha_1,\ldots,\alpha_n$.
+
+        Si otra matriz $A'$ cumple $f(u)_{B'}=A'u_B$ para todo $u\in V$,
+        tomando $u=v_j$, para el que $u_B=e_j$, la columna $j$ de $A'$ es
+        $A'e_j=f(v_j)_{B'}$, que es la columna $j$ de $A$. Luego $A'=A$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Matriz de un homomorfismo}
+
+    \begin{definition}
+        La matriz $A$ del teorema anterior se llama \alert{matriz de $f$
+        respecto de $B$ y $B'$} y se denota $M_{B,B'}(f)$:
+        \[
+            M_{B,B'}(f)=\bigl(f(v_1)_{B'}\mid\cdots\mid f(v_n)_{B'}\bigr).
+        \]
+    \end{definition}
+
+    \medskip
+
+    Si $M_{B,B'}(f)=(a_{ij})$, esto significa que
+    \[
+        f(v_j)=a_{1j}v'_1+a_{2j}v'_2+\cdots+a_{mj}v'_m,
+        \qquad j=1,\ldots,n.
+    \]
+
+    \medskip
+
+    Tiene tantas columnas como $\dim V$ y tantas filas como $\dim V'$.
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{La matriz representa al homomorfismo}
+
+    El teorema anterior dice que el siguiente diagrama
+    \alert{conmuta}:
+    \[
+        \begin{tikzcd}[column sep=large,row sep=large]
+            V\arrow[r,"f"]\arrow[d,"c_B"'] & V'\arrow[d,"c_{B'}"]\\
+            k^n\arrow[r,"{M_{B,B'}(f)\,\cdot}"'] & k^m
+        \end{tikzcd}
+    \]
+    es decir, $c_{B'}\circ f=f_A\circ c_B$ con $A=M_{B,B'}(f)$.
+
+    \medskip
+
+    Calcular $f(u)$ equivale a calcular las coordenadas $u_B$, multiplicar
+    por la matriz y reconstruir el vector de $V'$ a partir de las
+    coordenadas obtenidas.
+
+    \medskip
+
+    Por tanto, \alert{todo} homomorfismo entre espacios de dimensión finita
+    es, en coordenadas, la multiplicación por una matriz.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Casos particulares}
+
+    \begin{example}
+        \begin{enumerate}
+            \item Si $A\in M_{m\times n}(k)$ y $C$, $C'$ son las bases
+            canónicas de $k^n$ y $k^m$, la matriz del homomorfismo
+            $f_A\colon k^n\to k^m$ es $A$, es decir, $M_{C,C'}(f_A)=A$, pues las coordenadas de un
+            vector de $k^n$ en la base canónica son sus propias entradas.
+            \item Si $B$ y $B'$ son bases de $V$, la matriz de
+            $\id_V\colon V\to V$ respecto de $B$ y $B'$ es
+            $M_{B,B'}(\id_V)=M(B,B')$, la \alert{matriz de cambio de base}
+            del Tema~2; en particular, $M_{B,B}(\id_V)=I_n$.
+            \item La aplicación nula $0\colon V\to V'$ tiene matriz nula $M_{B,B'}(0)=0$ en
+            cualquier par de bases.
+            \item La homotecia $h\colon V\to V$, $h(u)=\lambda u$, tiene
+            matriz $M_{B,B}(h)=\lambda I_n$ si tomamos la misma base $B$ en el dominio y el codominio pues $f(u)_B=(\lambda u)_B=\lambda u_B=\lambda I_n u_B$.
+            \item Si $\dim V=n$ y $C$ es la base canónica de $k^n$, la
+            aplicación de coordenadas $c_B\colon V\to k^n$ cumple
+            $M_{B,C}(c_B)=I_n$.
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la derivación de polinomios}
+
+    \begin{example}
+        Sea $D\colon\R_3[x]\to\R_2[x]$, $D(p)=p'$, y sean
+        $B=\{1,x,x^2,x^3\}$ y $B'=\{1,x,x^2\}$. Calculemos $M_{B,B'}(D)$.
+    \end{example}
+
+    Como $D(1)=0$, $D(x)=1$, $D(x^2)=2x$ y $D(x^3)=3x^2$, las columnas son
+    $(0,0,0)$, $(1,0,0)$, $(0,2,0)$ y $(0,0,3)$:
+    \[
+        M_{B,B'}(D)=
+        \begin{pmatrix}
+            0&1&0&0\\
+            0&0&2&0\\
+            0&0&0&3
+        \end{pmatrix}.
+    \]
+    Para derivar $p(x)=2-x+4x^3$, como $p_B=(2,-1,0,4)$,
+    \[
+        D(p)_{B'}=
+        \begin{pmatrix}
+            0&1&0&0\\
+            0&0&2&0\\
+            0&0&0&3
+        \end{pmatrix}
+        \begin{pmatrix}2\\-1\\0\\4\end{pmatrix}
+        =\begin{pmatrix}-1\\0\\12\end{pmatrix},
+        \qquad
+        D(p)=-1+12x^2.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la traspuesta de matrices $2\times2$}
+
+    \begin{example}
+        Sea $T\colon M_2(k)\to M_2(k)$, $T(A)=A^t$, y sea
+        $B=\{E_{11},E_{12},E_{21},E_{22}\}$ la base habitual. Calculemos
+        $M_{B,B}(T)$.
+    \end{example}
+
+    Las coordenadas de $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ en $B$ son
+    $(a,b,c,d)$. Como
+    \[
+        T(E_{11})=E_{11},\quad T(E_{12})=E_{21},\quad
+        T(E_{21})=E_{12},\quad T(E_{22})=E_{22},
+    \]
+    las columnas de la matriz son $e_1,e_3,e_2,e_4$:
+    \[
+        M_{B,B}(T)=
+        \begin{pmatrix}
+            1&0&0&0\\
+            0&0&1&0\\
+            0&1&0&0\\
+            0&0&0&1
+        \end{pmatrix}.
+    \]
+    En efecto, intercambia las coordenadas $b$ y $c$:
+    $(a,b,c,d)\mapsto(a,c,b,d)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la traza de matrices $2\times2$}
+
+    \begin{example}
+        Sea $\operatorname{tr}\colon M_2(k)\to k$ la traza,
+        $\operatorname{tr}\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)=a+d$, y sean
+        $B=\{E_{11},E_{12},E_{21},E_{22}\}$ la base habitual de $M_2(k)$ y
+        $B'=\{1\}$ la base habitual de $k$. Calculemos
+        $M_{B,B'}(\operatorname{tr})$.
+    \end{example}
+
+    Las coordenadas de un escalar $x\in k$ en $B'$ son $(x)$. Como
+    \[
+        \operatorname{tr}(E_{11})=1,\quad \operatorname{tr}(E_{12})=0,\quad
+        \operatorname{tr}(E_{21})=0,\quad \operatorname{tr}(E_{22})=1,
+    \]
+    la matriz, de tamaño $1\times4$, es
+    \[
+        M_{B,B'}(\operatorname{tr})=
+        \begin{pmatrix}1&0&0&1\end{pmatrix}.
+    \]
+    En efecto,
+    \[
+        \begin{pmatrix}1&0&0&1\end{pmatrix}
+        \begin{pmatrix}a\\b\\c\\d\end{pmatrix}=\begin{pmatrix}a+d\end{pmatrix}.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Composición y producto de matrices}
+
+    \begin{theorem}
+        Sean $f\colon V\to V'$ y $g\colon V'\to V''$ homomorfismos y sean
+        $B$, $B'$, $B''$ bases de $V$, $V'$, $V''$. Entonces
+        \[
+            M_{B,B''}(g\circ f)=M_{B',B''}(g)\cdot M_{B,B'}(f).
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Para todo $u\in V$, aplicando dos veces el teorema anterior,
+        \[
+            (g\circ f)(u)_{B''}=g\bigl(f(u)\bigr)_{B''}
+            =M_{B',B''}(g)\,f(u)_{B'}
+            =M_{B',B''}(g)\,M_{B,B'}(f)\,u_B.
+        \]
+        Por la unicidad de la matriz que representa a $g\circ f$, el
+        producto $M_{B',B''}(g)M_{B,B'}(f)$ es $M_{B,B''}(g\circ f)$.
+    \end{proof}
+
+    \medskip
+
+    La composición de homomorfismos se corresponde con el \alert{producto}
+    de matrices. Para $f=g=\id_V\colon V\to V$ es la fórmula
+    $M(B,B'')=M(B',B'')M(B,B')$ del Tema~2.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la derivada segunda}
+
+    \begin{example}
+        Sean $D_3\colon\R_3[x]\to\R_2[x]$ y $D_2\colon\R_2[x]\to\R_1[x]$ las
+        derivaciones, con las bases $\{1,x,\ldots,x^d\}$ de cada $\R_d[x]$.
+        Entonces $D_2\circ D_3\colon p\mapsto p''$ tiene matriz
+    \end{example}
+    \[
+        \begin{pmatrix}
+            0&1&0\\
+            0&0&2
+        \end{pmatrix}
+        \begin{pmatrix}
+            0&1&0&0\\
+            0&0&2&0\\
+            0&0&0&3
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0&0&2&0\\
+            0&0&0&6
+        \end{pmatrix}.
+    \]
+    En efecto, $(x^2)''=2$, $(x^3)''=6x$, y $1''=x''=0$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: composición de giros}
+
+    Recordemos que el giro de ángulo $\theta$ es el homomorfismo
+    $f_\theta\colon\R^2\to\R^2$ de matriz, respecto de la base canónica $C$,
+    \[
+        M_{C,C}(f_\theta)=R_\theta=\begin{pmatrix}
+            \cos\theta&-\sin\theta\\\sin\theta&\cos\theta
+        \end{pmatrix}.
+    \]
+
+    \begin{example}
+        La composición del giro de ángulo $\phi$ seguido del de ángulo
+        $\theta$ es el giro de ángulo $\theta+\phi$:
+        \[
+            f_\theta\circ f_\phi=f_{\theta+\phi}.
+        \]
+    \end{example}
+
+    \framebreak
+
+    Por el teorema sobre la composición, la matriz de $f_\theta\circ f_\phi$
+    es el producto de las matrices:
+    \begin{align*}
+        R_\theta R_\phi
+        &=\begin{pmatrix}
+            \cos\theta&-\sin\theta\\\sin\theta&\cos\theta
+        \end{pmatrix}
+        \begin{pmatrix}
+            \cos\phi&-\sin\phi\\\sin\phi&\cos\phi
+        \end{pmatrix}\\[1ex]
+        &=\begin{pmatrix}
+            \cos\theta\cos\phi-\sin\theta\sin\phi
+            &-\cos\theta\sin\phi-\sin\theta\cos\phi\\
+            \sin\theta\cos\phi+\cos\theta\sin\phi
+            &-\sin\theta\sin\phi+\cos\theta\cos\phi
+        \end{pmatrix}.
+    \end{align*}
+    Por otra parte, la matriz del giro $f_{\theta+\phi}$ es
+    \[
+        R_{\theta+\phi}=\begin{pmatrix}
+            \cos(\theta+\phi)&-\sin(\theta+\phi)\\
+            \sin(\theta+\phi)&\cos(\theta+\phi)
+        \end{pmatrix}.
+    \]
+    Como $f_\theta\circ f_\phi=f_{\theta+\phi}$, ambas matrices son
+    iguales, y comparando sus entradas se obtienen las fórmulas del seno y
+    el coseno de una suma:
+    \[
+        \cos(\theta+\phi)=\cos\theta\cos\phi-\sin\theta\sin\phi,
+        \quad
+        \sin(\theta+\phi)=\sin\theta\cos\phi+\cos\theta\sin\phi.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Fórmula del cambio de base}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un homomorfismo, sean $B$ y $C$ bases de $V$,
+        y sean $B'$ y $C'$ bases de $V'$. Entonces
+        \[
+            M_{C,C'}(f)=M(B',C')\cdot M_{B,B'}(f)\cdot M(C,B).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Escribimos $f=\id_{V'}\circ f\circ\id_V$, donde
+        $\id_V\colon V\to V$ y $\id_{V'}\colon V'\to V'$. Aplicando dos veces
+        el teorema sobre la composición, con las bases $C$, $B$ de $V$ y
+        $B'$, $C'$ de $V'$,
+        \begin{align*}
+            M_{C,C'}(f)&=M_{C,C'}(\id_{V'}\circ f\circ\id_V)\\
+            &=M_{B',C'}(\id_{V'})\,M_{B,B'}(f)\,M_{C,B}(\id_V)\\
+            &=M(B',C')\,M_{B,B'}(f)\,M(C,B),
+        \end{align*}
+        pues la matriz de la identidad respecto de dos bases es la matriz de
+        cambio de base: $M_{B,B'}(\id_V)=M(B,B')$.
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: de la base $B$ a la base canónica}
+
+    \begin{example}
+        Sea $f\colon\R^2\to\R^2$ el homomorfismo definido por $f(u_1,u_2)=(2u_1+u_2,u_1+2u_2)$. Este homomorfismo es $f_A$ con
+        \[
+            A=\begin{pmatrix}2&1\\1&2\end{pmatrix}.
+        \]
+        Tomemos la base $B=\{(1,1),(1,-1)\}$ y la base canónica $C=\{(1,0),(0,1)\}$. Entonces $M_{C,C}(f)=A$ y
+        \[
+            M_{B,B}(f)=M(B,C)\,M_{C,C}(f)\,M(C,B).
+        \] 
+        Por un lado, $M(B,C)$ es la matriz cuyas columnas son los vectores de $B$ en coordenadas canónicas:
+        \[
+            M(B,C)=\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+        \]
+    \end{example}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Ejemplo: de la base $B$ a la base canónica}
+    Por otro lado, $M(C,B)$ es la inversa de $M(B,C)$:
+        \[
+            M(C,B)=\frac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+        \]
+        Por tanto,
+        \[
+            M_{B,B}(f)=\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+            \begin{pmatrix}2&1\\1&2\end{pmatrix}
+            \frac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+            =\begin{pmatrix}3&0\\0&1\end{pmatrix}.
+        \]
+
+\end{frame}

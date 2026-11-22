@@ -1,0 +1,343 @@
+% Cambio de base y homomorfismos
+
+\begin{frame}
+    \frametitle{La matriz de un homomorfismo depende de las bases}
+
+    \begin{example}
+        Sea $f\colon\R^2\to\R^2$, $f(u_1,u_2)=(2u_1+u_2,\ u_1+2u_2)$.
+    \end{example}
+
+    En la base canónica $C$, $f(e_1)=(2,1)$ y $f(e_2)=(1,2)$:
+    \[
+        M_{C,C}(f)=\begin{pmatrix}2&1\\1&2\end{pmatrix}.
+    \]
+    En la base $B=\{(1,1),(1,-1)\}$ ocurre algo distinto:
+    \[
+        f(1,1)=(3,3)=3\,(1,1),\qquad f(1,-1)=(1,-1)=1\,(1,-1),
+    \]
+    luego
+    \[
+        M_{B,B}(f)=\begin{pmatrix}3&0\\0&1\end{pmatrix}.
+    \]
+
+    \medskip
+
+    Es \alert{el mismo} homomorfismo, representado por dos matrices
+    distintas, y la segunda es mucho más sencilla. ¿Cómo se relacionan?
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: otra forma de calcular una matriz}
+
+    \begin{example}
+        Recalculemos $M_{B,B'}(f)$ para
+        $f(u_1,u_2)=(u_1+u_2,\,2u_1-u_2,\,3u_2)$,
+        $B=\{(1,1),(1,-1)\}$ y $B'=\{(1,0,0),(1,1,0),(1,1,1)\}$.
+    \end{example}
+
+    Con las bases canónicas $C$ de $\R^2$ y $C'$ de $\R^3$,
+    $M_{C,C'}(f)=\begin{pmatrix}1&1\\2&-1\\0&3\end{pmatrix}$. Por la
+    fórmula del cambio de base,
+    \[
+        M_{B,B'}(f)=M(C',B')\,M_{C,C'}(f)\,M(B,C),
+    \]
+    donde $M(B,C)=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ y
+    $M(C',B')=M(B',C')^{-1}$, con
+    \[
+        M(B',C')=\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix},
+        \qquad
+        M(C',B')=\begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix}.
+    \]
+
+    \framebreak
+
+    Multiplicando,
+    \begin{align*}
+        M_{B,B'}(f)&=
+        \begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix}
+        \begin{pmatrix}1&1\\2&-1\\0&3\end{pmatrix}
+        \begin{pmatrix}1&1\\1&-1\end{pmatrix}\\
+        &=
+        \begin{pmatrix}1&-1&0\\0&1&-1\\0&0&1\end{pmatrix}
+        \begin{pmatrix}2&0\\1&3\\3&-3\end{pmatrix}
+        =
+        \begin{pmatrix}1&-3\\-2&6\\3&-3\end{pmatrix},
+    \end{align*}
+    que coincide con el resultado obtenido antes resolviendo los sistemas.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Toda matriz invertible es una matriz de cambio de base}
+
+    \begin{lemma}
+        Sea $B$ una base de un espacio $V$ de dimensión $n$ y sea
+        $P\in M_n(k)$ invertible. Existe una base $C$ de $V$ tal que
+        $M(C,B)=P$.
+    \end{lemma}
+
+    \begin{proof}
+        Como $c_B$ es sobreyectiva, existen $v'_1,\ldots,v'_n\in V$ tales
+        que $(v'_j)_B$ es la columna $j$ de $P$. Las columnas de $P$ son
+        una base de $k^n$ (pues $\rg P=n$, por el Tema~2). Por la
+        traducción a coordenadas del Tema~2, $C=\{v'_1,\ldots,v'_n\}$ es
+        una base de $V$. Por construcción, la columna $j$ de $M(C,B)$ es
+        $(v'_j)_B$, así que $M(C,B)=P$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Todas las matrices de un homomorfismo}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo y sea
+        $A=M_{B,B'}(f)\in M_{m\times n}(k)$. Una matriz
+        $A'\in M_{m\times n}(k)$ es la matriz de $f$ respecto de otras
+        bases $C$ de $V$ y $C'$ de $V'$ si y solo si
+        \[
+            A'=QAP\quad\text{con }P\in M_n(k),\ Q\in M_m(k)\text{ invertibles.}
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        ($\Rightarrow$) Es la fórmula del cambio de base, con
+        $Q=M(B',C')$ y $P=M(C,B)$, que son invertibles (Tema~2).
+
+        ($\Leftarrow$) Por el lema, existen bases $C$ de $V$ y $D$ de $V'$
+        con $M(C,B)=P$ y $M(D,B')=Q^{-1}$. Sea $C'=D$; entonces
+        $M(B',C')=M(D,B')^{-1}=Q$, y por la fórmula,
+        \[
+            M_{C,C'}(f)=M(B',C')\,A\,M(C,B)=QAP=A'.\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Matrices equivalentes y homomorfismos}
+
+    Recordemos (Tema~1) que dos matrices $A,A'\in M_{m\times n}(k)$ son
+    \alert{equivalentes por filas y columnas} si $A'=QAP$ con $P$ y $Q$
+    invertibles, y que esto ocurre si y solo si $\rg A=\rg A'$.
+
+    \begin{corollary}
+        Sean $A,A'\in M_{m\times n}(k)$. Son equivalentes si y solo si
+        existen un homomorfismo $f\colon V\to V'$ y bases $B,C$ de $V$ y
+        $B',C'$ de $V'$ con
+        \[
+            A=M_{B,B'}(f),\qquad A'=M_{C,C'}(f).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        ($\Leftarrow$) Es el teorema anterior. ($\Rightarrow$) Si
+        $A'=QAP$, tomamos $f=f_A\colon k^n\to k^m$ con las bases
+        canónicas, de modo que $A=M_{B,B'}(f)$, y aplicamos el teorema.
+    \end{proof}
+
+    \medskip
+
+    Dos matrices equivalentes son \alert{el mismo homomorfismo} visto en
+    bases distintas, y la propiedad que comparten es su \alert{rango}.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Endomorfismos: una sola base}
+
+    Si $f\colon V\to V$ es un endomorfismo, lo natural es usar la
+    \alert{misma} base en el espacio de salida y en el de llegada.
+
+    \begin{corollary}
+        Sea $f\in\End(V)$, y sean $B$ y $C$ bases de $V$. Si
+        $A=M_{B,B}(f)$, $A'=M_{C,C}(f)$ y $P=M(C,B)$, entonces
+        \[
+            A'=P^{-1}AP.
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Aplicamos la fórmula del cambio de base con $B'=B$ y $C'=C$, y
+        usamos que $M(B,C)=M(C,B)^{-1}=P^{-1}$.
+    \end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Matrices semejantes}
+
+    \begin{definition}
+        Dos matrices $A,A'\in M_n(k)$ son \alert{semejantes} si existe
+        $P\in M_n(k)$ invertible con $A'=P^{-1}AP$.
+    \end{definition}
+
+    Las matrices de un mismo endomorfismo en bases distintas son
+    semejantes (y, por el lema, recíprocamente). Encontrar una base en la
+    que la matriz sea lo más sencilla posible es el problema central del
+    Tema~5.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Completar una base del núcleo}
+
+    \begin{lemma}
+        Sea $f\colon V\to V'$ un homomorfismo con $V$ de dimensión finita.
+        Sea $\{k_1,\ldots,k_m\}$ una base de $\ker f$ y sean
+        $u_1,\ldots,u_r\in V$ tales que $f(u_1),\ldots,f(u_r)$ son una
+        base de $\im f$. Entonces
+        \[
+            \{u_1,\ldots,u_r,k_1,\ldots,k_m\}
+        \]
+        es una base de $V$.
+    \end{lemma}
+
+    \begin{proof}
+        Por el teorema de la dimensión, $r+m=\dim V$, así que basta ver que
+        son linealmente independientes. Si
+        $\sum_i\lambda_iu_i+\sum_j\mu_jk_j=0$, aplicando $f$ (y teniendo
+        en cuenta que $f(k_j)=0$) obtenemos $\sum_i\lambda_if(u_i)=0$,
+        luego todos los $\lambda_i$ son nulos. Entonces
+        $\sum_j\mu_jk_j=0$ y todos los $\mu_j$ son nulos.
+    \end{proof}
+
+    \medskip
+
+    En el Tema~2 vimos que $\dim V$ vectores independientes forman una
+    base.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Forma normal de un homomorfismo}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita, con $\rg f=r$. Existen bases $B$ de $V$ y $B'$ de $V'$ tales
+        que
+        \[
+            M_{B,B'}(f)=\left(
+            \begin{array}{c|c}
+                I_r&0\\\hline0&0
+            \end{array}
+            \right).
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        Sea $\{k_1,\ldots,k_m\}$ una base de $\ker f$, con $m=n-r$.
+        Como $\im f$ está generado por las imágenes de una base de $V$
+        (Tema~2: podemos extraer una base de unos generadores), existen
+        $u_1,\ldots,u_r\in V$ tales que $f(u_1),\ldots,f(u_r)$ son una base
+        de $\im f$. Por el lema,
+        \[
+            B=\{u_1,\ldots,u_r,k_1,\ldots,k_m\}
+        \]
+        es una base de $V$. Ampliamos la familia independiente
+        $f(u_1),\ldots,f(u_r)$ a una base de $V'$:
+        \[
+            B'=\{f(u_1),\ldots,f(u_r),w_{r+1},\ldots,w_{m'}\}.
+        \]
+        Entonces $f(u_i)$ es el $i$-ésimo vector de $B'$ para $i\leq r$, y
+        $f(k_j)=0$. Por tanto, las primeras $r$ columnas de $M_{B,B'}(f)$ son
+        $e_1,\ldots,e_r$ y las demás son nulas.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Forma normal y rango}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita.
+        \begin{enumerate}[(1)]
+            \item El rango de $M_{B,B'}(f)$ no depende de las bases elegidas
+            y es igual a $\rg f$.
+            \item Dos matrices $A,A'\in M_{m\times n}(k)$ son equivalentes
+            si y solo si $\rg A=\rg A'$.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        (1) Ya lo sabíamos: $\rg M_{B,B'}(f)=\dim\im f$. (2) Si
+        $\rg A=\rg A'=r$, ambas son la matriz de $f_A$ y de $f_{A'}$, que
+        tienen rango $r$; por el teorema, cada una de ellas es equivalente
+        a $\left(\begin{smallmatrix}I_r&0\\0&0\end{smallmatrix}\right)$.
+        El recíproco es consecuencia de (1).
+    \end{proof}
+
+    \medskip
+
+    Es el teorema de equivalencia por filas y columnas del Tema~1, ahora
+    con una interpretación geométrica: \alert{existen bases en las que $f$
+    es una proyección}, que lleva los primeros $r$ vectores de $B$ a los
+    primeros $r$ de $B'$ y anula los demás.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: forma normal en $\R^4\to\R^3$}
+
+    \begin{example}
+        Para el homomorfismo $f\colon\R^4\to\R^3$ de antes, con $\rg f=2$,
+        $\ker f=\langle(-2,1,0,0),(-1,0,-1,1)\rangle$ y
+        $\im f=\langle(1,2,1),(0,1,1)\rangle$, busquemos bases con matriz
+        $\left(\begin{smallmatrix}I_2&0\\0&0\end{smallmatrix}\right)$.
+    \end{example}
+
+    Los pivotes de $A$ estaban en las columnas $1$ y $3$, luego
+    $f(e_1)=(1,2,1)$ y $f(e_3)=(0,1,1)$ son una base de $\im f$. Por el
+    lema,
+    \[
+        B=\{e_1,\ e_3,\ (-2,1,0,0),\ (-1,0,-1,1)\}
+    \]
+    es una base de $\R^4$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: forma normal en $\R^4\to\R^3$}
+
+    Ampliamos $\{(1,2,1),(0,1,1)\}$ con $e_3$, que da una base de $\R^3$
+    (la matriz de columnas es triangular con determinante $1$):
+    \[
+        B'=\{(1,2,1),\ (0,1,1),\ (0,0,1)\}.
+    \]
+    Como $f(e_1)$ y $f(e_3)$ son los dos primeros vectores de $B'$ y
+    $f$ anula los dos últimos de $B$,
+    \[
+        M_{B,B'}(f)=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&0\end{pmatrix}.
+    \]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: forma normal en polinomios}
+
+    \begin{example}
+        Para $\Delta\colon\R_2[x]\to\R_2[x]$, $\Delta(p)(x)=p(x+1)-p(x)$,
+        con $\ker\Delta=\langle1\rangle$ y $\Delta(x)=1$,
+        $\Delta(x^2)=1+2x$, busquemos bases con matriz normal.
+    \end{example}
+
+    Como $\Delta(x)=1$ y $\Delta(x^2)=1+2x$ son una base de $\im\Delta$,
+    por el lema $\{x,x^2,1\}$ es una base de $\R_2[x]$. Ampliamos
+    $\{1,1+2x\}$ con $x^2$ y tomamos
+    \[
+        B=\{x,\ x^2,\ 1\},\qquad B'=\{1,\ 1+2x,\ x^2\}.
+    \]
+    Entonces $\Delta(x)=1$ es el primer vector de $B'$, $\Delta(x^2)=1+2x$
+    es el segundo y $\Delta(1)=0$, luego
+    \[
+        M_{B,B'}(\Delta)=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix}.
+    \]
+
+    Con la \alert{misma} base de salida y de llegada esto es imposible
+    para $\Delta$, pues $\Delta^3=0$ y $\operatorname{diag}(1,1,0)^3\neq0$.
+\end{frame}

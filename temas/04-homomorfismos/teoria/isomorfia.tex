@@ -1,0 +1,333 @@
+% Primer teorema de isomorfía
+
+\begin{frame}
+    \frametitle{Un ejemplo antes del teorema}
+
+    \begin{columns}[c]
+        \begin{column}{0.55\textwidth}
+            \begin{example}
+                Sea $f\colon\R^2\to\R$, $f(u_1,u_2)=u_1-u_2$. Es sobreyectiva
+                y $\ker f=\langle(1,1)\rangle$.
+            \end{example}
+
+            Para cada $c\in\R$, la \alert{fibra}
+            \[
+                f^{-1}(c)=\{u:\ u_1-u_2=c\}
+            \]
+            es una recta paralela a $\ker f$, es decir, una clase módulo
+            $\ker f$.
+
+            \medskip
+
+            Cada número real $c$ corresponde a una única clase de
+            $\R^2/\ker f$, y viceversa: $f$ identifica el cociente con
+            $\R=\im f$.
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \clip (-3.2,-2.6) rectangle (3.4,2.8);
+                \draw[->] (-2.5,0) -- (2.5,0) node[below left] {\footnotesize $u_1$};
+                \draw[->] (0,-2.5) -- (0,2.5) node[below left] {\footnotesize $u_2$};
+                \foreach \c in {-2,-1,1,2}
+                    \draw[gray!60] (-3,-3-\c) -- (3,3-\c);
+                \draw[very thick,alertcolor] (-3,-3) -- (3,3);
+                \foreach \c in {0,1,2}
+                    \node[right,font=\footnotesize,fill=white,inner sep=1pt] at (2.5,2.5-\c) {$\c$};
+                \foreach \c in {-2,-1}
+                    \node[left,font=\footnotesize,fill=white,inner sep=1pt] at (-2.5,-2.5-\c) {$\c$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las fibras son las clases módulo el núcleo}
+
+    \begin{lemma}
+        Sea $f\colon V\to V'$ un homomorfismo. Para todo $u,u'\in V$,
+        \[
+            f(u)=f(u')\iff u+\ker f=u'+\ker f.
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Por la caracterización de la inyectividad,
+        $f(u)=f(u')\iff u-u'\in\ker f$, y por la caracterización de las
+        clases módulo un subespacio (Tema~3),
+        $u-u'\in\ker f\iff u+\ker f=u'+\ker f$.
+    \end{proof}
+
+    \medskip
+
+    Es decir, $f$ \alert{no distingue} los vectores de una misma clase
+    módulo $\ker f$, y distingue los de clases distintas.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Primer teorema de isomorfía}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo. La aplicación
+        \[
+            \bar f\colon V/\ker f\longrightarrow\im f,
+            \qquad
+            \bar f(u+\ker f)=f(u),
+        \]
+        está bien definida y es un isomorfismo. En particular,
+        \[
+            V/\ker f\cong\im f.
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        Escribamos $K=\ker f$. Por el lema, para todo $u,u'\in V$,
+        \[
+            u+K=u'+K\iff f(u)=f(u').
+        \]
+        La implicación ($\Rightarrow$) dice que $\bar f$ \alert{está bien
+        definida}: el valor $f(u)$ no depende del representante $u$ de la
+        clase. La implicación ($\Leftarrow$) dice que $\bar f$ es
+        \alert{inyectiva}.
+
+        \alert{Lineal.} Para $u,u'\in V$ y $\lambda\in k$,
+        \[
+            \bar f\bigl((u+K)+(u'+K)\bigr)=\bar f\bigl((u+u')+K\bigr)
+            =f(u+u')=\bar f(u+K)+\bar f(u'+K),
+        \]
+        \[
+            \bar f\bigl(\lambda(u+K)\bigr)=\bar f(\lambda u+K)
+            =f(\lambda u)=\lambda\bar f(u+K).
+        \]
+
+        \alert{Sobreyectiva.} Todo elemento de $\im f$ es $f(u)=\bar f(u+K)$
+        para algún $u\in V$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Factorización canónica de un homomorfismo}
+
+    Todo homomorfismo $f\colon V\to V'$ se descompone como
+    \[
+        \begin{tikzcd}[column sep=large]
+            V\arrow[rr,"f"]\arrow[dr,"\pi"'] & & V'\\
+            & V/\ker f\arrow[r,"\bar f"',"\cong"] & \im f\arrow[u,hook,"\iota"']
+        \end{tikzcd}
+    \]
+    es decir, $f=\iota\circ\bar f\circ\pi$, donde
+    \begin{itemize}
+        \item $\pi$ es la proyección canónica, \alert{sobreyectiva};
+        \item $\bar f$ es un \alert{isomorfismo};
+        \item $\iota$ es la inclusión, \alert{inyectiva}.
+    \end{itemize}
+
+    \medskip
+
+    En efecto, $\iota\bar f\pi(u)=\iota\bar f(u+\ker f)=f(u)$.
+
+    \medskip
+
+    Así, \alert{todo} homomorfismo es, salvo isomorfismo, una proyección
+    sobre un cociente seguida de una inclusión.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consecuencias}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un homomorfismo.
+        \begin{enumerate}[(1)]
+            \item Si $f$ es sobreyectivo, $V'\cong V/\ker f$.
+            \item Si $V$ tiene dimensión finita, $\dim V=\dim\ker f+\dim\im f$.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        (1) Es el teorema con $\im f=V'$.
+        (2) Como $V/\ker f\cong\im f$ y los espacios isomorfos tienen la
+        misma dimensión, $\dim\im f=\dim V/\ker f=\dim V-\dim\ker f$
+        (Tema~3).
+    \end{proof}
+
+    \medskip
+
+    Es una segunda demostración del teorema de la dimensión.
+
+    \medskip
+
+    \alert{Los cocientes de $V$ son, salvo isomorfismo, las imágenes de
+    los homomorfismos que salen de $V$}: un espacio $V'$ es isomorfo a un
+    cociente de $V$ si y solo si existe un homomorfismo sobreyectivo
+    $V\to V'$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Identificar cocientes: ejemplos del Tema 3}
+
+    El teorema explica los cocientes que calculamos en el Tema~3.
+
+    \begin{example}
+        \begin{enumerate}
+            \item $\R^2/\langle(1,1)\rangle\cong\R$, mediante
+            $f(u_1,u_2)=u_1-u_2$: la clase de $(u_1,u_2)$ queda
+            determinada por $u_1-u_2$.
+            \item Si $W=\{p\in\R_2[x]:\ p(-1)=0\}$, entonces
+            $\R_2[x]/W\cong\R$, mediante $p\mapsto p(-1)$: es un
+            homomorfismo sobreyectivo cuyo núcleo es $W$.
+            \item Si $W=\langle(1,0,1,0),(0,1,0,1)\rangle\subseteq\R^4$,
+            entonces $\R^4/W\cong\R^2$, mediante
+            $f(u_1,u_2,u_3,u_4)=(u_1-u_3,\ u_2-u_4)$, que es sobreyectivo
+            con $\ker f=W$.
+            \item $k[x]/\{p:\ p(0)=0\}\cong k$, mediante $p\mapsto p(0)$,
+            y $\dim=1$ aunque $k[x]$ tenga dimensión infinita.
+            \item La traza $\operatorname{tr}\colon M_n(k)\to k$ es
+            sobreyectiva, con núcleo las matrices de traza nula:
+            $M_n(k)/\{X:\ \operatorname{tr}X=0\}\cong k$.
+        \end{enumerate}
+    \end{example}
+
+    En todos los casos, $\bar f$ es la aplicación «calcular el valor
+    que recuerda el cociente».
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: un cociente de matrices}
+
+    \begin{example}
+        Sea $S\subseteq M_2(\R)$ el subespacio de las matrices simétricas
+        y $f\colon M_2(\R)\to M_2(\R)$, $f(X)=X-X^t$.
+    \end{example}
+
+    Como
+    \[
+        f\begin{pmatrix}a&b\\c&d\end{pmatrix}
+        =\begin{pmatrix}0&b-c\\c-b&0\end{pmatrix},
+    \]
+    se tiene $\ker f=S$ e $\im f=\langle E_{12}-E_{21}\rangle$. Por
+    el primer teorema de isomorfía,
+    \[
+        M_2(\R)/S\cong\langle E_{12}-E_{21}\rangle\cong\R,
+    \]
+    y la clase de $X$ queda determinada por $b-c$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Un cociente es isomorfo a cualquier suplementario}
+
+    \begin{proposition}
+        Sean $W$ y $S$ subespacios de $V$ con $V=W\oplus S$. La restricción
+        a $S$ de la proyección canónica,
+        \[
+            \pi|_S\colon S\longrightarrow V/W,\qquad s\mapsto s+W,
+        \]
+        es un isomorfismo. En particular, $S\cong V/W$.
+    \end{proposition}
+
+    \begin{proof}
+        $\ker(\pi|_S)=S\cap\ker\pi=S\cap W=\{0\}$, luego $\pi|_S$ es
+        inyectiva. Es sobreyectiva porque cada $u\in V$ es $u=w+s$ con
+        $w\in W$ y $s\in S$, y entonces
+        $u+W=s+W=\pi|_S(s)$.
+    \end{proof}
+
+    \medskip
+
+    En particular, \alert{todos los suplementarios de $W$ son isomorfos
+    entre sí}, y a $V/W$. Por ejemplo, para $W=\langle(1,0,1,0),(0,1,0,1)\rangle$
+    en $\R^4$, tanto $\langle e_1,e_2\rangle$ como $\langle e_3,e_4\rangle$
+    son suplementarios y son isomorfos a $\R^4/W\cong\R^2$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Factorización a través de un cociente}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo y sea $W$ un subespacio de
+        $V$ con $W\subseteq\ker f$. La aplicación
+        \[
+            \bar f\colon V/W\longrightarrow V',\qquad
+            \bar f(u+W)=f(u),
+        \]
+        está bien definida y es un homomorfismo, con
+        $\bar f\circ\pi=f$, $\im\bar f=\im f$ y
+        $\ker\bar f=\{u+W:\ u\in\ker f\}$.
+    \end{proposition}
+
+    \begin{proof}
+        Si $u+W=u'+W$, entonces $u-u'\in W\subseteq\ker f$ y
+        $f(u)=f(u')$: está bien definida. La linealidad se comprueba como
+        en el primer teorema de isomorfía. Las demás afirmaciones son
+        inmediatas: $\bar f(u+W)=0$ si y solo si $f(u)=0$.
+    \end{proof}
+
+    \medskip
+
+    Un homomorfismo definido en $V$ que se anula en $W$ \alert{pasa al
+    cociente} $V/W$. El primer teorema de isomorfía es el caso
+    $W=\ker f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Segundo teorema de isomorfía}
+
+    \begin{theorem}
+        Sean $U$ y $W$ subespacios de $V$. Entonces
+        \[
+            U/(U\cap W)\cong(U+W)/W.
+        \]
+    \end{theorem}
+
+    \begin{proof}
+        Sea $\varphi\colon U\to(U+W)/W$, $\varphi(u)=u+W$. Es un
+        homomorfismo (composición de la inclusión $U\subseteq U+W$ y la
+        proyección canónica). Es sobreyectivo: toda clase de $(U+W)/W$ es
+        $(u+w)+W=u+W=\varphi(u)$ con $u\in U$, $w\in W$. Y
+        \[
+            \ker\varphi=\{u\in U:\ u+W=0\}=U\cap W.
+        \]
+        Por el primer teorema de isomorfía, $U/(U\cap W)\cong(U+W)/W$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{La fórmula de Grassmann, de nuevo}
+
+    \begin{corollary}[Fórmula de Grassmann]
+        Si $U$ y $W$ son subespacios de dimensión finita de $V$,
+        \[
+            \dim(U+W)=\dim U+\dim W-\dim(U\cap W).
+        \]
+    \end{corollary}
+
+    \begin{proof}
+        Por el segundo teorema, los dos espacios tienen la misma
+        dimensión, y por la dimensión del cociente (Tema~3),
+        \[
+            \dim U-\dim(U\cap W)=\dim(U+W)-\dim W.\qedhere
+        \]
+    \end{proof}
+
+    \framebreak
+
+    \begin{example}
+        Si $U$ y $W$ son dos planos distintos de $\R^3$, entonces
+        $U+W=\R^3$ y $U\cap W$ es una recta, y el teorema da
+        \[
+            U/(U\cap W)\cong\R^3/W\cong\R,
+        \]
+        ambos de dimensión $2-1=3-2=1$.
+    \end{example}
+\end{frame}

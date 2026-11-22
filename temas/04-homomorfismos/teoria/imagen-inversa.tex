@@ -1,0 +1,470 @@
+% Imagen directa e inversa de subespacios
+
+\begin{frame}
+    \frametitle{Imagen directa e imagen inversa}
+
+    \begin{definition}
+        Sea $f\colon V\to V'$ un homomorfismo. Para $U\subseteq V$ y
+        $U'\subseteq V'$ definimos
+        \[
+            f(U)=\{f(u):\ u\in U\}\subseteq V',
+            \qquad
+            f^{-1}(U')=\{u\in V:\ f(u)\in U'\}\subseteq V.
+        \]
+        Son la \alert{imagen directa} de $U$ y la \alert{imagen inversa}
+        de $U'$ por $f$.
+    \end{definition}
+
+    \medskip
+
+    La notación $f^{-1}(U')$ tiene sentido aunque $f$ \alert{no} sea
+    biyectiva: no es la imagen por una inversa.
+
+    \medskip
+
+    Casos particulares: $f(V)=\im f$ y $f^{-1}(\{0\})=\ker f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo en el plano}
+
+    \begin{example}
+        Sea $f\colon\R^2\to\R^2$, $f(u_1,u_2)=(u_1+u_2,\ u_1+u_2)$, con
+        $\ker f=\langle(1,-1)\rangle$ e $\im f=\langle(1,1)\rangle$.
+        \begin{itemize}
+            \item $f\bigl(\langle(1,0)\rangle\bigr)=\langle(1,1)\rangle$:
+            la recta $\langle(1,0)\rangle$ se aplasta sobre la diagonal.
+            \item $f\bigl(\langle(1,-1)\rangle\bigr)=\{0\}$.
+            \item $f^{-1}\bigl(\langle(1,1)\rangle\bigr)=\R^2$.
+            \item $f^{-1}\bigl(\langle(1,0)\rangle\bigr)=\langle(1,-1)\rangle$,
+            pues $f(u)=(s,s)\in\langle(1,0)\rangle$ si y solo si $s=0$.
+            \item $f^{-1}\bigl(\langle(0,1)\rangle\bigr)=\langle(1,-1)\rangle$
+            por la misma razón.
+        \end{itemize}
+    \end{example}
+
+    Obsérvese que $f^{-1}(U')$ siempre contiene a $\ker f$, y que solo
+    «ve» la parte de $U'$ que está en $\im f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Subespacios y homomorfismos}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo.
+        \begin{enumerate}[(1)]
+            \item Si $U$ es un subespacio de $V$, $f(U)$ es un subespacio
+            de $V'$.
+            \item Si $U'$ es un subespacio de $V'$, $f^{-1}(U')$ es un
+            subespacio de $V$ que contiene a $\ker f$.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \alert{(1)} $0=f(0)\in f(U)$, y si $w=f(u)$, $w'=f(u')$ con
+        $u,u'\in U$, entonces $\lambda w+\mu w'=f(\lambda u+\mu u')\in f(U)$.
+
+        \alert{(2)} Si $f(u)=0$, entonces $f(u)=0\in U'$, luego
+        $\ker f\subseteq f^{-1}(U')$; en particular, $0\in f^{-1}(U')$. Si
+        $u,u'\in f^{-1}(U')$, entonces
+        $f(\lambda u+\mu u')=\lambda f(u)+\mu f(u')\in U'$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Restricción de un homomorfismo}
+
+    \begin{definition}
+        Sea $f\colon V\to V'$ un homomorfismo y $U$ un subespacio de $V$.
+        La \alert{restricción} de $f$ a $U$ es
+        \[
+            f|_U\colon U\longrightarrow V',\qquad f|_U(u)=f(u).
+        \]
+    \end{definition}
+
+    Es un homomorfismo (es la composición de $f$ con la inclusión
+    $U\hookrightarrow V$), y
+    \[
+        \ker(f|_U)=U\cap\ker f,
+        \qquad
+        \im(f|_U)=f(U).
+    \]
+
+    \medskip
+
+    En efecto, $u\in U$ cumple $f|_U(u)=0$ si y solo si $u\in\ker f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dimensión de la imagen directa}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo, con $V$ de dimensión finita,
+        y sea $U$ un subespacio de $V$. Entonces
+        \[
+            \dim f(U)=\dim U-\dim(U\cap\ker f).
+        \]
+        En particular, $\dim f(U)=\dim U$ si y solo si
+        $U\cap\ker f=\{0\}$.
+    \end{proposition}
+
+    \begin{proof}
+        Aplicamos el teorema de la dimensión a $f|_U\colon U\to V'$:
+        \[
+            \dim U=\dim\ker(f|_U)+\dim\im(f|_U)
+            =\dim(U\cap\ker f)+\dim f(U).\qedhere
+        \]
+    \end{proof}
+
+    \medskip
+
+    Al aplicar $f$ se «pierde» exactamente la parte de $U$ que está en
+    el núcleo.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cálculo de la imagen directa}
+
+    Sea $U=\langle u_1,\ldots,u_r\rangle$. Por la proposición sobre
+    generadores,
+    \[
+        f(U)=\langle f(u_1),\ldots,f(u_r)\rangle.
+    \]
+    En coordenadas, si $A=M_{B,B'}(f)$, las coordenadas en $B'$ de
+    $f(u_j)$ son $A\,(u_j)_B$, es decir, las columnas de
+    \[
+        A\cdot\bigl((u_1)_B\mid\cdots\mid(u_r)_B\bigr).
+    \]
+    Se escalona esta matriz para obtener una base de $f(U)$, como en el
+    Tema~3, y $\dim f(U)=\rg\bigl(A\,(u_1)_B\mid\cdots\mid(u_r)_B\bigr)$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: imagen directa}
+
+    \begin{example}
+        Sea $f\colon\R^4\to\R^3$ el homomorfismo de los ejemplos
+        anteriores, con matriz
+        $A=\begin{pmatrix}1&2&0&1\\2&4&1&3\\1&2&1&2\end{pmatrix}$, y sea
+        \[
+            U=\langle(1,0,0,0),\ (-2,1,0,0),\ (0,0,1,0)\rangle.
+        \]
+        Calculemos $f(U)$.
+    \end{example}
+
+    Las imágenes de los generadores son
+    \[
+        f(1,0,0,0)=(1,2,1),\quad
+        f(-2,1,0,0)=(0,0,0),\quad
+        f(0,0,1,0)=(0,1,1),
+    \]
+    luego $f(U)=\langle(1,2,1),(0,1,1)\rangle$ y $\dim f(U)=2$.
+
+    \medskip
+
+    Comprobación: $(-2,1,0,0)\in\ker f$, y es fácil ver que
+    $U\cap\ker f=\langle(-2,1,0,0)\rangle$, así que
+    $\dim f(U)=3-1=2$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cálculo de la imagen inversa}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo, $A=M_{B,B'}(f)$, y sea
+        $U'$ un subespacio de $V'$ con ecuaciones
+        \[
+            U'\colon\ Cx=0\quad\text{resp.\ }B'.
+        \]
+        Entonces $f^{-1}(U')$ tiene ecuaciones
+        \[
+            f^{-1}(U')\colon\ (CA)\,x=0\quad\text{resp.\ }B.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Para todo $u\in V$,
+        \[
+            u\in f^{-1}(U')\iff f(u)\in U'
+            \iff C\,f(u)_{B'}=0\iff C A\,u_B=0.\qedhere
+        \]
+    \end{proof}
+
+    \medskip
+
+    Basta \alert{multiplicar} la matriz de las ecuaciones de $U'$ por la
+    matriz de $f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: imagen inversa}
+
+    \begin{example}
+        Con el mismo $f\colon\R^4\to\R^3$, sea
+        $U'\colon\ u'_1=0$ respecto de la base canónica de $\R^3$.
+        Calculemos $f^{-1}(U')$.
+    \end{example}
+
+    La matriz de ecuaciones de $U'$ es $C=\begin{pmatrix}1&0&0\end{pmatrix}$,
+    y $CA$ es la primera fila de $A$:
+    \[
+        f^{-1}(U')\colon\ u_1+2u_2+u_4=0.
+    \]
+    Es un subespacio de dimensión $3$ que contiene a
+    $\ker f=\langle(-2,1,0,0),(-1,0,-1,1)\rangle$.
+
+    \medskip
+
+    Comprobemos que $(1,0,0,-1)\in f^{-1}(U')$: $f(1,0,0,-1)=(0,-1,-1)$,
+    que tiene primera coordenada nula. Y $(1,0,0,0)\notin f^{-1}(U')$,
+    porque $f(1,0,0,0)=(1,2,1)\notin U'$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Dimensión de la imagen inversa}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo con $V$ de dimensión finita,
+        y sea $U'$ un subespacio de $V'$. Entonces
+        \[
+            \dim f^{-1}(U')=\dim\ker f+\dim(U'\cap\im f).
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Sea $U=f^{-1}(U')$ y consideremos
+        \[
+            g\colon U\longrightarrow U'\cap\im f,\qquad g(u)=f(u).
+        \]
+        Está bien definida: si $u\in U$, $f(u)\in U'$ por definición e
+        $f(u)\in\im f$. Es un homomorfismo, con
+        $\ker g=U\cap\ker f=\ker f$ (pues $\ker f\subseteq U$).
+
+        Además, $g$ es sobreyectiva: si $w\in U'\cap\im f$, entonces
+        $w=f(u)$ para algún $u\in V$, y como $f(u)\in U'$,
+        $u\in f^{-1}(U')=U$, con $g(u)=w$.
+
+        Por el teorema de la dimensión aplicado a $g$,
+        \[
+            \dim U=\dim\ker f+\dim(U'\cap\im f).\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: dimensión de la imagen inversa}
+
+    En el ejemplo anterior, $U'\colon u'_1=0$ e
+    $\im f=\langle(1,2,1),(0,1,1)\rangle$.
+
+    \medskip
+
+    Los vectores de $\im f$ con primera coordenada nula son
+    $a(1,2,1)+b(0,1,1)$ con $a=0$, es decir,
+    \[
+        U'\cap\im f=\langle(0,1,1)\rangle.
+    \]
+    Por la proposición,
+    \[
+        \dim f^{-1}(U')=\dim\ker f+\dim(U'\cap\im f)=2+1=3,
+    \]
+    en acuerdo con la ecuación $u_1+2u_2+u_4=0$, que define un subespacio
+    de dimensión $4-1=3$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Isomorfismos e inyectividad}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita.
+        \begin{enumerate}[(1)]
+            \item Si $f$ es inyectivo, $\dim f(U)=\dim U$ para todo
+            subespacio $U$ de $V$.
+            \item Si $f$ es sobreyectivo, $\dim f^{-1}(U')=\dim\ker f+\dim U'$
+            para todo subespacio $U'$ de $V'$.
+            \item Si $f$ es un isomorfismo, $\dim f(U)=\dim U$ y
+            $\dim f^{-1}(U')=\dim U'$.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        (1) Como $\ker f=\{0\}$, $U\cap\ker f=\{0\}$. (2) Como
+        $\im f=V'$, $U'\cap\im f=U'$. (3) Se obtiene de (1), (2) y
+        $\ker f=\{0\}$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Correspondencia entre subespacios}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo.
+        \begin{enumerate}[(1)]
+            \item $f\bigl(f^{-1}(U')\bigr)=U'\cap\im f$ para todo
+            subespacio $U'$ de $V'$.
+            \item $f^{-1}\bigl(f(U)\bigr)=U+\ker f$ para todo subespacio
+            $U$ de $V$.
+            \item Las aplicaciones $U\mapsto f(U)$ y
+            $U'\mapsto f^{-1}(U')$ son biyecciones, inversas una de la
+            otra, entre
+            \[
+                \{U\subseteq V:\ \ker f\subseteq U\}
+                \ \longleftrightarrow\
+                \{U'\subseteq\im f\},
+            \]
+            que conservan la inclusión.
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Correspondencia entre subespacios: demostración}
+
+    \begin{proof}
+        \alert{(1)} Si $w=f(u)$ con $f(u)\in U'$, entonces
+        $w\in U'\cap\im f$. Recíprocamente, si $w\in U'\cap\im f$,
+        $w=f(u)$ con $u\in f^{-1}(U')$, luego $w\in f(f^{-1}(U'))$.
+
+        \alert{(2)} Si $u\in U$ y $z\in\ker f$, $f(u+z)=f(u)\in f(U)$.
+        Recíprocamente, si $f(u)\in f(U)$, existe $u_0\in U$ con
+        $f(u)=f(u_0)$, luego $u-u_0\in\ker f$ y
+        $u=u_0+(u-u_0)\in U+\ker f$.
+
+        \alert{(3)} Si $\ker f\subseteq U$, por (2),
+        $f^{-1}(f(U))=U+\ker f=U$. Si $U'\subseteq\im f$, por (1),
+        $f(f^{-1}(U'))=U'\cap\im f=U'$. Además, $f(U)\subseteq\im f$,
+        $f^{-1}(U')\supseteq\ker f$ (proposición anterior), y ambas
+        aplicaciones conservan la inclusión.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Subespacios de un cociente}
+
+    Si $\pi\colon V\to V/W$ es la proyección canónica, $\ker\pi=W$ e
+    $\im\pi=V/W$. La correspondencia da:
+
+    \begin{corollary}
+        Sea $W$ un subespacio de $V$. Las aplicaciones
+        \[
+            U\longmapsto U/W=\{u+W:\ u\in U\},
+            \qquad
+            U'\longmapsto\{u\in V:\ u+W\in U'\}
+        \]
+        son biyecciones, inversas una de la otra, entre los subespacios
+        $U$ de $V$ que contienen a $W$ y los subespacios $U'$ de $V/W$.
+        Además, si $V$ tiene dimensión finita, $\dim(U/W)=\dim U-\dim W$.
+    \end{corollary}
+
+    La fórmula de la dimensión es la de la imagen directa, pues
+    $U\cap\ker\pi=U\cap W=W$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: subespacios de un cociente}
+
+    \begin{example}
+        Los subespacios de $\R^3/\langle(1,1,1)\rangle$ se corresponden
+        con los subespacios de $\R^3$ que contienen a la recta
+        $\langle(1,1,1)\rangle$: esta recta (que da el subespacio $0$ del
+        cociente), los planos que la contienen (rectas del cociente), y
+        $\R^3$ (todo el cociente).
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Imagen y suma, imagen inversa e intersección}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo.
+        \begin{enumerate}[(1)]
+            \item $f(U_1+U_2)=f(U_1)+f(U_2)$ para subespacios
+            $U_1,U_2$ de $V$.
+            \item $f^{-1}(U'_1\cap U'_2)=f^{-1}(U'_1)\cap f^{-1}(U'_2)$ para
+            subespacios $U'_1,U'_2$ de $V'$.
+            \item $f(U_1\cap U_2)\subseteq f(U_1)\cap f(U_2)$, con igualdad
+            si $f$ es inyectiva.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \alert{(1)} $f(u_1+u_2)=f(u_1)+f(u_2)$, para $u_i\in U_i$.
+        \alert{(2)} $f(u)\in U'_1\cap U'_2$ si y solo si $f(u)\in U'_1$ y
+        $f(u)\in U'_2$.
+        \alert{(3)} La inclusión es clara. Si $f$ es inyectiva y
+        $w=f(u_1)=f(u_2)$ con $u_i\in U_i$, entonces $u_1=u_2\in U_1\cap U_2$,
+        luego $w\in f(U_1\cap U_2)$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La imagen de una intersección puede ser menor}
+
+    \begin{example}
+        Sea $f\colon\R^2\to\R$, $f(u_1,u_2)=u_1$, y sean
+        $U_1=\langle(1,0)\rangle$ y $U_2=\langle(1,1)\rangle$. Entonces
+        \[
+            U_1\cap U_2=\{0\},\qquad f(U_1\cap U_2)=\{0\},
+        \]
+        pero $f(U_1)=f(U_2)=\R$, luego
+        $f(U_1)\cap f(U_2)=\R\neq f(U_1\cap U_2)$.
+    \end{example}
+
+    \medskip
+
+    La falta de inyectividad hace que subespacios distintos se
+    superpongan al aplicarles $f$. En cambio, la imagen de una suma sí es
+    la suma de las imágenes.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Los isomorfismos conservan toda la estructura de subespacios}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un isomorfismo. La aplicación
+        $U\mapsto f(U)$ es una biyección entre los subespacios de $V$ y los
+        de $V'$, con inversa $U'\mapsto f^{-1}(U')$, y conserva
+        \begin{itemize}
+            \item la inclusión y la dimensión;
+            \item sumas e intersecciones: $f(U_1+U_2)=f(U_1)+f(U_2)$ y
+            $f(U_1\cap U_2)=f(U_1)\cap f(U_2)$;
+            \item sumas directas: $V=U_1\oplus U_2$ si y solo si
+            $V'=f(U_1)\oplus f(U_2)$.
+        \end{itemize}
+    \end{corollary}
+
+    \framebreak
+
+    \begin{proof}
+        Como $\ker f=\{0\}$ e $\im f=V'$, la primera afirmación es el
+        apartado (3) del teorema. Las demás son las proposiciones
+        anteriores, con $f$ inyectiva y sobreyectiva; para la suma directa
+        basta usar $f(U_1\cap U_2)=f(U_1)\cap f(U_2)$ y $f(V)=V'$, y
+        aplicar lo mismo a $f^{-1}$ para el recíproco.
+    \end{proof}
+
+    \medskip
+
+    En particular, con $f=c_B$ se justifica el método de los Temas~2 y~3:
+    los subespacios de $V$ y sus operaciones pueden estudiarse en
+    coordenadas, en $k^n$.
+\end{frame}

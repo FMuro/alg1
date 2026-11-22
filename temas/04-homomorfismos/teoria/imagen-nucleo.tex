@@ -1,0 +1,650 @@
+% Imagen y núcleo
+
+\begin{frame}
+    \frametitle{Núcleo e imagen}
+
+    \begin{definition}
+        Sea $f\colon V\to V'$ un homomorfismo. El \alert{núcleo} y la
+        \alert{imagen} de $f$ son
+        \[
+            \ker f=\{u\in V:\ f(u)=0\}\subseteq V,
+            \qquad
+            \im f=\{f(u):\ u\in V\}\subseteq V'.
+        \]
+    \end{definition}
+
+    \medskip
+
+    El núcleo recoge lo que $f$ \alert{anula}, y la imagen lo que $f$
+    \alert{alcanza}.
+
+    \medskip
+
+    La aplicación $f$ es sobreyectiva si y solo si $\im f=V'$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{El núcleo y la imagen son subespacios}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo. Entonces $\ker f$ es un
+        subespacio de $V$ e $\im f$ es un subespacio de $V'$.
+    \end{proposition}
+
+    \begin{proof}
+        \alert{Núcleo.} $f(0)=0$, luego $0\in\ker f$. Si $u,u'\in\ker f$ y
+        $\lambda,\mu\in k$,
+        \[
+            f(\lambda u+\mu u')=\lambda f(u)+\mu f(u')=0,
+        \]
+        luego $\lambda u+\mu u'\in\ker f$.
+
+        \alert{Imagen.} $0=f(0)\in\im f$. Si $w=f(u)$ y $w'=f(u')$,
+        entonces
+        \[
+            \lambda w+\mu w'=f(\lambda u+\mu u')\in\im f.\qedhere
+        \]
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplos de núcleo e imagen}
+
+    \begin{example}
+        \begin{enumerate}
+            \item $f_A\colon k^n\to k^m$, $u\mapsto Au$:
+            $\ker f_A=\{u:\ Au=0\}$ es el conjunto de soluciones del
+            sistema homogéneo, e $\im f_A=\{Au:\ u\in k^n\}$ es el
+            subespacio generado por las columnas de $A$.
+            \item La proyección $(u_1,u_2,u_3)\mapsto(u_1,u_2,0)$ de $\R^3$
+            tiene núcleo $\langle e_3\rangle$ e imagen el plano
+            $u_3=0$.
+            \item La aplicación nula tiene $\ker=V$ e $\im=\{0\}$. La
+            identidad tiene $\ker=\{0\}$ e $\im=V$.
+            \item La rotación $f_\theta$ de $\R^2$ tiene $\ker f_\theta=\{0\}$
+            e $\im f_\theta=\R^2$.
+            \item La proyección canónica $\pi\colon V\to V/U$ tiene
+            $\ker\pi=U$ e $\im\pi=V/U$ (pues $\pi(u)=0$ si y solo si
+            $u\in U$).
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Más ejemplos de núcleo e imagen}
+
+    \begin{example}
+        \begin{enumerate}
+            \item $D\colon\R[x]\to\R[x]$, $D(p)=p'$: $\ker D$ son los
+            polinomios constantes e $\im D=\R[x]$ (todo polinomio tiene
+            una primitiva). Si restringimos a $D\colon\R_n[x]\to\R_{n-1}[x]$,
+            sigue siendo $\ker D=\R$ e $\im D=\R_{n-1}[x]$.
+            \item $\operatorname{ev}_a\colon k[x]\to k$, $p\mapsto p(a)$:
+            $\ker\operatorname{ev}_a=\{p:\ p(a)=0\}$ e
+            $\im\operatorname{ev}_a=k$ (la constante $\lambda$ es
+            $\operatorname{ev}_a(\lambda)$).
+            \item La multiplicación por $x$ en $k[x]$ tiene núcleo $\{0\}$
+            e imagen $\{p:\ p(0)=0\}$.
+            \item $\operatorname{tr}\colon M_n(k)\to k$:
+            $\ker\operatorname{tr}$ son las matrices de traza nula e
+            $\im\operatorname{tr}=k$.
+            \item $A\mapsto A^t$ en $M_{m\times n}(k)$: núcleo $\{0\}$ e
+            imagen $M_{n\times m}(k)$.
+            \item $c_B\colon V\to k^n$: núcleo $\{0\}$ e imagen $k^n$.
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Inyectividad y núcleo}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo. Para todo $u,u'\in V$,
+        \[
+            f(u)=f(u')\iff u-u'\in\ker f.
+        \]
+        En particular, $f$ es inyectiva si y solo si $\ker f=\{0\}$.
+    \end{proposition}
+
+    \begin{proof}
+        $f(u)=f(u')\iff f(u-u')=f(u)-f(u')=0\iff u-u'\in\ker f$.
+
+        Si $f$ es inyectiva y $f(u)=0=f(0)$, entonces $u=0$. Recíprocamente,
+        si $\ker f=\{0\}$ y $f(u)=f(u')$, entonces $u-u'\in\ker f=\{0\}$,
+        luego $u=u'$.
+    \end{proof}
+
+    \medskip
+
+    Para estudiar la inyectividad de un homomorfismo basta, por tanto,
+    resolver una \alert{única} ecuación, $f(u)=0$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{La imagen está generada por las imágenes de los generadores}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo y sean $u_1,\ldots,u_r$
+        generadores de $V$. Entonces
+        \[
+            \im f=\langle f(u_1),\ldots,f(u_r)\rangle.
+        \]
+    \end{proposition}
+
+    \begin{proof}
+        Cada $f(u_j)$ está en $\im f$, que es un subespacio, luego
+        $\langle f(u_1),\ldots,f(u_r)\rangle\subseteq\im f$. Recíprocamente,
+        si $u=\lambda_1u_1+\cdots+\lambda_ru_r$, entonces
+        $f(u)=\lambda_1f(u_1)+\cdots+\lambda_rf(u_r)$.
+    \end{proof}
+
+    \medskip
+
+    En particular, si $V$ tiene dimensión finita, $\im f$ también.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Imagen de familias de vectores}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo y sean $u_1,\ldots,u_r\in V$.
+        \begin{enumerate}[(1)]
+            \item Si $f(u_1),\ldots,f(u_r)$ son linealmente independientes,
+            también lo son $u_1,\ldots,u_r$.
+            \item Si $f$ es inyectiva y $u_1,\ldots,u_r$ son linealmente
+            independientes, también lo son $f(u_1),\ldots,f(u_r)$.
+            \item Si $f$ es sobreyectiva y $u_1,\ldots,u_r$ generan $V$,
+            entonces $f(u_1),\ldots,f(u_r)$ generan $V'$.
+            \item Si $f$ es un isomorfismo y $B$ es una base de $V$,
+            entonces $f(B)$ es una base de $V'$.
+        \end{enumerate}
+    \end{proposition}
+
+    \medskip
+
+    Un homomorfismo cualquiera \alert{no} conserva la independencia
+    lineal: la aplicación nula lleva cualquier familia a una familia de
+    vectores nulos.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Imagen de familias de vectores: demostración}
+
+    \begin{proof}
+        \alert{(1)} Si $\sum\lambda_iu_i=0$, aplicando $f$ se obtiene
+        $\sum\lambda_if(u_i)=0$, luego todos los $\lambda_i$ son nulos.
+
+        \alert{(2)} Si $\sum\lambda_if(u_i)=0$, entonces
+        $f\bigl(\sum\lambda_iu_i\bigr)=0$, y como $\ker f=\{0\}$,
+        $\sum\lambda_iu_i=0$. Por independencia, todos los $\lambda_i$ son
+        nulos.
+
+        \alert{(3)} Por la proposición anterior,
+        $\langle f(u_1),\ldots,f(u_r)\rangle=\im f=V'$.
+
+        \alert{(4)} Un isomorfismo es inyectivo y sobreyectivo, así que
+        (2) y (3) dan que $f(B)$ es independiente y genera $V'$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Teorema de la dimensión}
+
+    \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo con $V$ de dimensión
+        finita. Entonces
+        \[
+            \dim V=\dim\ker f+\dim\im f.
+        \]
+    \end{theorem}
+
+    La dimensión de $\im f$ se llama \alert{rango} de $f$:
+    $\rg f=\dim\im f$.
+
+    \medskip
+
+    Es una versión abstracta de $\dim\{Ax=0\}=n-\rg A$ (Tema~3).
+
+    \framebreak
+
+    \begin{proof}
+        Sea $\{v_1,\ldots,v_m\}$ una base de $\ker f$ (vacía si
+        $\ker f=\{0\}$). Por el Tema~2, la ampliamos a una base
+        $\{v_1,\ldots,v_m,v_{m+1},\ldots,v_n\}$ de $V$; en particular,
+        $\dim V=n$ y $\dim\ker f=m$. Veamos que
+        \[
+            \{f(v_{m+1}),\ldots,f(v_n)\}\ \text{es una base de }\im f,
+        \]
+        con lo que $\dim\im f=n-m$.
+
+        \alert{Generan.} Por la proposición sobre generadores,
+        $\im f=\langle f(v_1),\ldots,f(v_n)\rangle$, y $f(v_j)=0$ para
+        $j\leq m$.
+
+        \alert{Son independientes.} Si
+        $\lambda_{m+1}f(v_{m+1})+\cdots+\lambda_nf(v_n)=0$, entonces
+        \[
+            f(\lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n)=0,
+        \]
+        luego $\lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n\in\ker f$ y existen
+        $\mu_1,\ldots,\mu_m$ con
+        \[
+            \lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n=\mu_1v_1+\cdots+\mu_mv_m.
+        \]
+        Como $v_1,\ldots,v_n$ son independientes, todos los coeficientes
+        son nulos; en particular, $\lambda_{m+1}=\cdots=\lambda_n=0$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Núcleo e imagen en coordenadas}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo, $B$ y $B'$ bases de $V$ y
+        $V'$, y $A=M_{B,B'}(f)$. Entonces
+        \begin{enumerate}[(1)]
+            \item $u\in\ker f\iff Au_B=0$;
+            \item $w\in\im f\iff w_{B'}$ es combinación lineal de las
+            columnas de $A$.
+        \end{enumerate}
+        Por tanto, $\rg f=\rg A$.
+    \end{proposition}
+
+    \begin{proof}
+        \alert{(1)} $f(u)=0\iff f(u)_{B'}=0\iff Au_B=0$, porque $c_{B'}$ es
+        inyectiva y $0_{B'}=0$.
+
+        \alert{(2)} Si $w=f(u)$, entonces $w_{B'}=Au_B$ es una combinación
+        lineal de las columnas de $A$. Recíprocamente, si $w_{B'}=Ax$,
+        como $c_B$ es sobreyectiva, $x=u_B$ para algún $u\in V$, y
+        $f(u)_{B'}=Ax=w_{B'}$, luego $w=f(u)\in\im f$.
+
+        Por (2), $c_{B'}$ lleva $\im f$ isomórficamente sobre el espacio
+        generado por las columnas de $A$, cuya dimensión es $\rg A$
+        (Tema~3).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Cálculo de bases del núcleo y de la imagen}
+
+    Sea $A=M_{B,B'}(f)$, con $B=\{v_1,\ldots,v_n\}$ y $B'=\{v'_1,\ldots,v'_m\}$.
+    Escalonamos $A$.
+
+    \begin{itemize}
+        \item \alert{Núcleo.} Resolvemos $Ax=0$ (Tema~1). Si
+        $x^{(1)},\ldots,x^{(s)}$ es una base de las soluciones,
+        \[
+            u^{(i)}=x^{(i)}_1v_1+\cdots+x^{(i)}_nv_n,
+            \qquad i=1,\ldots,s,
+        \]
+        es una base de $\ker f$, y $s=n-\rg A$.
+        \item \alert{Imagen.} Si las columnas $j_1,\ldots,j_r$ de una forma
+        escalonada de $A$ tienen pivote, los vectores
+        \[
+            f(v_{j_1}),\ \ldots,\ f(v_{j_r})
+        \]
+        (cuyas coordenadas en $B'$ son esas columnas de $A$) forman una
+        base de $\im f$, y $r=\rg A$.
+    \end{itemize}
+
+    \medskip
+
+    Se trabaja en coordenadas con los métodos de los Temas~1 y~3, y se
+    vuelve a $V$ y a $V'$ mediante $c_B^{-1}$ y $c_{B'}^{-1}$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Ejemplo: núcleo e imagen de un homomorfismo de $\R^4$ en $\R^3$}
+
+    \begin{example}
+        Sea $f\colon\R^4\to\R^3$,
+        \[
+            f(u_1,u_2,u_3,u_4)=(u_1+2u_2+u_4,\ 2u_1+4u_2+u_3+3u_4,\ u_1+2u_2+u_3+2u_4).
+        \]
+        Calculemos bases de $\ker f$ e $\im f$.
+    \end{example}
+
+    Con las bases canónicas, la matriz de $f$ es
+    \[
+        A=\begin{pmatrix}
+            1&2&0&1\\2&4&1&3\\1&2&1&2
+        \end{pmatrix}
+        \xrightarrow[\;F_3-F_1\;]{\;F_2-2F_1\;}
+        \begin{pmatrix}
+            1&2&0&1\\0&0&1&1\\0&0&1&1
+        \end{pmatrix}
+        \xrightarrow{\;F_3-F_2\;}
+        \begin{pmatrix}
+            \alert{1}&2&0&1\\0&0&\alert{1}&1\\0&0&0&0
+        \end{pmatrix}.
+    \]
+
+    \framebreak
+
+    Hay pivotes en las columnas $1$ y $3$, luego $\rg f=2$.
+
+    \medskip
+
+    \alert{Imagen.} Una base es $\{f(e_1),f(e_3)\}=\{(1,2,1),(0,1,1)\}$,
+    las columnas $1$ y $3$ de $A$.
+
+    \medskip
+
+    \alert{Núcleo.} El sistema $Au=0$ equivale a $u_1+2u_2+u_4=0$,
+    $u_3+u_4=0$. Con $u_2=s$ y $u_4=t$ libres,
+    \[
+        u=(-2s-t,\ s,\ -t,\ t)=s(-2,1,0,0)+t(-1,0,-1,1),
+    \]
+    así que $\{(-2,1,0,0),(-1,0,-1,1)\}$ es una base de $\ker f$.
+
+    \medskip
+
+    Comprobación del teorema de la dimensión: $4=2+2$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la diferencia finita de polinomios}
+
+    \begin{example}
+        Sea $\Delta\colon\R_2[x]\to\R_2[x]$, $\Delta(p)(x)=p(x+1)-p(x)$.
+        Calculemos $\ker\Delta$ e $\im\Delta$.
+    \end{example}
+
+    Como $\Delta(1)=0$, $\Delta(x)=1$ y $\Delta(x^2)=1+2x$, la matriz
+    en $B=\{1,x,x^2\}$ es
+    \[
+        A=\begin{pmatrix}0&1&1\\0&0&2\\0&0&0\end{pmatrix},
+    \]
+    que ya está escalonada, con pivotes en las columnas $2$ y $3$.
+
+    \medskip
+
+    \alert{Núcleo.} $Au=0$ da $u_2=u_3=0$ con $u_1$ libre:
+    $\ker\Delta=\langle1\rangle$, los polinomios constantes.
+
+    \medskip
+
+    \alert{Imagen.} Una base es $\{\Delta(x),\Delta(x^2)\}=\{1,\,1+2x\}$,
+    luego $\im\Delta=\langle1,x\rangle=\R_1[x]$.
+
+    \medskip
+
+    Se cumple $3=1+2$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: el conmutador con una matriz diagonal}
+
+    \begin{example}
+        Sea $T=\begin{pmatrix}1&0\\0&2\end{pmatrix}$ y
+        $f\colon M_2(\R)\to M_2(\R)$, $f(X)=TX-XT$. Calculemos su núcleo
+        y su imagen.
+    \end{example}
+
+    Si $X=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, entonces
+    \[
+        TX-XT=\begin{pmatrix}a&b\\2c&2d\end{pmatrix}
+        -\begin{pmatrix}a&2b\\c&2d\end{pmatrix}
+        =\begin{pmatrix}0&-b\\c&0\end{pmatrix}.
+    \]
+    Por tanto, $f(X)=0$ si y solo si $b=c=0$, y
+    \[
+        \ker f=\{\text{matrices diagonales}\}=\langle E_{11},E_{22}\rangle,
+        \qquad
+        \im f=\langle E_{12},E_{21}\rangle.
+    \]
+
+    \medskip
+
+    Aquí $\dim\ker f=\dim\im f=2$ y $M_2(\R)=\ker f\oplus\im f$. Pero esto
+    \alert{no} ocurre en general: para $D\colon\R_2[x]\to\R_2[x]$,
+    $\ker D=\langle1\rangle\subseteq\im D=\langle1,x\rangle$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Inyectividad, sobreyectividad y dimensión}
+
+    \begin{corollary}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita.
+        \begin{enumerate}[(1)]
+            \item Si $f$ es inyectiva, $\dim V\leq\dim V'$. Si $f$ es
+            sobreyectiva, $\dim V\geq\dim V'$.
+            \item Si $\dim V=\dim V'$, son equivalentes: $f$ es
+            inyectiva; $f$ es sobreyectiva; $f$ es un isomorfismo.
+        \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+        \alert{(1)} Si $f$ es inyectiva, $\ker f=\{0\}$ y
+        $\dim V=\dim\im f\leq\dim V'$. Si es sobreyectiva,
+        $\dim V=\dim\ker f+\dim V'\geq\dim V'$.
+
+        \alert{(2)} Sea $n=\dim V=\dim V'$. Entonces
+        \begin{align*}
+            f\text{ inyectiva}&\iff\dim\ker f=0\iff\dim\im f=n\\
+            &\iff\im f=V'\iff f\text{ sobreyectiva},
+        \end{align*}
+        donde usamos que un subespacio de $V'$ de dimensión $n=\dim V'$
+        es $V'$ (Tema~3).
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Consecuencias y contraejemplos en dimensión infinita}
+
+    \begin{example}
+        \begin{enumerate}
+            \item Ningún homomorfismo $\R^3\to\R^2$ es inyectivo, y ninguno
+            $\R^2\to\R^3$ es sobreyectivo.
+            \item Para ver que un endomorfismo de $k^n$, de $k_n[x]$ o de
+            $M_n(k)$ es un isomorfismo, \alert{basta} ver que es
+            inyectivo: por ejemplo, $\Delta\colon\R_2[x]\to\R_2[x]$ no es
+            un isomorfismo porque $\Delta(1)=0$.
+            \item En dimensión infinita (2) \alert{falla}:
+            $D\colon\R[x]\to\R[x]$ es sobreyectiva pero no inyectiva, y
+            $p\mapsto xp$ es inyectiva pero no sobreyectiva.
+        \end{enumerate}
+    \end{example}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Clasificación de los espacios de dimensión finita}
+
+    \begin{theorem}
+        Sean $V$ y $V'$ espacios vectoriales de dimensión finita sobre
+        $k$. Entonces
+        \[
+            V\cong V'\iff\dim V=\dim V'.
+        \]
+        En particular, si $\dim V=n$, entonces $V\cong k^n$.
+    \end{theorem}
+
+    \begin{proof}
+        ($\Rightarrow$) Un isomorfismo lleva una base de $V$ a una base de
+        $V'$ con el mismo número de vectores.
+
+        ($\Leftarrow$) Sean $B$ y $B'$ bases de $V$ y $V'$, ambas con
+        $n$ vectores. Las aplicaciones de coordenadas son isomorfismos
+        $c_B\colon V\to k^n$ y $c_{B'}\colon V'\to k^n$, luego
+        $c_{B'}^{-1}\circ c_B\colon V\to V'$ es un isomorfismo.
+    \end{proof}
+
+    \medskip
+
+    La dimensión es el \alert{único} invariante de un espacio vectorial de
+    dimensión finita salvo isomorfismo: por ejemplo,
+    $\R_3[x]\cong M_2(\R)\cong\R^4$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Isomorfismos y matrices invertibles}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita, y sea $A=M_{B,B'}(f)$. Son equivalentes:
+        \begin{enumerate}[(1)]
+            \item $f$ es un isomorfismo;
+            \item $A$ es una matriz cuadrada invertible.
+        \end{enumerate}
+        En tal caso, $M_{B',B}(f^{-1})=A^{-1}$.
+    \end{proposition}
+
+    \begin{proof}
+        Sean $n=\dim V$ y $m=\dim V'$.
+
+        (1)$\Rightarrow$(2): si $f$ es un isomorfismo, $n=m$ y
+        $\rg A=\rg f=\dim V'=n$; por el Tema~1, $A$ es invertible.
+
+        \framebreak
+
+        (2)$\Rightarrow$(1): si $A$ es invertible, $n=m=\rg A=\rg f$.
+        Luego $\im f$ es un subespacio de $V'$ de dimensión $m$, es decir,
+        $\im f=V'$, y $f$ es sobreyectiva. Como $n=m$, el corolario
+        anterior da que $f$ es un isomorfismo.
+
+        Por último, $f^{-1}\circ f=\id_V$ y $f\circ f^{-1}=\id_{V'}$ dan,
+        por la composición,
+        \[
+            M_{B',B}(f^{-1})\,A=M_{B,B}(\id_V)=I_n,
+        \]
+        luego $M_{B',B}(f^{-1})=A^{-1}$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la inversa de una rotación}
+
+    \begin{example}
+        La rotación $f_\theta$ es un isomorfismo, con inversa $f_{-\theta}$
+        (girar $-\theta$). Su matriz $R_\theta$ es invertible y
+        \[
+            R_\theta^{-1}=R_{-\theta}=
+            \begin{pmatrix}
+                \cos\theta&\sin\theta\\-\sin\theta&\cos\theta
+            \end{pmatrix}.
+        \]
+    \end{example}
+
+    \medskip
+
+    En efecto, $R_\theta R_{-\theta}=R_0=I_2$ por la fórmula del ángulo
+    suma. Como $\det R_\theta=\cos^2\theta+\sin^2\theta=1\neq0$, el Tema~1
+    asegura igualmente que $R_\theta$ es invertible.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las fibras de un homomorfismo}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo y $w\in V'$.
+        \begin{itemize}
+            \item Si $w\notin\im f$, la ecuación $f(u)=w$ no tiene solución.
+            \item Si $w=f(u_0)\in\im f$, el conjunto de soluciones es
+            \[
+                f^{-1}(w)=\{u\in V:\ f(u)=w\}=u_0+\ker f.
+            \]
+        \end{itemize}
+    \end{proposition}
+
+    \begin{proof}
+        Si $f(u_0)=w$, entonces
+        \[
+            f(u)=w\iff f(u)=f(u_0)\iff u-u_0\in\ker f
+            \iff u\in u_0+\ker f.\qedhere
+        \]
+    \end{proof}
+
+    \medskip
+
+    Es el resultado del Tema~1: \alert{la solución general de un sistema
+    es una solución particular más la solución general del sistema
+    homogéneo}. Las fibras de $f$ son las clases módulo $\ker f$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: resolver $f(u)=w$}
+
+    \begin{example}
+        Sea $f\colon\R^4\to\R^3$ el homomorfismo de antes. Resolvamos
+        $f(u)=(1,3,2)$.
+    \end{example}
+
+    Escalonamos la matriz ampliada $(A\mid w)$:
+    \[
+        \left(\begin{array}{cccc|c}
+            1&2&0&1&1\\2&4&1&3&3\\1&2&1&2&2
+        \end{array}\right)
+        \xrightarrow[\;F_3-F_1\;]{\;F_2-2F_1\;}
+        \left(\begin{array}{cccc|c}
+            1&2&0&1&1\\0&0&1&1&1\\0&0&1&1&1
+        \end{array}\right)
+        \xrightarrow{\;F_3-F_2\;}
+        \left(\begin{array}{cccc|c}
+            1&2&0&1&1\\0&0&1&1&1\\0&0&0&0&0
+        \end{array}\right).
+    \]
+    Una solución particular es $u_0=(1,0,1,0)=e_1+e_3$ (pues
+    $f(e_1)+f(e_3)=(1,2,1)+(0,1,1)=(1,3,2)$), y por tanto
+    \[
+        f^{-1}(1,3,2)=(1,0,1,0)+\langle(-2,1,0,0),(-1,0,-1,1)\rangle.
+    \]
+
+    \medskip
+
+    En cambio, $f(u)=(1,0,0)$ no tiene solución, porque
+    $(1,0,0)\notin\im f=\langle(1,2,1),(0,1,1)\rangle$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Todo subespacio es un núcleo y una imagen}
+
+    \begin{proposition}
+        Sea $U$ un subespacio de $V$, con $V$ de dimensión finita.
+        \begin{enumerate}[(1)]
+            \item $U$ es el \alert{núcleo} de un homomorfismo: $U=\ker\pi$,
+            donde $\pi\colon V\to V/U$ es la proyección canónica.
+            \item $U$ es la \alert{imagen} de un homomorfismo inyectivo: si
+            $\{u_1,\ldots,u_m\}$ es una base de $U$,
+            \[
+                g\colon k^m\to V,\qquad
+                g(\lambda_1,\ldots,\lambda_m)=\lambda_1u_1+\cdots+\lambda_mu_m,
+            \]
+            cumple $\im g=U$ y $\ker g=\{0\}$.
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        (1) es el ejemplo de $\pi$. En (2), $\im g=\langle u_1,\ldots,u_m\rangle=U$
+        y, como $u_1,\ldots,u_m$ son independientes, $g(\lambda)=0$ implica
+        $\lambda=0$.
+    \end{proof}
+
+    \medskip
+
+    Así, una \alert{parametrización} de $U$ es un homomorfismo inyectivo
+    con imagen $U$ (ecuaciones paramétricas), y unas \alert{ecuaciones
+    implícitas} son las que definen $U$ como núcleo.
+\end{frame}
