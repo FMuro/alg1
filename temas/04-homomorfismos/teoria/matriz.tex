@@ -414,3 +414,94 @@
         \]
 
 \end{frame}
+
+\begin{frame}[allowframebreaks, t]
+    \frametitle{Isomorfismos y matrices invertibles}
+
+    \begin{proposition}
+        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
+        finita, con bases $B$ de $V$ y $B'$ de $V'$. Son equivalentes:
+        \begin{enumerate}[(1)]
+            \item $f$ es un isomorfismo;
+            \item $M_{B,B'}(f)$ es una matriz invertible.
+        \end{enumerate}
+        En tal caso, $M_{B',B}(f^{-1})=M_{B,B'}(f)^{-1}$.
+    \end{proposition}
+
+    \begin{proof}
+        \alert{(1)$\Rightarrow$(2).} Si $f$ es un isomorfismo, $f^{-1}$ también. Como $f^{-1}\circ f=\id_V$ y $f\circ f^{-1}=\id_{V'}$, el teorema
+        sobre la composición da
+        \begin{align*}
+            M_{B',B}(f^{-1})\,M_{B,B'}(f)&=M_{B,B}(\id_V)=I,\\
+            M_{B,B'}(f)\,M_{B',B}(f^{-1})&=M_{B',B'}(\id_{V'})=I.
+        \end{align*}
+
+        Por tanto $M_{B,B'}(f)$ es invertible, con inversa
+        $M_{B',B}(f^{-1})$.
+
+        \alert{(2)$\Rightarrow$(1).} Sea $M_{B,B'}(f)$ invertible. La aplicación
+        \[
+            g=c_B^{-1}\circ f_{M_{B,B'}(f)^{-1}}\circ c_{B'}\colon V'\to V
+        \]
+        es un homomorfismo, por ser composición de homomorfismos. Para
+        todo $w\in V'$, por definición de $g$,
+        \begin{align*}
+            g(w)_B&=c_B\bigl(g(w)\bigr)
+            =c_B\Bigl(c_B^{-1}\bigl(f_{M_{B,B'}(f)^{-1}}(c_{B'}(w))\bigr)\Bigr)\\
+            &=f_{M_{B,B'}(f)^{-1}}\bigl(w_{B'}\bigr)
+            =M_{B,B'}(f)^{-1}\,w_{B'}.
+        \end{align*}
+        Por la unicidad en el teorema sobre la matriz de un homomorfismo,
+        $M_{B',B}(g)=M_{B,B'}(f)^{-1}$. Por el teorema sobre la composición,
+        \begin{align*}
+            M_{B,B}(g\circ f)&=M_{B',B}(g)\,M_{B,B'}(f)=I=M_{B,B}(\id_V),\\
+            M_{B',B'}(f\circ g)&=M_{B,B'}(f)\,M_{B',B}(g)=I=M_{B',B'}(\id_{V'}).
+        \end{align*}
+        Como un homomorfismo queda determinado por su matriz,
+        $g\circ f=\id_V$ y $f\circ g=\id_{V'}$. Luego $f$ es biyectivo, es
+        decir, un isomorfismo, con inversa $g$.
+    \end{proof}
+
+    
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Ejemplo: la inversa de una rotación}
+
+    \begin{example}
+        La rotación $f_\theta$ es un isomorfismo, con inversa $f_{-\theta}$, 
+        el giro de ángulo $-\theta$. Su matriz $R_\theta$ es invertible y
+        \[
+            R_\theta^{-1}=R_{-\theta}=
+            \begin{pmatrix}
+                \cos\theta&\sin\theta\\-\sin\theta&\cos\theta
+            \end{pmatrix}.
+        \]
+    \end{example}
+
+    \medskip
+
+    En efecto, $R_\theta R_{-\theta}=R_0=I_2$ por la fórmula del ángulo
+    suma. Como $\det R_\theta=\cos^2\theta+\sin^2\theta=1\neq0$, el Tema~1
+    asegura igualmente que $R_\theta$ es invertible.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Espacios isomorfos tienen la misma dimensión}
+
+    \begin{corollary}
+        Si $V$ y $V'$ son espacios de dimensión finita isomorfos, entonces
+        $\dim V=\dim V'$.
+    \end{corollary}
+
+    \begin{proof}
+        Sea $f\colon V\to V'$ un isomorfismo y sean $B$ y $B'$ bases de $V$
+        y $V'$. Por la proposición anterior, $M_{B,B'}(f)$ es una matriz
+        invertible y, por tanto, cuadrada. Como tiene tantas columnas como
+        $\dim V$ y tantas filas como $\dim V'$, se tiene
+        $\dim V=\dim V'$.
+    \end{proof}
+\end{frame}

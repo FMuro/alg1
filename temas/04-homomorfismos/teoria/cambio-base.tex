@@ -216,7 +216,7 @@
 
     \begin{theorem}
         Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
-        finita, con $\rg f=r$. Existen bases $B$ de $V$ y $B'$ de $V'$ tales
+        finita, con $\dim\im f=r$. Existen bases $B$ de $V$ y $B'$ de $V'$ tales
         que
         \[
             M_{B,B'}(f)=\left(
@@ -258,7 +258,7 @@
         finita.
         \begin{enumerate}[(1)]
             \item El rango de $M_{B,B'}(f)$ no depende de las bases elegidas
-            y es igual a $\rg f$.
+            y es igual a $\dim\im f$.
             \item Dos matrices $A,A'\in M_{m\times n}(k)$ son equivalentes
             si y solo si $\rg A=\rg A'$.
         \end{enumerate}
@@ -267,7 +267,7 @@
     \begin{proof}
         (1) Ya lo sabíamos: $\rg M_{B,B'}(f)=\dim\im f$. (2) Si
         $\rg A=\rg A'=r$, ambas son la matriz de $f_A$ y de $f_{A'}$, que
-        tienen rango $r$; por el teorema, cada una de ellas es equivalente
+        tienen imagen de dimensión $r$; por el teorema, cada una de ellas es equivalente
         a $\left(\begin{smallmatrix}I_r&0\\0&0\end{smallmatrix}\right)$.
         El recíproco es consecuencia de (1).
     \end{proof}
@@ -285,7 +285,7 @@
     \frametitle{Ejemplo: forma normal en $\R^4\to\R^3$}
 
     \begin{example}
-        Para el homomorfismo $f\colon\R^4\to\R^3$ de antes, con $\rg f=2$,
+        Para el homomorfismo $f\colon\R^4\to\R^3$ de antes, con $\dim\im f=2$,
         $\ker f=\langle(-2,1,0,0),(-1,0,-1,1)\rangle$ y
         $\im f=\langle(1,2,1),(0,1,1)\rangle$, busquemos bases con matriz
         $\left(\begin{smallmatrix}I_2&0\\0&0\end{smallmatrix}\right)$.

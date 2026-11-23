@@ -36,14 +36,16 @@
         \alert{Núcleo.} $f(0)=0$, luego $0\in\ker f$. Si $u,u'\in\ker f$ y
         $\lambda,\mu\in k$,
         \[
-            f(\lambda u+\mu u')=\lambda f(u)+\mu f(u')=0,
+            f(\lambda u+\mu u')=\lambda f(u)+\mu f(u')=\lambda 0+\mu 0=0,
         \]
         luego $\lambda u+\mu u'\in\ker f$.
+
+        \medskip
 
         \alert{Imagen.} $0=f(0)\in\im f$. Si $w=f(u)$ y $w'=f(u')$,
         entonces
         \[
-            \lambda w+\mu w'=f(\lambda u+\mu u')\in\im f.\qedhere
+            \lambda w+\mu w'=\lambda f(u)+\mu f(u')=f(\lambda u+\mu u')\in\im f.\qedhere
         \]
     \end{proof}
 \end{frame}
@@ -58,16 +60,16 @@
             $\ker f_A=\{u:\ Au=0\}$ es el conjunto de soluciones del
             sistema homogéneo, e $\im f_A=\{Au:\ u\in k^n\}$ es el
             subespacio generado por las columnas de $A$.
-            \item La proyección $(u_1,u_2,u_3)\mapsto(u_1,u_2,0)$ de $\R^3$
+            \item La proyección $\R^3\rightarrow\R^3$, $(u_1,u_2,u_3)\mapsto(u_1,u_2,0)$,
             tiene núcleo $\langle e_3\rangle$ e imagen el plano
             $u_3=0$.
-            \item La aplicación nula tiene $\ker=V$ e $\im=\{0\}$. La
-            identidad tiene $\ker=\{0\}$ e $\im=V$.
+            \item La aplicación nula $0\colon V\to V'$ tiene $\ker=V$ e $\im=\{0\}$. La
+            identidad $\id\colon V\to V$ tiene $\ker=\{0\}$ e $\im=V$.
             \item La rotación $f_\theta$ de $\R^2$ tiene $\ker f_\theta=\{0\}$
             e $\im f_\theta=\R^2$.
             \item La proyección canónica $\pi\colon V\to V/U$ tiene
-            $\ker\pi=U$ e $\im\pi=V/U$ (pues $\pi(u)=0$ si y solo si
-            $u\in U$).
+            $\ker\pi=U$ (pues $\pi(u)=u+V=0+V$ si y solo si
+            $u\in U$) e $\im\pi=V/U$.
         \end{enumerate}
     \end{example}
 \end{frame}
@@ -78,22 +80,22 @@
 
     \begin{example}
         \begin{enumerate}
-            \item $D\colon\R[x]\to\R[x]$, $D(p)=p'$: $\ker D$ son los
+            \item $D\colon\R[x]\to\R[x]$, $D(p)=p'$, $\ker D$ son los
             polinomios constantes e $\im D=\R[x]$ (todo polinomio tiene
             una primitiva). Si restringimos a $D\colon\R_n[x]\to\R_{n-1}[x]$,
             sigue siendo $\ker D=\R$ e $\im D=\R_{n-1}[x]$.
-            \item $\operatorname{ev}_a\colon k[x]\to k$, $p\mapsto p(a)$:
-            $\ker\operatorname{ev}_a=\{p:\ p(a)=0\}$ e
+            \item $\operatorname{ev}_a\colon k[x]\to k$, $p\mapsto p(a)$,
+            $\ker\operatorname{ev}_a=\{p(x)\in k[x]:\ p(a)=0\}$, los polinomios que tienen a $a$ como raíz, e
             $\im\operatorname{ev}_a=k$ (la constante $\lambda$ es
             $\operatorname{ev}_a(\lambda)$).
-            \item La multiplicación por $x$ en $k[x]$ tiene núcleo $\{0\}$
-            e imagen $\{p:\ p(0)=0\}$.
-            \item $\operatorname{tr}\colon M_n(k)\to k$:
+            \item La multiplicación por $x$, $k[x]\to k[x]$, $p(x)\mapsto xp(x)$, tiene núcleo $\{0\}$
+            e imagen $\{p(x)\in k[x]:\ p(0)=0\}$, los polinomios con término independiente nulo.
+            \item $\operatorname{tr}\colon M_n(k)\to k$,
             $\ker\operatorname{tr}$ son las matrices de traza nula e
             $\im\operatorname{tr}=k$.
-            \item $A\mapsto A^t$ en $M_{m\times n}(k)$: núcleo $\{0\}$ e
+            \item La trasposición $M_{m\times n}(k)\to M_{n\times m}(k)$, $A\mapsto A^t$, tiene núcleo $\{0\}$ e
             imagen $M_{n\times m}(k)$.
-            \item $c_B\colon V\to k^n$: núcleo $\{0\}$ e imagen $k^n$.
+            \item La asignación de coordenadas $c_B\colon V\to k^n$, núcleo $\{0\}$ e imagen $k^n$.
         \end{enumerate}
     \end{example}
 \end{frame}
@@ -113,9 +115,11 @@
     \begin{proof}
         $f(u)=f(u')\iff f(u-u')=f(u)-f(u')=0\iff u-u'\in\ker f$.
 
-        Si $f$ es inyectiva y $f(u)=0=f(0)$, entonces $u=0$. Recíprocamente,
+        Si $f$ es inyectiva y $u\in \ker f$ entonces $f(u)=0=f(0)$, luego $u=0$, por tanto $\ker f=\{0\}$.
+        
+        Recíprocamente,
         si $\ker f=\{0\}$ y $f(u)=f(u')$, entonces $u-u'\in\ker f=\{0\}$,
-        luego $u=u'$.
+        luego $u-u'=0$, es decir, $u=u'$, así que $f$ es inyectiva.
     \end{proof}
 
     \medskip
@@ -137,10 +141,20 @@
     \end{proposition}
 
     \begin{proof}
-        Cada $f(u_j)$ está en $\im f$, que es un subespacio, luego
-        $\langle f(u_1),\ldots,f(u_r)\rangle\subseteq\im f$. Recíprocamente,
-        si $u=\lambda_1u_1+\cdots+\lambda_ru_r$, entonces
-        $f(u)=\lambda_1f(u_1)+\cdots+\lambda_rf(u_r)$.
+        Probamos las dos inclusiones.
+
+        ($\supseteq$) Cada $f(u_j)$ está en $\im f$ por tanto 
+        $\langle f(u_1),\ldots,f(u_r)\rangle\subseteq\im f$.
+
+        ($\subseteq$) Sea $w\in\im f$, es decir, $w=f(u)$ para algún
+        $u\in V$. Como $u_1,\ldots,u_r$ generan $V$, existen
+        $\lambda_1,\ldots,\lambda_r\in k$ con
+        $u=\lambda_1u_1+\cdots+\lambda_ru_r$. Como $f$ preserva
+        combinaciones lineales,
+        \[
+            w=f(u)=\lambda_1f(u_1)+\cdots+\lambda_rf(u_r)
+            \in\langle f(u_1),\ldots,f(u_r)\rangle.\qedhere
+        \]
     \end{proof}
 
     \medskip
@@ -169,8 +183,8 @@
     \medskip
 
     Un homomorfismo cualquiera \alert{no} conserva la independencia
-    lineal: la aplicación nula lleva cualquier familia a una familia de
-    vectores nulos.
+    lineal: la aplicación nula lleva cualquier familia no vacía a una familia de
+    vectores nulos, que es linealmente dependiente.
 \end{frame}
 
 
@@ -178,13 +192,14 @@
     \frametitle{Imagen de familias de vectores: demostración}
 
     \begin{proof}
-        \alert{(1)} Si $\sum\lambda_iu_i=0$, aplicando $f$ se obtiene
-        $\sum\lambda_if(u_i)=0$, luego todos los $\lambda_i$ son nulos.
+        \alert{(1)} Si $\sum_{i=1}^r\lambda_iu_i=0$, aplicando $f$ se obtiene
+        $\sum_{i=1}^r\lambda_if(u_i)=0$, luego todos los $\lambda_i$ son nulos
+        por la independencia lineal de $f(u_1),\ldots,f(u_r)$.
 
-        \alert{(2)} Si $\sum\lambda_if(u_i)=0$, entonces
-        $f\bigl(\sum\lambda_iu_i\bigr)=0$, y como $\ker f=\{0\}$,
-        $\sum\lambda_iu_i=0$. Por independencia, todos los $\lambda_i$ son
-        nulos.
+        \alert{(2)} Si $\sum_{i=1}^r\lambda_if(u_i)=0$, entonces
+        $f\bigl(\sum_{i=1}^r\lambda_iu_i\bigr)=\sum_{i=1}^r\lambda_if(u_i)=0$, y como $\ker f=\{0\}$,
+        $\sum_{i=1}^r\lambda_iu_i=0$. Por independencia lineal, todos los $\lambda_i$
+        son nulos.
 
         \alert{(3)} Por la proposición anterior,
         $\langle f(u_1),\ldots,f(u_r)\rangle=\im f=V'$.
@@ -195,53 +210,169 @@
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Un ejemplo antes del teorema}
+
+    \begin{columns}[c]
+        \begin{column}{0.55\textwidth}
+            \begin{example}
+                Sea $f\colon\R^2\to\R$, $f(u_1,u_2)=u_1-u_2$. Es sobreyectiva
+                y $\ker f=\langle(1,1)\rangle$.
+            \end{example}
+
+            Para cada $c\in\R$, la \alert{fibra}
+            \[
+                f^{-1}(c)=\{u:\ u_1-u_2=c\}
+            \]
+            es una recta paralela a $\ker f$, es decir, una clase módulo
+            $\ker f$.
+
+            \medskip
+
+            Cada número real $c$ corresponde a una única clase de
+            $\R^2/\ker f$, y viceversa: $f$ identifica el cociente con
+            $\R=\im f$.
+        \end{column}
+        \begin{column}{0.42\textwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \clip (-3.2,-2.6) rectangle (3.4,2.8);
+                \draw[->] (-2.5,0) -- (2.5,0) node[below left] {\footnotesize $u_1$};
+                \draw[->] (0,-2.5) -- (0,2.5) node[below left] {\footnotesize $u_2$};
+                \foreach \c in {-2,-1,1,2}
+                    \draw[gray!60] (-3,-3-\c) -- (3,3-\c);
+                \draw[very thick,alertcolor] (-3,-3) -- (3,3);
+                \foreach \c in {0,1,2}
+                    \node[right,font=\footnotesize,fill=white,inner sep=1pt] at (2.5,2.5-\c) {$\c$};
+                \foreach \c in {-2,-1}
+                    \node[left,font=\footnotesize,fill=white,inner sep=1pt] at (-2.5,-2.5-\c) {$\c$};
+            \end{tikzpicture}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Las fibras son las clases módulo el núcleo}
+
+    \begin{lemma}
+        Sea $f\colon V\to V'$ un homomorfismo. Para todo $u,u'\in V$,
+        \[
+            f(u)=f(u')\iff u+\ker f=u'+\ker f.
+        \]
+    \end{lemma}
+
+    \begin{proof}
+        Por la caracterización de la inyectividad,
+        $f(u)=f(u')\iff u-u'\in\ker f$, y por la caracterización de las
+        clases módulo un subespacio (Tema~3),
+        $u-u'\in\ker f\iff u+\ker f=u'+\ker f$.
+    \end{proof}
+
+    \medskip
+
+    Es decir, $f$ \alert{no distingue} los vectores de una misma clase
+    módulo $\ker f$, y distingue los de clases distintas.
+\end{frame}
+
+
 \begin{frame}[allowframebreaks, t]
-    \frametitle{Teorema de la dimensión}
+    \frametitle{Primer teorema de isomorfía}
 
     \begin{theorem}
+        Sea $f\colon V\to V'$ un homomorfismo. La aplicación
+        \[
+            \bar f\colon V/\ker f\longrightarrow\im f,
+            \qquad
+            \bar f(u+\ker f)=f(u),
+        \]
+        está bien definida y es un isomorfismo. En particular,
+        \[
+            V/\ker f\cong\im f.
+        \]
+    \end{theorem}
+
+    \framebreak
+
+    \begin{proof}
+        Escribamos $K=\ker f$. Por el lema, para todo $u,u'\in V$,
+        \[
+            u+K=u'+K\iff f(u)=f(u').
+        \]
+        La implicación ($\Rightarrow$) dice que $\bar f$ \alert{está bien
+        definida}: el valor $f(u)$ no depende del representante $u$ de la
+        clase. La implicación ($\Leftarrow$) dice que $\bar f$ es
+        \alert{inyectiva}.
+
+        \alert{Lineal.} Para $u,u'\in V$ y $\lambda\in k$,
+        \[
+            \bar f\bigl((u+K)+(u'+K)\bigr)=\bar f\bigl((u+u')+K\bigr)
+            =f(u+u')=\bar f(u+K)+\bar f(u'+K),
+        \]
+        \[
+            \bar f\bigl(\lambda(u+K)\bigr)=\bar f(\lambda u+K)
+            =f(\lambda u)=\lambda\bar f(u+K).
+        \]
+
+        \alert{Sobreyectiva.} Todo elemento de $\im f$ es $f(u)=\bar f(u+K)$
+        para algún $u\in V$.
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Factorización canónica de un homomorfismo}
+
+    Todo homomorfismo $f\colon V\to V'$ se descompone como
+    \[
+        \begin{tikzcd}[column sep=large]
+            V\arrow[rr,"f"]\arrow[dr,"\pi"'] & & V'\\
+            & V/\ker f\arrow[r,"\bar f"',"\cong"] & \im f\arrow[u,hook,"\iota"']
+        \end{tikzcd}
+    \]
+    es decir, $f=\iota\circ\bar f\circ\pi$, donde
+    \begin{itemize}
+        \item $\pi$ es la proyección canónica, \alert{sobreyectiva};
+        \item $\bar f$ es un \alert{isomorfismo};
+        \item $\iota$ es la inclusión, \alert{inyectiva}.
+    \end{itemize}
+
+    \medskip
+
+    En efecto, $\iota\bar f\pi(u)=\iota\bar f(u+\ker f)=f(u)$.
+
+    \medskip
+
+    Así, \alert{todo} homomorfismo es, salvo isomorfismo, una proyección
+    sobre un cociente seguida de una inclusión.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Teorema de la dimensión}
+
+    \begin{corollary}
         Sea $f\colon V\to V'$ un homomorfismo con $V$ de dimensión
         finita. Entonces
         \[
             \dim V=\dim\ker f+\dim\im f.
         \]
-    \end{theorem}
+    \end{corollary}
 
-    La dimensión de $\im f$ se llama \alert{rango} de $f$:
-    $\rg f=\dim\im f$.
+    \begin{proof}
+        Por el primer teorema de isomorfía, $V/\ker f\cong\im f$, y los
+        espacios isomorfos de dimensión finita tienen la misma dimensión.
+        Por tanto,
+        \[
+            \dim\im f=\dim V/\ker f=\dim V-\dim\ker f
+        \]
+        (Tema~3), es decir, $\dim V=\dim\ker f+\dim\im f$.
+    \end{proof}
 
     \medskip
 
-    Es una versión abstracta de $\dim\{Ax=0\}=n-\rg A$ (Tema~3).
-
-    \framebreak
-
-    \begin{proof}
-        Sea $\{v_1,\ldots,v_m\}$ una base de $\ker f$ (vacía si
-        $\ker f=\{0\}$). Por el Tema~2, la ampliamos a una base
-        $\{v_1,\ldots,v_m,v_{m+1},\ldots,v_n\}$ de $V$; en particular,
-        $\dim V=n$ y $\dim\ker f=m$. Veamos que
-        \[
-            \{f(v_{m+1}),\ldots,f(v_n)\}\ \text{es una base de }\im f,
-        \]
-        con lo que $\dim\im f=n-m$.
-
-        \alert{Generan.} Por la proposición sobre generadores,
-        $\im f=\langle f(v_1),\ldots,f(v_n)\rangle$, y $f(v_j)=0$ para
-        $j\leq m$.
-
-        \alert{Son independientes.} Si
-        $\lambda_{m+1}f(v_{m+1})+\cdots+\lambda_nf(v_n)=0$, entonces
-        \[
-            f(\lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n)=0,
-        \]
-        luego $\lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n\in\ker f$ y existen
-        $\mu_1,\ldots,\mu_m$ con
-        \[
-            \lambda_{m+1}v_{m+1}+\cdots+\lambda_nv_n=\mu_1v_1+\cdots+\mu_mv_m.
-        \]
-        Como $v_1,\ldots,v_n$ son independientes, todos los coeficientes
-        son nulos; en particular, $\lambda_{m+1}=\cdots=\lambda_n=0$.
-    \end{proof}
+    El teorema es una versión abstracta de
+    $\dim\{Ax=0\}=n-\rg A$ (Tema~3).
 \end{frame}
 
 
@@ -256,7 +387,7 @@
             \item $w\in\im f\iff w_{B'}$ es combinación lineal de las
             columnas de $A$.
         \end{enumerate}
-        Por tanto, $\rg f=\rg A$.
+        Por tanto, $\dim\im f=\rg A$.
     \end{proposition}
 
     \begin{proof}
@@ -333,7 +464,7 @@
 
     \framebreak
 
-    Hay pivotes en las columnas $1$ y $3$, luego $\rg f=2$.
+    Hay pivotes en las columnas $1$ y $3$, luego $\dim\im f=2$.
 
     \medskip
 
@@ -492,64 +623,6 @@
     La dimensión es el \alert{único} invariante de un espacio vectorial de
     dimensión finita salvo isomorfismo: por ejemplo,
     $\R_3[x]\cong M_2(\R)\cong\R^4$.
-\end{frame}
-
-
-\begin{frame}[allowframebreaks, t]
-    \frametitle{Isomorfismos y matrices invertibles}
-
-    \begin{proposition}
-        Sea $f\colon V\to V'$ un homomorfismo entre espacios de dimensión
-        finita, y sea $A=M_{B,B'}(f)$. Son equivalentes:
-        \begin{enumerate}[(1)]
-            \item $f$ es un isomorfismo;
-            \item $A$ es una matriz cuadrada invertible.
-        \end{enumerate}
-        En tal caso, $M_{B',B}(f^{-1})=A^{-1}$.
-    \end{proposition}
-
-    \begin{proof}
-        Sean $n=\dim V$ y $m=\dim V'$.
-
-        (1)$\Rightarrow$(2): si $f$ es un isomorfismo, $n=m$ y
-        $\rg A=\rg f=\dim V'=n$; por el Tema~1, $A$ es invertible.
-
-        \framebreak
-
-        (2)$\Rightarrow$(1): si $A$ es invertible, $n=m=\rg A=\rg f$.
-        Luego $\im f$ es un subespacio de $V'$ de dimensión $m$, es decir,
-        $\im f=V'$, y $f$ es sobreyectiva. Como $n=m$, el corolario
-        anterior da que $f$ es un isomorfismo.
-
-        Por último, $f^{-1}\circ f=\id_V$ y $f\circ f^{-1}=\id_{V'}$ dan,
-        por la composición,
-        \[
-            M_{B',B}(f^{-1})\,A=M_{B,B}(\id_V)=I_n,
-        \]
-        luego $M_{B',B}(f^{-1})=A^{-1}$.
-    \end{proof}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Ejemplo: la inversa de una rotación}
-
-    \begin{example}
-        La rotación $f_\theta$ es un isomorfismo, con inversa $f_{-\theta}$
-        (girar $-\theta$). Su matriz $R_\theta$ es invertible y
-        \[
-            R_\theta^{-1}=R_{-\theta}=
-            \begin{pmatrix}
-                \cos\theta&\sin\theta\\-\sin\theta&\cos\theta
-            \end{pmatrix}.
-        \]
-    \end{example}
-
-    \medskip
-
-    En efecto, $R_\theta R_{-\theta}=R_0=I_2$ por la fórmula del ángulo
-    suma. Como $\det R_\theta=\cos^2\theta+\sin^2\theta=1\neq0$, el Tema~1
-    asegura igualmente que $R_\theta$ es invertible.
 \end{frame}
 
 

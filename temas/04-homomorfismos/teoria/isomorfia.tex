@@ -1,164 +1,16 @@
-% Primer teorema de isomorfía
-
-\begin{frame}
-    \frametitle{Un ejemplo antes del teorema}
-
-    \begin{columns}[c]
-        \begin{column}{0.55\textwidth}
-            \begin{example}
-                Sea $f\colon\R^2\to\R$, $f(u_1,u_2)=u_1-u_2$. Es sobreyectiva
-                y $\ker f=\langle(1,1)\rangle$.
-            \end{example}
-
-            Para cada $c\in\R$, la \alert{fibra}
-            \[
-                f^{-1}(c)=\{u:\ u_1-u_2=c\}
-            \]
-            es una recta paralela a $\ker f$, es decir, una clase módulo
-            $\ker f$.
-
-            \medskip
-
-            Cada número real $c$ corresponde a una única clase de
-            $\R^2/\ker f$, y viceversa: $f$ identifica el cociente con
-            $\R=\im f$.
-        \end{column}
-        \begin{column}{0.42\textwidth}
-            \centering
-            \begin{tikzpicture}[scale=0.7]
-                \clip (-3.2,-2.6) rectangle (3.4,2.8);
-                \draw[->] (-2.5,0) -- (2.5,0) node[below left] {\footnotesize $u_1$};
-                \draw[->] (0,-2.5) -- (0,2.5) node[below left] {\footnotesize $u_2$};
-                \foreach \c in {-2,-1,1,2}
-                    \draw[gray!60] (-3,-3-\c) -- (3,3-\c);
-                \draw[very thick,alertcolor] (-3,-3) -- (3,3);
-                \foreach \c in {0,1,2}
-                    \node[right,font=\footnotesize,fill=white,inner sep=1pt] at (2.5,2.5-\c) {$\c$};
-                \foreach \c in {-2,-1}
-                    \node[left,font=\footnotesize,fill=white,inner sep=1pt] at (-2.5,-2.5-\c) {$\c$};
-            \end{tikzpicture}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Las fibras son las clases módulo el núcleo}
-
-    \begin{lemma}
-        Sea $f\colon V\to V'$ un homomorfismo. Para todo $u,u'\in V$,
-        \[
-            f(u)=f(u')\iff u+\ker f=u'+\ker f.
-        \]
-    \end{lemma}
-
-    \begin{proof}
-        Por la caracterización de la inyectividad,
-        $f(u)=f(u')\iff u-u'\in\ker f$, y por la caracterización de las
-        clases módulo un subespacio (Tema~3),
-        $u-u'\in\ker f\iff u+\ker f=u'+\ker f$.
-    \end{proof}
-
-    \medskip
-
-    Es decir, $f$ \alert{no distingue} los vectores de una misma clase
-    módulo $\ker f$, y distingue los de clases distintas.
-\end{frame}
-
-
-\begin{frame}[allowframebreaks, t]
-    \frametitle{Primer teorema de isomorfía}
-
-    \begin{theorem}
-        Sea $f\colon V\to V'$ un homomorfismo. La aplicación
-        \[
-            \bar f\colon V/\ker f\longrightarrow\im f,
-            \qquad
-            \bar f(u+\ker f)=f(u),
-        \]
-        está bien definida y es un isomorfismo. En particular,
-        \[
-            V/\ker f\cong\im f.
-        \]
-    \end{theorem}
-
-    \framebreak
-
-    \begin{proof}
-        Escribamos $K=\ker f$. Por el lema, para todo $u,u'\in V$,
-        \[
-            u+K=u'+K\iff f(u)=f(u').
-        \]
-        La implicación ($\Rightarrow$) dice que $\bar f$ \alert{está bien
-        definida}: el valor $f(u)$ no depende del representante $u$ de la
-        clase. La implicación ($\Leftarrow$) dice que $\bar f$ es
-        \alert{inyectiva}.
-
-        \alert{Lineal.} Para $u,u'\in V$ y $\lambda\in k$,
-        \[
-            \bar f\bigl((u+K)+(u'+K)\bigr)=\bar f\bigl((u+u')+K\bigr)
-            =f(u+u')=\bar f(u+K)+\bar f(u'+K),
-        \]
-        \[
-            \bar f\bigl(\lambda(u+K)\bigr)=\bar f(\lambda u+K)
-            =f(\lambda u)=\lambda\bar f(u+K).
-        \]
-
-        \alert{Sobreyectiva.} Todo elemento de $\im f$ es $f(u)=\bar f(u+K)$
-        para algún $u\in V$.
-    \end{proof}
-\end{frame}
-
-
-\begin{frame}[fragile]
-    \frametitle{Factorización canónica de un homomorfismo}
-
-    Todo homomorfismo $f\colon V\to V'$ se descompone como
-    \[
-        \begin{tikzcd}[column sep=large]
-            V\arrow[rr,"f"]\arrow[dr,"\pi"'] & & V'\\
-            & V/\ker f\arrow[r,"\bar f"',"\cong"] & \im f\arrow[u,hook,"\iota"']
-        \end{tikzcd}
-    \]
-    es decir, $f=\iota\circ\bar f\circ\pi$, donde
-    \begin{itemize}
-        \item $\pi$ es la proyección canónica, \alert{sobreyectiva};
-        \item $\bar f$ es un \alert{isomorfismo};
-        \item $\iota$ es la inclusión, \alert{inyectiva}.
-    \end{itemize}
-
-    \medskip
-
-    En efecto, $\iota\bar f\pi(u)=\iota\bar f(u+\ker f)=f(u)$.
-
-    \medskip
-
-    Así, \alert{todo} homomorfismo es, salvo isomorfismo, una proyección
-    sobre un cociente seguida de una inclusión.
-\end{frame}
-
+% Consecuencias del primer teorema de isomorfía y segundo teorema
 
 \begin{frame}
     \frametitle{Consecuencias}
 
     \begin{corollary}
-        Sea $f\colon V\to V'$ un homomorfismo.
-        \begin{enumerate}[(1)]
-            \item Si $f$ es sobreyectivo, $V'\cong V/\ker f$.
-            \item Si $V$ tiene dimensión finita, $\dim V=\dim\ker f+\dim\im f$.
-        \end{enumerate}
+        Sea $f\colon V\to V'$ un homomorfismo sobreyectivo. Entonces
+        $V'\cong V/\ker f$.
     \end{corollary}
 
     \begin{proof}
-        (1) Es el teorema con $\im f=V'$.
-        (2) Como $V/\ker f\cong\im f$ y los espacios isomorfos tienen la
-        misma dimensión, $\dim\im f=\dim V/\ker f=\dim V-\dim\ker f$
-        (Tema~3).
+        Es el primer teorema de isomorfía con $\im f=V'$.
     \end{proof}
-
-    \medskip
-
-    Es una segunda demostración del teorema de la dimensión.
 
     \medskip
 
